@@ -59,20 +59,22 @@ router.post('/register/activate/:key', function(req, res, next){
   connection.query("SELECT emailId FROM user", (error, results)=>{
     if(error){
       console.log(error)
-      res.json({success:false, message:"Confirmation failed, try again!"} )
+      res.json({status:500,success:false, message:"Internal Server Error", redirect:'/register/resendToken'} )
     }else{
       for (result in results){
         emailId = results[result].emailId
         hashedEmail = md5(results[result].emailId)
         if (hashedEmail === req.params.key){
-          var sql = "UPDATE user SET createdDate = ?, activationToken = ?, activationTokenExpiryTime = ? WHERE emailId = ?"
+          var sql = "UPDATE user SET isActive = ?,createdDate = ?, activationToken = ?, activationTokenExpiryTime = ? WHERE emailId = ?"
           var date = new Date()
-          connection.query(sql,[date, null, null, emailId], (error2, results2)=>{
+          connection.query(sql,[true,date, null, null, emailId], (error2, results2)=>{
             if(error2){
-              res.json({success:false, message:'Try again!'})
+              res.json({status:500,success:false, message:"Internal Server Error", redirect:'/register/resendToken'} )
               console.log(error2)
             }else{
-              res.json({success:true, message: 'Registration Successful!'})
+              //generate token here and log him in directly
+              //for now redirecting to login
+              res.json({success:true, message: 'Registration Successful!', redirect:'/login'})
             }
           })
         }
@@ -88,7 +90,7 @@ router.post('/forgotPassword', function(req, res, next){
     if(error){
       console.log(emailId)
       console.log(error)
-      res.json({status:'500', success:false,message:'Internal Server Error'})
+      res.json({status:'500', success:false,message:'Internal Server Error, retry!'})
     }else if(results.length){
       //send password reset token
       passwordResetToken = md5(emailId+'step') //step is a random word
@@ -103,13 +105,13 @@ router.post('/forgotPassword', function(req, res, next){
           res.json({status:'500', success:false,message:'Internal Server Error'})
         }else{
           emailContent = 'http://localhost:3000/users/forgotPassword/reset/'+passwordResetToken
-
+          //for now directly sending the link as a response
           res.json({status:200, success:true, message: emailContent})
         //  sendEmail(emailId, emailContent, res, activationToken)
         }
       })
     }else{
-      res.json({success:false, message:'Email doesn\'t exist!'})
+      res.json({status:200, success:false, message:'Email doesn\'t exist!'})
     }
   })
 })
@@ -134,7 +136,9 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
               console.log(error)
               res.json({status:200, message:"Password couldn't be reset try again!"})
             }else{
-              res.json({status:200, message:"Password successfully changed! Traverse to /login"})
+
+              //direct to users/dashboard but for now redirect to login
+              res.json({status:200, message:"Password successfully changed!", redirect:'/login'})
             }
         })
         break
@@ -146,8 +150,6 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
       }
     }
   })
-  /*
-  */
 })
 
 router.post('/register/resendToken', function(req, res, next){
@@ -166,11 +168,11 @@ router.post('/register/resendToken', function(req, res, next){
           res.json({status:500, message:'Try again!'})
         }else{
           res.json({status:200, success:true, message:"Please check mail"})
-          //send email
+          //send email(problem)
         }
       })
     }else{
-
+      res.json({status:200, success:false, message:"Email doesn\'t exist!"})
     }
   })
 })
