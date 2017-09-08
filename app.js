@@ -9,6 +9,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users')
 var session = require("express-session")
 var app = express();
+//validator middleware to be written
+var validate = require('./middlewares/validator').validate
+app.use(validate)
 app.use(session({secret:secretString,cookie: { maxAge: 186000000 }}));
 
 var initDb = require("./middlewares/db_init").initDb
