@@ -5,7 +5,7 @@ var md5 = require('md5');
 var nodemailer = require('nodemailer')
 var emailId = require('../config/nodemailer.js').emailId
 var password = require('../config/nodemailer.js').password
-
+var session = require('express-session')
 var smtpTransport = nodemailer.createTransport({
     service: "Mailgun",
     auth: {
@@ -81,22 +81,6 @@ router.post('/register/activate/:key', function(req, res, next){
   })
 })
 
-//login
-router.post('/login', function(req, res) {
-  emailId = req.body.emailId
-  password = req.body.password
-  passwordHash = md5(password)
-  console.log([emailId, passwordHash, password])
-  connection.query("SELECT * FROM user WHERE (emailId = ?  AND passwordHash = ?)", [emailId, passwordHash], function(error, results, details){
-    if(results){
-      console.log(results)
-      res.json({success:true})
-    }else{
-      res.json({success:false})
-    }
-  })
-});
-
 //handle forgot password
 router.post('/forgotPassword', function(req, res, next){
   emailId = req.body.emailId
@@ -165,6 +149,53 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
   /*
   */
 })
+
+router.post('/register/resendToken', function(req, res, next){
+  emailId = req.body.emailId
+  connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
+    if(error){
+      console.log(error)
+      res.json({status:500, message:"Internal server error" })
+    }else if(results.length){
+      activationToken = md5(emailId)
+      date = new Date()
+      dateInMs = date.getTime()
+      activationTokenExpiryTime = new Date(dateInMs + 1800000)
+      connection.query("UPDATE user SET(activationToken=?, activationTokenExpiryTime=?) WHERE emailId=?",[activationToken, activationTokenExpiryTime],function(error, results){
+        if(error){
+          res.json({status:500, message:'Try again!'})
+        }else{
+          res.json({status:200, success:true, message:"Please check mail"})
+          //send email
+        }
+      })
+    }else{
+
+    }
+  })
+})
+
+
+
+
+//login
+router.post('/login', function(req, res) {
+  emailId = req.body.emailId
+  password = req.body.password
+  passwordHash = md5(password)
+  console.log([emailId, passwordHash, password])
+  connection.query("SELECT * FROM user WHERE (emailId = ?  AND passwordHash = ?)", [emailId, passwordHash], function(error, results, details){
+    if(results){
+      user = results[0]
+      sessId = md5(user.name+user.emailId)
+      session.sessId = sessId
+      console.log(session)
+      res.json({status:200, success:true, message:"Redirect to /dashboard"}) //Give redirection headers
+    }else{
+      res.json({status:200, success:false})
+    }
+  })
+});
 
 
 module.exports = router;
