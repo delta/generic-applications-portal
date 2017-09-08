@@ -1,4 +1,4 @@
-module.exports.validate = (req, res, next){
+module.exports.validate = (req, res, next)=>{
   if(req.emailId){
     //check emailId
   }else if(req.password){
