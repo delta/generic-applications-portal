@@ -1,6 +1,6 @@
 var mysql = require('mysql')
 var dbConfig = require('../config/db_config')
-connection = mysql.createConnection({
+globals.connection = mysql.createConnection({
   host     :dbConfig.host,
   user     : dbConfig.username,
   password : dbConfig.password,
