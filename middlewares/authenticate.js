@@ -7,6 +7,6 @@ module.exports.authenticate = (req, res, next)=>{
       }
     })
   }else{
-    res.end('Fuck off!')
+    res.json({status:200, success:false, redirect:'/login'})
   }
 }
