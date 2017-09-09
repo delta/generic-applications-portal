@@ -3,11 +3,11 @@ var router = express.Router();
 var md5 = require('md5');
 //nodemailer config
 var nodemailer = require('nodemailer')
-var emailId = require('../config/nodemailer.js').emailId
-var password = require('../config/nodemailer.js').password
+var emailId = require('../config/gmail.js').emailId
+var password = require('../config/gmail.js').password
 var session = require('express-session')
 var smtpTransport = nodemailer.createTransport({
-    service: "Mailgun",
+    service: "Gmail",
     auth: {
         user: emailId,
         pass: password
@@ -49,9 +49,10 @@ router.post('/register', function(req, res) {
           console.log(error)
           res.json({status:'500', success:false,message:'Internal Server Error'})
         }else{
-          emailContent = 'http://localhost:3000/users/register/activate/'+activationToken
-        //  sendEmail(emailId, emailContent, res, activationToken)
-        res.json({status:200, success:true, message:"Please traverse to "+ emailContent})
+          var emailContent = 'http://localhost:3000/users/register/activate/'+activationToken
+          var subject = 'Confirm Registration'
+          sendEmail(emailId, emailContent, res, activationToken)
+        //res.json({status:200, success:true, message:"Please traverse to "+ emailContent})
         }
       })
     }
@@ -118,8 +119,9 @@ router.post('/forgotPassword', function(req, res, next){
         }else{
           emailContent = 'http://localhost:3000/users/forgotPassword/reset/'+passwordResetToken
           //for now directly sending the link as a response
-          res.json({status:200, success:true, message: emailContent})
-        //  sendEmail(emailId, emailContent, res, activationToken)
+          //res.json({status:200, success:true, message: emailContent})
+          subject = "Reset Password"
+          sendEmail(emailId, emailContent, res, activationToken, subject)
         }
       })
     }else{
@@ -186,8 +188,10 @@ router.post('/register/resendToken', function(req, res, next){
             console.log(error2)
             res.json({status:500, message:'Try again!'})
           }else{
-            res.json({status:200, success:true, message:"Please check mail", token: activationToken})
-            //send email(problem)
+            //res.json({status:200, success:true, message:"Please check mail", token: activationToken})
+            var message = "http://localhost:3000/register/activate/" + activationToken
+            var subject = "Confirm Registration!"
+            sendEmail(emailId, message,res, activationToken, subject)
           }
         })
       }else{
@@ -228,10 +232,10 @@ router.post('/login', function(req, res) {
 
 module.exports = router;
 
-function sendEmail(email, message,res, activationToken){
+function sendEmail(email, message,res, activationToken, subject){
   var mailOptions={
      to : email,
-     subject : 'Confirm registration!',
+     subject : subject,
      text : message
   }
   console.log(mailOptions);
