@@ -24,6 +24,7 @@ router.post('/register', function(req, res) {
   emailId = req.body.emailId
   name = req.body.name
   password = req.body.password
+  console.log(emailId, name, password)
   connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
     if(error){
       console.log(emailId)
@@ -38,7 +39,8 @@ router.post('/register', function(req, res) {
       date = new Date()
       dateInMs = date.getTime()
       activationToken = md5(emailId + date)
-      activationTokenExpiryTime = new Date(dateInMs + 1800000)
+      activationTokenExpiryTime = dateInMs + 1800000
+      console.log(dateInMs, activationTokenExpiryTime)
       console.log(activationTokenExpiryTime) // to debug
       sql = "INSERT INTO user (emailId, name, passwordHash, activationToken, activationTokenExpiryTime) VALUE ?"
       values = [[emailId, name, passwordHash,activationToken, activationTokenExpiryTime]]
@@ -67,14 +69,14 @@ router.post('/register/activate/:key', function(req, res, next){
         //process activation
         activationTokenExpiryTime = results[0].activationTokenExpiryTime
         date = new Date()
-        if(date.getTime() > activationTokenExpiryTime.getTime()){
-          console.log(date.getTime(), activationTokenExpiryTime.getTime())
+        if(date.getTime() > activationTokenExpiryTime){
+          console.log(date.getTime(), activationTokenExpiryTime)
           console.log("Got here")
           res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
         }else{
           var sql = "UPDATE user SET isActive = ?,createdDate = ?, activationToken = ?, activationTokenExpiryTime = ? WHERE emailId = ?"
           var date = new Date()
-          connection.query(sql,[true,date, null, null, emailId], (error2, results2)=>{
+          connection.query(sql,[true,date.getTime(), null, null, emailId], (error2, results2)=>{
             if(error2){
               res.json({status:500,success:false, message:"Internal Server Error", redirect:'/register/resendToken'} )
               console.log(error2)
@@ -106,7 +108,7 @@ router.post('/forgotPassword', function(req, res, next){
       date = new Date()
       dateInMs = date.getTime()
       passwordResetToken = md5(emailId+date)
-      passwordResetTokenExpiryTime = new Date(dateInMs + 1800000)
+      passwordResetTokenExpiryTime = dateInMs + 1800000
       sql = "UPDATE user SET passwordResetToken = ? , passwordResetTokenExpiryTime = ? WHERE emailId = ? "
       values = [ passwordResetToken, passwordResetTokenExpiryTime, emailId]
       connection.query(sql, values, function(error, results){
@@ -141,7 +143,7 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
       if(results.length){
         passwordResetTokenExpiryTime = results[0].passwordResetTokenExpiryTime
         date = new Date()
-        if(date.getTime() >  passwordResetTokenExpiryTime.getTime()){
+        if(date.getTime() >  passwordResetTokenExpiryTime){
           res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
         }else{
           console.log('Yayy@')
@@ -166,6 +168,7 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
 
 router.post('/register/resendToken', function(req, res, next){
   if(session.sessId){
+    console.log(session)
     res.json({status:200, success:false, redirect:'/users/dashboard'})
   }else{
     emailId = req.body.emailId
@@ -176,7 +179,7 @@ router.post('/register/resendToken', function(req, res, next){
       }else if(results.length){
         date = new Date()
         dateInMs = Number(date.getTime())
-        activationTokenExpiryTime = new Date(dateInMs + 1800000)
+        activationTokenExpiryTime = dateInMs + 1800000
         activationToken = md5(emailId+date)
         connection.query("UPDATE user SET activationToken=?, activationTokenExpiryTime=? WHERE emailId=?",[activationToken, activationTokenExpiryTime, emailId],function(error2, results){
           if(error2){
