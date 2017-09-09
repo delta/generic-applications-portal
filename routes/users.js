@@ -51,7 +51,7 @@ router.post('/register', function(req, res) {
         }else{
           var emailContent = 'http://localhost:3000/users/register/activate/'+activationToken
           var subject = 'Confirm Registration'
-          sendEmail(emailId, emailContent, res, activationToken)
+          sendEmail(emailId, emailContent, res, activationToken, subject)
         //res.json({status:200, success:true, message:"Please traverse to "+ emailContent})
         }
       })
