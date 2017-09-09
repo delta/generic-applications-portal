@@ -202,7 +202,8 @@ router.post('/register/resendToken', function(req, res, next){
 
 //login
 router.post('/login', function(req, res) {
-  if(session.sessId){
+  if(req.session.sessId){
+    console.log(req.session)
     res.json({status:200, success:false, redirect:'/users/dashboard'})
   }else{
     emailId = req.body.emailId
@@ -213,7 +214,8 @@ router.post('/login', function(req, res) {
       if(results){
         user = results[0]
         sessId = md5(user.name+user.emailId)
-        session.sessId = sessId
+        req.session.sessId = sessId
+        req.session.path = '*'
         console.log(session)
         res.json({status:200, success:true, message:"Redirect to /dashboard"}) //Give redirection headers
       }else{
