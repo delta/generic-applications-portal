@@ -1,0 +1,14 @@
+{
+  "name": "generic-form-framework",
+  "version": "1.0.0",
+  "description": "A generator that creates html and js for validation of forms, both on frontend and backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Parth Thakkar",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
