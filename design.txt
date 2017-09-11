@@ -1,0 +1,158 @@
+Stuff.
+
+unspecified attributes (at least for Field) will be passed on to the html element (input)
+Application:
+    Sections
+        - id
+        Subsection
+            - id
+            - showIf
+            Fieldset
+                - id
+                - repeatable
+                - maxCount (maximum number of times the 'plus' sign can be pressed)
+                - showIf
+                Field
+                    - id
+                    - label
+                    - type (text,number,email,regex,...,computed)
+                    - showIf
+                    - validationRules
+                    - preview ("off"|"<width>,<height>,<placeHolderImgSrc>")
+                    - computedValue
+
+Form related aspects:
+- Layout
+- Styling
+- Expressibility of validationRules, computedValue, showIf
+- Extensibility of inputs types (wsiwyg)
+- Customizability of html (extra things to add)
+- Handling of files
+- Validation of spec
+- Don't be horribly inefficient
+- Error messages customizability
+
+Process level things:
+- Application validation (completion status and all)
+- Application metadata
+- User registration
+- Closing of application
+- Instructions
+- 
+
+
+Users:
+    Schema:
+        id
+        emailId
+        name
+        passwordHash
+        isActive
+        activationToken
+        activationTokenExpiryTime
+        passwordResetToken
+        passwordResetTokenExpiryTime
+        createdDate
+    
+    API:
+        POST /users/register 
+            -> args: { emailId, name, password }
+            -> actions: sends email with a url to activate profile
+            -> returns:
+                - if successful, page asking user to check mail
+                - if fail, displaying same page asking user to retry
+                    - failure due to:
+                        - internal server Error
+                        - emailId already taken
+                        - validation error (email/name/password)
+        
+        GET  /users/activate?activationToken
+            -> args: { activationToken }
+            -> returns:
+                - if successful, redirect to '/users/dashboard'
+                    - set isActive, clear activationToken
+                - if fail, display page to resend activation token
+                    - failure due to:
+                        - internal server error
+                        - invalid activation link
+                        - activation link expired
+
+        POST /users/forgotPassword
+            -> args: { emailId }
+            -> actions: sends email with a url to reset password
+            -> returns:
+                - if successful, page asking user to check mail
+                - if fail, display same page asking user to retry
+
+        POST /users/changePassword
+            -> args: { oldPassword, newPassword, session(isLoggedIn, emailId) }
+            -> access: only to loggedIn users. Others redirected to '/users/login'
+            -> actions: changes password if oldPassword matches
+            -> returns:
+                - if successful, redirects to '/users/dashboard'
+                - if fail, display same page asking user to retry
+                
+        POST /users/login
+            -> args: { emailId, password }
+            -> access: only to non loggedIn users. Others redirected to '/users/dashboard'
+            -> actions: set session variables (isLoggedIn, emailId)
+            -> returns:
+                - if successful, redirects to '/users/dashboard'
+                - if fail, display same page asking user to try again
+                    - failure due to:
+                        - internal server error
+                        - invalid credentials
+                        - validation error (emailId/password required)
+ 
+        POST /users/resendActivationToken
+            -> args: { emailId }
+            -> access: only to non loggedIn users. Others redirected to '/users/dashboard'
+            -> actions: if activationToken not expired, resend email. Else, generate new token and send.
+            -> returns:
+                - if successful, page asking user to check mail
+                - if fail, display same page asking user to try again
+                    - failure due to:
+                        - internal server error
+                        - invalid email id
+        
+        GET  /users/dashboard -> returns { name, emailId, createdAt }
+            -> args: {}
+            -> access: only to loggedIn users. Others redirected to '/users/login'
+            -> returns:
+                - displays the home page (name, emailId, applications)
+
+Application metadata:
+
+    Schema:
+        id            (should be a number. AUTO_INCREMENT)
+        userId        (Foreign key to user id)
+        applicationId (format should be configurable. Some admins want specific format)
+        isClosed      (if the application is closed, it can't be edited)
+        createdDate
+        submittedDate
+
+    API:
+        POST /createApplication
+        POST /saveStage
+        GET  /application?id
+        POST /submitApplication
+
+Application Form data:
+
+    Schema:
+
+
+TODO (other than above):
+P0:
+    - generation of validation scripts for both server and client
+    - generation of preview
+    - handling of files
+
+P1:
+    - admin stuff:
+        - search by applicationId/Number/name
+        - view application details (same as preview)
+        - reset application for changes ('unsubmit')
+
+P2:
+    - workflow management (closing application process, )

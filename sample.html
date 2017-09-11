@@ -1,0 +1,26 @@
+<application name="myApp">
+    <section name="Personal Information">
+        <subsection name="Stuff" showIf="$hasName == 'true'">
+            <fieldset name="Name">
+                <input name="firstName" placeholder="First Name" validationRule="required|name">
+                <input name="middleName" placeholder="Middle Name" validationRule="sometimes|name">
+                <input name="lastName" placeholder="Last Name" validationRule="sometimes|name">
+            </fieldset>
+
+            <fieldset name="E-mail">
+                <input name="email" placeholder="Email" disabled="true" validationRule="required">
+                <input name="emailAlt" label="Alternative E-mail" placeholder="Alternative Email ID" validationRule="required|email">
+            </fieldset>
+            
+            <fieldset name="Date of birth">
+                <input name="dob" placeholder="dd/mm/yyyy" validationRule="required|date">
+                <input name="age" hidden="true" validationRule="required|integer" computedValue="$f.util.toAge($f.dob)">
+            </fieldset>
+            
+            <fieldset>
+                <input name="gender" label="Gender" type="select:Male,Female,Transgender,I don't want to disclose" placeholder="Please select" validationRule="required">
+                <input name="category" label="Category" type="select:General,Other Backward Classes (OBC),Scheduled Cast (SC),Scheduled Tribe (ST),Person with disabilities" placeholder="Please select" validationRule="required">
+            </fieldset>
+        </subsection>
+    </section>
+</application>
