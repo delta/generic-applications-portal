@@ -37,8 +37,9 @@ router.post('/register', function(req, res) {
     }else{
       console.log(results)
       passwordHash = md5(password)
-      //experimenting bcrypt
-      bcrypt.hash(password, saltRounds, function(err, passwordHash) {
+      //salting
+      bcrypt.hash(password+emailId, saltRounds, function(err, passwordHash) {
+        console.log(password+emailId, passwordHash)
         date = new Date()
         dateInMs = date.getTime()
         activationToken = md5(emailId + date)
@@ -140,15 +141,17 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
   //check if password is in the body
   password = req.body.password
   console.log(password)
-  //experimenting with bcrypt
-  bcrypt.hash(password, saltRounds, function(err, passwordHash) {
-    verificationToken = req.params.key
-    console.log(verificationToken)
-    connection.query('SELECT emailId, passwordResetTokenExpiryTime FROM user WHERE passwordResetToken=?',[verificationToken], function(error, results){
-      if(error){
-        res.json({status:500, success:false, message:'Internal Server Error'})
-      }else{
-        if(results.length){
+  verificationToken = req.params.key
+  console.log(verificationToken)
+  connection.query('SELECT emailId, passwordResetTokenExpiryTime FROM user WHERE passwordResetToken=?',[verificationToken], function(error, results){
+    if(error){
+      res.json({status:500, success:false, message:'Internal Server Error'})
+    }else{
+      if(results.length){
+
+
+        //experimenting with bcrypt
+        bcrypt.hash(password+results[0].emailId, saltRounds, function(err, passwordHash) {
           passwordResetTokenExpiryTime = results[0].passwordResetTokenExpiryTime
           date = new Date()
           if(date.getTime() >  passwordResetTokenExpiryTime){
@@ -167,12 +170,12 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
                 }
             })
           }
-        }else{
-          res.json({status:200, success:false, message:'Invalid token!'})
-        }
+        });
+      }else{
+        res.json({status:200, success:false, message:'Invalid token!'})
       }
-    })
-  });
+    }
+  })
 
 })
 
@@ -226,7 +229,8 @@ router.post('/login', function(req, res) {
       if(results){
         if(!results[0].isActive)
           return res.json({status:200, success:200, message:"Confirm your acc!"})
-        bcrypt.compare(password, results[0].passwordHash, function(err, response) {
+        console.log(password+results[0].emailId, results[0].passwordHash)
+        bcrypt.compare(password+results[0].emailId, results[0].passwordHash, function(err, response) {
           if(response){
             user = results[0]
             req.session.isLoggedIn = true ;
