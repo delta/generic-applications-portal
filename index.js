@@ -59,14 +59,10 @@ function validate(name) {
     myData[name] = $f[name];
     myRules[name] = rules[name];
 
-    alert(name);
-    alert(JSON.stringify(myData));
-    
-    onValidates[name]("errorororororor");
     // same handler will handle both validation success and validation failure
-    //indicative.validate(myData, myRules)
-    //    .then(onValidates[name])
-    //    .catch(onValidates[name]);
+    indicative.validate(myData, myRules)
+        .then(onValidates[name])
+        .catch(onValidates[name]);
 }
 
 class Manager {
@@ -246,7 +242,6 @@ class InputNodeTransformer extends NodeTransformer {
         let name = this.node.attribs.name;
 
         onValidates[name] = `(err) => {
-            alert("${name} not working");
             if (!err) $("#error-${name}").hide();
             else      $("#error-${name}").show().html("Error!");
         }`;
@@ -320,8 +315,7 @@ class TableInputNodeTransformer extends NodeTransformer {
         }
         
         let nColumns = this.node.children.length;
-        let html = `<input type='button' class="" id="rowAdder_${this.name}" onclick="addRow_${this.name}()" value='Add'>
-        <table id="${this.name}"><thead><tr>`;
+        let html = `<table id="${this.name}"><thead><tr>`;
 
         for (let i = 0; i < this.node.children.length; i++) {
             let child = this.node.children[i];
@@ -332,22 +326,29 @@ class TableInputNodeTransformer extends NodeTransformer {
             html += `<th style="width:${width}">${label}</th>`;
         }
 
-        html += `</tr></thead></table>`; // rows will be added by the client.
+        html += `<th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_${this.name}" onclick="addRow_${this.name}(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>`; // rows will be added by the client.
 
         // Will be run in the context of the browser. Won't have access
         // to server side variables.
         scripts.push(`
         let nRows_${this.name} = 0;
         let nRows_${this.name}_real = 0;
-        function delRow_${this.name}(rowNumber) {
+        function delRow_${this.name}(event, rowNumber) {
             let rowId = "${this.name}-" + rowNumber;
             $("#" + rowId).remove();
             nRows_${this.name}_real--;
             if (nRows_${this.name}_real < ${maxCount}) {
                 $("#rowAdder_${this.name}").attr('disabled', false);
             }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
         }
-        function addRow_${this.name}() {
+        function addRow_${this.name}(event) {
             // create every element in the row
             // add each element to the rules array
             // NOT-SUPPORTED: call addTrigger on each element
@@ -363,7 +364,7 @@ class TableInputNodeTransformer extends NodeTransformer {
                 elements.push({
                     name: 'delRow',
                     validationrule: '',
-                    html: "<input type='button' class='removeRow' onclick='delRow_${this.name}(" + nRows + ")'/>",
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_${this.name}(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
                 });
             }
             if (nRows_${this.name}_real + 1 >= ${maxCount}) {
@@ -389,6 +390,9 @@ class TableInputNodeTransformer extends NodeTransformer {
             // finally append the row to the table
             $("#${this.name}").append(rowHtml);
 
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            
             return false;
         }
         
