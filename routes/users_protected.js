@@ -9,8 +9,10 @@ router.post('/changePassword', function(req, res) {
   let newPassword = req.body.newPassword
   let emailId = req.body.emailId
   let oldPassword = req.body.oldPassword
-  if(newPassword && emailId && oldPassword){
-    connection.query("SELECT * FROM user WHERE emailId = ?", [emailId], (error, users)=>{
+
+  if(!newPassword || !emailId || !oldPassword)
+    return res.json({status:200, success:false, message:"Send proper params!"})
+  connection.query("SELECT * FROM user WHERE emailId = ?", [emailId], (error, users)=>{
       if(error){
         console.log(error)
         res.json({status:500,success:false, message: "Internal Server error!"})
@@ -35,9 +37,6 @@ router.post('/changePassword', function(req, res) {
         })
       }
     })
-  }else{
-    res.json({status:200, success:false, message:"Send proper params!"})
-  }
 });
 
 router.get('/dashboard', function(req, res){
