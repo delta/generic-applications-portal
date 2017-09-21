@@ -153,8 +153,8 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
           if(date.getTime() >  passwordResetTokenExpiryTime){
             res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
           }else{
-            sql = "UPDATE user SET passwordHash = ?, passwordResetToken = ?, passwordResetTokenExpiryTime = ? WHERE emailId = ?"
-            connection.query(sql,[passwordHash, null, null, emailId], function(error, results){
+            sql = "UPDATE user SET passwordHash = ?, passwordResetToken = null, passwordResetTokenExpiryTime = null WHERE emailId = ?"
+            connection.query(sql,[passwordHash,emailId], function(error, results){
                 if(error){
                   console.log(error)
                   res.json({status:200, message:"Password couldn't be reset try again!"})
