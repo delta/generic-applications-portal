@@ -41,7 +41,7 @@ router.post('/register', function(req, res) {
         date = new Date()
         dateInMs = date.getTime()
         activationToken = md5(emailId + dateInMs)
-        activationTokenExpiryTime = dateInMs + 1800000
+        activationTokenExpiryTime = dateInMs + 86400000
         sql = "INSERT INTO user (emailId, name, passwordHash, activationToken, activationTokenExpiryTime) VALUE ?"
         values = [[emailId, name, passwordHash,activationToken, activationTokenExpiryTime]]
         connection.query(sql, [values], function(error, results){
@@ -111,7 +111,7 @@ router.post('/forgotPassword', function(req, res, next){
       date = new Date()
       dateInMs = date.getTime()
       passwordResetToken = md5(emailId+dateInMs)
-      passwordResetTokenExpiryTime = dateInMs + 1800000
+      passwordResetTokenExpiryTime = dateInMs + 86400000
       sql = "UPDATE user SET passwordResetToken = ? , passwordResetTokenExpiryTime = ? WHERE emailId = ? "
       values = [ passwordResetToken, passwordResetTokenExpiryTime, emailId]
       connection.query(sql, values, function(error, results){
@@ -186,21 +186,28 @@ router.post('/register/resendToken', function(req, res, next){
         console.log(error)
         res.json({status:500, message:"Internal server error" })
       }else if(results.length){
-        date = new Date()
-        dateInMs = Number(date.getTime())
-        activationTokenExpiryTime = dateInMs + 1800000
-        activationToken = md5(emailId+dateInMs)
-        connection.query("UPDATE user SET activationToken=?, activationTokenExpiryTime=? WHERE emailId=?",[activationToken, activationTokenExpiryTime, emailId],function(error2, results){
-          if(error2){
-            console.log(error2)
-            res.json({status:500, message:'Try again!'})
-          }else{
-            //res.json({status:200, success:true, message:"Please check mail", token: activationToken})
-            let message = "http://localhost:3000/register/activate/" + activationToken
-            let subject = "Confirm Registration!"
-            sendEmail(emailId, message,res, activationToken, subject)
-          }
-        })
+        if(results[0].activationToken){
+          activationToken = results[0].activationToken
+          let message = "http://localhost:3000/register/activate/" +activationToken 
+          let subject = "Confirm Registration!"
+          return sendEmail(emailId, message,res, activationToken, subject)
+        }else{
+          date = new Date()
+          dateInMs = Number(date.getTime())
+          activationTokenExpiryTime = dateInMs + 86400000
+          activationToken = md5(emailId+dateInMs)
+          connection.query("UPDATE user SET activationToken=?, activationTokenExpiryTime=? WHERE emailId=?",[activationToken, activationTokenExpiryTime, emailId],function(error2, results){
+            if(error2){
+              console.log(error2)
+              res.json({status:500, message:'Try again!'})
+            }else{
+              //res.json({status:200, success:true, message:"Please check mail", token: activationToken})
+              let message = "http://localhost:3000/register/activate/" + activationToken
+              let subject = "Confirm Registration!"
+              sendEmail(emailId, message,res, activationToken, subject)
+            }
+          })
+        }
       }else{
         res.json({status:200, success:false, message:"Please register!"})
       }
