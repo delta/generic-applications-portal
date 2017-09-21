@@ -60,18 +60,19 @@ function validate(name) {
     myRules[name] = rules[name];
 
     // same handler will handle both validation success and validation failure
-    indicative.validate(myData, myRules)
+    indicative.validate(myData, myRules, {
+        required: '{{field}} is required to complete registeration process',
+    })
         .then(onValidates[name])
         .catch(onValidates[name]);
 }
 
 class Manager {
     constructor() {
-        this.rules = {};
         this.nodeList = {};
     }
     addValidationRule(ruleName, func) {
-        this.rules.push(ruleName, func);
+        rules[ruleName] = func;
     }
     registerNode(nodeName, nodeTransformer) {
         this.nodeList[nodeName] = nodeTransformer;
@@ -145,6 +146,8 @@ class ApplicationNodeTransformer extends NodeTransformer {
 
 class SectionNodeTransformer extends NodeTransformer {
     transform() {
+        let showIf = this.consumeAttr("showif");
+
         return `<form>
             <div class='section'>
                 <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.name}</h2>
@@ -157,7 +160,7 @@ class SectionNodeTransformer extends NodeTransformer {
 
 class SubsectionNodeTransformer extends NodeTransformer {
     transform() {
-        return `<div class='subsection'>
+        return `<div class='subsection' id="${this.name}">
             <br><h4 style="color: #1bbae1">&gt; ${this.name}</h4><br>
             ${this.transformChildren()}
         </div>`;
@@ -184,6 +187,7 @@ class InputNodeTransformer extends NodeTransformer {
             for (let rule of validationRules) {
                 if (/^js:/.test(rule)) { // custom rule. wrap in a function.
                     // first do one-time checking if the rule refers to non-existing elements
+                    // js: $f.salary + $f.dadSalary >= $f.maxSalary
                     let matches = rule.match(/\$f.[^ ]+/g);
                     for (let match of matches) {
                         match = match.substr(2); // '$f.something'. Start from index 2
@@ -243,17 +247,17 @@ class InputNodeTransformer extends NodeTransformer {
 
         onValidates[name] = `(err) => {
             if (!err) $("#error-${name}").hide();
-            else      $("#error-${name}").show().html("Error!");
+            else      $("#error-${name}").show().html(err[0].message);
         }`;
 
         return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
     }
     transform() {
         let attrs = this.node.attribs;
-        
         let name = attrs.name;
-        let validationRules = this.consumeAttr('validationrule');
 
+        let validationRules = this.consumeAttr('validationrule');
+        manager.addValidationRule(name, validationRules);
         this.processJsValidationRules(validationRules);
 
         this.$node.attr("onblur", `validate('${name}')`);
@@ -277,10 +281,10 @@ class InputNodeTransformer extends NodeTransformer {
 class SelectNodeTransformer extends InputNodeTransformer {
     transform() {
         let attrs = this.node.attribs;
-        
         let name = attrs.name;
-        let validationRules = this.consumeAttr('validationrule');
 
+        let validationRules = this.consumeAttr('validationrule');
+        manager.addValidationRule(name, validationRules);
         this.processJsValidationRules(validationRules);
         
         this.$node.attr("onblur", `validate("${name}")`);
@@ -392,7 +396,7 @@ class TableInputNodeTransformer extends NodeTransformer {
 
             event && event.preventDefault();
             event && event.stopPropagation();
-            
+
             return false;
         }
         
@@ -429,14 +433,16 @@ function stringifyObject(obj) {
 }
 
 layout = layout.replace(/\{\{body\}\}/, manager.transformNode($("application")[0]));
-layout = layout.replace(/\{\{script\}\}/, `<script type='text/javascript'>
-let $f = ${stringifyObject($f)};
-let rules = ${stringifyObject(rules)};
+layout = layout.replace(/\{\{script\}\}/, `
+<script type='text/javascript' src='js/indicative_bundle.js'></script>
+<script type='text/javascript'>
+let $f = ${JSON.stringify($f)};
+let rules = ${JSON.stringify(rules)};
 let triggers = ${stringifyObject(triggers)};
 let onValidates = ${stringifyObject(onValidates)};
 let validate = ${stringifyObject(validate)};
 
-/*indicative.extend('js', (data, field, message, args) => {
+indicative.extend('js', (data, field, message, args) => {
     let code = args.join(","); // in case there was a ',' in code, and indicative thought it 
                                // was indicative of separating an argument instead of part
                                // of js code itself
@@ -444,7 +450,7 @@ let validate = ${stringifyObject(validate)};
         return Promise.resolve('');
     }
     return Promise.reject('Invalid data');
-});*/
+});
 
 ${scripts.join("\n\n")};
 </script>`);
