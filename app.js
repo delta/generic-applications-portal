@@ -10,9 +10,6 @@ var users = require('./routes/users')
 var users_protected = require('./routes/users_protected')
 var session = require("express-session")
 var app = express()
-//validator middleware to be written
-var validate = require('./middlewares/validator').validate
-app.use(validate)
 app.use(session({secret:secretString,cookie: { maxAge: 186000000 }, path:'*'}))
 
 var initDb = require("./middlewares/db_init").initDb
