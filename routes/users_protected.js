@@ -1,21 +1,21 @@
-var express = require('express');
-var router = express.Router();
-var md5 = require('md5')
-var bcrypt = require('bcrypt')
+const express = require('express');
+const router = express.Router();
+const md5 = require('md5')
+const bcrypt = require('bcrypt')
 /* Only for logged users*/
 const saltRounds = 10;
 router.post('/changePassword', function(req, res) {
   //Check for required parameters before doing anything
-  newPassword = req.body.newPassword
-  emailId = req.body.emailId
-  oldPassword = req.body.oldPassword
+  let newPassword = req.body.newPassword
+  let emailId = req.body.emailId
+  let oldPassword = req.body.oldPassword
   if(newPassword && emailId && oldPassword){
     connection.query("SELECT * FROM user WHERE emailId = ?", [emailId], (error, users)=>{
       if(error){
         console.log(error)
         res.json({status:500,success:false, message: "Internal Server error!"})
       }else{
-        user = users[0]
+        let user = users[0]
         bcrypt.compare(oldPassword+emailId, user.passwordHash, function(err, response){
           if(response){
             bcrypt.hash(newPassword+emailId,saltRounds, function(err, hash2){

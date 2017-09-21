@@ -1,18 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var md5 = require('md5');
-var bcrypt = require('bcrypt');
+const express = require('express');
+const router = express.Router();
+const md5 = require('md5');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer')
+const session = require('express-session')
+const senderEmailId = require('../config/gmail.js').emailId //use const here
+const senderPassword = require('../config/gmail.js').password
+const validate = require('../middlewares/validator').validate
 const saltRounds = 10;
+
 //nodemailer config
-var nodemailer = require('nodemailer')
-var emailId = require('../config/gmail.js').emailId
-var password = require('../config/gmail.js').password
-var session = require('express-session')
-var smtpTransport = nodemailer.createTransport({
+const smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: emailId,
-        pass: password
+        user: senderEmailId,
+        pass: senderPassword
     }
 });
 
@@ -23,6 +25,10 @@ router.post('/register', function(req, res) {
   emailId = req.body.emailId
   name = req.body.name
   password = req.body.password
+  //validate e-mail
+  if(!validate(emailId, 'email'))
+    return res.json({status:200, success:false, message:'Invalid e-mail!'})
+
   connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
     if(error){
       console.log(error)
@@ -30,12 +36,11 @@ router.post('/register', function(req, res) {
     }else if(results.length){
       res.json({status:'200', success:false, message:'E-mail already exists'})
     }else{
-      passwordHash = md5(password)
       //salting
       bcrypt.hash(password+emailId, saltRounds, function(err, passwordHash) {
         date = new Date()
         dateInMs = date.getTime()
-        activationToken = md5(emailId + date)
+        activationToken = md5(emailId + dateInMs)
         activationTokenExpiryTime = dateInMs + 1800000
         sql = "INSERT INTO user (emailId, name, passwordHash, activationToken, activationTokenExpiryTime) VALUE ?"
         values = [[emailId, name, passwordHash,activationToken, activationTokenExpiryTime]]
@@ -44,8 +49,8 @@ router.post('/register', function(req, res) {
             console.log(error)
             res.json({status:'500', success:false,message:'Internal Server Error'})
           }else{
-            var emailContent = 'http://localhost:3000/users/register/activate/'+activationToken
-            var subject = 'Confirm Registration'
+            let emailContent = 'http://localhost:3000/users/register/activate/'+activationToken
+            let subject = 'Confirm Registration'
             sendEmail(emailId, emailContent, res, activationToken, subject)
           //res.json({status:200, success:true, message:"Please traverse to "+ emailContent})
           }
@@ -58,6 +63,8 @@ router.post('/register', function(req, res) {
 
 router.post('/register/activate/:key', function(req, res, next){
   key = req.params.key
+  if(!key)
+    return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query("SELECT * FROM user WHERE activationToken=?",[key], (error, results)=>{
     if(error){
       res.json({status:500, success:false, message: 'Internal Server Error'})
@@ -69,9 +76,9 @@ router.post('/register/activate/:key', function(req, res, next){
         if(date.getTime() > activationTokenExpiryTime){
           res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
         }else{
-          var sql = "UPDATE user SET isActive = ?,createdDate = ?, activationToken = ?, activationTokenExpiryTime = ? WHERE emailId = ?"
-          var date = new Date()
-          connection.query(sql,[true,date.getTime(), null, null, emailId], (error2, results2)=>{
+          let sql = "UPDATE user SET isActive = ?,createdDate = ?, activationToken = ?, activationTokenExpiryTime = ? WHERE emailId = ?"
+          let date = new Date()
+          connection.query(sql,[true,date.getTime(), null, null, results[0].emailId], (error2, results2)=>{
             if(error2){
               res.json({status:500,success:false, message:"Internal Server Error", redirect:'/register/resendToken'} )
               console.log(error2)
@@ -93,6 +100,8 @@ router.post('/register/activate/:key', function(req, res, next){
 //handle forgot password
 router.post('/forgotPassword', function(req, res, next){
   emailId = req.body.emailId
+  if(!emailId)
+    return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
     if(error){
       console.log(error)
@@ -101,7 +110,7 @@ router.post('/forgotPassword', function(req, res, next){
       //send password reset token
       date = new Date()
       dateInMs = date.getTime()
-      passwordResetToken = md5(emailId+date)
+      passwordResetToken = md5(emailId+dateInMs)
       passwordResetTokenExpiryTime = dateInMs + 1800000
       sql = "UPDATE user SET passwordResetToken = ? , passwordResetTokenExpiryTime = ? WHERE emailId = ? "
       values = [ passwordResetToken, passwordResetTokenExpiryTime, emailId]
@@ -114,7 +123,7 @@ router.post('/forgotPassword', function(req, res, next){
           //for now directly sending the link as a response
           //res.json({status:200, success:true, message: emailContent})
           subject = "Reset Password"
-          sendEmail(emailId, emailContent, res, activationToken, subject)
+          sendEmail(emailId, emailContent, res, passwordResetToken, subject)
         }
       })
     }else{
@@ -128,6 +137,8 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
   //check if password is in the body
   password = req.body.password
   verificationToken = req.params.key
+  if(!password || !verificationToken)
+    return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query('SELECT emailId, passwordResetTokenExpiryTime FROM user WHERE passwordResetToken=?',[verificationToken], function(error, results){
     if(error){
       res.json({status:500, success:false, message:'Internal Server Error'})
@@ -168,6 +179,8 @@ router.post('/register/resendToken', function(req, res, next){
     res.json({status:200, success:false, redirect:'/users/dashboard'})
   }else{
     emailId = req.body.emailId
+    if(!emailId)
+      return res.json({status:200, success:false, message:"Return with parameters!"})
     connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
       if(error){
         console.log(error)
@@ -176,20 +189,20 @@ router.post('/register/resendToken', function(req, res, next){
         date = new Date()
         dateInMs = Number(date.getTime())
         activationTokenExpiryTime = dateInMs + 1800000
-        activationToken = md5(emailId+date)
+        activationToken = md5(emailId+dateInMs)
         connection.query("UPDATE user SET activationToken=?, activationTokenExpiryTime=? WHERE emailId=?",[activationToken, activationTokenExpiryTime, emailId],function(error2, results){
           if(error2){
             console.log(error2)
             res.json({status:500, message:'Try again!'})
           }else{
             //res.json({status:200, success:true, message:"Please check mail", token: activationToken})
-            var message = "http://localhost:3000/register/activate/" + activationToken
-            var subject = "Confirm Registration!"
+            let message = "http://localhost:3000/register/activate/" + activationToken
+            let subject = "Confirm Registration!"
             sendEmail(emailId, message,res, activationToken, subject)
           }
         })
       }else{
-        res.json({status:200, success:false, message:"Email doesn\'t exist!"})
+        res.json({status:200, success:false, message:"Please register!"})
       }
     })
   }
@@ -205,6 +218,8 @@ router.post('/login', function(req, res) {
   }else{
     emailId = req.body.emailId
     password = req.body.password
+    if(!emailId || !password)
+      return res.json({status:200, success:false, message:"Pass with parameters!"})
     passwordHash = md5(password)
     connection.query("SELECT * FROM user WHERE (emailId = ?)", [emailId], function(error, results, details){
       if(error){
@@ -235,7 +250,7 @@ router.post('/login', function(req, res) {
 module.exports = router;
 
 function sendEmail(email, message,res, activationToken, subject){
-  var mailOptions={
+  let mailOptions={
      to : email,
      subject : subject,
      text : message
@@ -243,7 +258,8 @@ function sendEmail(email, message,res, activationToken, subject){
   smtpTransport.sendMail(mailOptions, function(error, response){
     if(error){
       console.log(error)
-      res.json({status:200, success:true, message: "Message sending failed, please visit this link!'\n' http://localhost.com/resend"+activationToken})
+      //send message from callee
+      res.json({status:200, success:true, message: message})
     }else{
       res.json({status:200,success:true, message:'Thanks for registering, please check e-mail inbox to complete registration!'})
       console.log("Message sent: " + response.message);
