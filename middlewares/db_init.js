@@ -1,22 +1,24 @@
-var mysql = require('mysql')
-var dbConfig = require('../config/db_config')
-let connection = mysql.createConnection({
-  host     :dbConfig.host,
-  user     : dbConfig.username,
-  password : dbConfig.password,
-  database: 'generic-applications-portal'
+const mysql = require("mysql");
+const dbConfig = require("../config/db_config");
+const connection = mysql.createConnection({
+  "host": dbConfig.host,
+  "user": dbConfig.username,
+  "password": dbConfig.password,
+  "database": "generic-applications-portal",
 });
-module.exports.initDb = function(){
-  connection.connect(function(err) {
+
+module.exports.initDb = function() {
+  connection.connect((err) => {
     if (err) {
-      console.error('error connecting: ' + err.stack);
+      console.error(`error connecting: ${err.stack}`);
       return;
     }
 
-    console.log('connected as id ' + connection.threadId);
+    console.log(`connected as id ${connection.threadId}`);
   });
-}
-module.exports.getConnection = ()=>{
-  if(connection)
-    return connection
-}
+};
+module.exports.getConnection = () => {
+  if (connection) {
+    return connection;
+  }
+};
