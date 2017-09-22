@@ -1,0 +1,27 @@
+.top_banner{
+    height:100px;
+}
+.login_board{
+}
+.login_board p{
+    font-size: 22px; 
+}
+body{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+input{
+    font-size:0.875rem;
+    padding:1vh; 
+    border-radius: 2px ;
+    border:1px solid grey
+}
+button{
+    font-size: 1rem;
+    padding:0.7vh;
+}
+.alert{
+    margin-left: 1vw;
+    font-size: 0.4vh;
+    color:red;
+}

@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Faculty Recruitment | Login</title>
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="top_banner">board here</div>
+        <div class="login_board">
+            <h2>LOGIN</h2>
+            <hr>
+            <br>
+            <p class="global_alert alert"></p>
+            <div class="email_id_box">
+                <span>Email-id <input type="text" class="emailId" name="emailId" placeholder="Enter email-id here"></span>
+                <p class="alert alert_email"></p>
+            </div>
+            <br>
+            <div class="password_box">
+                <span>Password <input type="password" class="password" name="password" placeholder="Enter password here"></span>
+                <p class="alert alert_password"></p>
+            </div>
+            <br>
+            <button class="submit">LOGIN</button>
+            <br>
+        </div>
+        <div class="footer"></div>
+    </body>
+    <script>
+        $(document).ready(()=>{
+            let $globalAlert = $('.global_alert');
+            let $emailId = $('.emailId');
+            let $password = $('.password');
+            let $password_box = $('.submit');
+            let $alert_email = $('.alert_email');
+            let $alert_password = $('.alert_password');
+            $emailId.focus(()=>{
+                $('.alert').html('');
+            })
+            $password.focus(()=>{
+                $('.alert').html('');
+            })
+            $('.submit').click(()=>{
+                let $emailIdValue = $emailId.val();
+                let $passwordValue = $password.val();
+                console.log("Button clicked!");
+                if($emailIdValue && $passwordValue){
+                    let r = $.ajax({
+                        method:'POST',
+                        url:'http://localhost:3000/users/login',
+                        data:{
+                            emailId:$emailIdValue,
+                            password:$passwordValue
+                        }
+                    }).done((data)=>{
+                        if(data.success){
+                            location.href = '/users/dashboard';
+                        }else{
+                            $globalAlert.html(data.message);
+                            setTimeout(()=>{
+                                $globalAlert.html('');
+                            }, 5000)
+                        }
+                        //r.status
+                    });
+
+                }
+                if(!$emailIdValue){
+                    console.log("No email.");
+                    $alert_email.html("Email-id can't be empty!");
+                }
+                if(!$passwordValue){
+                    console.log("No password")
+                    $alert_password.html("Password can't be empty!");
+                }
+            })
+        })
+    </script>
+</html>

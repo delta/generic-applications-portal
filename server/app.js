@@ -9,7 +9,7 @@ const users = require("./routes/users");
 const usersProtected = require("./routes/users_protected");
 const session = require("express-session");
 const app = express();
-
+app.use(express.static('public'));
 app.use(session({
   "secret": secretString,
   "cookie": {
