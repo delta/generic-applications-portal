@@ -41,12 +41,12 @@ router.post('/register', function(req, res) {
     }else{
       //salting
       bcrypt.hash(password+emailId, saltRounds, function(err, passwordHash) {
-        date = new Date()
-        dateInMs = date.getTime()
-        activationToken = md5(emailId + dateInMs)
-        activationTokenExpiryTime = dateInMs + 86400000
-        sql = "INSERT INTO user (emailId, name, passwordHash, activationToken, activationTokenExpiryTime) VALUE ?"
-        values = [[emailId, name, passwordHash,activationToken, activationTokenExpiryTime]]
+        let date = new Date()
+        let dateInMs = date.getTime()
+        let activationToken = md5(emailId + dateInMs)
+        let activationTokenExpiryTime = dateInMs + 86400000
+        let sql = "INSERT INTO user (emailId, name, passwordHash, activationToken, activationTokenExpiryTime) VALUE ?"
+        let values = [[emailId, name, passwordHash,activationToken, activationTokenExpiryTime]]
         connection.query(sql, [values], function(error, results){
           if(error){
             console.log(error)
@@ -65,7 +65,7 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/register/activate/:key', function(req, res, next){
-  key = req.params.key
+  let key = req.params.key
   if(!key)
     return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query("SELECT * FROM user WHERE activationToken=?",[key], (error, results)=>{
@@ -74,8 +74,8 @@ router.post('/register/activate/:key', function(req, res, next){
     }else{
       if(results.length){
         //process activation
-        activationTokenExpiryTime = results[0].activationTokenExpiryTime
-        date = new Date()
+        let activationTokenExpiryTime = results[0].activationTokenExpiryTime
+        let date = new Date()
         if(date.getTime() > activationTokenExpiryTime){
           res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
         }else{
@@ -102,7 +102,7 @@ router.post('/register/activate/:key', function(req, res, next){
 
 //handle forgot password
 router.post('/forgotPassword', function(req, res, next){
-  emailId = req.body.emailId
+  let emailId = req.body.emailId
   if(!emailId)
     return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
@@ -111,21 +111,21 @@ router.post('/forgotPassword', function(req, res, next){
       res.json({status:'500', success:false,message:'Internal Server Error, retry!'})
     }else if(results.length){
       //send password reset token
-      date = new Date()
-      dateInMs = date.getTime()
-      passwordResetToken = md5(emailId+dateInMs)
-      passwordResetTokenExpiryTime = dateInMs + 86400000
-      sql = "UPDATE user SET passwordResetToken = ? , passwordResetTokenExpiryTime = ? WHERE emailId = ? "
-      values = [ passwordResetToken, passwordResetTokenExpiryTime, emailId]
+      let date = new Date()
+      let dateInMs = date.getTime()
+      let passwordResetToken = md5(emailId+dateInMs)
+      let passwordResetTokenExpiryTime = dateInMs + 86400000
+      let sql = "UPDATE user SET passwordResetToken = ? , passwordResetTokenExpiryTime = ? WHERE emailId = ? "
+      let values = [ passwordResetToken, passwordResetTokenExpiryTime, emailId]
       connection.query(sql, values, function(error, results){
         if(error){
           console.log(error)
           res.json({status:'500', success:false,message:'Internal Server Error'})
         }else{
-          emailContent = 'http://localhost:3000/users/forgotPassword/reset/'+passwordResetToken
+          let emailContent = 'http://localhost:3000/users/forgotPassword/reset/'+passwordResetToken
           //for now directly sending the link as a response
           //res.json({status:200, success:true, message: emailContent})
-          subject = "Reset Password"
+          let subject = "Reset Password"
           sendEmail(emailId, emailContent, res, passwordResetToken, subject)
         }
       })
@@ -138,8 +138,8 @@ router.post('/forgotPassword', function(req, res, next){
 router.post('/forgotPassword/reset/:key', function(req, res, next){
 
   //check if password is in the body
-  password = req.body.password
-  verificationToken = req.params.key
+  let password = req.body.password
+  let verificationToken = req.params.key
   if(!password || !verificationToken)
     return res.json({status:200, success:false, message:"Return with parameters!"})
   connection.query('SELECT emailId, passwordResetTokenExpiryTime FROM user WHERE passwordResetToken=?',[verificationToken], function(error, results){
@@ -151,12 +151,12 @@ router.post('/forgotPassword/reset/:key', function(req, res, next){
 
         //experimenting with bcrypt
         bcrypt.hash(password+results[0].emailId, saltRounds, function(err, passwordHash) {
-          passwordResetTokenExpiryTime = results[0].passwordResetTokenExpiryTime
-          date = new Date()
+          let passwordResetTokenExpiryTime = results[0].passwordResetTokenExpiryTime
+          let date = new Date()
           if(date.getTime() >  passwordResetTokenExpiryTime){
             res.json({status:200,success:false, message:"Token expired, generate new!", redirect:'/login'})
           }else{
-            sql = "UPDATE user SET passwordHash = ?, passwordResetToken = null, passwordResetTokenExpiryTime = null WHERE emailId = ?"
+            let sql = "UPDATE user SET passwordHash = ?, passwordResetToken = null, passwordResetTokenExpiryTime = null WHERE emailId = ?"
             connection.query(sql,[passwordHash,emailId], function(error, results){
                 if(error){
                   console.log(error)
@@ -181,7 +181,7 @@ router.post('/register/resendToken', function(req, res, next){
   if(session.sessId){
     res.json({status:200, success:false, redirect:'/users/dashboard'})
   }else{
-    emailId = req.body.emailId
+    let emailId = req.body.emailId
     if(!emailId)
       return res.json({status:200, success:false, message:"Return with parameters!"})
     connection.query("SELECT * FROM user WHERE emailId = ?",[emailId], function(error, results){
@@ -190,15 +190,15 @@ router.post('/register/resendToken', function(req, res, next){
         res.json({status:500, message:"Internal server error" })
       }else if(results.length){
         if(results[0].activationToken){
-          activationToken = results[0].activationToken
+          let activationToken = results[0].activationToken
           let message = "http://localhost:3000/register/activate/" +activationToken 
           let subject = "Confirm Registration!"
           return sendEmail(emailId, message,res, activationToken, subject)
         }else{
-          date = new Date()
-          dateInMs = Number(date.getTime())
-          activationTokenExpiryTime = dateInMs + 86400000
-          activationToken = md5(emailId+dateInMs)
+          let date = new Date()
+          let dateInMs = Number(date.getTime())
+          let activationTokenExpiryTime = dateInMs + 86400000
+          let activationToken = md5(emailId+dateInMs)
           connection.query("UPDATE user SET activationToken=?, activationTokenExpiryTime=? WHERE emailId=?",[activationToken, activationTokenExpiryTime, emailId],function(error2, results){
             if(error2){
               console.log(error2)
@@ -226,11 +226,11 @@ router.post('/login', function(req, res) {
   if(req.session.sessId){
     res.json({status:200, success:false, redirect:'/users/dashboard'})
   }else{
-    emailId = req.body.emailId
-    password = req.body.password
+    let emailId = req.body.emailId
+    let password = req.body.password
     if(!emailId || !password)
-      return res.json({status:200, success:false, message:"Pass with parameters!"})
-    passwordHash = md5(password)
+      return res.json({status:200, success:false, message:"Pass appropriate parameters!"})
+    let passwordHash = md5(password)
     connection.query("SELECT * FROM user WHERE (emailId = ?)", [emailId], function(error, results, details){
       if(error){
         console.log(error);
@@ -241,7 +241,7 @@ router.post('/login', function(req, res) {
           return res.json({status:200, success:200, message:"Confirm your acc!"})
         bcrypt.compare(password+results[0].emailId, results[0].passwordHash, function(err, response) {
           if(response){
-            user = results[0]
+            let user = results[0]
             req.session.isLoggedIn = true ;
             req.session.path = '/'
             res.json({status:200, success:true, message:"Redirect to /dashboard"}) //Give redirection headers
