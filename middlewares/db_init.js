@@ -1,6 +1,6 @@
 var mysql = require('mysql')
 var dbConfig = require('../config/db_config')
-global.connection = mysql.createConnection({
+let connection = mysql.createConnection({
   host     :dbConfig.host,
   user     : dbConfig.username,
   password : dbConfig.password,
@@ -15,4 +15,8 @@ module.exports.initDb = function(){
 
     console.log('connected as id ' + connection.threadId);
   });
+}
+module.exports.getConnection = ()=>{
+  if(connection)
+    return connection
 }

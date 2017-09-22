@@ -7,6 +7,7 @@ const session = require('express-session')
 const senderEmailId = require('../config/gmail.js').emailId //use const here
 const senderPassword = require('../config/gmail.js').password
 const validate = require('../middlewares/validator').validate
+const connection = require('../middlewares/db_init').getConnection()
 const saltRounds = 10;
 
 //nodemailer config
@@ -26,6 +27,8 @@ router.post('/register', function(req, res) {
   name = req.body.name
   password = req.body.password
   //validate e-mail
+  if(!emailId || !name || !password)
+    return res.json({status:200, success:false, message:"Pass appropriate parameters!"})
   if(!validate(emailId, 'email'))
     return res.json({status:200, success:false, message:'Invalid e-mail!'})
 

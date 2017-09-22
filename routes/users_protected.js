@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const md5 = require('md5')
 const bcrypt = require('bcrypt')
+const connection = require('../middlewares/db_init').getConnection()
 /* Only for logged users*/
 const saltRounds = 10;
 router.post('/changePassword', function(req, res) {
