@@ -96,7 +96,8 @@ let manager = new Manager();
 
 class NodeTransformer {
   constructor(node) {
-    this.name = node.attribs.name;
+    this.originalName = node.attribs.name || "";
+    this.name = this.originalName.replace(/[^a-zA-Z0-9_]/g, "");
     this.node = node;
     this.$node = $(node);
   }
@@ -153,7 +154,7 @@ class SectionNodeTransformer extends NodeTransformer {
   transform() {
     return `<form>
             <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.name}</h2>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
                 ${this.transformChildren()}
                 <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
             </div>
@@ -164,7 +165,7 @@ class SectionNodeTransformer extends NodeTransformer {
 class SubsectionNodeTransformer extends NodeTransformer {
   transform() {
     return `<div class='subsection' id="${this.name}">
-            <br><h4 style="color: #1bbae1">&gt; ${this.name}</h4><br>
+            <br><h4 style="color: #1bbae1">&gt; ${this.originalName}</h4><br>
             ${this.transformChildren()}
         </div>`;
   }
@@ -172,7 +173,7 @@ class SubsectionNodeTransformer extends NodeTransformer {
 
 class FieldsetNodeTransformer extends NodeTransformer {
   transform() {
-    let label = this.consumeAttr("name");
+    let label = this.originalName;
 
     if (label) {
       return `<div class="form-group form-inline row">
@@ -185,6 +186,10 @@ class FieldsetNodeTransformer extends NodeTransformer {
 }
 
 class InputNodeTransformer extends NodeTransformer {
+  constructor(node) {
+    super(node);
+    $f[this.name] = "";
+  }
   processJsValidationRules(validationRules) {
     if (validationRules && /js:/.test(validationRules)) {
       const splitValidationRules = validationRules.split("|");
@@ -220,13 +225,13 @@ class InputNodeTransformer extends NodeTransformer {
     // then use the name of the element as the label.
     // Useful as it simplifies the markup
     if (inputCols.indexOf(",") !== -1 && !label) {
-      label = this.name;
+      label = this.originalName;
     }
     if (!this.node.attribs.placeholder) {
       if (label) {
         this.node.attribs.placeholder = label;
       } else {
-        this.node.attribs.placeholder = this.name;
+        this.node.attribs.placeholder = this.originalName;
       }
     }
     if (label) {
@@ -254,15 +259,15 @@ class InputNodeTransformer extends NodeTransformer {
     let name = this.node.attribs.name;
 
     onValidates[name] = `(err) => {
-            if (!err) $("#error-${name}").hide();
-            else      $("#error-${name}").show().html(err[0].message);
-        }`;
+        if (!err) $("#error-${name}").hide();
+        else      $("#error-${name}").show().html(err[0].message);
+    }`;
 
     return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
   }
   transform() {
     let attrs = this.node.attribs;
-    let name = attrs.name;
+    let name = this.name;
 
     let validationRules = this.consumeAttr("validationrule");
 
@@ -328,7 +333,7 @@ class TableInputNodeTransformer extends NodeTransformer {
       }
       child.attribs.name += "[{{count}}]";
       compiledElements.push({
-        "name": child.attribs.name,
+        "name": child.attribs.name.replace(/[^a-zA-Z0-9_]/g, ""),
         "validationrule": child.attribs.validationrule,
         "html": manager.transformNode(child),
       });
