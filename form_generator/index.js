@@ -217,14 +217,13 @@ class InputNodeTransformer extends NodeTransformer {
   }
   createLabelAndRequiredAsterisk(isRequired) {
     let label = this.consumeAttr("label");
-    let cols = this.consumeAttr("cols");
-    let inputCols = cols || "";
+    let cols = this.node.attribs.cols || "";
     let html = "";
 
     // if label attr doesn't exist and 'cols' indicates we should use a label,
     // then use the name of the element as the label.
     // Useful as it simplifies the markup
-    if (inputCols.indexOf(",") !== -1 && !label) {
+    if (cols.indexOf(",") !== -1 && !label) {
       label = this.originalName;
     }
     if (!this.node.attribs.placeholder) {
@@ -239,21 +238,30 @@ class InputNodeTransformer extends NodeTransformer {
         error(`Invalid cols value for ${this.name}. Since 'label' is set, cols must be a pair of values.`);
       }
       cols = cols.split(",");
-      inputCols = cols[1];
       if ((isRequired || this.node.attribs.required !== undefined) && !this.node.attribs.hidden) {
         label += "<span style='color:red'>*</span>";
       }
       html += `<label class="col-form-label col-md-${cols[0]}" for="${this.name}">${label}</label>`;
     }
+    return html;
+  }
+  createInputElement() {
+    let cols = this.consumeAttr("cols");
+    let inputCols = cols || "";
 
-    let inputElem = "";
+    // Check if the cols is a pair of values, if it is take the second value for
+    // creating the input element
+    if (inputCols.indexOf(",") !== -1) {
+      inputCols = cols.split(",")[1];
+    }
 
     if (cols) {
-      inputElem = `<div class="col-md-${inputCols}">${$.html(this.$node) + this.getErrorElement()}</div>`;
-    } else {
-      inputElem = $.html(this.$node) + this.getErrorElement();
+      return `<div class="col-md-${inputCols}">${$.html(this.$node) + this.getErrorElement()}</div>`;
     }
-    return html + inputElem;
+    return $.html(this.$node) + this.getErrorElement();
+  }
+  createLabelAndInput(isRequired) {
+    return this.createLabelAndRequiredAsterisk(isRequired) + this.createInputElement();
   }
   getErrorElement() {
     let name = this.node.attribs.name;
@@ -267,6 +275,11 @@ class InputNodeTransformer extends NodeTransformer {
   }
   transform() {
     let attrs = this.node.attribs;
+    
+    if (attrs.type === "file") {
+      return (new FileInputNodeTransformer(this.node)).transform();
+    }
+
     let name = this.name;
 
     let validationRules = this.consumeAttr("validationrule");
@@ -277,19 +290,14 @@ class InputNodeTransformer extends NodeTransformer {
     this.$node.attr("onblur", `validate('${name}')`);
     this.$node.attr("onchange", `$f["${name}"] = this.value`);
     this.$node.attr("id", name);
-    if (attrs.type !== "file") {
-      this.$node.addClass("form-control form-control-sm");
-    } else {
-      this.$node.addClass("form-control-file");
-    }
+
+    this.$node.addClass("form-control form-control-sm");
 
     if (this.$node.hasClass("form-control-plaintext")) {
       this.$node.removeClass("form-control");
     }
 
-    let html = this.createLabelAndRequiredAsterisk(/required/.test(validationRules));
-
-    return html;
+    return this.createLabelAndInput(/required/.test(validationRules));
   }
 }
 
@@ -309,9 +317,109 @@ class SelectNodeTransformer extends InputNodeTransformer {
 
     this.$node.prepend(`<option>${attrs.placeholder}</option>`);
 
-    let html = this.createLabelAndRequiredAsterisk(/required/.test(validationRules));
+    let html = this.createLabelAndInput(/required/.test(validationRules));
 
     return html;
+  }
+}
+
+class FileInputNodeTransformer extends InputNodeTransformer {
+  createInputElement() {
+    let cols = this.consumeAttr("cols");
+    let inputCols = cols || "";
+    let previewCols = this.node.attribs.preview || 0;
+
+    if (inputCols.indexOf(",") !== -1) {
+      inputCols = cols.split(",")[1];
+    }
+
+    let displayPreview = ""; //Stores the commands required for displaying the preview
+        
+    // Check whether a preview of the input should be displayed
+    // If yes, update the displayPreview variable and 
+    // add it to the toggleRemoveButtonAndPreview function 
+    if (this.node.attribs.preview !== undefined) {
+      displayPreview = `
+                let file = files[0];
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#filePreview_${this.name}").html($('<img>', {
+                        src: e.target.result,
+                        style: "width:100%;"
+                    }));
+                };
+                reader.readAsDataURL(file);
+            `;
+    }
+
+    scripts.push(`
+            function toggleRemoveButtonAndPreview_${this.name}(event) {
+              // Display the preview and remove button if a file has been selected
+              // Else hide them
+              let files = $("#${this.name}")[0].files;
+              if( files === undefined || !files.length) {
+                  $("#removeUploadButton_${this.name}").hide();
+                  $("#filePreview_${this.name}").hide();
+              } else {
+                  ${displayPreview}
+                  $("#removeUploadButton_${this.name}").show();
+                  $("#filePreview_${this.name}").show();
+              }
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            function removeUpload_${this.name}(event) {
+              // Reset the file input's value and call the toggleRemoveButtonAndPreview
+              // to remove the preview and remove button
+              $("#${this.name}")[0].value = "";
+              toggleRemoveButtonAndPreview_${this.name}();
+              $f["${this.name}"] = null;
+
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            // Call the function to hide both the remove button and preview
+            // initially. Will be helpful to automatically display them when
+            // we get the uploaded values from server also.
+            toggleRemoveButtonAndPreview_${this.name}();
+        `);
+
+    let markup = `
+            <div class="row">
+                <div class="col-md-6">${$.html(this.$node)}</div>
+                <div class="col-md-${previewCols}" id="filePreview_${this.name}"></div>
+                <div class="col-md-1">
+                    <a role='button' href='#' id="removeUploadButton_${this.name}" title='Remove upload' class='btn btn-outline-danger btn-sm' onclick='removeUpload_${this.name}(event)'><span class='fa fa-minus-circle'></span></a>
+                </div>
+            </div>
+            <div> ${this.getErrorElement()} </div>`;
+
+    if (cols) {
+      return `<div class="col-md-${inputCols}">${markup}</div>`;
+    }
+    return markup;
+  }
+
+  transform() {
+    let name = this.node.attribs.name;
+
+    // Add the necessary validation rules
+    let validationRules = this.consumeAttr("validationrule");
+
+    manager.addValidationRule(name, validationRules);
+    this.processJsValidationRules(validationRules);
+
+    // Define the event listeners for the input element
+    // this.$node.attr("onblur", `validate("${name}")`);
+    this.$node.attr("onchange", `$f["${name}"] = (this.files)?this.files[0]:null; toggleRemoveButtonAndPreview_${this.name}(); validate('${name}');`);
+        
+    // Define the classes and id for the input element
+    this.$node.attr("id", name);
+    this.$node.addClass("form-control-file");
+
+    return this.createLabelAndInput(/required/.test(validationRules));
   }
 }
 
@@ -453,7 +561,7 @@ const stringifyObject = (obj) => {
   for (let key in obj) {
     str += `"${key}": ${stringifyObject(obj[key])},`;
   }
-  return str + "}";
+  return `${str}}`;
 };
 
 let layout = fs.readFileSync("./layout.html", { "encoding": "utf8" });
@@ -476,6 +584,76 @@ indicative.extend('js', (data, field, message, args) => {
         return Promise.resolve('');
     }
     return Promise.reject('Invalid data');
+});
+
+indicative.extend('requiredFile', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        return resolve('');
+    });
+});
+
+indicative.extend('type', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        for(let i in args) {
+            if(file.name.endsWith("." + args[i]))
+                return resolve("");
+        }
+
+        return reject('Not a valid file. Please upload files of ' + args);
+    });
+});
+
+indicative.extend('size', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        if(file.size/1024 > args[0])
+            return reject('File size limit exceeded. Upload a file lesser than ' + args[0] + 'KB');
+        return resolve("");
+    });
+});
+
+indicative.extend('maxHeight', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.height > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with height lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+indicative.extend('maxWidth', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.width > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with width lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
 });
 
 ${scripts.join("\n\n")};
