@@ -51,8 +51,8 @@
             </fieldset>
 
             <fieldset>
-                <input cols="2,3" name="Aadhaar Number" validationRule="required">
-                <input cols="2,3" name="PAN number" validationRule="required">
+              <input cols="2,3" name="PAN number" validationRule="required" showif="$f.AadhaarNumber > 0">              
+              <input cols="2,3" name="AadhaarNumber" label="Aadhaar Number" validationRule="required">
             </fieldset>
         </subsection>
         <subsection name="Contact Information">

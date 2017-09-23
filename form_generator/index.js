@@ -46,9 +46,13 @@ let onValidates = {
 // as a script tag.
 let scripts = [];
 
-const addTrigger = (el, func) => {
+const addTrigger = (el, func, is$f) => {
   triggers[el] = triggers[el] || [];
-  triggers[el].push(func);
+  if (!is$f) {
+    triggers[el].push(func);
+  } else {
+    triggers[el] = [ func ].concat(triggers[el]);
+  }
 };
 
 const validate = (name) => {
@@ -99,6 +103,7 @@ class NodeTransformer {
     this.originalName = node.attribs.name || "";
     this.name = this.originalName.replace(/[^a-zA-Z0-9_]/g, "");
     this.node = node;
+    this.node.attribs && (this.node.attribs.name = this.name);    
     this.$node = $(node);
   }
   consumeAttr(attr) {
@@ -190,6 +195,18 @@ class InputNodeTransformer extends NodeTransformer {
     super(node);
     $f[this.name] = "";
   }
+
+  processJsExpression(expression, myFunction) {
+    let matches = expression.match(/\$f.[^ ]+/g);
+
+    for (let match of matches) {
+      match = match.substr(3);
+      if ($(`[name=${match}]`).length === 0) {
+        error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
+      }
+      addTrigger(match, myFunction);
+    }
+  }
   processJsValidationRules(validationRules) {
     if (validationRules && /js:/.test(validationRules)) {
       const splitValidationRules = validationRules.split("|");
@@ -201,7 +218,7 @@ class InputNodeTransformer extends NodeTransformer {
           let matches = rule.match(/\$f.[^ ]+/g);
 
           for (let match of matches) {
-            match = match.substr(2); // '$f.something'. Start from index 2
+            match = match.substr(3); // '$f.something'. Start from index 2
             if ($(`[name=${match}]`).length === 0) {
               error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
             }
@@ -224,7 +241,9 @@ class InputNodeTransformer extends NodeTransformer {
     // if label attr doesn't exist and 'cols' indicates we should use a label,
     // then use the name of the element as the label.
     // Useful as it simplifies the markup
+    
     if (inputCols.indexOf(",") !== -1 && !label) {
+      // case when you have two numbers but no label tag
       label = this.originalName;
     }
     if (!this.node.attribs.placeholder) {
@@ -241,9 +260,10 @@ class InputNodeTransformer extends NodeTransformer {
       cols = cols.split(",");
       inputCols = cols[1];
       if ((isRequired || this.node.attribs.required !== undefined) && !this.node.attribs.hidden) {
-        label += "<span style='color:red'>*</span>";
+        label += `<span id="asterisk-${this.name}" style="color:red">*</span>`;
       }
-      html += `<label class="col-form-label col-md-${cols[0]}" for="${this.name}">${label}</label>`;
+  
+      html += `<label  id="label-${this.name}" class="col-form-label col-md-${cols[0]}" for="${this.name}">${label}</label>`;
     }
 
     let inputElem = "";
@@ -266,7 +286,7 @@ class InputNodeTransformer extends NodeTransformer {
     return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
   }
   addEventHandlersAndId() {
-    addTrigger(this.name, `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`);
+    addTrigger(this.name, `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`, true);
     this.$node.attr("onchange", `triggers["${this.name}"].forEach(function(f, i) { f.call(this, event) });`);
     this.$node.attr("id", this.name);
   }
@@ -277,6 +297,22 @@ class InputNodeTransformer extends NodeTransformer {
     let validationRules = this.consumeAttr("validationrule");
 
     this.addEventHandlersAndId();
+    
+    const showIf = this.consumeAttr("showif");
+
+    if (showIf) {
+      this.processJsExpression(showIf,
+        `function(){ 
+          if(${showIf}) {
+            $("#${name}").show();
+            $("#label-${name}").show();
+            $("#asterisk-${name}").show();
+          } else {
+            $("#${name}").hide();
+            $("#label-${name}").hide();
+            $("#asterisk-${name}").hide();
+          }}`);
+    }
     
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
