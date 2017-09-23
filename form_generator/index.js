@@ -47,8 +47,8 @@ let onValidates = {
 let scripts = [];
 
 const addTrigger = (el, func) => {
-  this.triggers[el] = this.triggers[el] || [];
-  this.triggers[el].push(func);
+  triggers[el] = triggers[el] || [];
+  triggers[el].push(func);
 };
 
 const validate = (name) => {
@@ -205,9 +205,9 @@ class InputNodeTransformer extends NodeTransformer {
             if ($(`[name=${match}]`).length === 0) {
               error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
             }
-            addTrigger(match, () => {
-              validate(this.name);
-            });
+            addTrigger(match, `() => {
+              validate(${this.name});
+            }`);
           }
           // The pre-registered 'js' rule in indicative will then
           // use eval() to evaluate the js expression.
@@ -273,6 +273,11 @@ class InputNodeTransformer extends NodeTransformer {
 
     return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
   }
+  addEventHandlersAndId() {
+    addTrigger(this.name, `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`);
+    this.$node.attr("onchange", `triggers["${this.name}"].forEach(function(f, i) { f.call(this, event) });`);
+    this.$node.attr("id", this.name);
+  }
   transform() {
     let attrs = this.node.attribs;
     
@@ -284,6 +289,8 @@ class InputNodeTransformer extends NodeTransformer {
 
     let validationRules = this.consumeAttr("validationrule");
 
+    this.addEventHandlersAndId();
+    
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
 
@@ -305,7 +312,6 @@ class SelectNodeTransformer extends InputNodeTransformer {
   transform() {
     let attrs = this.node.attribs;
     let name = attrs.name;
-
     let validationRules = this.consumeAttr("validationrule");
 
     manager.addValidationRule(name, validationRules);
@@ -552,12 +558,22 @@ manager.registerNode("tableinput", TableInputNodeTransformer);
 const stringifyObject = (obj) => {
   if (typeof obj == "function") {
     return String(obj);
-  } else if (typeof obj == "string") {
+  }
+  if (typeof obj == "string") {
     return obj;
+  }
+  if (obj.constructor === Array) {
+    let str = "[";
+
+    for (let i = 0; i < obj.length; i++) {
+      str += stringifyObject(obj[i]) + ",";
+    }
+    str = str + "]";
+    return str;
   }
 
   let str = "{";
-
+  
   for (let key in obj) {
     str += `"${key}": ${stringifyObject(obj[key])},`;
   }
@@ -572,7 +588,7 @@ layout = layout.replace(/\{\{script\}\}/, `
 <script type='text/javascript'>
 let $f = ${JSON.stringify($f)};
 let rules = ${JSON.stringify(rules)};
-let triggers = ${stringifyObject(triggers)};
+let triggers = { ${Object.keys(triggers).map((x) => x + ": [" + triggers[x].join(",") + "]").join(",")} };
 let onValidates = ${stringifyObject(onValidates)};
 let validate = ${stringifyObject(validate)};
 
