@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="top_banner">board here</div>
-        <div class="signup_board col-6">
+        <div class="signup_board">
             <h2 class="header">Register</h2>
             <hr>
             <p class="global_alert alert"></p>
@@ -39,17 +39,11 @@
             let $password = $('.password');
             let $alert_email = $('.alert_email');
             let $alert_password = $('.alert_password');
-            $emailId.focus(()=>{
-                $('.alert').html('');
-            })
-            $password.focus(()=>{
-                $('.alert').html('');
-            })
+            let $alert_name = $('.alert_name');
             $('.submit').click(()=>{
                 let $emailIdValue = $emailId.val();
                 let $passwordValue = $password.val();
                 let $nameValue = $name.val();
-                console.log("Button clicked!");
                 if($emailIdValue && $passwordValue){
                     let r = $.ajax({
                         method:'POST',
@@ -65,8 +59,10 @@
                             location.href = '/users/dashboard';
                         }else{
                             $globalAlert.html(data.message);
+                            $globalAlert.toggleClass('alert-danger');
                             setTimeout(()=>{
                                 $globalAlert.html('');
+                                $globalAlert.toggleClass('alert-danger');
                             }, 5000)
                         }
                         document.cookie = '';
@@ -75,16 +71,28 @@
 
                 }
                 if(!$emailIdValue){
-                    console.log("No email.");
                     $alert_email.html("Email-id can't be empty!");
+                    $alert_email.addClass('alert-danger');
+                    setTimeout(()=>{
+                        $alert_email.removeClass('alert-danger');
+                        $alert_email.html('');
+                    },3000);
                 }
                 if(!$passwordValue){
-                    console.log("No password")
+                    $alert_password.addClass('alert-danger');
                     $alert_password.html("Password can't be empty!");
+                    setTimeout(()=>{
+                        $alert_password.removeClass('alert-danger');
+                        $alert_password.html('');
+                    },3000);
                 }
                 if(!$nameValue){
-                    console.log("No name")
-                    $alert_password.html("Name field can't be empty!");
+                    $alert_name.addClass('alert-danger');
+                    $alert_name.html("Name field can't be empty!");
+                    setTimeout(()=>{
+                        $alert_name.removeClass('alert-danger');
+                        $alert_name.html('');
+                    },3000);
                 }
             })
         })
