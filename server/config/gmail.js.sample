@@ -1,0 +1,4 @@
+module.exports = {
+  "emailId": "tmp@gmail.com",
+  "password": "tmp",
+};
