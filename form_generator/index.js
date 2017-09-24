@@ -215,20 +215,12 @@ class InputNodeTransformer extends NodeTransformer {
         if (/^js:/.test(rule)) { // custom rule. wrap in a function.
           // first do one-time checking if the rule refers to non-existing elements
           // js: $f.salary + $f.dadSalary >= $f.maxSalary
-          let matches = rule.match(/\$f.[^ ]+/g);
-
-          for (let match of matches) {
-            match = match.substr(3); // '$f.something'. Start from index 2
-            if ($(`[name=${match}]`).length === 0) {
-              error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
-            }
-            addTrigger(match, `() => {
-              validate(${this.name});
-            }`);
-          }
-          // The pre-registered 'js' rule in indicative will then
-          // use eval() to evaluate the js expression.
+          this.processJsExpression(rule, `() => {
+            validate(${this.name});
+          }`);
         }
+        // The pre-registered 'js' rule in indicative will then
+        // use eval() to evaluate the js expression.
       }
     }
   }
