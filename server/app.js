@@ -20,6 +20,17 @@ app.use(session({
   "path": "/",
 }));
 
+const models = require("./models/");
+
+models.sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection successful");
+  })
+  .catch((error) => {
+    console.log("Error creating connection:", error);
+  });
+
 const initDb = require("./middlewares/db_init").initDb;
 const authenticate = require("./middlewares/authenticate").authenticate;
 

@@ -18,9 +18,12 @@
     "md5": "^2.2.1",
     "morgan": "^1.8.2",
     "mysql": "^2.14.1",
+    "mysql2": "^1.4.2",
     "nodemailer": "^4.1.0",
     "nodemon": "^1.12.1",
     "npm": "^5.4.2",
+    "sequelize": "^4.10.0",
+    "sequelize-cli": "^3.0.0-3",
     "session-file-store": "^1.1.2",
     "static-favicon": "~1.0.0",
     "validator": "^8.2.0"
