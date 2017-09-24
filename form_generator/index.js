@@ -595,7 +595,7 @@ indicative.extend('requiredFile', (data, field, message, args, get) => {
     });
 });
 
-indicative.extend('type', (data, field, message, args, get) => {
+indicative.extend('fileMimeType', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
@@ -605,12 +605,11 @@ indicative.extend('type', (data, field, message, args, get) => {
             if(file.name.endsWith("." + args[i]))
                 return resolve("");
         }
-
-        return reject('Not a valid file. Please upload files of ' + args);
+        return reject('Not a valid file. Please upload files of type ' + args);
     });
 });
 
-indicative.extend('size', (data, field, message, args, get) => {
+indicative.extend('fileSize', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
@@ -622,7 +621,7 @@ indicative.extend('size', (data, field, message, args, get) => {
     });
 });
 
-indicative.extend('maxHeight', (data, field, message, args, get) => {
+indicative.extend('imageMaxHeight', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
@@ -639,7 +638,7 @@ indicative.extend('maxHeight', (data, field, message, args, get) => {
     });
 });
 
-indicative.extend('maxWidth', (data, field, message, args, get) => {
+indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
