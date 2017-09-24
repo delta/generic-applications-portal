@@ -291,6 +291,7 @@ class InputNodeTransformer extends NodeTransformer {
     this.addEventHandlersAndId();
     
     const showIf = this.consumeAttr("showif");
+    let computedValue = this.consumeAttr("computedvalue");
 
     if (showIf) {
       this.processJsExpression(showIf,
@@ -305,6 +306,21 @@ class InputNodeTransformer extends NodeTransformer {
             $("#asterisk-${name}").hide();
           }}`);
     }
+
+    if (computedValue) {
+      let match = computedValue.match(/\$f.[^ ]+/g)[0].substr(3);
+      let currentDate = new Date();
+
+      currentDate = `${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`;
+
+      this.processJsExpression(computedValue,
+        `function(){
+            
+            $("#${name}").val(calcDate($("#${match}").val(),"${currentDate}")[2]);
+        }`);
+      
+    }
+
     
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
@@ -378,9 +394,10 @@ class TableInputNodeTransformer extends NodeTransformer {
 
       if (child.type !== "tag") continue;
       let width = child.attribs.width || "auto";
-      let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
-
-      label = label.replace("[{{count}}]", "");
+      //let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
+      
+      //label = label.replace("count", "");
+      let label = '';
       html += `<th style="width:${width}">${label}</th>`;
     }
 
@@ -471,7 +488,6 @@ manager.registerNode("textarea", InputNodeTransformer);
 manager.registerNode("select", SelectNodeTransformer);
 manager.registerNode("tableinput", TableInputNodeTransformer);
 
-
 const stringifyObject = (obj) => {
   if (typeof obj == "function") {
     return String(obj);
@@ -518,6 +534,15 @@ indicative.extend('js', (data, field, message, args) => {
     }
     return Promise.reject('Invalid data');
 });
+
+function calcDate(date_old,date_new){
+  // gets two dates of format dd/mm/yyyy
+  date_old = date_old.split("/");
+  date_new = date_new.split("/");
+
+  // returns difference of day, month, year
+  return [date_new[0]-date_old[0], date_new[1]-date_old[1], date_new[2]-date_old[2]];
+}
 
 ${scripts.join("\n\n")};
 </script>`);
