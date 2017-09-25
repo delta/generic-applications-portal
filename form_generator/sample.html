@@ -1,5 +1,10 @@
 <application name="myApp">
-    <section name="Personal Information">
+    <section name="Personal Information" instructions="
+    <li>All fields are mandatory<br>
+    <li>Photocopy proof required are: Date of Birth, Address Proof, Category Proof (if category proof is not
+    attached, the applicant will be considered as UR category) <br> <li>The image file should be JPG, JPEG, png,gif format.
+     <br><li>Dimension 200 x 300 pixels(preferred). <br>
+     <li>Size of image file be between 20kb-200kb.">
         <subsection name="General information">
             <fieldset>
                 <select name="Department Applied For" cols="2,6" placeholder="Please select" validationRule="required">
@@ -56,7 +61,7 @@
             </fieldset>
             
             <fieldset>
-              <input name="Staff Number" cols="2,3" placeholder="Staff Number" validationRule="required" showif="$f.InternalCandidateofNITT == 'Yes'">
+              <input name="Staff Number"  cols="2,3" placeholder="Staff Number" validationRule="required" showif="$f.InternalCandidateofNITT == 'Yes'">
               <input name="Date of Last Promotion" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required" showif="$f.InternalCandidateofNITT == 'No'">
           </fieldset>
 
@@ -102,7 +107,6 @@
         <subsection name="Contact Information">
             <fieldset>
                 <input cols="2,3" name="Email" readonly validationRule="required">
-                <input cols="2,3" name="Alternative Email" validationRule="required|email">
             </fieldset>
 
             <fieldset>
@@ -121,8 +125,7 @@
         </subsection>
     </section>
 
-    <section name="Education">
-        <subsection name="Matriculation/10<sup>th</sup> Standard onwards and +2/Pre-University">
+    <section name="High School Details" instructions="<li>All fields are mandatory">
           <tableinput name="matriculationDetails" minCount="2">
                 <select name="Examination" placeholder="Examination" validationRule="required">
                     <option>Exam1</option>
@@ -136,9 +139,9 @@
                 <input name="Max marks/CGPA" placeholder="Max marks/CGPA" validationRule="required"/>
                 <input name="Division/Class" placeholder="Division/Class" validationRule="required"/>
             </tableinput>
-        </subsection>
+        </section>
 
-        <subsection name="Undergraduate Education">
+        <section name="Undergraduate Education" instructions="<li>All the fields are mandatory<br><li>Only First Class is eligible for UG<br><li>Photocopy of Degree Certificate to be attached">
             <fieldset>
                 <input name="Degree Name" cols="2,3" validationRule="required">
             </fieldset>
@@ -179,9 +182,9 @@
                 <input name="Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
                 <input name="% of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
             </tableinput>
-        </subsection>
+        </section>
 
-        <subsection name="Postgraduate Education">
+        <section name="Postgraduate Education">
             <fieldset>
                 <input name="Degree Name" cols="2,6" validationRule="required">
             </fieldset>
@@ -219,11 +222,71 @@
                 <input name="Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
                 <input name="% of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
             </tableinput>
-        </subsection>
-    </section>
+        </section>
 
-    <section name="Experience">
-      <subsection name="Details of Professional Experience (Fill in with your most recent job, first.)">
+        <section name="PhD Details" instructions="<li>Only awarded PhD are eligible.<br>
+        <li>All the fields are mandatory<br>
+        <li>Photocopy of Awarded Certificate to be attached otherwise the application is rejected<br>">
+            <fieldset>
+                <input name="Awarded Date" label="Awarded Date: (dd/mm/yyy)" cols="2,6" placeholder="dd/mm/yyyy" validationRule="required|date">
+            </fieldset>
+            <fieldset>
+                <input name="Title" cols="2,6" placeholder="Please enter" validationRule="required">
+            </fieldset>
+            <fieldset>
+                <input name="University" cols="2,6" placeholder="Please enter" validationRule="required">
+            </fieldset>
+        </section>
+      
+
+      <section name="Present Employer">
+        <fieldset>
+            <input name="Employer Organization" cols="2,6" placeholder="Please enter" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Position Held" cols="2,3" placeholder="Please enter" validationRule="required">
+            <select name="Type of Employer" cols="2,3" placeholder="Please select an option" validationRule="required">
+                <option value="Government">Government</option>
+                <option value="Private">Private</option>
+                <option value="PSU/Autonomous Body">PSU/Autonomous Body</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <input name="Worked From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Worked Till" label="To: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+        </fieldset>
+        <fieldset>
+            <input name="Pay in Pay Band" cols="2,3" placeholder="Please enter">
+            <input name="AGP/GP" cols="2,3" placeholder="Please enter">
+        </fieldset>
+        <fieldset>
+            <input name="Basic Pay" cols="2,6" placeholder="Please enter" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Nature of Work" cols="2,6" placeholder="Please enter" validationRule="required">
+        </fieldset>
+      </section>
+
+      <section name="Research Experience">
+          <fieldset>
+              <input name="Research Organization" cols="2,6" placeholder="Please enter" validationRule="required">
+          </fieldset>
+          <fieldset>
+              <input name="Research Position Held" cols="2,6" placeholder="Please enter" validationRule="required">
+          </fieldset>
+          <fieldset>
+              <input name="Research From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+              <input name="Research Till" label="To: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+          </fieldset>
+          <fieldset>
+              <input name="Total Research Grant" cols="2,6" placeholder="Please enter" validationRule="required">
+          </fieldset>
+          <fieldset>
+              <input name="Reason for Leaving" cols="2,6" placeholder="Please enter" validationRule="required">
+          </fieldset>
+      </section>
+
+      <section name="Professional Experience">
         <tableinput name="teachingExperience" minCount="2">
           <input name="Name Of Organization" placeholder="Name Of Organization" validationRule="required"/>
           <input name="Address Of Organization" placeholder="Address Of Organization" validationRule="required"/>
@@ -234,11 +297,83 @@
           <input name="Type of Organization" placeholder="Type of Organization" validationRule="required"/>
           <input name="Reasons for leaving" placeholder="Reasons for leaving" validationRule="required"/>
         </tableinput>
-      </subsection>
-    </section>
+      </section>
 
-    <section name="Publications">
-      <subsection name=" Research Publications">
+      <section name="Sponsored Project">
+        <fieldset>
+          <input name="Project Title" cols="2,6" validationRule="required"/>
+        </fieldset>
+        <fieldset>
+          <input name="Sponsoring Agency" cols="2,6" validationRule="required"/>
+        </fieldset>
+        <fieldset>
+          <input name="Project From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+          <input name="Project To" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+        </fieldset>
+        <fieldset>
+          <input name="Project Amount" label="Amount(In Lacs)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+          <select name="Status" cols="2,3" placeholder="Please select" validationRule="required">
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </fieldset>
+        <fieldset>
+            <select name="Project Role" label="Role" cols="2,3" placeholder="Please select" validationRule="required">
+                <option value="Investigator">Investigator</option>
+                <option value="Co Investigator">Co Investigator</option>
+              </select>
+            <select name="Co PI" label="Total no of Co-Inventors" cols="2,3" placeholder="Please select" validationRule="required">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>              
+            </select>
+          </fieldset>
+      </section>
+
+
+      <section name="Patent Details">
+          <fieldset>
+            <input name="Patent Name" cols="2,6" validationRule="required"/>
+          </fieldset>
+          <fieldset>
+            <input name="Patent Registration No" cols="2,3" validationRule="required"/>
+            <input name="Patent Date" label="Date of Award (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+          </fieldset>
+          <fieldset>
+              <input name="Awarding Organization" cols="2,6" validationRule="required"/>
+          </fieldset>
+          <fieldset>
+              <select name="Patent Role" label="Role" cols="2,3" placeholder="Please select" validationRule="required">
+                  <option value="Investigator">Investigator</option>
+                  <option value="Co Investigator">Co Investigator</option>
+                </select>
+              <select name="Patent Co PI" cols="2,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>              
+              </select>
+            </fieldset>
+            <fieldset>
+              <select name="Patent PI" label="Status" cols="2,6" placeholder="Please select" validationRule="required">
+                <option value="Awarded">Awarded</option>
+                <option value="Filed">Filed</option>
+              </select>
+            </fieldset>
+        </section>
+
+      <section name=" Research Publications">
         <tableinput name="Papers" minCount="2">
           <input name="Name of the Journal" placeholder="Name of the journal" validationRule="required"/>
           <input name="Volume No." placeholder="Volume No." validationRule="required"/>
@@ -292,21 +427,19 @@
           <input name="Title of the paper" placeholder="Title of the paper" validationRule="required"/>
           <input name="Impact factor" placeholder="Impact factor" validationRule="required"/>
         </tableinput>
-      </subsection>
-      <subsection name="Other Publications">
+      </section>
+      <section name="Other Publications">
           <tableinput name="otherPapers" minCount="2">
             <input name="Name of conference with venue" placeholder="Name of conference with venue" validationRule="required"/>
             <input name="Authors" placeholder="Authors" validationRule="required"/>
             <input name="Title of the paper" placeholder="Title of the paper" validationRule="required"/>
             <input name="Impact factor" placeholder="Impact factor" validationRule="required"/>
           </tableinput>
-      </subbsection>
-    </section>
+      </section>
 
     <section name="Fellow">
     </section>
-    <section name="Seminars">
-      <subsection name="Conference/Symposium (Internation/National  level)">
+      <section name="Conferences">
         <tableinput name="conferenceSymposium" mincount="2">
           <input name="Name of the Connference" placeholder="Name of the Connference" validationRule="required"/>
           <select name="Year" placeholder="Year" validationRule="required">
@@ -355,8 +488,8 @@
           <input name="Volume No." placeholder="Volume No." validationRule="required"/>
           <input name="Title of the paper" placeholder="Title of the paper" validationRule="required"/>
         </tableinput>
-      </subsection>
-      <subsection name="Workshops / Training Programs">
+      </section>
+      <section name="Workshops / Training Programs">
         <tableinput  name="workshops" minCount="2">
           <input name="Title of the Workshop organized" placeholder="Title of the workshop organized" validationRule="required"/>
           <select name="Year" placeholder="Year" validationRule="required">
@@ -405,20 +538,18 @@
           <input name="venue" placeholder="venue" validationRule="required"/>
           <input name="Sponsoring Authority" placeholder="Sponsoring Authority" validationRule="required"/>
         </tableinput>
-      </subsection>
-    </section>
-    <section name="Projects">
-      <subsection name="Thesis spervised:M.Tech. /M.S. /M.Phil. (if any)">
+      </section>
+  
+      <section name="Thesis spervised">
         <tableinput name="Thesis" minCount="2">
           <input name="Title of the Thesis Supervised"placeholder="Title of the Thesis Supervised" validationRule="required"/>
           <input name="Completed(year)" placeholder="Completed(year)" validationRule="required"/>
           <input name="In progress(With status)" placeholder="In progress(With status)" validationRule="required"/>
           <input name="Principal or Co-Supervisor" placeholder="Principal or Co-Supervisor" validationRule="required"/>
         </tableinput>
-      </subsection>
-    </section>
-    <section name="Administrative and other activities">
-      <subsection name="Administrative and Other Activities">
+      </section>
+
+      <section name="Administrative and Other Activities">
         <tableinput name="adminSupport" minCount="3">
           <input name="Section/Office/Institute level committee"placeholder="Section/Office/Institute level committee" validationRule="required"/>
           <input name="From"placeholder="From" validationRule="required"/>
@@ -477,8 +608,9 @@
             <option value="1973">1973</option>
           </select>
         </tableinput>
-      </subsection>
-      <subsection name="Placement Percentage">
+      </section>
+
+      <section name="Placement Percentage">
         <tableinput name="placementPercentage" minCount="3">
           <select name="Year" placeholder="Year" validationRule="required">
             <option value="2013">2013</option>
@@ -525,8 +657,8 @@
           </select>
           <input name="percentage" placeholder="percentage"  validationRule="required"/>
         </tableinput>
-      </subsection>
-    </section>
+      </section>
+
     <section name="Miscellaneous">
 
       <fieldset>
@@ -540,9 +672,10 @@
       <fieldset>
         <input name="Any Other Relevant Info" cols="12,12" placeholder="Any Other Relevant Info" validationRule="required"/>
       </fieldset>
+    
+    </section>
 
-
-        <subsection name="Name and address of Reference">
+        <section name="Name and address of Reference">
           <fieldset>
             <input name="Name" placeholder="Name" cols="2,4" validationRule="required"/>
             <input name="Position" placeholder="Position" cols="2,4" validationRule="required"/>
@@ -551,11 +684,10 @@
             <input name="Phone Number:" placeholder="Phone Number:" cols="2,4" validationRule="required"/>
             <input name="Mobile" placeholder="Mobile" cols="2,4" validationRule="required"/>
           </fieldset>
-        </subsection>
-
-        <fieldset>
-          <input name="Did you previously apply for any post in this institute ? If yes, give particulars" cols="12,12" placeholder="Did you previously apply for any post in this institute ? If yes, give particulars" validationRule="required"/>
-        </fieldset>
-
-    </section>
+          
+          <fieldset>
+            <input name="Did you previously apply for any post in this institute ? If yes, give particulars" cols="12,12" placeholder="Did you previously apply for any post in this institute ? If yes, give particulars" validationRule="required"/>
+          </fieldset>
+        </section>
+          
 </application>

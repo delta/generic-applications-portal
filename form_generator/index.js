@@ -64,7 +64,7 @@ const validate = (name) => {
 
   // same handler will handle both validation success and validation failure
   indicative.validate(myData, myRules, {
-    "required": "{{field}} is required to complete registeration process",
+    "required": "This field is required to complete registeration process",
   })
     .then(onValidates[name])
     .catch(onValidates[name]);
@@ -157,7 +157,16 @@ class ApplicationNodeTransformer extends NodeTransformer {
 
 class SectionNodeTransformer extends NodeTransformer {
   transform() {
-    return `<form>
+    let instructions = this.consumeAttr("instructions");
+
+    if (!instructions) {
+      instructions = "No special instructions for this page";
+    }
+    return `
+            <div class="instructions">
+              <p style="color:red">${instructions}</p>
+            </div>
+            <form>
             <div class='section'>
                 <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
                 ${this.transformChildren()}
@@ -277,17 +286,20 @@ class InputNodeTransformer extends NodeTransformer {
     let name = this.node.attribs.name;
 
     onValidates[name] = `(err) => {
+        console.log(err);
         if (!err) $("#error-${name}").hide();
-        else      $("#error-${name}").show().html(err[0].message);
+        else      $("#error-${name}").show().html(err);
     }`;
 
     return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
   }
+
   addEventHandlersAndId() {
     addTrigger(this.name, `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`, true);
     this.$node.attr("onchange", `triggers["${this.name}"].forEach(function(f, i) { f.call(this, event) });`);
     this.$node.attr("id", this.name);
   }
+
   transform() {
     let attrs = this.node.attribs;
     
@@ -332,7 +344,6 @@ class InputNodeTransformer extends NodeTransformer {
       
     }
 
-    
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
 
@@ -355,6 +366,24 @@ class SelectNodeTransformer extends InputNodeTransformer {
     let attrs = this.node.attribs;
     let name = attrs.name;
     let validationRules = this.consumeAttr("validationrule");
+
+    this.addEventHandlersAndId();
+
+    const showIf = this.consumeAttr("showif");
+
+    if (showIf) {
+      this.processJsExpression(showIf,
+        `function(){ 
+          if(${showIf}) {
+            $("#${name}").show();
+            $("#label-${name}").show();
+            $("#asterisk-${name}").show();
+          } else {
+            $("#${name}").hide();
+            $("#label-${name}").hide();
+            $("#asterisk-${name}").hide();
+          }}`);
+    }
 
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
