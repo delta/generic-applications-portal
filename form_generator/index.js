@@ -180,14 +180,14 @@ class ApplicationNodeTransformer extends NodeTransformer {
 
       navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
-            
+
       isFirst = false;
     }
 
     navHtml += "</div>";
     bodyHtml += "</div>";
 
-    return `<div class="container-fluid" style="margin-top: 10px">
+    return `<div class="container-fluid" style="margin-top: 10px; padding-bottom: 75px">
             <div class="row">
                 <div class="col-2">${navHtml}</div>
                 <div class="col-10">${bodyHtml}</div>
