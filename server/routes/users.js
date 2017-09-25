@@ -288,10 +288,8 @@ router.post("/login", (req, res) => {
     if (!results.length) {
       return res.json({ "status": 200, "success": false, "message": "Invalid credentials" });
     }
-    
-    if (!results[ 0 ].isActive) {
-      return res.json({ "status": 200, "success": 200, "message": "Please check your email and confirm your email id to proceed" });
-    }
+
+    const isActive = results[ 0 ].isActive;
     
     bcrypt.compare(password + results[0].emailId, results[0].passwordHash, (err, response) => {
       if (err) {
@@ -299,6 +297,10 @@ router.post("/login", (req, res) => {
       }
       if (!response) {
         return res.json({ "status": 200, "success": false, "message": "Invalid credentials" });
+      }
+   
+      if (!isActive) {
+        return res.json({ "status": 200, "success": 200, "message": "Please check your email and confirm your email id to proceed" });
       }
 
       // const user = results[ 0 ];
