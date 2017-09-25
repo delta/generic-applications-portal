@@ -7,9 +7,9 @@
             <li>Dimension 200 x 300 pixels(preferred). </li>
             <li>Size of image file be between 20kb-200kb."></li>
         </instructions>
-        <subsection name="General information">
+        <subsection name="Application information">
             <fieldset>
-                <select name="Department Applied For" cols="2,6" placeholder="Please select" validationRule="required">
+                <select name="Department Applied For" cols="3,6" placeholder="Please select" validationRule="required">
                     <option>Architecture</option>
                     <option>Civil Engineering</option>
                     <option>Chemical Engineering</option>
@@ -30,7 +30,7 @@
                 </select>
             </fieldset>
             <fieldset>
-                <select name="Post Applied For" cols="2,6" placeholder="Please select" validationRule="required">
+                <select name="Post Applied For" cols="3,6" placeholder="Please select" validationRule="required">
                     <option>Assistant Professor (6000)</option>
                     <option>Assistant Professor (7000)</option>
                     <option>Assistant Professor (8000)</option>
@@ -42,39 +42,45 @@
                     <option>Professor 3</option>
                 </select>
             </fieldset>
+            
             <fieldset>
-                <input label="Full Name" cols="2,6" name="Full Name" placeholder="Full Name" validationRule="required">
+                <input cols="3,3" name="Specialization" validationRule="required">
             </fieldset>
             
             <fieldset>
-                <input name="Father's/Husband's Name" cols="2,3" validationRule="required">
-            </fieldset>
-            
-            <fieldset>
-                <input name="Date of Birth" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Age" cols="2,3" placeholder="In Years" computedvalue="$f.DateofBirth" validationRule="required|integer" readonly>
-            </fieldset>
-            
-            <fieldset>
-                <select name="Internal Candidate of NITT" cols="2,6" placeholder="Please select" validationRule="required">
+                <select name="internalCandidate" label="Internal Candidate of NITT?" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Yes</option>
                     <option>No</option>
                 </select>
+                <input name="Staff Number" cols="3,3" placeholder="Staff Number" validationRule="required" showif="$f.internalCandidate == 'Yes'">
+            </fieldset>
+            
+            <fieldset showif="$f.internalCandidate == 'No'">
+                <input name="Date of Last Promotion" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required">
+            </fieldset>
+        </subsection>
+        <subsection name="Biographic information">
+            <fieldset>
+                <input label="Full Name" cols="3,6" name="Full Name" placeholder="Full Name" validationRule="required">
             </fieldset>
             
             <fieldset>
-                <input name="Staff Number"  cols="2,3" placeholder="Staff Number" validationRule="required" showif="$f.InternalCandidateofNITT == 'Yes'">
-                <input name="Date of Last Promotion" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required" showif="$f.InternalCandidateofNITT == 'No'">
+                <input name="Father's/Husband's Name" cols="3,3" validationRule="required">
             </fieldset>
             
             <fieldset>
-                <select name="Gender" cols="2,3" placeholder="Please select" validationRule="required">
+                <input name="Date of Birth" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                <input name="Age" cols="3,3" placeholder="In Years" computedvalue="$f.DateofBirth" validationRule="required|integer" readonly>
+            </fieldset>
+            
+            <fieldset>
+                <select name="Gender" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Transgender</option>
                     <option>I don't want to disclose</option>
                 </select>
-                <select name="Category" cols="2,3" placeholder="Please select" validationRule="required">
+                <select name="Category" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>General</option>
                     <option>Other Backward Classes (OBC)</option>
                     <option>Scheduled Cast (SC)</option>
@@ -84,15 +90,15 @@
             </fieldset>
             
             <fieldset>
-                <select name="Nationality" cols="2,3" placeholder="Please select" validationRule="required">
+                <select name="Nationality" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Indian</option>
                 </select>
                 
-                <input name="State/UT" cols="2,3" placeholder="State/UT to which you belong" validationRule="required">
+                <input name="State/UT" cols="3,3" placeholder="State/UT to which you belong" validationRule="required">
             </fieldset>
             
             <fieldset>
-                <select name="Marital Status" cols="2,3" placeholder="Please select" validationRule="required">
+                <select name="Marital Status" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Single</option>
                     <option>Married</option>
                     <option>Widowed</option>
@@ -102,27 +108,27 @@
             </fieldset>
             
             <fieldset>
-                <input cols="2,3" name="PAN number" validationRule="required" showif="$f.AadhaarNumber > 0">              
-                <input cols="2,3" name="AadhaarNumber" label="Aadhaar Number" validationRule="required">
+                <input cols="3,3" name="PAN number" validationRule="required" showif="$f.AadhaarNumber > 0">              
+                <input cols="3,3" name="AadhaarNumber" label="Aadhaar Number" validationRule="required">
             </fieldset>
         </subsection>
         <subsection name="Contact Information">
             <fieldset>
-                <input cols="2,3" name="Email" readonly validationRule="required">
+                <input cols="3,3" name="Email" readonly validationRule="required">
             </fieldset>
             
             <fieldset>
-                <input name="Contact No.<br>(with country code)" cols="2,3" placeholder="Contact No. (Preferably cell phone)" validationRule="required|phone">
-                <input name="Alternative Contact No." cols="2,3" placeholder="Alternative Contact No." validationRule="required|phone">
+                <input name="Contact No.<br>(with country code)" cols="3,3" placeholder="Contact No. (Preferably cell phone)" validationRule="required|phone">
+                <input name="Alternative Contact No." cols="3,3" placeholder="Alternative Contact No." validationRule="required|phone">
             </fieldset>
             
             <fieldset>
-                <textarea name="Address" cols="2,4" validationRule="required" placeholder="Mailing address"></textarea>
-                <textarea name="Permanent Address" cols="4" validationRule="required" placeholder="Permanent address"></textarea>
+                <textarea name="Address" cols="3,3" validationRule="required" placeholder="Mailing address"></textarea>
+                <textarea name="Permanent Address" cols="3" validationRule="required" placeholder="Permanent address"></textarea>
             </fieldset>
             
             <fieldset>
-                <input cols="2,10" preview="4" type="file" name="Photo" accept="image/jpeg,image/png" validationRule="requiredFile|fileType:jpeg,jpg,png|fileSize:100|imageMaxHeight:640|imageMaxWidth:960">
+                <input cols="3,9" preview="4" type="file" name="Photo" accept="image/jpeg,image/png" validationRule="requiredFile|fileType:jpeg,jpg,png|fileSize:100|imageMaxHeight:640|imageMaxWidth:960">
             </fieldset>
         </subsection>
     </section>
@@ -133,14 +139,14 @@
         </instructions>
         <box name="matriculationDetails" minCount="2">
             <fieldset>
-                <select cols="2,3" label="Examination" name="Examination" placeholder="Examination" validationRule="required">
+                <select cols="3,3" label="Examination" name="Examination" placeholder="Examination" validationRule="required">
                     <option>Exam1</option>
                     <option>Exam2</option>
                 </select>
-                <input cols="2,3" label="Specialization" name="Specialization" placeholder="Examination Passed" validationRule="required"/>
+                <input cols="3,3" label="Specialization" name="Specialization" placeholder="Examination Passed" validationRule="required"/>
             </fieldset>
             <fieldset>
-                <textarea cols="2,3" label="Description" name="Description" placeholder="Description" validationRule="required"></textarea>
+                <textarea cols="3,3" label="Description" name="Description" placeholder="Description" validationRule="required"></textarea>
             </fieldset>
         </box>
     </section>
@@ -152,23 +158,23 @@
             <li>Photocopy of Degree Certificate to be attached</li>
         </instructions>
         <fieldset>
-            <input name="Degree Name" cols="2,3" validationRule="required">
+            <input name="Degree Name" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Specialization" cols="2,3" validationRule="required">
-            <input name="Name of institute/College" cols="2,3" validationRule="required">
+            <input name="Specialization" cols="3,3" validationRule="required">
+            <input name="Name of institute/College" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Year of Passing" cols="2,3" validationRule="required">
-            <input name="Board/University" cols="2,3" validationRule="required">
+            <input name="Year of Passing" cols="3,3" validationRule="required">
+            <input name="Board/University" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Marks / CGPA obtained" cols="2,3" validationRule="required">
-            <input name="Maximum marks / CGPA" cols="2,3" validationRule="required">
+            <input name="Marks / CGPA obtained" cols="3,3" validationRule="required">
+            <input name="Maximum marks / CGPA" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="% Marks / CGPA" cols="2,3" validationRule="required">
-            <select name="Passed Class/Division" cols="2,3" placeholder="Please select" validationRule="required">
+            <input name="% Marks / CGPA" cols="3,3" validationRule="required">
+            <select name="Passed Class/Division" cols="3,3" placeholder="Please select" validationRule="required">
                 <option>Yes</option>
                 <option>No</option>
             </select>
@@ -195,23 +201,23 @@
     
     <section name="Postgraduate Education">
         <fieldset>
-            <input name="Degree Name" cols="2,6" validationRule="required">
+            <input name="Degree Name" cols="3,6" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Subjects / Discipline" cols="2,3" validationRule="required">
-            <textarea name="Institute Name" cols="2,4" validationRule="required"></textarea>
+            <input name="Subjects / Discipline" cols="3,3" validationRule="required">
+            <textarea name="Institute Name" cols="3,4" validationRule="required"></textarea>
         </fieldset>
         <fieldset>
-            <input name="Year of Passing" cols="2,3" validationRule="required">
-            <input name="Board/University" cols="2,3" validationRule="required">
+            <input name="Year of Passing" cols="3,3" validationRule="required">
+            <input name="Board/University" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Marks/CGPA obtained" cols="2,3" validationRule="required">
-            <input name="Maximum Marks/CGPA" cols="2,3" validationRule="required">
+            <input name="Marks/CGPA obtained" cols="3,3" validationRule="required">
+            <input name="Maximum Marks/CGPA" cols="3,3" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="% Marks/CGPA" cols="2,3" validationRule="required">
-            <input name="Division" cols="2,3" validationRule="required">
+            <input name="% Marks/CGPA" cols="3,3" validationRule="required">
+            <input name="Division" cols="3,3" validationRule="required">
         </fieldset>
         <tableinput name="pgDetails">
             <select name="Semester No." placeholder="Semester No." validationRule="required">
@@ -240,61 +246,61 @@
             <li>Photocopy of Awarded Certificate to be attached otherwise the application is rejected</li>
         </instructions>
         <fieldset>
-            <input name="Awarded Date" label="Awarded Date: (dd/mm/yyy)" cols="2,6" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Awarded Date" label="Awarded Date: (dd/mm/yyy)" cols="3,6" placeholder="dd/mm/yyyy" validationRule="required|date">
         </fieldset>
         <fieldset>
-            <input name="Title" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Title" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="University" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="University" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
     </section>
     
     
     <section name="Present Employer">
         <fieldset>
-            <input name="Employer Organization" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Employer Organization" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Position Held" cols="2,3" placeholder="Please enter" validationRule="required">
-            <select name="Type of Employer" cols="2,3" placeholder="Please select an option" validationRule="required">
+            <input name="Position Held" cols="3,3" placeholder="Please enter" validationRule="required">
+            <select name="Type of Employer" cols="3,3" placeholder="Please select an option" validationRule="required">
                 <option value="Government">Government</option>
                 <option value="Private">Private</option>
                 <option value="PSU/Autonomous Body">PSU/Autonomous Body</option>
             </select>
         </fieldset>
         <fieldset>
-            <input name="Worked From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            <input name="Worked Till" label="To: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+            <input name="Worked From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Worked Till" label="To: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
         </fieldset>
         <fieldset>
-            <input name="Pay in Pay Band" cols="2,3" placeholder="Please enter">
-            <input name="AGP/GP" cols="2,3" placeholder="Please enter">
+            <input name="Pay in Pay Band" cols="3,3" placeholder="Please enter">
+            <input name="AGP/GP" cols="3,3" placeholder="Please enter">
         </fieldset>
         <fieldset>
-            <input name="Basic Pay" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Basic Pay" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Nature of Work" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Nature of Work" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
     </section>
     
     <section name="Research Experience">
         <fieldset>
-            <input name="Research Organization" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Research Organization" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Research Position Held" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Research Position Held" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Research From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            <input name="Research Till" label="To: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+            <input name="Research From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Research Till" label="To: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
         </fieldset>
         <fieldset>
-            <input name="Total Research Grant" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Total Research Grant" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
         <fieldset>
-            <input name="Reason for Leaving" cols="2,6" placeholder="Please enter" validationRule="required">
+            <input name="Reason for Leaving" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
     </section>
     
@@ -313,28 +319,28 @@
     
     <section name="Sponsored Project">
         <fieldset>
-            <input name="Project Title" cols="2,6" validationRule="required"/>
+            <input name="Project Title" cols="3,6" validationRule="required"/>
         </fieldset>
         <fieldset>
-            <input name="Sponsoring Agency" cols="2,6" validationRule="required"/>
+            <input name="Sponsoring Agency" cols="3,6" validationRule="required"/>
         </fieldset>
         <fieldset>
-            <input name="Project From" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            <input name="Project To" label="From: (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Project From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <input name="Project To" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
         </fieldset>
         <fieldset>
-            <input name="Project Amount" label="Amount(In Lacs)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            <select name="Status" cols="2,3" placeholder="Please select" validationRule="required">
+            <input name="Project Amount" label="Amount(In Lacs)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+            <select name="Status" cols="3,3" placeholder="Please select" validationRule="required">
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select>
         </fieldset>
         <fieldset>
-            <select name="Project Role" label="Role" cols="2,3" placeholder="Please select" validationRule="required">
+            <select name="Project Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
                 <option value="Investigator">Investigator</option>
                 <option value="Co Investigator">Co Investigator</option>
             </select>
-            <select name="Co PI" label="Total no of Co-Inventors" cols="2,3" placeholder="Please select" validationRule="required">
+            <select name="Co PI" label="Total no of Co-Inventors" cols="3,3" placeholder="Please select" validationRule="required">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -351,21 +357,21 @@
     
     <section name="Patent Details">
         <fieldset>
-            <input name="Patent Name" cols="2,6" validationRule="required"/>
+            <input name="Patent Name" cols="3,6" validationRule="required"/>
         </fieldset>
         <fieldset>
-            <input name="Patent Registration No" cols="2,3" validationRule="required"/>
-            <input name="Patent Date" label="Date of Award (dd/mm/yyyy)" cols="2,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+            <input name="Patent Registration No" cols="3,3" validationRule="required"/>
+            <input name="Patent Date" label="Date of Award (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
         </fieldset>
         <fieldset>
-            <input name="Awarding Organization" cols="2,6" validationRule="required"/>
+            <input name="Awarding Organization" cols="3,6" validationRule="required"/>
         </fieldset>
         <fieldset>
-            <select name="Patent Role" label="Role" cols="2,3" placeholder="Please select" validationRule="required">
+            <select name="Patent Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
                 <option value="Investigator">Investigator</option>
                 <option value="Co Investigator">Co Investigator</option>
             </select>
-            <select name="Patent Co PI" cols="2,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
+            <select name="Patent Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -378,7 +384,7 @@
             </select>
         </fieldset>
         <fieldset>
-            <select name="Patent PI" label="Status" cols="2,6" placeholder="Please select" validationRule="required">
+            <select name="Patent PI" label="Status" cols="3,6" placeholder="Please select" validationRule="required">
                 <option value="Awarded">Awarded</option>
                 <option value="Filed">Filed</option>
             </select>
@@ -689,12 +695,12 @@
     
     <section name="Name and address of Reference">
         <fieldset>
-            <input name="Name" placeholder="Name" cols="2,4" validationRule="required"/>
-            <input name="Position" placeholder="Position" cols="2,4" validationRule="required"/>
-            <input name="Address" placeholder="Address" cols="2,4" validationRule="required"/>
-            <input name="Email" placeholder="Email" cols="2,4" validationRule="required"/>
-            <input name="Phone Number:" placeholder="Phone Number:" cols="2,4" validationRule="required"/>
-            <input name="Mobile" placeholder="Mobile" cols="2,4" validationRule="required"/>
+            <input name="Name" placeholder="Name" cols="3,4" validationRule="required"/>
+            <input name="Position" placeholder="Position" cols="3,4" validationRule="required"/>
+            <input name="Address" placeholder="Address" cols="3,4" validationRule="required"/>
+            <input name="Email" placeholder="Email" cols="3,4" validationRule="required"/>
+            <input name="Phone Number:" placeholder="Phone Number:" cols="3,4" validationRule="required"/>
+            <input name="Mobile" placeholder="Mobile" cols="3,4" validationRule="required"/>
         </fieldset>
         
         <fieldset>

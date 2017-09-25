@@ -98,6 +98,17 @@ class Manager {
     }
     return (new Transformer(node, leaveNameUnsafe)).transform();
   }
+  processJsExpression(expression, myFunction) {
+    let matches = expression.match(/\$f.[^ ]+/g);
+
+    for (let match of matches) {
+      match = match.substr(3);
+      if ($(`[name=${match}]`).length === 0) {
+        error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
+      }
+      addTrigger(match, myFunction);
+    }
+  }
 }
 
 let manager = new Manager();
@@ -107,7 +118,7 @@ class NodeTransformer {
     this.originalName = node.attribs.name || "";
     this.name = !leaveNameUnsafe ? safeName(this.originalName) : this.originalName;
     this.node = node;
-    this.node.attribs && (this.node.attribs.name = this.name);    
+    this.node.attribs && (this.node.attribs.name = this.name);
     this.$node = $(node);
     this.node.attribs.name = this.name;
   }
@@ -141,9 +152,9 @@ class ApplicationNodeTransformer extends NodeTransformer {
     for (let i = 0; i < sections.length; i++) {
       let child = sections[i];
       let name = child.attribs.name;
-      let dashedName = name.replace(/ /g, "-");
+      let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
 
-      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i+1}. ${name}</a>`;
+      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
             
       isFirst = false;
@@ -195,13 +206,25 @@ class SubsectionNodeTransformer extends NodeTransformer {
 class FieldsetNodeTransformer extends NodeTransformer {
   transform() {
     let label = this.originalName;
+    let showIf = this.consumeAttr("showif");
+    let id = `fieldset_${this.name}_${Math.random().toString().substr(2, 5)}`;
+
+    if (showIf) {
+      manager.processJsExpression(showIf,
+        `function(){ 
+          if(${showIf}) {
+            $("#${id}").show();
+          } else {
+            $("#${id}").hide();
+          }}`);
+    }
 
     if (label) {
-      return `<div class="form-group form-inline row">
+      return `<div class="form-group form-inline row" id="${id}">
                 <label class="col-form-label col-md-2">${label}</label>
                 <div class="col-md-10 row">${this.transformChildren()}</div></div>`;
     }
-    return `<div class="form-group row">
+    return `<div class="form-group row" id="${id}">
         <div class="col row">${this.transformChildren()}</div></div>`;
   }
 }
@@ -212,17 +235,6 @@ class InputNodeTransformer extends NodeTransformer {
     $f[this.name] = "";
   }
 
-  processJsExpression(expression, myFunction) {
-    let matches = expression.match(/\$f.[^ ]+/g);
-
-    for (let match of matches) {
-      match = match.substr(3);
-      if ($(`[name=${match}]`).length === 0) {
-        error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
-      }
-      addTrigger(match, myFunction);
-    }
-  }
   processJsValidationRules(validationRules) {
     if (validationRules && /js:/.test(validationRules)) {
       const splitValidationRules = validationRules.split("|");
@@ -231,7 +243,7 @@ class InputNodeTransformer extends NodeTransformer {
         if (/^js:/.test(rule)) { // custom rule. wrap in a function.
           // first do one-time checking if the rule refers to non-existing elements
           // js: $f.salary + $f.dadSalary >= $f.maxSalary
-          this.processJsExpression(rule, `() => {
+          manager.processJsExpression(rule, `() => {
             validate(${this.name});
           }`);
         }
@@ -315,7 +327,6 @@ class InputNodeTransformer extends NodeTransformer {
     }
 
     let name = this.name;
-
     let validationRules = this.consumeAttr("validationrule");
 
     this.addEventHandlersAndId();
@@ -324,7 +335,7 @@ class InputNodeTransformer extends NodeTransformer {
     let computedValue = this.consumeAttr("computedvalue");
 
     if (showIf) {
-      this.processJsExpression(showIf,
+      manager.processJsExpression(showIf,
         `function(){ 
           if(${showIf}) {
             $("#${name}").show();
@@ -343,12 +354,10 @@ class InputNodeTransformer extends NodeTransformer {
 
       currentDate = `${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`;
 
-      this.processJsExpression(computedValue,
+      manager.processJsExpression(computedValue,
         `function(){
-            
             $("#${name}").val(calcDate($("#${match}").val(),"${currentDate}")[2]);
         }`);
-      
     }
 
     manager.addValidationRule(name, validationRules);
@@ -379,7 +388,7 @@ class SelectNodeTransformer extends InputNodeTransformer {
     const showIf = this.consumeAttr("showif");
 
     if (showIf) {
-      this.processJsExpression(showIf,
+      manager.processJsExpression(showIf,
         `function(){ 
           if(${showIf}) {
             $("#${name}").show();
@@ -687,14 +696,14 @@ class BoxNodeTransformer extends NodeTransformer {
         if (nRows > ${minCount}) {
             // while removing we only remove the element in the DOM, 
             // and don't clean up onValidates, $f, rules variables for simplicity.
-            delRowButtonHtml = "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_${this.name}(event, " + nRows + ")'><span class='fa fa-minus-circle'></span> Delete row</a>"
+            delRowButtonHtml = "<a role='button' href='#' title='Delete row' class='btn btn-danger btn-sm' style='float:right' onclick='delRow_${this.name}(event, " + nRows + ")'><span class='fa fa-minus-circle'></span> Delete row</a><br style='clear:both'>"
         }
         if (nRows_${this.name}_real + 1 >= ${maxCount}) {
             $("#rowAdder_${this.name}").attr('disabled', 'true');
         }
-        let rowHtml = "<div class='box-row' id='" + rowId + "'>" + html.replace(/\\{\\{count\\}\\}/g, nRows_${this.name}) + delRowButtonHtml + "</div>";
+        let rowHtml = "<div class='box-row' id='" + rowId + "'>" + html.replace(/__count__/g, nRows_${this.name}) + delRowButtonHtml + "</div>";
         for (let i = 0; i < elements.length; i++) {
-            let elemName = elements[i].name.replace(/\\{\\{count\\}\\}/g, nRows_${this.name});
+            let elemName = elements[i].name.replace(/__count__/g, nRows_${this.name});
 
             rules[elemName] = elements[i].validationrule;
             onValidates[elemName] = (err) => {
@@ -723,7 +732,7 @@ class BoxNodeTransformer extends NodeTransformer {
     <div id="${this.name}_wrapper">
       <div id="${this.name}"></div>
       <hr>
-      <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_${this.name}" onclick="addRow_${this.name}(event)">
+      <a role="button" href="#" class="btn btn-success btn-sm" title='Add row' id="rowAdder_${this.name}" onclick="addRow_${this.name}(event)">
         <span class="fa fa-plus-square"></span> Add row
       </a>
     </div>`; // rows will be added by the client.
