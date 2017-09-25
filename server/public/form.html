@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Recruitment | NIT Trichy</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <style>
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #394263;
+        }
+        
+        .form-group {
+            border-bottom: 1px dashed lightblue;
+            padding-bottom: 15px;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .nav-link{
+            font-size: 0.9rem;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" style="padding: 10px; font-weight:bold">Faculty Recruitment | NIT Trichy</a>
+    </nav>
+    
+    <div class="container-fluid" style="margin-top: 10px; padding-bottom: 75px">
+            <div class="row">
+                <div class="col-2"><div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"><a class="nav-link active" id="v-pills-Personal-Information-tab" data-toggle="pill" href="#v-pills-Personal-Information" role="tab" aria-controls="v-pills-Personal-Information" aria-expanded="true">Personal Information</a><a class="nav-link " id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education" role="tab" aria-controls="v-pills-Education" aria-expanded="true">Education</a><a class="nav-link " id="v-pills-Experience-tab" data-toggle="pill" href="#v-pills-Experience" role="tab" aria-controls="v-pills-Experience" aria-expanded="true">Experience</a><a class="nav-link " id="v-pills-Publications-tab" data-toggle="pill" href="#v-pills-Publications" role="tab" aria-controls="v-pills-Publications" aria-expanded="true">Publications</a><a class="nav-link " id="v-pills-Fellow-tab" data-toggle="pill" href="#v-pills-Fellow" role="tab" aria-controls="v-pills-Fellow" aria-expanded="true">Fellow</a><a class="nav-link " id="v-pills-Seminars-tab" data-toggle="pill" href="#v-pills-Seminars" role="tab" aria-controls="v-pills-Seminars" aria-expanded="true">Seminars</a><a class="nav-link " id="v-pills-Projects-tab" data-toggle="pill" href="#v-pills-Projects" role="tab" aria-controls="v-pills-Projects" aria-expanded="true">Projects</a><a class="nav-link " id="v-pills-Administrative-and-other-activities-tab" data-toggle="pill" href="#v-pills-Administrative-and-other-activities" role="tab" aria-controls="v-pills-Administrative-and-other-activities" aria-expanded="true">Administrative and other activities</a><a class="nav-link " id="v-pills-Co-curricular-tab" data-toggle="pill" href="#v-pills-Co-curricular" role="tab" aria-controls="v-pills-Co-curricular" aria-expanded="true">Co-curricular</a><a class="nav-link " id="v-pills-Areas-of-interests-tab" data-toggle="pill" href="#v-pills-Areas-of-interests" role="tab" aria-controls="v-pills-Areas-of-interests" aria-expanded="true">Areas of interests</a><a class="nav-link " id="v-pills-Why-NITT-tab" data-toggle="pill" href="#v-pills-Why-NITT" role="tab" aria-controls="v-pills-Why-NITT" aria-expanded="true">Why NITT</a><a class="nav-link " id="v-pills-Miscellaneous-tab" data-toggle="pill" href="#v-pills-Miscellaneous" role="tab" aria-controls="v-pills-Miscellaneous" aria-expanded="true">Miscellaneous</a></div></div>
+                <div class="col-10"><div class="tab-content" id="v-pills-tabContent"><div class="tab-pane fade show active" id="v-pills-Personal-Information" role="tabpanel" aria-labelledby="v-pills-Personal-Information-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Personal Information</h2>
+                
+        <div class='subsection' id="Biographicinformation">
+            <br><h4 style="color: #1bbae1">&gt; Biographic information</h4><br>
+            
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="FirstName">Name<span style='color:red'>*</span></label><div class="col-md-3"><input name="FirstName" placeholder="First Name" onblur="validate(&apos;FirstName&apos;)" onchange="$f[&quot;FirstName&quot;] = this.value" id="FirstName" class="form-control form-control-sm"><span class="error" id="error-FirstName" style="display:none">Error</span></div>
+                <div class="col-md-3"><input name="Middle Name" onblur="validate(&apos;MiddleName&apos;)" onchange="$f[&quot;MiddleName&quot;] = this.value" id="MiddleName" class="form-control form-control-sm" placeholder="Middle Name"><span class="error" id="error-Middle Name" style="display:none">Error</span></div>
+                <div class="col-md-3"><input name="Last Name" onblur="validate(&apos;LastName&apos;)" onchange="$f[&quot;LastName&quot;] = this.value" id="LastName" class="form-control form-control-sm" placeholder="Last Name"><span class="error" id="error-Last Name" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="FathersHusbandsName">Father's/Husband's Name<span style='color:red'>*</span></label><div class="col-md-3"><input name="Father&apos;s/Husband&apos;s Name" onblur="validate(&apos;FathersHusbandsName&apos;)" onchange="$f[&quot;FathersHusbandsName&quot;] = this.value" id="FathersHusbandsName" class="form-control form-control-sm" placeholder="Father&apos;s/Husband&apos;s Name"><span class="error" id="error-Father's/Husband's Name" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="DateofBirth">Date of Birth<span style='color:red'>*</span></label><div class="col-md-3"><input name="Date of Birth" placeholder="dd/mm/yyyy" onblur="validate(&apos;DateofBirth&apos;)" onchange="$f[&quot;DateofBirth&quot;] = this.value" id="DateofBirth" class="form-control form-control-sm"><span class="error" id="error-Date of Birth" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Age">Age<span style='color:red'>*</span></label><div class="col-md-3"><input name="Age" placeholder="In Years" readonly computedvalue="$f.util.toAge($f.dob)" onblur="validate(&apos;Age&apos;)" onchange="$f[&quot;Age&quot;] = this.value" id="Age" class="form-control form-control-sm"><span class="error" id="error-Age" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Gender">Gender<span style='color:red'>*</span></label><div class="col-md-3"><select name="Gender" placeholder="Please select" onblur="validate(&quot;Gender&quot;)" id="Gender" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Transgender</option>
+                    <option>I don&apos;t want to disclose</option>
+                </select><span class="error" id="error-Gender" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Category">Category<span style='color:red'>*</span></label><div class="col-md-3"><select name="Category" placeholder="Please select" onblur="validate(&quot;Category&quot;)" id="Category" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>General</option>
+                    <option>Other Backward Classes (OBC)</option>
+                    <option>Scheduled Cast (SC)</option>
+                    <option>Scheduled Tribe (ST)</option>
+                    <option>Person with disabilities</option>
+                </select><span class="error" id="error-Category" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Nationality">Nationality<span style='color:red'>*</span></label><div class="col-md-3"><select name="Nationality" placeholder="Please select" onblur="validate(&quot;Nationality&quot;)" id="Nationality" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>United States</option><option>United Kingdom</option><option>Afghanistan</option><option>Aland Islands</option><option>Albania</option><option>Algeria</option><option>American Samoa</option><option>Andorra</option><option>Angola</option><option>Anguilla</option><option>Antarctica</option><option>Antigua and Barbuda</option><option>Argentina</option><option>Armenia</option><option>Aruba</option><option>Australia</option><option>Austria</option><option>Azerbaijan</option><option>Bahamas</option><option>Bahrain</option><option>Bangladesh</option><option>Barbados</option><option>Belarus</option><option>Belgium</option><option>Belize</option><option>Benin</option><option>Bermuda</option><option>Bhutan</option><option>Bolivia, Plurinational State of</option><option>Bonaire, Sint Eustatius and Saba</option><option>Bosnia and Herzegovina</option><option>Botswana</option><option>Bouvet Island</option><option>Brazil</option><option>British Indian Ocean Territory</option><option>Brunei Darussalam</option><option>Bulgaria</option><option>Burkina Faso</option><option>Burundi</option><option>Cambodia</option><option>Cameroon</option><option>Canada</option><option>Cape Verde</option><option>Cayman Islands</option><option>Central African Republic</option><option>Chad</option><option>Chile</option><option>China</option><option>Christmas Island</option><option>Cocos (Keeling) Islands</option><option>Colombia</option><option>Comoros</option><option>Congo</option><option>Congo, The Democratic Republic of The</option><option>Cook Islands</option><option>Costa Rica</option><option>Cote D&apos;ivoire</option><option>Croatia</option><option>Cuba</option><option>Curacao</option><option>Cyprus</option><option>Czech Republic</option><option>Denmark</option><option>Djibouti</option><option>Dominica</option><option>Dominican Republic</option><option>Ecuador</option><option>Egypt</option><option>El Salvador</option><option>Equatorial Guinea</option><option>Eritrea</option><option>Estonia</option><option>Ethiopia</option><option>Falkland Islands (Malvinas)</option><option>Faroe Islands</option><option>Fiji</option><option>Finland</option><option>France</option><option>French Guiana</option><option>French Polynesia</option><option>French Southern Territories</option><option>Gabon</option><option>Gambia</option><option>Georgia</option><option>Germany</option><option>Ghana</option><option>Gibraltar</option><option>Greece</option><option>Greenland</option><option>Grenada</option><option>Guadeloupe</option><option>Guam</option><option>Guatemala</option><option>Guernsey</option><option>Guinea</option><option>Guinea-bissau</option><option>Guyana</option><option>Haiti</option><option>Heard Island and Mcdonald Islands</option><option>Holy See (Vatican City State)</option><option>Honduras</option><option>Hong Kong</option><option>Hungary</option><option>Iceland</option><option>India</option><option>Indonesia</option><option>Iran, Islamic Republic of</option><option>Iraq</option><option>Ireland</option><option>Isle of Man</option><option>Israel</option><option>Italy</option><option>Jamaica</option><option>Japan</option><option>Jersey</option><option>Jordan</option><option>Kazakhstan</option><option>Kenya</option><option>Kiribati</option><option>Korea, Democratic People&apos;s Republic of</option><option>Korea, Republic of</option><option>Kuwait</option><option>Kyrgyzstan</option><option>Lao People&apos;s Democratic Republic</option><option>Latvia</option><option>Lebanon</option><option>Lesotho</option><option>Liberia</option><option>Libya</option><option>Liechtenstein</option><option>Lithuania</option><option>Luxembourg</option><option>Macao</option><option>Macedonia, The Former Yugoslav Republic of</option><option>Madagascar</option><option>Malawi</option><option>Malaysia</option><option>Maldives</option><option>Mali</option><option>Malta</option><option>Marshall Islands</option><option>Martinique</option><option>Mauritania</option><option>Mauritius</option><option>Mayotte</option><option>Mexico</option><option>Micronesia, Federated States of</option><option>Moldova, Republic of</option><option>Monaco</option><option>Mongolia</option><option>Montenegro</option><option>Montserrat</option><option>Morocco</option><option>Mozambique</option><option>Myanmar</option><option>Namibia</option><option>Nauru</option><option>Nepal</option><option>Netherlands</option><option>New Caledonia</option><option>New Zealand</option><option>Nicaragua</option><option>Niger</option><option>Nigeria</option><option>Niue</option><option>Norfolk Island</option><option>Northern Mariana Islands</option><option>Norway</option><option>Oman</option><option>Pakistan</option><option>Palau</option><option>Palestinian Territory, Occupied</option><option>Panama</option><option>Papua New Guinea</option><option>Paraguay</option><option>Peru</option><option>Philippines</option><option>Pitcairn</option><option>Poland</option><option>Portugal</option><option>Puerto Rico</option><option>Qatar</option><option>Reunion</option><option>Romania</option><option>Russian Federation</option><option>Rwanda</option><option>Saint Barthelemy</option><option>Saint Helena, Ascension and Tristan da Cunha</option><option>Saint Kitts and Nevis</option><option>Saint Lucia</option><option>Saint Martin (French part)</option><option>Saint Pierre and Miquelon</option><option>Saint Vincent and The Grenadines</option><option>Samoa</option><option>San Marino</option><option>Sao Tome and Principe</option><option>Saudi Arabia</option><option>Senegal</option><option>Serbia</option><option>Seychelles</option><option>Sierra Leone</option><option>Singapore</option><option>Sint Maarten (Dutch part)</option><option>Slovakia</option><option>Slovenia</option><option>Solomon Islands</option><option>Somalia</option><option>South Africa</option><option>South Georgia and The South Sandwich Islands</option><option>South Sudan</option><option>Spain</option><option>Sri Lanka</option><option>Sudan</option><option>Suriname</option><option>Svalbard and Jan Mayen</option><option>Swaziland</option><option>Sweden</option><option>Switzerland</option><option>Syrian Arab Republic</option><option>Taiwan, Province of China</option><option>Tajikistan</option><option>Tanzania, United Republic of</option><option>Thailand</option><option>Timor-leste</option><option>Togo</option><option>Tokelau</option><option>Tonga</option><option>Trinidad and Tobago</option><option>Tunisia</option><option>Turkey</option><option>Turkmenistan</option><option>Turks and Caicos Islands</option><option>Tuvalu</option><option>Uganda</option><option>Ukraine</option><option>United Arab Emirates</option><option>United Kingdom</option><option>United States</option><option>United States Minor Outlying Islands</option><option>Uruguay</option><option>Uzbekistan</option><option>Vanuatu</option><option>Venezuela, Bolivarian Republic of</option><option>Viet Nam</option><option>Virgin Islands, British</option><option>Virgin Islands, U.S.</option><option>Wallis and Futuna</option><option>Western Sahara</option><option>Yemen</option><option>Zambia</option><option>Zimbabwe</option>
+                </select><span class="error" id="error-Nationality" style="display:none">Error</span></div>
+
+                <label class="col-form-label col-md-2" for="StateUT">State/UT<span style='color:red'>*</span></label><div class="col-md-3"><input name="State/UT" placeholder="State/UT to which you belong" onblur="validate(&apos;StateUT&apos;)" onchange="$f[&quot;StateUT&quot;] = this.value" id="StateUT" class="form-control form-control-sm"><span class="error" id="error-State/UT" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="MaritalStatus">Marital Status<span style='color:red'>*</span></label><div class="col-md-3"><select name="Marital Status" placeholder="Please select" onblur="validate(&quot;Marital Status&quot;)" id="Marital Status" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Widowed</option>
+                    <option>Divorced</option>
+                    <option>Separated</option>
+                </select><span class="error" id="error-Marital Status" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="AadhaarNumber">Aadhaar Number<span style='color:red'>*</span></label><div class="col-md-3"><input name="Aadhaar Number" onblur="validate(&apos;AadhaarNumber&apos;)" onchange="$f[&quot;AadhaarNumber&quot;] = this.value" id="AadhaarNumber" class="form-control form-control-sm" placeholder="Aadhaar Number"><span class="error" id="error-Aadhaar Number" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="PANnumber">PAN number<span style='color:red'>*</span></label><div class="col-md-3"><input name="PAN number" onblur="validate(&apos;PANnumber&apos;)" onchange="$f[&quot;PANnumber&quot;] = this.value" id="PANnumber" class="form-control form-control-sm" placeholder="PAN number"><span class="error" id="error-PAN number" style="display:none">Error</span></div>
+            </div></div>
+        
+        </div>
+        <div class='subsection' id="ContactInformation">
+            <br><h4 style="color: #1bbae1">&gt; Contact Information</h4><br>
+            
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Email">Email<span style='color:red'>*</span></label><div class="col-md-3"><input name="Email" readonly onblur="validate(&apos;Email&apos;)" onchange="$f[&quot;Email&quot;] = this.value" id="Email" class="form-control form-control-sm" placeholder="Email"><span class="error" id="error-Email" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="AlternativeEmail">Alternative Email<span style='color:red'>*</span></label><div class="col-md-3"><input name="Alternative Email" onblur="validate(&apos;AlternativeEmail&apos;)" onchange="$f[&quot;AlternativeEmail&quot;] = this.value" id="AlternativeEmail" class="form-control form-control-sm" placeholder="Alternative Email"><span class="error" id="error-Alternative Email" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="ContactNobrwithcountrycode">Contact No.<br>(with country code)<span style='color:red'>*</span></label><div class="col-md-3"><input name="Contact No.&lt;br&gt;(with country code)" placeholder="Contact No. (Preferably cell phone)" onblur="validate(&apos;ContactNobrwithcountrycode&apos;)" onchange="$f[&quot;ContactNobrwithcountrycode&quot;] = this.value" id="ContactNobrwithcountrycode" class="form-control form-control-sm"><span class="error" id="error-Contact No.<br>(with country code)" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="AlternativeContactNo">Alternative Contact No.<span style='color:red'>*</span></label><div class="col-md-3"><input name="Alternative Contact No." placeholder="Alternative Contact No." onblur="validate(&apos;AlternativeContactNo&apos;)" onchange="$f[&quot;AlternativeContactNo&quot;] = this.value" id="AlternativeContactNo" class="form-control form-control-sm"><span class="error" id="error-Alternative Contact No." style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Address">Address<span style='color:red'>*</span></label><div class="col-md-4"><textarea name="Address" placeholder="Mailing address" onblur="validate(&apos;Address&apos;)" onchange="$f[&quot;Address&quot;] = this.value" id="Address" class="form-control form-control-sm"></textarea><span class="error" id="error-Address" style="display:none">Error</span></div>
+                <div class="col-md-4"><textarea name="Permanent Address" placeholder="Permanent address" onblur="validate(&apos;PermanentAddress&apos;)" onchange="$f[&quot;PermanentAddress&quot;] = this.value" id="PermanentAddress" class="form-control form-control-sm"></textarea><span class="error" id="error-Permanent Address" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Photo">Photo</label><div class="col-md-10">
+            <div class="row">
+                <div class="col-md-6"><input preview="4" type="file" name="Photo" accept="image/jpeg,image/png" onchange="$f[&quot;Photo&quot;] = (this.files)?this.files[0]:null; toggleRemoveButtonAndPreview_Photo(); validate(&apos;Photo&apos;);" id="Photo" class="form-control-file" placeholder="Photo"></div>
+                <div class="col-md-4" id="filePreview_Photo"></div>
+                <div class="col-md-1">
+                    <a role='button' href='#' id="removeUploadButton_Photo" title='Remove upload' class='btn btn-outline-danger btn-sm' onclick='removeUpload_Photo(event)'><span class='fa fa-minus-circle'></span></a>
+                </div>
+            </div>
+            <div> <span class="error" id="error-Photo" style="display:none">Error</span> </div></div>
+            </div></div>
+        
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Education" role="tabpanel" aria-labelledby="v-pills-Education-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Education</h2>
+                
+        <div class='subsection' id="Matriculation10supthsupStandardonwardsand2PreUniversity">
+            <br><h4 style="color: #1bbae1">&gt; Matriculation/10<sup>th</sup> Standard onwards and +2/Pre-University</h4><br>
+            
+            <table id="matriculationDetails"><thead><tr><th style="width:auto">Examination</th><th style="width:auto">Specialization</th><th style="width:auto">College/Institute</th><th style="width:auto">Board/University</th><th style="width:auto">Year of passing</th><th style="width:auto">% of marks/CGPA</th><th style="width:auto">Max marks/CGPA</th><th style="width:auto">Division/Class</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_matriculationDetails" onclick="addRow_matriculationDetails(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+            <box name="twice" mincount="2">
+                <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Examination">Examination<span style="color:red">*</span></label><div class="col-md-3"><select name="Examination" placeholder="Examination" onblur="validate(&quot;Examination&quot;)" id="Examination" class="custom-select form-control form-control-sm"><option>Examination</option>
+                    <option>Exam1</option>
+                    <option>Exam2</option>
+                </select><span class="error" id="error-Examination" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Specialization1">Specialization1<span style="color:red">*</span></label><div class="col-md-3"><input name="Specialization1" placeholder="Examination Passed" onblur="validate(&apos;Specialization1&apos;)" onchange="$f[&quot;Specialization1&quot;] = this.value" id="Specialization1" class="form-control form-control-sm"><span class="error" id="error-Specialization1" style="display:none">Error</span></div>
+                </div></div>
+                <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="Specialization1">Specialization1<span style="color:red">*</span></label><div class="col-md-3"><input name="Specialization1" placeholder="Examination Passed" onblur="validate(&apos;Specialization1&apos;)" onchange="$f[&quot;Specialization1&quot;] = this.value" id="Specialization1" class="form-control form-control-sm"><span class="error" id="error-Specialization1" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Specialization2">Specialization2<span style="color:red">*</span></label><div class="col-md-3"><input name="Specialization2" placeholder="Examination Passed" onblur="validate(&apos;Specialization2&apos;)" onchange="$f[&quot;Specialization2&quot;] = this.value" id="Specialization2" class="form-control form-control-sm"><span class="error" id="error-Specialization2" style="display:none">Error</span></div>
+                </div></div>
+            </box>
+        
+        </div>
+
+        <div class='subsection' id="UndergraduateEducation">
+            <br><h4 style="color: #1bbae1">&gt; Undergraduate Education</h4><br>
+            
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="BranchSpecialization">Branch/Specialization<span style='color:red'>*</span></label><div class="col-md-3"><input name="Branch/Specialization" onblur="validate(&apos;BranchSpecialization&apos;)" onchange="$f[&quot;BranchSpecialization&quot;] = this.value" id="BranchSpecialization" class="form-control form-control-sm" placeholder="Branch/Specialization"><span class="error" id="error-Branch/Specialization" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="NameofinstituteCollege">Name of institute/College<span style='color:red'>*</span></label><div class="col-md-3"><input name="Name of institute/College" onblur="validate(&apos;NameofinstituteCollege&apos;)" onchange="$f[&quot;NameofinstituteCollege&quot;] = this.value" id="NameofinstituteCollege" class="form-control form-control-sm" placeholder="Name of institute/College"><span class="error" id="error-Name of institute/College" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Addressofinstitutecollege">Address of institute/college<span style='color:red'>*</span></label><div class="col-md-4"><textarea name="Address of institute/college" onblur="validate(&apos;Addressofinstitutecollege&apos;)" onchange="$f[&quot;Addressofinstitutecollege&quot;] = this.value" id="Addressofinstitutecollege" class="form-control form-control-sm" placeholder="Address of institute/college"></textarea><span class="error" id="error-Address of institute/college" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="AffiliatingUniversityApprovingAuthority">Affiliating University/Approving Authority<span style='color:red'>*</span></label><div class="col-md-3"><input name="Affiliating University/Approving Authority" onblur="validate(&apos;AffiliatingUniversityApprovingAuthority&apos;)" onchange="$f[&quot;AffiliatingUniversityApprovingAuthority&quot;] = this.value" id="AffiliatingUniversityApprovingAuthority" class="form-control form-control-sm" placeholder="Affiliating University/Approving Authority"><span class="error" id="error-Affiliating University/Approving Authority" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="PassedClassDivision">Passed Class/Division<span style='color:red'>*</span></label><div class="col-md-3"><input name="Passed Class/Division" onblur="validate(&apos;PassedClassDivision&apos;)" onchange="$f[&quot;PassedClassDivision&quot;] = this.value" id="PassedClassDivision" class="form-control form-control-sm" placeholder="Passed Class/Division"><span class="error" id="error-Passed Class/Division" style="display:none">Error</span></div>
+            </div></div>
+            <table id="ugDetails"><thead><tr><th style="width:auto">Semester No.</th><th style="width:auto">Code & Name of subject</th><th style="width:auto">Number of attempts</th><th style="width:auto">Month & Year of Passing</th><th style="width:auto">% of Marks/Grade</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_ugDetails" onclick="addRow_ugDetails(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+        
+        </div>
+
+        <div class='subsection' id="PostgraduateEducation">
+            <br><h4 style="color: #1bbae1">&gt; Postgraduate Education</h4><br>
+            
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="BranchSpecialization">Branch/Specialization<span style='color:red'>*</span></label><div class="col-md-3"><input name="Branch/Specialization" onblur="validate(&apos;BranchSpecialization&apos;)" onchange="$f[&quot;BranchSpecialization&quot;] = this.value" id="BranchSpecialization" class="form-control form-control-sm" placeholder="Branch/Specialization"><span class="error" id="error-Branch/Specialization" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="NameofinstituteCollege">Name of institute/College<span style='color:red'>*</span></label><div class="col-md-3"><input name="Name of institute/College" onblur="validate(&apos;NameofinstituteCollege&apos;)" onchange="$f[&quot;NameofinstituteCollege&quot;] = this.value" id="NameofinstituteCollege" class="form-control form-control-sm" placeholder="Name of institute/College"><span class="error" id="error-Name of institute/College" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="Addressofinstitutecollege">Address of institute/college<span style='color:red'>*</span></label><div class="col-md-4"><textarea name="Address of institute/college" onblur="validate(&apos;Addressofinstitutecollege&apos;)" onchange="$f[&quot;Addressofinstitutecollege&quot;] = this.value" id="Addressofinstitutecollege" class="form-control form-control-sm" placeholder="Address of institute/college"></textarea><span class="error" id="error-Address of institute/college" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row">
+        <div class="col row">
+                <label class="col-form-label col-md-2" for="AffiliatingUniversityApprovingAuthority">Affiliating University/Approving Authority<span style='color:red'>*</span></label><div class="col-md-3"><input name="Affiliating University/Approving Authority" onblur="validate(&apos;AffiliatingUniversityApprovingAuthority&apos;)" onchange="$f[&quot;AffiliatingUniversityApprovingAuthority&quot;] = this.value" id="AffiliatingUniversityApprovingAuthority" class="form-control form-control-sm" placeholder="Affiliating University/Approving Authority"><span class="error" id="error-Affiliating University/Approving Authority" style="display:none">Error</span></div>
+                <label class="col-form-label col-md-2" for="PassedClassDivision">Passed Class/Division<span style='color:red'>*</span></label><div class="col-md-3"><input name="Passed Class/Division" onblur="validate(&apos;PassedClassDivision&apos;)" onchange="$f[&quot;PassedClassDivision&quot;] = this.value" id="PassedClassDivision" class="form-control form-control-sm" placeholder="Passed Class/Division"><span class="error" id="error-Passed Class/Division" style="display:none">Error</span></div>
+            </div></div>
+            <table id="pgDetails"><thead><tr><th style="width:auto">Semester No.</th><th style="width:auto">Code & Name of subject</th><th style="width:auto">Number of attempts</th><th style="width:auto">Month & Year of Passing</th><th style="width:auto">% of Marks/Grade</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_pgDetails" onclick="addRow_pgDetails(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+        
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Experience" role="tabpanel" aria-labelledby="v-pills-Experience-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Experience</h2>
+                
+      <div class='subsection' id="DetailsofTeachingExperienceFillinwithyourmostrecentjobfirst">
+            <br><h4 style="color: #1bbae1">&gt; Details of Teaching Experience (Fill in with your most recent job, first.)</h4><br>
+            
+        <table id="teachingExperience"><thead><tr><th style="width:auto">Name Of Organization</th><th style="width:auto">Address Of Organization</th><th style="width:auto">Desigation</th><th style="width:auto">payscale</th><th style="width:auto">From</th><th style="width:auto">To</th><th style="width:auto">Type of Organization</th><th style="width:auto">Reasons for leaving</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_teachingExperience" onclick="addRow_teachingExperience(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Publications" role="tabpanel" aria-labelledby="v-pills-Publications-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Publications</h2>
+                
+      <div class='subsection' id="ResearchPublications">
+            <br><h4 style="color: #1bbae1">&gt;  Research Publications</h4><br>
+            
+        <table id="Papers"><thead><tr><th style="width:auto">Name of the Journal</th><th style="width:auto">Volume No.</th><th style="width:auto">month</th><th style="width:auto">Year</th><th style="width:auto">Authors</th><th style="width:auto">Title of the paper</th><th style="width:auto">Impact factor</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_Papers" onclick="addRow_Papers(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+      <div class='subsection' id="OtherPubblications">
+            <br><h4 style="color: #1bbae1">&gt; Other Pubblications</h4><br>
+            
+          <table id="otherPapers"><thead><tr><th style="width:auto">Name of conference with venue</th><th style="width:auto">Authors</th><th style="width:auto">Title of the paper</th><th style="width:auto">Impact factor</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_otherPapers" onclick="addRow_otherPapers(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+    
+        </div>
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Fellow" role="tabpanel" aria-labelledby="v-pills-Fellow-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Fellow</h2>
+                
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Seminars" role="tabpanel" aria-labelledby="v-pills-Seminars-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Seminars</h2>
+                
+      <div class='subsection' id="ConferenceSymposiumInternationNationallevel">
+            <br><h4 style="color: #1bbae1">&gt; Conference/Symposium (Internation/National  level)</h4><br>
+            
+        <table id="conferenceSymposium"><thead><tr><th style="width:auto">Name of the Connference</th><th style="width:auto">Year</th><th style="width:auto">Volume No.</th><th style="width:auto">Title of the paper</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_conferenceSymposium" onclick="addRow_conferenceSymposium(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+      <div class='subsection' id="WorkshopsTrainingPrograms">
+            <br><h4 style="color: #1bbae1">&gt; Workshops / Training Programs</h4><br>
+            
+        <table id="workshops"><thead><tr><th style="width:auto">Title of the Workshop organized</th><th style="width:auto">Year</th><th style="width:auto">venue</th><th style="width:auto">Sponsoring Authority</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_workshops" onclick="addRow_workshops(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Projects" role="tabpanel" aria-labelledby="v-pills-Projects-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Projects</h2>
+                
+      <div class='subsection' id="ThesisspervisedMTechMSMPhilifany">
+            <br><h4 style="color: #1bbae1">&gt; Thesis spervised:M.Tech. /M.S. /M.Phil. (if any)</h4><br>
+            
+        <table id="Thesis"><thead><tr><th style="width:auto">Title of the Thesis Supervised</th><th style="width:auto">Completed(year)</th><th style="width:auto">In progress(With status)</th><th style="width:auto">Principal or Co-Supervisor</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_Thesis" onclick="addRow_Thesis(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Administrative-and-other-activities" role="tabpanel" aria-labelledby="v-pills-Administrative-and-other-activities-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Administrative and other activities</h2>
+                
+      <div class='subsection' id="AdministrativeandOtherActivities">
+            <br><h4 style="color: #1bbae1">&gt; Administrative and Other Activities</h4><br>
+            
+        <table id="adminSupport"><thead><tr><th style="width:auto">Section/Office/Institute level committee</th><th style="width:auto">From</th><th style="width:auto">To</th><th style="width:auto">Position Held</th><th style="width:auto">Responsibility Type</th><th style="width:auto">Responsibilities</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_adminSupport" onclick="addRow_adminSupport(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+        <table id="outreach"><thead><tr><th style="width:auto">Academic Outreach Activities</th><th style="width:auto">Year</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_outreach" onclick="addRow_outreach(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+      <div class='subsection' id="PlacementPercentage">
+            <br><h4 style="color: #1bbae1">&gt; Placement Percentage</h4><br>
+            
+        <table id="placementPercentage"><thead><tr><th style="width:auto">Year</th><th style="width:auto">percentage</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_placementPercentage" onclick="addRow_placementPercentage(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+      
+        </div>
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Co-curricular" role="tabpanel" aria-labelledby="v-pills-Co-curricular-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Co-curricular</h2>
+                
+
+        <div class="form-group row">
+        <div class="col row">
+            <label class="col-form-label col-md-4" for="Positionofresponsibilities">Position of responsibilities</label><div class="col-md-4"><textarea name="Position of responsibilities" placeholder="Enter activities here" validatonrule="required" onblur="validate(&apos;Positionofresponsibilities&apos;)" onchange="$f[&quot;Positionofresponsibilities&quot;] = this.value" id="Positionofresponsibilities" class="form-control form-control-sm"></textarea><span class="error" id="error-Position of responsibilities" style="display:none">Error</span></div>
+        </div></div>
+        <div class="form-group row">
+        <div class="col row">
+            <label class="col-form-label col-md-4" for="GamesandSports">Games and Sports</label><div class="col-md-4"><textarea name="Games and Sports" placeholder="Enter achievements here" validatonrule="" onblur="validate(&apos;GamesandSports&apos;)" onchange="$f[&quot;GamesandSports&quot;] = this.value" id="GamesandSports" class="form-control form-control-sm"></textarea><span class="error" id="error-Games and Sports" style="display:none">Error</span></div>
+        </div></div>
+
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Areas-of-interests" role="tabpanel" aria-labelledby="v-pills-Areas-of-interests-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Areas of interests</h2>
+                
+        <h4>Pick two Areas Of Interest</h4>
+        <div class="form-group form-inline row">
+                <label class="col-form-label col-md-2">AOI1</label>
+                <div class="col-md-10 row">
+            <select name="aoi1" placeholder="Please select" onblur="validate(&quot;aoi1&quot;)" id="aoi1" class="custom-select form-control form-control-sm"><option>Please select</option>
+                <option value="DC">DC</option>
+                <option value="PC">PC</option>
+            </select><span class="error" id="error-aoi1" style="display:none">Error</span>
+        </div></div>
+        <div class="form-group form-inline row">
+                <label class="col-form-label col-md-2">AOI2</label>
+                <div class="col-md-10 row">
+            <select name="aoi2" placeholder="Please select" onblur="validate(&quot;aoi2&quot;)" id="aoi2" class="custom-select form-control form-control-sm"><option>Please select</option>
+                <option value="DC">DC</option>
+                <option value="PC">PC</option>
+            </select><span class="error" id="error-aoi2" style="display:none">Error</span>
+        </div></div>
+
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Why-NITT" role="tabpanel" aria-labelledby="v-pills-Why-NITT-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Why NITT</h2>
+                
+
+        <div class="form-group row">
+        <div class="col row">
+            <label class="col-form-label col-md-2" for="WhyNITT">Why NITT</label><div class="col-md-5"><textarea name="Why NITT" placeholder="Enter text here" onblur="validate(&apos;WhyNITT&apos;)" onchange="$f[&quot;WhyNITT&quot;] = this.value" id="WhyNITT" class="form-control form-control-sm"></textarea><span class="error" id="error-Why NITT" style="display:none">Error</span></div>
+        </div></div>
+
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Miscellaneous" role="tabpanel" aria-labelledby="v-pills-Miscellaneous-tab"><form>
+            <div class='section'>
+                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Miscellaneous</h2>
+                
+
+      <div class="form-group row">
+        <div class="col row">
+        <label class="col-form-label col-md-12" for="AwardsHonorsDistinction">Awards/HonorsDistinction<span style='color:red'>*</span></label><div class="col-md-12"><input name="Awards/HonorsDistinction" placeholder="Awards/HonorsDistinction" onblur="validate(&apos;AwardsHonorsDistinction&apos;)" onchange="$f[&quot;AwardsHonorsDistinction&quot;] = this.value" id="AwardsHonorsDistinction" class="form-control form-control-sm"><span class="error" id="error-Awards/HonorsDistinction" style="display:none">Error</span></div>
+      </div></div>
+
+      <div class="form-group row">
+        <div class="col row">
+        <label class="col-form-label col-md-12" for="TeachingandResearchPlanforNextFiveYears">Teaching and Research Plan for Next Five Years<span style='color:red'>*</span></label><div class="col-md-12"><input name="Teaching and Research Plan for Next Five Years" placeholder="Teaching and Research Plan for Next Five Years" onblur="validate(&apos;TeachingandResearchPlanforNextFiveYears&apos;)" onchange="$f[&quot;TeachingandResearchPlanforNextFiveYears&quot;] = this.value" id="TeachingandResearchPlanforNextFiveYears" class="form-control form-control-sm"><span class="error" id="error-Teaching and Research Plan for Next Five Years" style="display:none">Error</span></div>
+      </div></div>
+
+      <div class="form-group row">
+        <div class="col row">
+        <label class="col-form-label col-md-12" for="AnyOtherRelevantInfo">Any Other Relevant Info<span style='color:red'>*</span></label><div class="col-md-12"><input name="Any Other Relevant Info" placeholder="Any Other Relevant Info" onblur="validate(&apos;AnyOtherRelevantInfo&apos;)" onchange="$f[&quot;AnyOtherRelevantInfo&quot;] = this.value" id="AnyOtherRelevantInfo" class="form-control form-control-sm"><span class="error" id="error-Any Other Relevant Info" style="display:none">Error</span></div>
+      </div></div>
+
+
+        <div class='subsection' id="NameandaddressofReference">
+            <br><h4 style="color: #1bbae1">&gt; Name and address of Reference</h4><br>
+            
+          <div class="form-group row">
+        <div class="col row">
+            <label class="col-form-label col-md-2" for="Name">Name<span style='color:red'>*</span></label><div class="col-md-4"><input name="Name" placeholder="Name" onblur="validate(&apos;Name&apos;)" onchange="$f[&quot;Name&quot;] = this.value" id="Name" class="form-control form-control-sm"><span class="error" id="error-Name" style="display:none">Error</span></div>
+            <label class="col-form-label col-md-2" for="Position">Position<span style='color:red'>*</span></label><div class="col-md-4"><input name="Position" placeholder="Position" onblur="validate(&apos;Position&apos;)" onchange="$f[&quot;Position&quot;] = this.value" id="Position" class="form-control form-control-sm"><span class="error" id="error-Position" style="display:none">Error</span></div>
+            <label class="col-form-label col-md-2" for="Address">Address<span style='color:red'>*</span></label><div class="col-md-4"><input name="Address" placeholder="Address" onblur="validate(&apos;Address&apos;)" onchange="$f[&quot;Address&quot;] = this.value" id="Address" class="form-control form-control-sm"><span class="error" id="error-Address" style="display:none">Error</span></div>
+            <label class="col-form-label col-md-2" for="Email">Email<span style='color:red'>*</span></label><div class="col-md-4"><input name="Email" placeholder="Email" onblur="validate(&apos;Email&apos;)" onchange="$f[&quot;Email&quot;] = this.value" id="Email" class="form-control form-control-sm"><span class="error" id="error-Email" style="display:none">Error</span></div>
+            <label class="col-form-label col-md-2" for="PhoneNumber">Phone Number:<span style='color:red'>*</span></label><div class="col-md-4"><input name="Phone Number:" placeholder="Phone Number:" onblur="validate(&apos;PhoneNumber&apos;)" onchange="$f[&quot;PhoneNumber&quot;] = this.value" id="PhoneNumber" class="form-control form-control-sm"><span class="error" id="error-Phone Number:" style="display:none">Error</span></div>
+            <label class="col-form-label col-md-2" for="Mobile">Mobile<span style='color:red'>*</span></label><div class="col-md-4"><input name="Mobile" placeholder="Mobile" onblur="validate(&apos;Mobile&apos;)" onchange="$f[&quot;Mobile&quot;] = this.value" id="Mobile" class="form-control form-control-sm"><span class="error" id="error-Mobile" style="display:none">Error</span></div>
+          </div></div>
+        
+        </div>
+
+        <div class="form-group row">
+        <div class="col row">
+          <label class="col-form-label col-md-12" for="DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars">Did you previously apply for any post in this institute ? If yes, give particulars<span style='color:red'>*</span></label><div class="col-md-12"><input name="Did you previously apply for any post in this institute ? If yes, give particulars" placeholder="Did you previously apply for any post in this institute ? If yes, give particulars" onblur="validate(&apos;DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars&apos;)" onchange="$f[&quot;DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars&quot;] = this.value" id="DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" class="form-control form-control-sm"><span class="error" id="error-Did you previously apply for any post in this institute ? If yes, give particulars" style="display:none">Error</span></div>
+        </div></div>
+
+    
+                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            </div>
+        </form></div></div></div>
+            </div>
+        </div>
+
+    <div class="footer bg-dark" style="position: fixed; bottom: 0; left: 0; right: 0px; text-align: center; color: white">
+        Copyright 2017 &copy; NIT Trichy
+    </div>
+
+    
+<script type='text/javascript' src='js/indicative_bundle.js'></script>
+<script type='text/javascript'>
+let $f = {"FirstName":"","MiddleName":"","LastName":"","FathersHusbandsName":"","DateofBirth":"","Age":"","Gender":"","Category":"","Nationality":"","StateUT":"","MaritalStatus":"","AadhaarNumber":"","PANnumber":"","Email":"","AlternativeEmail":"","ContactNobrwithcountrycode":"","AlternativeContactNo":"","Address":"","PermanentAddress":"","Photo":"","Examinationcount":"","Specializationcount":"","CollegeInstitutecount":"","BoardUniversitycount":"","Yearofpassingcount":"","ofmarksCGPAcount":"","MaxmarksCGPAcount":"","DivisionClasscount":"","Examination":"","Specialization1":"","Specialization2":"","BranchSpecialization":"","NameofinstituteCollege":"","Addressofinstitutecollege":"","AffiliatingUniversityApprovingAuthority":"","PassedClassDivision":"","SemesterNocount":"","CodeNameofsubjectcount":"","Numberofattemptscount":"","MonthYearofPassingcount":"","ofMarksGradecount":"","NameOfOrganizationcount":"","AddressOfOrganizationcount":"","Desigationcount":"","payscalecount":"","Fromcount":"","Tocount":"","TypeofOrganizationcount":"","Reasonsforleavingcount":"","NameoftheJournalcount":"","VolumeNocount":"","monthcount":"","Yearcount":"","Authorscount":"","Titleofthepapercount":"","Impactfactorcount":"","Nameofconferencewithvenuecount":"","NameoftheConnferencecount":"","TitleoftheWorkshoporganizedcount":"","venuecount":"","SponsoringAuthoritycount":"","TitleoftheThesisSupervisedcount":"","Completedyearcount":"","InprogressWithstatuscount":"","PrincipalorCoSupervisorcount":"","SectionOfficeInstitutelevelcommitteecount":"","PositionHeldcount":"","ResponsibilityTypecount":"","Responsibilitiescount":"","AcademicOutreachActivitiescount":"","percentagecount":"","Positionofresponsibilities":"","GamesandSports":"","aoi1":"","aoi2":"","WhyNITT":"","AwardsHonorsDistinction":"","TeachingandResearchPlanforNextFiveYears":"","AnyOtherRelevantInfo":"","Name":"","Position":"","PhoneNumber":"","Mobile":"","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":""};
+let rules = {"FirstName":"required","MiddleName":"sometimes","LastName":"sometimes","FathersHusbandsName":"required","DateofBirth":"required|date","Age":"required|integer","Gender":"required|in:Male,Female,Transgender,I don&apos;t want to disclose","Category":"required|in:General,Other Backward Classes (OBC),Scheduled Cast (SC),Scheduled Tribe (ST),Person with disabilities","Nationality":"required|in:United States,United Kingdom,Afghanistan,Aland Islands,Albania,Algeria,American Samoa,Andorra,Angola,Anguilla,Antarctica,Antigua and Barbuda,Argentina,Armenia,Aruba,Australia,Austria,Azerbaijan,Bahamas,Bahrain,Bangladesh,Barbados,Belarus,Belgium,Belize,Benin,Bermuda,Bhutan,Bolivia\\, Plurinational State of,Bonaire\\, Sint Eustatius and Saba,Bosnia and Herzegovina,Botswana,Bouvet Island,Brazil,British Indian Ocean Territory,Brunei Darussalam,Bulgaria,Burkina Faso,Burundi,Cambodia,Cameroon,Canada,Cape Verde,Cayman Islands,Central African Republic,Chad,Chile,China,Christmas Island,Cocos (Keeling) Islands,Colombia,Comoros,Congo,Congo\\, The Democratic Republic of The,Cook Islands,Costa Rica,Cote D&apos;ivoire,Croatia,Cuba,Curacao,Cyprus,Czech Republic,Denmark,Djibouti,Dominica,Dominican Republic,Ecuador,Egypt,El Salvador,Equatorial Guinea,Eritrea,Estonia,Ethiopia,Falkland Islands (Malvinas),Faroe Islands,Fiji,Finland,France,French Guiana,French Polynesia,French Southern Territories,Gabon,Gambia,Georgia,Germany,Ghana,Gibraltar,Greece,Greenland,Grenada,Guadeloupe,Guam,Guatemala,Guernsey,Guinea,Guinea-bissau,Guyana,Haiti,Heard Island and Mcdonald Islands,Holy See (Vatican City State),Honduras,Hong Kong,Hungary,Iceland,India,Indonesia,Iran\\, Islamic Republic of,Iraq,Ireland,Isle of Man,Israel,Italy,Jamaica,Japan,Jersey,Jordan,Kazakhstan,Kenya,Kiribati,Korea\\, Democratic People&apos;s Republic of,Korea\\, Republic of,Kuwait,Kyrgyzstan,Lao People&apos;s Democratic Republic,Latvia,Lebanon,Lesotho,Liberia,Libya,Liechtenstein,Lithuania,Luxembourg,Macao,Macedonia\\, The Former Yugoslav Republic of,Madagascar,Malawi,Malaysia,Maldives,Mali,Malta,Marshall Islands,Martinique,Mauritania,Mauritius,Mayotte,Mexico,Micronesia\\, Federated States of,Moldova\\, Republic of,Monaco,Mongolia,Montenegro,Montserrat,Morocco,Mozambique,Myanmar,Namibia,Nauru,Nepal,Netherlands,New Caledonia,New Zealand,Nicaragua,Niger,Nigeria,Niue,Norfolk Island,Northern Mariana Islands,Norway,Oman,Pakistan,Palau,Palestinian Territory\\, Occupied,Panama,Papua New Guinea,Paraguay,Peru,Philippines,Pitcairn,Poland,Portugal,Puerto Rico,Qatar,Reunion,Romania,Russian Federation,Rwanda,Saint Barthelemy,Saint Helena\\, Ascension and Tristan da Cunha,Saint Kitts and Nevis,Saint Lucia,Saint Martin (French part),Saint Pierre and Miquelon,Saint Vincent and The Grenadines,Samoa,San Marino,Sao Tome and Principe,Saudi Arabia,Senegal,Serbia,Seychelles,Sierra Leone,Singapore,Sint Maarten (Dutch part),Slovakia,Slovenia,Solomon Islands,Somalia,South Africa,South Georgia and The South Sandwich Islands,South Sudan,Spain,Sri Lanka,Sudan,Suriname,Svalbard and Jan Mayen,Swaziland,Sweden,Switzerland,Syrian Arab Republic,Taiwan\\, Province of China,Tajikistan,Tanzania\\, United Republic of,Thailand,Timor-leste,Togo,Tokelau,Tonga,Trinidad and Tobago,Tunisia,Turkey,Turkmenistan,Turks and Caicos Islands,Tuvalu,Uganda,Ukraine,United Arab Emirates,United Kingdom,United States,United States Minor Outlying Islands,Uruguay,Uzbekistan,Vanuatu,Venezuela\\, Bolivarian Republic of,Viet Nam,Virgin Islands\\, British,Virgin Islands\\, U.S.,Wallis and Futuna,Western Sahara,Yemen,Zambia,Zimbabwe","StateUT":"required","MaritalStatus":"required|in:Single,Married,Widowed,Divorced,Separated","AadhaarNumber":"required","PANnumber":"required","Email":"required","AlternativeEmail":"required|email","ContactNobrwithcountrycode":"required|phone","AlternativeContactNo":"required|phone","Address":"required","PermanentAddress":"required","Examinationcount":"required|in:Exam1,Exam2","Specializationcount":"required","CollegeInstitutecount":"required","BoardUniversitycount":"required","Yearofpassingcount":"required","ofmarksCGPAcount":"required","MaxmarksCGPAcount":"required","DivisionClasscount":"required","Examination":"required|in:Exam1,Exam2","Specialization1":"required","Specialization2":"required","BranchSpecialization":"required","NameofinstituteCollege":"required","Addressofinstitutecollege":"required","AffiliatingUniversityApprovingAuthority":"required","PassedClassDivision":"required","SemesterNocount":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","CodeNameofsubjectcount":"required","Numberofattemptscount":"required","MonthYearofPassingcount":"required","ofMarksGradecount":"required","NameOfOrganizationcount":"required","AddressOfOrganizationcount":"required","Desigationcount":"required|in:Lecturer,Lecturer Sr. scale,Assistant Professor,Associate Professor,Professor,Other","payscalecount":"required","Fromcount":"required","Tocount":"required","TypeofOrganizationcount":"required","Reasonsforleavingcount":"required","NameoftheJournalcount":"required","VolumeNocount":"required","monthcount":"required|in:","Yearcount":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","Authorscount":"required","Titleofthepapercount":"required","Impactfactorcount":"required","Nameofconferencewithvenuecount":"required","NameoftheConnferencecount":"required","TitleoftheWorkshoporganizedcount":"required","venuecount":"required","SponsoringAuthoritycount":"required","TitleoftheThesisSupervisedcount":"required","Completedyearcount":"required","InprogressWithstatuscount":"required","PrincipalorCoSupervisorcount":"required","SectionOfficeInstitutelevelcommitteecount":"required","PositionHeldcount":"required","ResponsibilityTypecount":"required|in:Dean,HOD,ChiefWarden","Responsibilitiescount":"required","AcademicOutreachActivitiescount":"required","percentagecount":"required","aoi1":"required|in:DC,PC","aoi2":"required|in:DC,PC","AwardsHonorsDistinction":"required","TeachingandResearchPlanforNextFiveYears":"required","AnyOtherRelevantInfo":"required","Name":"required","Position":"required","PhoneNumber":"required","Mobile":"required","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":"required"};
+let triggers = {};
+let onValidates = {"FirstName": (err) => {
+        if (!err) $("#error-FirstName").hide();
+        else      $("#error-FirstName").show().html(err[0].message);
+    },"Middle Name": (err) => {
+        if (!err) $("#error-Middle Name").hide();
+        else      $("#error-Middle Name").show().html(err[0].message);
+    },"Last Name": (err) => {
+        if (!err) $("#error-Last Name").hide();
+        else      $("#error-Last Name").show().html(err[0].message);
+    },"Father's/Husband's Name": (err) => {
+        if (!err) $("#error-Father's/Husband's Name").hide();
+        else      $("#error-Father's/Husband's Name").show().html(err[0].message);
+    },"Date of Birth": (err) => {
+        if (!err) $("#error-Date of Birth").hide();
+        else      $("#error-Date of Birth").show().html(err[0].message);
+    },"Age": (err) => {
+        if (!err) $("#error-Age").hide();
+        else      $("#error-Age").show().html(err[0].message);
+    },"Gender": (err) => {
+        if (!err) $("#error-Gender").hide();
+        else      $("#error-Gender").show().html(err[0].message);
+    },"Category": (err) => {
+        if (!err) $("#error-Category").hide();
+        else      $("#error-Category").show().html(err[0].message);
+    },"Nationality": (err) => {
+        if (!err) $("#error-Nationality").hide();
+        else      $("#error-Nationality").show().html(err[0].message);
+    },"State/UT": (err) => {
+        if (!err) $("#error-State/UT").hide();
+        else      $("#error-State/UT").show().html(err[0].message);
+    },"Marital Status": (err) => {
+        if (!err) $("#error-Marital Status").hide();
+        else      $("#error-Marital Status").show().html(err[0].message);
+    },"Aadhaar Number": (err) => {
+        if (!err) $("#error-Aadhaar Number").hide();
+        else      $("#error-Aadhaar Number").show().html(err[0].message);
+    },"PAN number": (err) => {
+        if (!err) $("#error-PAN number").hide();
+        else      $("#error-PAN number").show().html(err[0].message);
+    },"Email": (err) => {
+        if (!err) $("#error-Email").hide();
+        else      $("#error-Email").show().html(err[0].message);
+    },"Alternative Email": (err) => {
+        if (!err) $("#error-Alternative Email").hide();
+        else      $("#error-Alternative Email").show().html(err[0].message);
+    },"Contact No.<br>(with country code)": (err) => {
+        if (!err) $("#error-Contact No.<br>(with country code)").hide();
+        else      $("#error-Contact No.<br>(with country code)").show().html(err[0].message);
+    },"Alternative Contact No.": (err) => {
+        if (!err) $("#error-Alternative Contact No.").hide();
+        else      $("#error-Alternative Contact No.").show().html(err[0].message);
+    },"Address": (err) => {
+        if (!err) $("#error-Address").hide();
+        else      $("#error-Address").show().html(err[0].message);
+    },"Permanent Address": (err) => {
+        if (!err) $("#error-Permanent Address").hide();
+        else      $("#error-Permanent Address").show().html(err[0].message);
+    },"Photo": (err) => {
+        if (!err) $("#error-Photo").hide();
+        else      $("#error-Photo").show().html(err[0].message);
+    },"Examination[{{count}}]": (err) => {
+        if (!err) $("#error-Examination[{{count}}]").hide();
+        else      $("#error-Examination[{{count}}]").show().html(err[0].message);
+    },"Specialization[{{count}}]": (err) => {
+        if (!err) $("#error-Specialization[{{count}}]").hide();
+        else      $("#error-Specialization[{{count}}]").show().html(err[0].message);
+    },"College/Institute[{{count}}]": (err) => {
+        if (!err) $("#error-College/Institute[{{count}}]").hide();
+        else      $("#error-College/Institute[{{count}}]").show().html(err[0].message);
+    },"Board/University[{{count}}]": (err) => {
+        if (!err) $("#error-Board/University[{{count}}]").hide();
+        else      $("#error-Board/University[{{count}}]").show().html(err[0].message);
+    },"Year of passing[{{count}}]": (err) => {
+        if (!err) $("#error-Year of passing[{{count}}]").hide();
+        else      $("#error-Year of passing[{{count}}]").show().html(err[0].message);
+    },"% of marks/CGPA[{{count}}]": (err) => {
+        if (!err) $("#error-% of marks/CGPA[{{count}}]").hide();
+        else      $("#error-% of marks/CGPA[{{count}}]").show().html(err[0].message);
+    },"Max marks/CGPA[{{count}}]": (err) => {
+        if (!err) $("#error-Max marks/CGPA[{{count}}]").hide();
+        else      $("#error-Max marks/CGPA[{{count}}]").show().html(err[0].message);
+    },"Division/Class[{{count}}]": (err) => {
+        if (!err) $("#error-Division/Class[{{count}}]").hide();
+        else      $("#error-Division/Class[{{count}}]").show().html(err[0].message);
+    },"Examination": (err) => {
+        if (!err) $("#error-Examination").hide();
+        else      $("#error-Examination").show().html(err[0].message);
+    },"Specialization1": (err) => {
+        if (!err) $("#error-Specialization1").hide();
+        else      $("#error-Specialization1").show().html(err[0].message);
+    },"Specialization2": (err) => {
+        if (!err) $("#error-Specialization2").hide();
+        else      $("#error-Specialization2").show().html(err[0].message);
+    },"Branch/Specialization": (err) => {
+        if (!err) $("#error-Branch/Specialization").hide();
+        else      $("#error-Branch/Specialization").show().html(err[0].message);
+    },"Name of institute/College": (err) => {
+        if (!err) $("#error-Name of institute/College").hide();
+        else      $("#error-Name of institute/College").show().html(err[0].message);
+    },"Address of institute/college": (err) => {
+        if (!err) $("#error-Address of institute/college").hide();
+        else      $("#error-Address of institute/college").show().html(err[0].message);
+    },"Affiliating University/Approving Authority": (err) => {
+        if (!err) $("#error-Affiliating University/Approving Authority").hide();
+        else      $("#error-Affiliating University/Approving Authority").show().html(err[0].message);
+    },"Passed Class/Division": (err) => {
+        if (!err) $("#error-Passed Class/Division").hide();
+        else      $("#error-Passed Class/Division").show().html(err[0].message);
+    },"Semester No.[{{count}}]": (err) => {
+        if (!err) $("#error-Semester No.[{{count}}]").hide();
+        else      $("#error-Semester No.[{{count}}]").show().html(err[0].message);
+    },"Code & Name of subject[{{count}}]": (err) => {
+        if (!err) $("#error-Code & Name of subject[{{count}}]").hide();
+        else      $("#error-Code & Name of subject[{{count}}]").show().html(err[0].message);
+    },"Number of attempts[{{count}}]": (err) => {
+        if (!err) $("#error-Number of attempts[{{count}}]").hide();
+        else      $("#error-Number of attempts[{{count}}]").show().html(err[0].message);
+    },"Month & Year of Passing[{{count}}]": (err) => {
+        if (!err) $("#error-Month & Year of Passing[{{count}}]").hide();
+        else      $("#error-Month & Year of Passing[{{count}}]").show().html(err[0].message);
+    },"% of Marks/Grade[{{count}}]": (err) => {
+        if (!err) $("#error-% of Marks/Grade[{{count}}]").hide();
+        else      $("#error-% of Marks/Grade[{{count}}]").show().html(err[0].message);
+    },"Name Of Organization[{{count}}]": (err) => {
+        if (!err) $("#error-Name Of Organization[{{count}}]").hide();
+        else      $("#error-Name Of Organization[{{count}}]").show().html(err[0].message);
+    },"Address Of Organization[{{count}}]": (err) => {
+        if (!err) $("#error-Address Of Organization[{{count}}]").hide();
+        else      $("#error-Address Of Organization[{{count}}]").show().html(err[0].message);
+    },"Desigation[{{count}}]": (err) => {
+        if (!err) $("#error-Desigation[{{count}}]").hide();
+        else      $("#error-Desigation[{{count}}]").show().html(err[0].message);
+    },"payscale[{{count}}]": (err) => {
+        if (!err) $("#error-payscale[{{count}}]").hide();
+        else      $("#error-payscale[{{count}}]").show().html(err[0].message);
+    },"From[{{count}}]": (err) => {
+        if (!err) $("#error-From[{{count}}]").hide();
+        else      $("#error-From[{{count}}]").show().html(err[0].message);
+    },"To[{{count}}]": (err) => {
+        if (!err) $("#error-To[{{count}}]").hide();
+        else      $("#error-To[{{count}}]").show().html(err[0].message);
+    },"Type of Organization[{{count}}]": (err) => {
+        if (!err) $("#error-Type of Organization[{{count}}]").hide();
+        else      $("#error-Type of Organization[{{count}}]").show().html(err[0].message);
+    },"Reasons for leaving[{{count}}]": (err) => {
+        if (!err) $("#error-Reasons for leaving[{{count}}]").hide();
+        else      $("#error-Reasons for leaving[{{count}}]").show().html(err[0].message);
+    },"Name of the Journal[{{count}}]": (err) => {
+        if (!err) $("#error-Name of the Journal[{{count}}]").hide();
+        else      $("#error-Name of the Journal[{{count}}]").show().html(err[0].message);
+    },"Volume No.[{{count}}]": (err) => {
+        if (!err) $("#error-Volume No.[{{count}}]").hide();
+        else      $("#error-Volume No.[{{count}}]").show().html(err[0].message);
+    },"month[{{count}}]": (err) => {
+        if (!err) $("#error-month[{{count}}]").hide();
+        else      $("#error-month[{{count}}]").show().html(err[0].message);
+    },"Year[{{count}}]": (err) => {
+        if (!err) $("#error-Year[{{count}}]").hide();
+        else      $("#error-Year[{{count}}]").show().html(err[0].message);
+    },"Authors[{{count}}]": (err) => {
+        if (!err) $("#error-Authors[{{count}}]").hide();
+        else      $("#error-Authors[{{count}}]").show().html(err[0].message);
+    },"Title of the paper[{{count}}]": (err) => {
+        if (!err) $("#error-Title of the paper[{{count}}]").hide();
+        else      $("#error-Title of the paper[{{count}}]").show().html(err[0].message);
+    },"Impact factor[{{count}}]": (err) => {
+        if (!err) $("#error-Impact factor[{{count}}]").hide();
+        else      $("#error-Impact factor[{{count}}]").show().html(err[0].message);
+    },"Name of conference with venue[{{count}}]": (err) => {
+        if (!err) $("#error-Name of conference with venue[{{count}}]").hide();
+        else      $("#error-Name of conference with venue[{{count}}]").show().html(err[0].message);
+    },"Name of the Connference[{{count}}]": (err) => {
+        if (!err) $("#error-Name of the Connference[{{count}}]").hide();
+        else      $("#error-Name of the Connference[{{count}}]").show().html(err[0].message);
+    },"Title of the Workshop organized[{{count}}]": (err) => {
+        if (!err) $("#error-Title of the Workshop organized[{{count}}]").hide();
+        else      $("#error-Title of the Workshop organized[{{count}}]").show().html(err[0].message);
+    },"venue[{{count}}]": (err) => {
+        if (!err) $("#error-venue[{{count}}]").hide();
+        else      $("#error-venue[{{count}}]").show().html(err[0].message);
+    },"Sponsoring Authority[{{count}}]": (err) => {
+        if (!err) $("#error-Sponsoring Authority[{{count}}]").hide();
+        else      $("#error-Sponsoring Authority[{{count}}]").show().html(err[0].message);
+    },"Title of the Thesis Supervised[{{count}}]": (err) => {
+        if (!err) $("#error-Title of the Thesis Supervised[{{count}}]").hide();
+        else      $("#error-Title of the Thesis Supervised[{{count}}]").show().html(err[0].message);
+    },"Completed(year)[{{count}}]": (err) => {
+        if (!err) $("#error-Completed(year)[{{count}}]").hide();
+        else      $("#error-Completed(year)[{{count}}]").show().html(err[0].message);
+    },"In progress(With status)[{{count}}]": (err) => {
+        if (!err) $("#error-In progress(With status)[{{count}}]").hide();
+        else      $("#error-In progress(With status)[{{count}}]").show().html(err[0].message);
+    },"Principal or Co-Supervisor[{{count}}]": (err) => {
+        if (!err) $("#error-Principal or Co-Supervisor[{{count}}]").hide();
+        else      $("#error-Principal or Co-Supervisor[{{count}}]").show().html(err[0].message);
+    },"Section/Office/Institute level committee[{{count}}]": (err) => {
+        if (!err) $("#error-Section/Office/Institute level committee[{{count}}]").hide();
+        else      $("#error-Section/Office/Institute level committee[{{count}}]").show().html(err[0].message);
+    },"Position Held[{{count}}]": (err) => {
+        if (!err) $("#error-Position Held[{{count}}]").hide();
+        else      $("#error-Position Held[{{count}}]").show().html(err[0].message);
+    },"Responsibility Type[{{count}}]": (err) => {
+        if (!err) $("#error-Responsibility Type[{{count}}]").hide();
+        else      $("#error-Responsibility Type[{{count}}]").show().html(err[0].message);
+    },"Responsibilities[{{count}}]": (err) => {
+        if (!err) $("#error-Responsibilities[{{count}}]").hide();
+        else      $("#error-Responsibilities[{{count}}]").show().html(err[0].message);
+    },"Academic Outreach Activities[{{count}}]": (err) => {
+        if (!err) $("#error-Academic Outreach Activities[{{count}}]").hide();
+        else      $("#error-Academic Outreach Activities[{{count}}]").show().html(err[0].message);
+    },"percentage[{{count}}]": (err) => {
+        if (!err) $("#error-percentage[{{count}}]").hide();
+        else      $("#error-percentage[{{count}}]").show().html(err[0].message);
+    },"Position of responsibilities": (err) => {
+        if (!err) $("#error-Position of responsibilities").hide();
+        else      $("#error-Position of responsibilities").show().html(err[0].message);
+    },"Games and Sports": (err) => {
+        if (!err) $("#error-Games and Sports").hide();
+        else      $("#error-Games and Sports").show().html(err[0].message);
+    },"aoi1": (err) => {
+        if (!err) $("#error-aoi1").hide();
+        else      $("#error-aoi1").show().html(err[0].message);
+    },"aoi2": (err) => {
+        if (!err) $("#error-aoi2").hide();
+        else      $("#error-aoi2").show().html(err[0].message);
+    },"Why NITT": (err) => {
+        if (!err) $("#error-Why NITT").hide();
+        else      $("#error-Why NITT").show().html(err[0].message);
+    },"Awards/HonorsDistinction": (err) => {
+        if (!err) $("#error-Awards/HonorsDistinction").hide();
+        else      $("#error-Awards/HonorsDistinction").show().html(err[0].message);
+    },"Teaching and Research Plan for Next Five Years": (err) => {
+        if (!err) $("#error-Teaching and Research Plan for Next Five Years").hide();
+        else      $("#error-Teaching and Research Plan for Next Five Years").show().html(err[0].message);
+    },"Any Other Relevant Info": (err) => {
+        if (!err) $("#error-Any Other Relevant Info").hide();
+        else      $("#error-Any Other Relevant Info").show().html(err[0].message);
+    },"Name": (err) => {
+        if (!err) $("#error-Name").hide();
+        else      $("#error-Name").show().html(err[0].message);
+    },"Position": (err) => {
+        if (!err) $("#error-Position").hide();
+        else      $("#error-Position").show().html(err[0].message);
+    },"Phone Number:": (err) => {
+        if (!err) $("#error-Phone Number:").hide();
+        else      $("#error-Phone Number:").show().html(err[0].message);
+    },"Mobile": (err) => {
+        if (!err) $("#error-Mobile").hide();
+        else      $("#error-Mobile").show().html(err[0].message);
+    },"Did you previously apply for any post in this institute ? If yes, give particulars": (err) => {
+        if (!err) $("#error-Did you previously apply for any post in this institute ? If yes, give particulars").hide();
+        else      $("#error-Did you previously apply for any post in this institute ? If yes, give particulars").show().html(err[0].message);
+    },};
+let validate = (name) => {
+  let myData = {};
+  let myRules = {};
+
+  myData[name] = $f[name];
+  myRules[name] = rules[name];
+
+  // same handler will handle both validation success and validation failure
+  indicative.validate(myData, myRules, {
+    "required": "{{field}} is required to complete registeration process",
+  })
+    .then(onValidates[name])
+    .catch(onValidates[name]);
+};
+
+indicative.extend('js', (data, field, message, args) => {
+    let code = args.join(","); // in case there was a ',' in code, and indicative thought it 
+                               // was indicative of separating an argument instead of part
+                               // of js code itself
+    if (eval(code)) {
+        return Promise.resolve('');
+    }
+    return Promise.reject('Invalid data');
+});
+
+indicative.extend('requiredFile', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        return resolve('');
+    });
+});
+
+indicative.extend('fileMimeType', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        for(let i in args) {
+            if(file.name.endsWith("." + args[i]))
+                return resolve("");
+        }
+        return reject('Not a valid file. Please upload files of type ' + args);
+    });
+});
+
+indicative.extend('fileSize', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        if(file.size/1024 > args[0])
+            return reject('File size limit exceeded. Upload a file lesser than ' + args[0] + 'KB');
+        return resolve("");
+    });
+});
+
+indicative.extend('imageMaxHeight', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.height > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with height lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.width > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with width lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+
+            function toggleRemoveButtonAndPreview_Photo(event) {
+              // Display the preview and remove button if a file has been selected
+              // Else hide them
+              let files = $("#Photo")[0].files;
+              if( files === undefined || !files.length) {
+                  $("#removeUploadButton_Photo").hide();
+                  $("#filePreview_Photo").hide();
+              } else {
+                  
+                let file = files[0];
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#filePreview_Photo").html($('<img>', {
+                        src: e.target.result,
+                        style: "width:100%;"
+                    }));
+                };
+                reader.readAsDataURL(file);
+            
+                  $("#removeUploadButton_Photo").show();
+                  $("#filePreview_Photo").show();
+              }
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            function removeUpload_Photo(event) {
+              // Reset the file input's value and call the toggleRemoveButtonAndPreview
+              // to remove the preview and remove button
+              $("#Photo")[0].value = "";
+              toggleRemoveButtonAndPreview_Photo();
+              $f["Photo"] = null;
+
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            // Call the function to hide both the remove button and preview
+            // initially. Will be helpful to automatically display them when
+            // we get the uploaded values from server also.
+            toggleRemoveButtonAndPreview_Photo();
+        
+
+
+        let nRows_matriculationDetails = 0;
+        let nRows_matriculationDetails_real = 0;
+        function delRow_matriculationDetails(event, rowNumber) {
+            let rowId = "matriculationDetails-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_matriculationDetails_real--;
+            if (nRows_matriculationDetails_real < 100) {
+                $("#rowAdder_matriculationDetails").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_matriculationDetails(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_matriculationDetails;
+            let rowId = "matriculationDetails-" + nRows;
+            let elements = [{"name":"Examinationcount","validationrule":"required","html":"<select name=\"Examination[{{count}}]\" placeholder=\"Examination\" onblur=\"validate(&quot;Examination[{{count}}]&quot;)\" id=\"Examination[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Examination</option>\n                    <option>Exam1</option>\n                    <option>Exam2</option>\n                </select><span class=\"error\" id=\"error-Examination[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Specializationcount","validationrule":"required","html":"<input name=\"Specialization[{{count}}]\" placeholder=\"Examination Passed\" onblur=\"validate(&apos;Specializationcount&apos;)\" onchange=\"$f[&quot;Specializationcount&quot;] = this.value\" id=\"Specializationcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Specialization[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"CollegeInstitutecount","validationrule":"required","html":"<input name=\"College/Institute[{{count}}]\" placeholder=\"College/Institute\" onblur=\"validate(&apos;CollegeInstitutecount&apos;)\" onchange=\"$f[&quot;CollegeInstitutecount&quot;] = this.value\" id=\"CollegeInstitutecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-College/Institute[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"BoardUniversitycount","validationrule":"required","html":"<input name=\"Board/University[{{count}}]\" placeholder=\"College/Institute\" onblur=\"validate(&apos;BoardUniversitycount&apos;)\" onchange=\"$f[&quot;BoardUniversitycount&quot;] = this.value\" id=\"BoardUniversitycount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Board/University[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Yearofpassingcount","validationrule":"required","html":"<input name=\"Year of passing[{{count}}]\" placeholder=\"Year of passing\" onblur=\"validate(&apos;Yearofpassingcount&apos;)\" onchange=\"$f[&quot;Yearofpassingcount&quot;] = this.value\" id=\"Yearofpassingcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Year of passing[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"ofmarksCGPAcount","validationrule":"required","html":"<input name=\"% of marks/CGPA[{{count}}]\" placeholder=\"% of marks/CGPA\" onblur=\"validate(&apos;ofmarksCGPAcount&apos;)\" onchange=\"$f[&quot;ofmarksCGPAcount&quot;] = this.value\" id=\"ofmarksCGPAcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-% of marks/CGPA[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"MaxmarksCGPAcount","validationrule":"required","html":"<input name=\"Max marks/CGPA[{{count}}]\" placeholder=\"Max marks/CGPA\" onblur=\"validate(&apos;MaxmarksCGPAcount&apos;)\" onchange=\"$f[&quot;MaxmarksCGPAcount&quot;] = this.value\" id=\"MaxmarksCGPAcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Max marks/CGPA[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"DivisionClasscount","validationrule":"required","html":"<input name=\"Division/Class[{{count}}]\" placeholder=\"Division/Class\" onblur=\"validate(&apos;DivisionClasscount&apos;)\" onchange=\"$f[&quot;DivisionClasscount&quot;] = this.value\" id=\"DivisionClasscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Division/Class[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_matriculationDetails(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_matriculationDetails_real + 1 >= 100) {
+                $("#rowAdder_matriculationDetails").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_matriculationDetails);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_matriculationDetails);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#matriculationDetails").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_matriculationDetails();
+        
+
+
+        let nRows_ugDetails = 0;
+        let nRows_ugDetails_real = 0;
+        function delRow_ugDetails(event, rowNumber) {
+            let rowId = "ugDetails-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_ugDetails_real--;
+            if (nRows_ugDetails_real < 100) {
+                $("#rowAdder_ugDetails").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_ugDetails(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_ugDetails;
+            let rowId = "ugDetails-" + nRows;
+            let elements = [{"name":"SemesterNocount","validationrule":"required","html":"<select name=\"Semester No.[{{count}}]\" placeholder=\"Semester No.\" onblur=\"validate(&quot;Semester No.[{{count}}]&quot;)\" id=\"Semester No.[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Semester No.</option>\n                    <option>I</option>\n                    <option>II</option>\n                    <option>III</option>\n                    <option>IV</option>\n                    <option>V</option>\n                    <option>VI</option>\n                    <option>VII</option>\n                    <option>VIII</option>\n                    <option>IX</option>\n                    <option>X</option>\n                </select><span class=\"error\" id=\"error-Semester No.[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"CodeNameofsubjectcount","validationrule":"required","html":"<input name=\"Code &amp; Name of subject[{{count}}]\" placeholder=\"Code and Name of subject\" onblur=\"validate(&apos;CodeNameofsubjectcount&apos;)\" onchange=\"$f[&quot;CodeNameofsubjectcount&quot;] = this.value\" id=\"CodeNameofsubjectcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Code & Name of subject[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Numberofattemptscount","validationrule":"required","html":"<input name=\"Number of attempts[{{count}}]\" placeholder=\"Number of attempts\" onblur=\"validate(&apos;Numberofattemptscount&apos;)\" onchange=\"$f[&quot;Numberofattemptscount&quot;] = this.value\" id=\"Numberofattemptscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Number of attempts[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"MonthYearofPassingcount","validationrule":"required","html":"<input name=\"Month &amp; Year of Passing[{{count}}]\" placeholder=\"Month &amp; Year of Passing\" onblur=\"validate(&apos;MonthYearofPassingcount&apos;)\" onchange=\"$f[&quot;MonthYearofPassingcount&quot;] = this.value\" id=\"MonthYearofPassingcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Month & Year of Passing[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"ofMarksGradecount","validationrule":"required","html":"<input name=\"% of Marks/Grade[{{count}}]\" placeholder=\"% of Marks/Grade\" onblur=\"validate(&apos;ofMarksGradecount&apos;)\" onchange=\"$f[&quot;ofMarksGradecount&quot;] = this.value\" id=\"ofMarksGradecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-% of Marks/Grade[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 1) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_ugDetails(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_ugDetails_real + 1 >= 100) {
+                $("#rowAdder_ugDetails").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_ugDetails);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_ugDetails);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#ugDetails").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 1; i++)
+            addRow_ugDetails();
+        
+
+
+        let nRows_pgDetails = 0;
+        let nRows_pgDetails_real = 0;
+        function delRow_pgDetails(event, rowNumber) {
+            let rowId = "pgDetails-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_pgDetails_real--;
+            if (nRows_pgDetails_real < 100) {
+                $("#rowAdder_pgDetails").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_pgDetails(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_pgDetails;
+            let rowId = "pgDetails-" + nRows;
+            let elements = [{"name":"SemesterNocount","validationrule":"required","html":"<select name=\"Semester No.[{{count}}]\" placeholder=\"Semester No.\" onblur=\"validate(&quot;Semester No.[{{count}}]&quot;)\" id=\"Semester No.[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Semester No.</option>\n                    <option>I</option>\n                    <option>II</option>\n                    <option>III</option>\n                    <option>IV</option>\n                    <option>V</option>\n                    <option>VI</option>\n                    <option>VII</option>\n                    <option>VIII</option>\n                    <option>IX</option>\n                    <option>X</option>\n                </select><span class=\"error\" id=\"error-Semester No.[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"CodeNameofsubjectcount","validationrule":"required","html":"<input name=\"Code &amp; Name of subject[{{count}}]\" placeholder=\"Code and Name of subject\" onblur=\"validate(&apos;CodeNameofsubjectcount&apos;)\" onchange=\"$f[&quot;CodeNameofsubjectcount&quot;] = this.value\" id=\"CodeNameofsubjectcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Code & Name of subject[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Numberofattemptscount","validationrule":"required","html":"<input name=\"Number of attempts[{{count}}]\" placeholder=\"Number of attempts\" onblur=\"validate(&apos;Numberofattemptscount&apos;)\" onchange=\"$f[&quot;Numberofattemptscount&quot;] = this.value\" id=\"Numberofattemptscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Number of attempts[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"MonthYearofPassingcount","validationrule":"required","html":"<input name=\"Month &amp; Year of Passing[{{count}}]\" placeholder=\"Month &amp; Year of Passing\" onblur=\"validate(&apos;MonthYearofPassingcount&apos;)\" onchange=\"$f[&quot;MonthYearofPassingcount&quot;] = this.value\" id=\"MonthYearofPassingcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Month & Year of Passing[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"ofMarksGradecount","validationrule":"required","html":"<input name=\"% of Marks/Grade[{{count}}]\" placeholder=\"% of Marks/Grade\" onblur=\"validate(&apos;ofMarksGradecount&apos;)\" onchange=\"$f[&quot;ofMarksGradecount&quot;] = this.value\" id=\"ofMarksGradecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-% of Marks/Grade[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 1) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_pgDetails(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_pgDetails_real + 1 >= 100) {
+                $("#rowAdder_pgDetails").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_pgDetails);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_pgDetails);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#pgDetails").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 1; i++)
+            addRow_pgDetails();
+        
+
+
+        let nRows_teachingExperience = 0;
+        let nRows_teachingExperience_real = 0;
+        function delRow_teachingExperience(event, rowNumber) {
+            let rowId = "teachingExperience-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_teachingExperience_real--;
+            if (nRows_teachingExperience_real < 100) {
+                $("#rowAdder_teachingExperience").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_teachingExperience(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_teachingExperience;
+            let rowId = "teachingExperience-" + nRows;
+            let elements = [{"name":"NameOfOrganizationcount","validationrule":"required","html":"<input name=\"Name Of Organization[{{count}}]\" placeholder=\"Name Of Organization\" onblur=\"validate(&apos;NameOfOrganizationcount&apos;)\" onchange=\"$f[&quot;NameOfOrganizationcount&quot;] = this.value\" id=\"NameOfOrganizationcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Name Of Organization[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"AddressOfOrganizationcount","validationrule":"required","html":"<input name=\"Address Of Organization[{{count}}]\" placeholder=\"Address Of Organization\" onblur=\"validate(&apos;AddressOfOrganizationcount&apos;)\" onchange=\"$f[&quot;AddressOfOrganizationcount&quot;] = this.value\" id=\"AddressOfOrganizationcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Address Of Organization[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Desigationcount","validationrule":"required","html":"<select name=\"Desigation[{{count}}]\" placeholder=\"Designation\" onblur=\"validate(&quot;Desigation[{{count}}]&quot;)\" id=\"Desigation[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Designation</option>\n            <option>Lecturer</option>\n            <option>Lecturer Sr. scale</option>\n            <option>Assistant Professor</option>\n            <option>Associate Professor</option>\n            <option>Professor</option>\n            <option>Other</option>\n          </select><span class=\"error\" id=\"error-Desigation[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"payscalecount","validationrule":"required","html":"<input name=\"payscale[{{count}}]\" placeholder=\"payscale\" onblur=\"validate(&apos;payscalecount&apos;)\" onchange=\"$f[&quot;payscalecount&quot;] = this.value\" id=\"payscalecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-payscale[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Fromcount","validationrule":"required","html":"<input name=\"From[{{count}}]\" placeholder=\"From\" onblur=\"validate(&apos;Fromcount&apos;)\" onchange=\"$f[&quot;Fromcount&quot;] = this.value\" id=\"Fromcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-From[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Tocount","validationrule":"required","html":"<input name=\"To[{{count}}]\" placeholder=\"To\" onblur=\"validate(&apos;Tocount&apos;)\" onchange=\"$f[&quot;Tocount&quot;] = this.value\" id=\"Tocount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-To[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"TypeofOrganizationcount","validationrule":"required","html":"<input name=\"Type of Organization[{{count}}]\" placeholder=\"Type of Organization\" onblur=\"validate(&apos;TypeofOrganizationcount&apos;)\" onchange=\"$f[&quot;TypeofOrganizationcount&quot;] = this.value\" id=\"TypeofOrganizationcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Type of Organization[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Reasonsforleavingcount","validationrule":"required","html":"<input name=\"Reasons for leaving[{{count}}]\" placeholder=\"Reasons for leaving\" onblur=\"validate(&apos;Reasonsforleavingcount&apos;)\" onchange=\"$f[&quot;Reasonsforleavingcount&quot;] = this.value\" id=\"Reasonsforleavingcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Reasons for leaving[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_teachingExperience(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_teachingExperience_real + 1 >= 100) {
+                $("#rowAdder_teachingExperience").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_teachingExperience);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_teachingExperience);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#teachingExperience").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_teachingExperience();
+        
+
+
+        let nRows_Papers = 0;
+        let nRows_Papers_real = 0;
+        function delRow_Papers(event, rowNumber) {
+            let rowId = "Papers-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_Papers_real--;
+            if (nRows_Papers_real < 100) {
+                $("#rowAdder_Papers").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_Papers(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_Papers;
+            let rowId = "Papers-" + nRows;
+            let elements = [{"name":"NameoftheJournalcount","validationrule":"required","html":"<input name=\"Name of the Journal[{{count}}]\" placeholder=\"Name of the journal\" onblur=\"validate(&apos;NameoftheJournalcount&apos;)\" onchange=\"$f[&quot;NameoftheJournalcount&quot;] = this.value\" id=\"NameoftheJournalcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Name of the Journal[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"VolumeNocount","validationrule":"required","html":"<input name=\"Volume No.[{{count}}]\" placeholder=\"Volume No.\" onblur=\"validate(&apos;VolumeNocount&apos;)\" onchange=\"$f[&quot;VolumeNocount&quot;] = this.value\" id=\"VolumeNocount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Volume No.[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"monthcount","validationrule":"required","html":"<select name=\"month[{{count}}]\" placeholder=\"month\" onblur=\"validate(&quot;month[{{count}}]&quot;)\" id=\"month[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>month</option>\n\n          </select><span class=\"error\" id=\"error-month[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Yearcount","validationrule":"required","html":"<select name=\"Year[{{count}}]\" placeholder=\"Year\" onblur=\"validate(&quot;Year[{{count}}]&quot;)\" id=\"Year[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Year</option>\n            <option value=\"2013\">2013</option>\n            <option value=\"2012\">2012</option>\n            <option value=\"2011\">2011</option>\n            <option value=\"2010\">2010</option>\n            <option value=\"2009\">2009</option>\n            <option value=\"2008\">2008</option>\n            <option value=\"2007\">2007</option>\n            <option value=\"2006\">2006</option>\n            <option value=\"2005\">2005</option>\n            <option value=\"2004\">2004</option>\n            <option value=\"2003\">2003</option>\n            <option value=\"2002\">2002</option>\n            <option value=\"2001\">2001</option>\n            <option value=\"2000\">2000</option>\n            <option value=\"1999\">1999</option>\n            <option value=\"1998\">1998</option>\n            <option value=\"1997\">1997</option>\n            <option value=\"1996\">1996</option>\n            <option value=\"1995\">1995</option>\n            <option value=\"1994\">1994</option>\n            <option value=\"1993\">1993</option>\n            <option value=\"1992\">1992</option>\n            <option value=\"1991\">1991</option>\n            <option value=\"1990\">1990</option>\n            <option value=\"1989\">1989</option>\n            <option value=\"1988\">1988</option>\n            <option value=\"1987\">1987</option>\n            <option value=\"1986\">1986</option>\n            <option value=\"1985\">1985</option>\n            <option value=\"1984\">1984</option>\n            <option value=\"1983\">1983</option>\n            <option value=\"1982\">1982</option>\n            <option value=\"1981\">1981</option>\n            <option value=\"1980\">1980</option>\n            <option value=\"1979\">1979</option>\n            <option value=\"1978\">1978</option>\n            <option value=\"1977\">1977</option>\n            <option value=\"1976\">1976</option>\n            <option value=\"1975\">1975</option>\n            <option value=\"1974\">1974</option>\n            <option value=\"1973\">1973</option>\n          </select><span class=\"error\" id=\"error-Year[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Authorscount","validationrule":"required","html":"<input name=\"Authors[{{count}}]\" placeholder=\"Authors\" onblur=\"validate(&apos;Authorscount&apos;)\" onchange=\"$f[&quot;Authorscount&quot;] = this.value\" id=\"Authorscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Authors[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Titleofthepapercount","validationrule":"required","html":"<input name=\"Title of the paper[{{count}}]\" placeholder=\"Title of the paper\" onblur=\"validate(&apos;Titleofthepapercount&apos;)\" onchange=\"$f[&quot;Titleofthepapercount&quot;] = this.value\" id=\"Titleofthepapercount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Title of the paper[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Impactfactorcount","validationrule":"required","html":"<input name=\"Impact factor[{{count}}]\" placeholder=\"Impact factor\" onblur=\"validate(&apos;Impactfactorcount&apos;)\" onchange=\"$f[&quot;Impactfactorcount&quot;] = this.value\" id=\"Impactfactorcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Impact factor[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_Papers(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_Papers_real + 1 >= 100) {
+                $("#rowAdder_Papers").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_Papers);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_Papers);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#Papers").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_Papers();
+        
+
+
+        let nRows_otherPapers = 0;
+        let nRows_otherPapers_real = 0;
+        function delRow_otherPapers(event, rowNumber) {
+            let rowId = "otherPapers-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_otherPapers_real--;
+            if (nRows_otherPapers_real < 100) {
+                $("#rowAdder_otherPapers").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_otherPapers(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_otherPapers;
+            let rowId = "otherPapers-" + nRows;
+            let elements = [{"name":"Nameofconferencewithvenuecount","validationrule":"required","html":"<input name=\"Name of conference with venue[{{count}}]\" placeholder=\"Name of conference with venue\" onblur=\"validate(&apos;Nameofconferencewithvenuecount&apos;)\" onchange=\"$f[&quot;Nameofconferencewithvenuecount&quot;] = this.value\" id=\"Nameofconferencewithvenuecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Name of conference with venue[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Authorscount","validationrule":"required","html":"<input name=\"Authors[{{count}}]\" placeholder=\"Authors\" onblur=\"validate(&apos;Authorscount&apos;)\" onchange=\"$f[&quot;Authorscount&quot;] = this.value\" id=\"Authorscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Authors[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Titleofthepapercount","validationrule":"required","html":"<input name=\"Title of the paper[{{count}}]\" placeholder=\"Title of the paper\" onblur=\"validate(&apos;Titleofthepapercount&apos;)\" onchange=\"$f[&quot;Titleofthepapercount&quot;] = this.value\" id=\"Titleofthepapercount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Title of the paper[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Impactfactorcount","validationrule":"required","html":"<input name=\"Impact factor[{{count}}]\" placeholder=\"Impact factor\" onblur=\"validate(&apos;Impactfactorcount&apos;)\" onchange=\"$f[&quot;Impactfactorcount&quot;] = this.value\" id=\"Impactfactorcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Impact factor[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_otherPapers(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_otherPapers_real + 1 >= 100) {
+                $("#rowAdder_otherPapers").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_otherPapers);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_otherPapers);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#otherPapers").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_otherPapers();
+        
+
+
+        let nRows_conferenceSymposium = 0;
+        let nRows_conferenceSymposium_real = 0;
+        function delRow_conferenceSymposium(event, rowNumber) {
+            let rowId = "conferenceSymposium-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_conferenceSymposium_real--;
+            if (nRows_conferenceSymposium_real < 100) {
+                $("#rowAdder_conferenceSymposium").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_conferenceSymposium(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_conferenceSymposium;
+            let rowId = "conferenceSymposium-" + nRows;
+            let elements = [{"name":"NameoftheConnferencecount","validationrule":"required","html":"<input name=\"Name of the Connference[{{count}}]\" placeholder=\"Name of the Connference\" onblur=\"validate(&apos;NameoftheConnferencecount&apos;)\" onchange=\"$f[&quot;NameoftheConnferencecount&quot;] = this.value\" id=\"NameoftheConnferencecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Name of the Connference[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Yearcount","validationrule":"required","html":"<select name=\"Year[{{count}}]\" placeholder=\"Year\" onblur=\"validate(&quot;Year[{{count}}]&quot;)\" id=\"Year[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Year</option>\n            <option value=\"2013\">2013</option>\n            <option value=\"2012\">2012</option>\n            <option value=\"2011\">2011</option>\n            <option value=\"2010\">2010</option>\n            <option value=\"2009\">2009</option>\n            <option value=\"2008\">2008</option>\n            <option value=\"2007\">2007</option>\n            <option value=\"2006\">2006</option>\n            <option value=\"2005\">2005</option>\n            <option value=\"2004\">2004</option>\n            <option value=\"2003\">2003</option>\n            <option value=\"2002\">2002</option>\n            <option value=\"2001\">2001</option>\n            <option value=\"2000\">2000</option>\n            <option value=\"1999\">1999</option>\n            <option value=\"1998\">1998</option>\n            <option value=\"1997\">1997</option>\n            <option value=\"1996\">1996</option>\n            <option value=\"1995\">1995</option>\n            <option value=\"1994\">1994</option>\n            <option value=\"1993\">1993</option>\n            <option value=\"1992\">1992</option>\n            <option value=\"1991\">1991</option>\n            <option value=\"1990\">1990</option>\n            <option value=\"1989\">1989</option>\n            <option value=\"1988\">1988</option>\n            <option value=\"1987\">1987</option>\n            <option value=\"1986\">1986</option>\n            <option value=\"1985\">1985</option>\n            <option value=\"1984\">1984</option>\n            <option value=\"1983\">1983</option>\n            <option value=\"1982\">1982</option>\n            <option value=\"1981\">1981</option>\n            <option value=\"1980\">1980</option>\n            <option value=\"1979\">1979</option>\n            <option value=\"1978\">1978</option>\n            <option value=\"1977\">1977</option>\n            <option value=\"1976\">1976</option>\n            <option value=\"1975\">1975</option>\n            <option value=\"1974\">1974</option>\n            <option value=\"1973\">1973</option>\n          </select><span class=\"error\" id=\"error-Year[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"VolumeNocount","validationrule":"required","html":"<input name=\"Volume No.[{{count}}]\" placeholder=\"Volume No.\" onblur=\"validate(&apos;VolumeNocount&apos;)\" onchange=\"$f[&quot;VolumeNocount&quot;] = this.value\" id=\"VolumeNocount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Volume No.[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Titleofthepapercount","validationrule":"required","html":"<input name=\"Title of the paper[{{count}}]\" placeholder=\"Title of the paper\" onblur=\"validate(&apos;Titleofthepapercount&apos;)\" onchange=\"$f[&quot;Titleofthepapercount&quot;] = this.value\" id=\"Titleofthepapercount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Title of the paper[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_conferenceSymposium(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_conferenceSymposium_real + 1 >= 100) {
+                $("#rowAdder_conferenceSymposium").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_conferenceSymposium);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_conferenceSymposium);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#conferenceSymposium").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_conferenceSymposium();
+        
+
+
+        let nRows_workshops = 0;
+        let nRows_workshops_real = 0;
+        function delRow_workshops(event, rowNumber) {
+            let rowId = "workshops-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_workshops_real--;
+            if (nRows_workshops_real < 100) {
+                $("#rowAdder_workshops").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_workshops(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_workshops;
+            let rowId = "workshops-" + nRows;
+            let elements = [{"name":"TitleoftheWorkshoporganizedcount","validationrule":"required","html":"<input name=\"Title of the Workshop organized[{{count}}]\" placeholder=\"Title of the workshop organized\" onblur=\"validate(&apos;TitleoftheWorkshoporganizedcount&apos;)\" onchange=\"$f[&quot;TitleoftheWorkshoporganizedcount&quot;] = this.value\" id=\"TitleoftheWorkshoporganizedcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Title of the Workshop organized[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Yearcount","validationrule":"required","html":"<select name=\"Year[{{count}}]\" placeholder=\"Year\" onblur=\"validate(&quot;Year[{{count}}]&quot;)\" id=\"Year[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Year</option>\n            <option value=\"2013\">2013</option>\n            <option value=\"2012\">2012</option>\n            <option value=\"2011\">2011</option>\n            <option value=\"2010\">2010</option>\n            <option value=\"2009\">2009</option>\n            <option value=\"2008\">2008</option>\n            <option value=\"2007\">2007</option>\n            <option value=\"2006\">2006</option>\n            <option value=\"2005\">2005</option>\n            <option value=\"2004\">2004</option>\n            <option value=\"2003\">2003</option>\n            <option value=\"2002\">2002</option>\n            <option value=\"2001\">2001</option>\n            <option value=\"2000\">2000</option>\n            <option value=\"1999\">1999</option>\n            <option value=\"1998\">1998</option>\n            <option value=\"1997\">1997</option>\n            <option value=\"1996\">1996</option>\n            <option value=\"1995\">1995</option>\n            <option value=\"1994\">1994</option>\n            <option value=\"1993\">1993</option>\n            <option value=\"1992\">1992</option>\n            <option value=\"1991\">1991</option>\n            <option value=\"1990\">1990</option>\n            <option value=\"1989\">1989</option>\n            <option value=\"1988\">1988</option>\n            <option value=\"1987\">1987</option>\n            <option value=\"1986\">1986</option>\n            <option value=\"1985\">1985</option>\n            <option value=\"1984\">1984</option>\n            <option value=\"1983\">1983</option>\n            <option value=\"1982\">1982</option>\n            <option value=\"1981\">1981</option>\n            <option value=\"1980\">1980</option>\n            <option value=\"1979\">1979</option>\n            <option value=\"1978\">1978</option>\n            <option value=\"1977\">1977</option>\n            <option value=\"1976\">1976</option>\n            <option value=\"1975\">1975</option>\n            <option value=\"1974\">1974</option>\n            <option value=\"1973\">1973</option>\n          </select><span class=\"error\" id=\"error-Year[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"venuecount","validationrule":"required","html":"<input name=\"venue[{{count}}]\" placeholder=\"venue\" onblur=\"validate(&apos;venuecount&apos;)\" onchange=\"$f[&quot;venuecount&quot;] = this.value\" id=\"venuecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-venue[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"SponsoringAuthoritycount","validationrule":"required","html":"<input name=\"Sponsoring Authority[{{count}}]\" placeholder=\"Sponsoring Authority\" onblur=\"validate(&apos;SponsoringAuthoritycount&apos;)\" onchange=\"$f[&quot;SponsoringAuthoritycount&quot;] = this.value\" id=\"SponsoringAuthoritycount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Sponsoring Authority[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_workshops(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_workshops_real + 1 >= 100) {
+                $("#rowAdder_workshops").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_workshops);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_workshops);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#workshops").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_workshops();
+        
+
+
+        let nRows_Thesis = 0;
+        let nRows_Thesis_real = 0;
+        function delRow_Thesis(event, rowNumber) {
+            let rowId = "Thesis-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_Thesis_real--;
+            if (nRows_Thesis_real < 100) {
+                $("#rowAdder_Thesis").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_Thesis(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_Thesis;
+            let rowId = "Thesis-" + nRows;
+            let elements = [{"name":"TitleoftheThesisSupervisedcount","validationrule":"required","html":"<input name=\"Title of the Thesis Supervised[{{count}}]\" placeholder=\"Title of the Thesis Supervised\" onblur=\"validate(&apos;TitleoftheThesisSupervisedcount&apos;)\" onchange=\"$f[&quot;TitleoftheThesisSupervisedcount&quot;] = this.value\" id=\"TitleoftheThesisSupervisedcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Title of the Thesis Supervised[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Completedyearcount","validationrule":"required","html":"<input name=\"Completed(year)[{{count}}]\" placeholder=\"Completed(year)\" onblur=\"validate(&apos;Completedyearcount&apos;)\" onchange=\"$f[&quot;Completedyearcount&quot;] = this.value\" id=\"Completedyearcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Completed(year)[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"InprogressWithstatuscount","validationrule":"required","html":"<input name=\"In progress(With status)[{{count}}]\" placeholder=\"In progress(With status)\" onblur=\"validate(&apos;InprogressWithstatuscount&apos;)\" onchange=\"$f[&quot;InprogressWithstatuscount&quot;] = this.value\" id=\"InprogressWithstatuscount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-In progress(With status)[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"PrincipalorCoSupervisorcount","validationrule":"required","html":"<input name=\"Principal or Co-Supervisor[{{count}}]\" placeholder=\"Principal or Co-Supervisor\" onblur=\"validate(&apos;PrincipalorCoSupervisorcount&apos;)\" onchange=\"$f[&quot;PrincipalorCoSupervisorcount&quot;] = this.value\" id=\"PrincipalorCoSupervisorcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Principal or Co-Supervisor[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_Thesis(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_Thesis_real + 1 >= 100) {
+                $("#rowAdder_Thesis").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_Thesis);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_Thesis);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#Thesis").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_Thesis();
+        
+
+
+        let nRows_adminSupport = 0;
+        let nRows_adminSupport_real = 0;
+        function delRow_adminSupport(event, rowNumber) {
+            let rowId = "adminSupport-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_adminSupport_real--;
+            if (nRows_adminSupport_real < 100) {
+                $("#rowAdder_adminSupport").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_adminSupport(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_adminSupport;
+            let rowId = "adminSupport-" + nRows;
+            let elements = [{"name":"SectionOfficeInstitutelevelcommitteecount","validationrule":"required","html":"<input name=\"Section/Office/Institute level committee[{{count}}]\" placeholder=\"Section/Office/Institute level committee\" onblur=\"validate(&apos;SectionOfficeInstitutelevelcommitteecount&apos;)\" onchange=\"$f[&quot;SectionOfficeInstitutelevelcommitteecount&quot;] = this.value\" id=\"SectionOfficeInstitutelevelcommitteecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Section/Office/Institute level committee[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Fromcount","validationrule":"required","html":"<input name=\"From[{{count}}]\" placeholder=\"From\" onblur=\"validate(&apos;Fromcount&apos;)\" onchange=\"$f[&quot;Fromcount&quot;] = this.value\" id=\"Fromcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-From[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Tocount","validationrule":"required","html":"<input name=\"To[{{count}}]\" placeholder=\"To\" onblur=\"validate(&apos;Tocount&apos;)\" onchange=\"$f[&quot;Tocount&quot;] = this.value\" id=\"Tocount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-To[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"PositionHeldcount","validationrule":"required","html":"<input name=\"Position Held[{{count}}]\" placeholder=\"Position Held\" onblur=\"validate(&apos;PositionHeldcount&apos;)\" onchange=\"$f[&quot;PositionHeldcount&quot;] = this.value\" id=\"PositionHeldcount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Position Held[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"ResponsibilityTypecount","validationrule":"required","html":"<select name=\"Responsibility Type[{{count}}]\" placeholder=\"Responsibility Type\" onblur=\"validate(&quot;Responsibility Type[{{count}}]&quot;)\" id=\"Responsibility Type[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Responsibility Type</option>\n            <option value=\"Dean\">Dean</option>\n            <option value=\"HOD\">HOD</option>\n            <option value=\"ChiefWarden\">ChiefWarden</option>\n          </select><span class=\"error\" id=\"error-Responsibility Type[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Responsibilitiescount","validationrule":"required","html":"<input name=\"Responsibilities[{{count}}]\" placeholder=\"Responsibilities\" onblur=\"validate(&apos;Responsibilitiescount&apos;)\" onchange=\"$f[&quot;Responsibilitiescount&quot;] = this.value\" id=\"Responsibilitiescount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Responsibilities[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 3) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_adminSupport(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_adminSupport_real + 1 >= 100) {
+                $("#rowAdder_adminSupport").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_adminSupport);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_adminSupport);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#adminSupport").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 3; i++)
+            addRow_adminSupport();
+        
+
+
+        let nRows_outreach = 0;
+        let nRows_outreach_real = 0;
+        function delRow_outreach(event, rowNumber) {
+            let rowId = "outreach-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_outreach_real--;
+            if (nRows_outreach_real < 100) {
+                $("#rowAdder_outreach").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_outreach(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_outreach;
+            let rowId = "outreach-" + nRows;
+            let elements = [{"name":"AcademicOutreachActivitiescount","validationrule":"required","html":"<input name=\"Academic Outreach Activities[{{count}}]\" placeholder=\"Academic Outreach Activities\" onblur=\"validate(&apos;AcademicOutreachActivitiescount&apos;)\" onchange=\"$f[&quot;AcademicOutreachActivitiescount&quot;] = this.value\" id=\"AcademicOutreachActivitiescount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-Academic Outreach Activities[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"Yearcount","validationrule":"required","html":"<select name=\"Year[{{count}}]\" placeholder=\"Year\" onblur=\"validate(&quot;Year[{{count}}]&quot;)\" id=\"Year[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Year</option>\n            <option value=\"2013\">2013</option>\n            <option value=\"2012\">2012</option>\n            <option value=\"2011\">2011</option>\n            <option value=\"2010\">2010</option>\n            <option value=\"2009\">2009</option>\n            <option value=\"2008\">2008</option>\n            <option value=\"2007\">2007</option>\n            <option value=\"2006\">2006</option>\n            <option value=\"2005\">2005</option>\n            <option value=\"2004\">2004</option>\n            <option value=\"2003\">2003</option>\n            <option value=\"2002\">2002</option>\n            <option value=\"2001\">2001</option>\n            <option value=\"2000\">2000</option>\n            <option value=\"1999\">1999</option>\n            <option value=\"1998\">1998</option>\n            <option value=\"1997\">1997</option>\n            <option value=\"1996\">1996</option>\n            <option value=\"1995\">1995</option>\n            <option value=\"1994\">1994</option>\n            <option value=\"1993\">1993</option>\n            <option value=\"1992\">1992</option>\n            <option value=\"1991\">1991</option>\n            <option value=\"1990\">1990</option>\n            <option value=\"1989\">1989</option>\n            <option value=\"1988\">1988</option>\n            <option value=\"1987\">1987</option>\n            <option value=\"1986\">1986</option>\n            <option value=\"1985\">1985</option>\n            <option value=\"1984\">1984</option>\n            <option value=\"1983\">1983</option>\n            <option value=\"1982\">1982</option>\n            <option value=\"1981\">1981</option>\n            <option value=\"1980\">1980</option>\n            <option value=\"1979\">1979</option>\n            <option value=\"1978\">1978</option>\n            <option value=\"1977\">1977</option>\n            <option value=\"1976\">1976</option>\n            <option value=\"1975\">1975</option>\n            <option value=\"1974\">1974</option>\n            <option value=\"1973\">1973</option>\n          </select><span class=\"error\" id=\"error-Year[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 2) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_outreach(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_outreach_real + 1 >= 100) {
+                $("#rowAdder_outreach").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_outreach);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_outreach);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#outreach").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 2; i++)
+            addRow_outreach();
+        
+
+
+        let nRows_placementPercentage = 0;
+        let nRows_placementPercentage_real = 0;
+        function delRow_placementPercentage(event, rowNumber) {
+            let rowId = "placementPercentage-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_placementPercentage_real--;
+            if (nRows_placementPercentage_real < 100) {
+                $("#rowAdder_placementPercentage").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_placementPercentage(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_placementPercentage;
+            let rowId = "placementPercentage-" + nRows;
+            let elements = [{"name":"Yearcount","validationrule":"required","html":"<select name=\"Year[{{count}}]\" placeholder=\"Year\" onblur=\"validate(&quot;Year[{{count}}]&quot;)\" id=\"Year[{{count}}]\" class=\"custom-select form-control form-control-sm\"><option>Year</option>\n            <option value=\"2013\">2013</option>\n            <option value=\"2012\">2012</option>\n            <option value=\"2011\">2011</option>\n            <option value=\"2010\">2010</option>\n            <option value=\"2009\">2009</option>\n            <option value=\"2008\">2008</option>\n            <option value=\"2007\">2007</option>\n            <option value=\"2006\">2006</option>\n            <option value=\"2005\">2005</option>\n            <option value=\"2004\">2004</option>\n            <option value=\"2003\">2003</option>\n            <option value=\"2002\">2002</option>\n            <option value=\"2001\">2001</option>\n            <option value=\"2000\">2000</option>\n            <option value=\"1999\">1999</option>\n            <option value=\"1998\">1998</option>\n            <option value=\"1997\">1997</option>\n            <option value=\"1996\">1996</option>\n            <option value=\"1995\">1995</option>\n            <option value=\"1994\">1994</option>\n            <option value=\"1993\">1993</option>\n            <option value=\"1992\">1992</option>\n            <option value=\"1991\">1991</option>\n            <option value=\"1990\">1990</option>\n            <option value=\"1989\">1989</option>\n            <option value=\"1988\">1988</option>\n            <option value=\"1987\">1987</option>\n            <option value=\"1986\">1986</option>\n            <option value=\"1985\">1985</option>\n            <option value=\"1984\">1984</option>\n            <option value=\"1983\">1983</option>\n            <option value=\"1982\">1982</option>\n            <option value=\"1981\">1981</option>\n            <option value=\"1980\">1980</option>\n            <option value=\"1979\">1979</option>\n            <option value=\"1978\">1978</option>\n            <option value=\"1977\">1977</option>\n            <option value=\"1976\">1976</option>\n            <option value=\"1975\">1975</option>\n            <option value=\"1974\">1974</option>\n            <option value=\"1973\">1973</option>\n          </select><span class=\"error\" id=\"error-Year[{{count}}]\" style=\"display:none\">Error</span>"},{"name":"percentagecount","validationrule":"required","html":"<input name=\"percentage[{{count}}]\" placeholder=\"percentage\" onblur=\"validate(&apos;percentagecount&apos;)\" onchange=\"$f[&quot;percentagecount&quot;] = this.value\" id=\"percentagecount\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-percentage[{{count}}]\" style=\"display:none\">Error</span>"}];
+            if (nRows > 3) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_placementPercentage(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_placementPercentage_real + 1 >= 100) {
+                $("#rowAdder_placementPercentage").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/\{\{count\}\}/g, nRows_placementPercentage);
+
+                let elemHtml = elements[i].html.replace(/\{\{count\}\}/g, nRows_placementPercentage);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                    if (!err) $("#error-" + elemName).hide();
+                    else      $("#error-" + elemName).show().html("Error!");
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#placementPercentage").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 3; i++)
+            addRow_placementPercentage();
+        ;
+</script>
+    
+</body>
+</html>

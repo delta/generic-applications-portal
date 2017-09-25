@@ -7,6 +7,8 @@
     border-radius: 20px;
     border:1px solid grey;
     padding:30px;
+    min-height: 100%;
+    margin-bottom: -50px;
 }
 .signup_board{
     margin-left:25%;
@@ -15,7 +17,7 @@
     border: 1px solid grey;
     padding:30px;
 }
-body{
+.login_board {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
