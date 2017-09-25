@@ -50,6 +50,10 @@ let onValidates = {
 // as a script tag.
 let scripts = [];
 
+// This is used to store all the formElements to be stored in the FormElements
+// table on the backend for the given application.
+let formElements = [];
+
 const addTrigger = (el, func, is$f) => {
   triggers[el] = triggers[el] || [];
   if (!is$f) {
@@ -81,14 +85,30 @@ const validate = (name) => {
 class Manager {
   constructor() {
     this.nodeList = {};
+
+    // will be used in registerFormElement to determine current input's section.
+    // easiest, but maybe not the cleanest solution. To be fixed.
+    this.currentSection = "";
   }
-  addValidationRule(ruleName, func) {
-    rules[ruleName] = func;
+  registerFormElement(details) {
+    const elemName = details.name;
+
+    rules[elemName] = details.validationRules;
+    formElements.push({
+      "name": details.name,
+      "originalName": details.originalName,
+      "section": this.currentSection,
+      "validationRules": details.validationRules,
+    });
   }
   registerNode(nodeName, nodeTransformer) {
     this.nodeList[nodeName] = nodeTransformer;
   }
   transformNode(node) {
+    if (node.name === "section") {
+      this.currentSection = node.attribs.name.replace(/[^a-zA-Z0-9_]/g, "");
+    }
+
     let Transformer = this.nodeList[node.name];
 
     if (!Transformer) {
@@ -163,6 +183,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
             
       isFirst = false;
     }
+
     navHtml += "</div>";
     bodyHtml += "</div>";
 
@@ -237,9 +258,19 @@ class InputNodeTransformer extends NodeTransformer {
   constructor(node) {
     super(node);
     $f[this.name] = "";
+    this.validationRules = this.consumeAttr("validationrule");
+  }
+  registerFormElement() {
+    manager.registerFormElement({
+      "name": this.name,
+      "originalName": this.originalName,
+      "validationRules": this.validationRules,
+    });
   }
 
-  processJsValidationRules(validationRules) {
+  processJsValidationRules() {
+    const validationRules = this.validationRules;
+
     if (validationRules && /js:/.test(validationRules)) {
       const splitValidationRules = validationRules.split("|");
 
@@ -302,7 +333,9 @@ class InputNodeTransformer extends NodeTransformer {
     }
     return $.html(this.$node) + this.getErrorElement();
   }
-  createLabelAndInput(isRequired) {
+  createLabelAndInput() {
+    const isRequired = /required/.test(this.validationRules);
+
     return this.createLabelAndRequiredAsterisk(isRequired) + this.createInputElement();
   }
   getErrorElement() {
@@ -329,13 +362,12 @@ class InputNodeTransformer extends NodeTransformer {
 
   transform() {
     const attrs = this.node.attribs;
-    
+    const name = this.name;
+
     if (attrs.type === "file") {
       return (new FileInputNodeTransformer(this.node)).transform();
     }
 
-    const name = this.name;
-    const validationRules = this.consumeAttr("validationrule");
     const showIf = this.consumeAttr("showif");
     const computedValue = this.consumeAttr("computedvalue");
 
@@ -366,8 +398,8 @@ class InputNodeTransformer extends NodeTransformer {
         }`);
     }
 
-    manager.addValidationRule(name, validationRules);
-    this.processJsValidationRules(validationRules);
+    this.registerFormElement();
+    this.processJsValidationRules();
 
     this.addEventHandlersAndId();
     this.$node.addClass("form-control form-control-sm");
@@ -376,15 +408,24 @@ class InputNodeTransformer extends NodeTransformer {
       this.$node.removeClass("form-control");
     }
 
-    return this.createLabelAndInput(/required/.test(validationRules));
+    return this.createLabelAndInput();
   }
 }
 
 class SelectNodeTransformer extends InputNodeTransformer {
+  constructor(node) {
+    super(node);
+    let options = this.$node.children("option");
+
+    // TODO: Check if this comma-replacement works
+    options = options.map((i, el) => $(el).html()).get().map((x) => x.replace(/,/g, "\\,"));
+
+    options = "in:" + options.join(",");
+    this.validationRules += (this.validationRules.length ? "|" : "") + options;
+  }
   transform() {
     const attrs = this.node.attribs;
     const name = attrs.name;
-    const validationRules = this.consumeAttr("validationrule");
     const showIf = this.consumeAttr("showif");
 
     if (showIf) {
@@ -401,15 +442,15 @@ class SelectNodeTransformer extends InputNodeTransformer {
           }}`);
     }
 
-    manager.addValidationRule(name, validationRules);
-    this.processJsValidationRules(validationRules);
+    this.registerFormElement();
+    this.processJsValidationRules();
         
     this.addEventHandlersAndId();
     this.$node.addClass("custom-select form-control form-control-sm");
 
     this.$node.prepend(`<option>${attrs.placeholder}</option>`);
 
-    return this.createLabelAndInput(/required/.test(validationRules));
+    return this.createLabelAndInput();
   }
 }
 
@@ -495,11 +536,8 @@ class FileInputNodeTransformer extends InputNodeTransformer {
   transform() {
     const name = this.node.attribs.name;
 
-    // Add the necessary validation rules
-    const validationRules = this.consumeAttr("validationrule");
-
-    manager.addValidationRule(name, validationRules);
-    this.processJsValidationRules(validationRules);
+    this.registerFormElement();
+    this.processJsValidationRules();
 
     // Define the event listeners for the input element
     // this.$node.attr("onblur", `validate("${name}")`);
@@ -509,7 +547,7 @@ class FileInputNodeTransformer extends InputNodeTransformer {
     this.$node.attr("id", name);
     this.$node.addClass("form-control-file");
 
-    return this.createLabelAndInput(/required/.test(validationRules));
+    return this.createLabelAndInput();
   }
 }
 
@@ -738,6 +776,7 @@ manager.registerNode("tableinput", TableInputNodeTransformer);
 manager.registerNode("box", BoxNodeTransformer);
 manager.registerNode("instructions", InstructionsNodeTransformer);
 
+// TODO: refactor this method
 const stringifyObject = (obj) => {
   if (typeof obj == "function") {
     return String(obj);
@@ -866,4 +905,8 @@ function calcDate(date_old,date_new){
 ${scripts.join("\n\n")};
 </script>`);
 
+// TODO: Write to a file instead of console. Or generate better tooling.
 console.log(layout);
+
+// TODO: Deal with formId for each formElement.
+fs.writeFileSync("formElements.json", JSON.stringify(formElements));
