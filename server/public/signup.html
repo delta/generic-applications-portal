@@ -33,7 +33,8 @@
             <p class="alert alert_password col-4" style="margin-left: 42%;"></p>
         </div>
         <button class="btn submit btn-primary">SIGNUP</button>
-        <br>
+        <br><br>
+        <a href="/signup">Already registered? Login here</a>
     </div>
     <div class="footer bg-dark" style="position: fixed; bottom: 0; left: 0; right: 0px; text-align: center; color: white">
         Copyright 2017 &copy; NIT Trichy
@@ -55,7 +56,7 @@
             if($emailIdValue && $passwordValue){
                 let r = $.ajax({
                     method:'POST',
-                    url:'http://localhost:3000/users/register',
+                    url:'/users/register',
                     data:{
                         emailId:$emailIdValue,
                         password:$passwordValue,
