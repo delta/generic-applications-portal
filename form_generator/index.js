@@ -93,6 +93,10 @@ class Manager {
   registerFormElement(details) {
     const elemName = details.name;
 
+    if (rules[elemName]) {
+      error(`Element with name ${elemName} already defined. Make sure you avoid duplicates.`);
+    }
+
     rules[elemName] = details.validationRules;
     formElements.push({
       "name": details.name,
