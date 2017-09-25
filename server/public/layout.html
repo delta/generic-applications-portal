@@ -14,56 +14,29 @@
             font-size: 14px;
             color: #394263;
         }
-        
+
         .form-group {
             border-bottom: 1px dashed lightblue;
-            padding: 5px 0;
-            margin: 0 2px;
+            padding-bottom: 15px;
         }
         
         .error {
             color: red;
             font-size: 14px;
         }
-
         .nav-link{
-            margin-left: -5px;
-            padding:3px 8px;
-            font-size:15px;
-        }
-
-        .instructions {
-            margin:25px;
-        }
-
-        li{
-            font-size:15px;
-        }
-
-        .box-row {
-            padding: 10px;
-            padding-bottom: -15px;
-        }
-        .box-row:nth-child(odd) {
-            background: lightblue;
-        }
-        .box-row:nth-child(even) {
-            background: rgb(240,240,255);
+            font-size: 0.9rem;
+            padding: 5px 10px;
         }
     </style>
 </head>
 <body>
     
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="row navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="padding: 10px; font-weight:bold">Faculty Recruitment | NIT Trichy</a>
     </nav>
-    
+
     {{body}}
-
-    <div class="footer bg-dark" style="position: fixed; bottom: 0; left: 0; right: 0px; text-align: center; color: white">
-        Copyright 2017 &copy; NIT Trichy
-    </div>
-
     {{script}}
     
 </body>
