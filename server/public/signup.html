@@ -9,7 +9,7 @@
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="row navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark">
         <div>
             <img src="/images/logo.png" style="max-width: 75px">
             <a class="navbar-brand" href="#" style="padding: 10px; font-weight:bold">Faculty Recruitment | NIT Trichy</a>
@@ -63,15 +63,17 @@
                     }
                 }).done((data)=>{
                     if(data.success){
+                        $globalAlert.html(data.message);
+                        $globalAlert.addClass('alert-success');
                         //to a message asking to activate account
-                        location.href = '/users/dashboard';
+                        // location.href = '/users/dashboard';
                     }else{
                         $globalAlert.html(data.message);
                         $globalAlert.toggleClass('alert-danger');
                         setTimeout(()=>{
                             $globalAlert.html('');
                             $globalAlert.toggleClass('alert-danger');
-                        }, 5000)
+                        }, 10000)
                     }
                     document.cookie = '';
                     //r.status
@@ -84,7 +86,7 @@
                 setTimeout(()=>{
                     $alert_email.removeClass('alert-danger');
                     $alert_email.html('');
-                },3000);
+                },10000);
             }
             if(!$passwordValue){
                 $alert_password.addClass('alert-danger');
@@ -92,7 +94,7 @@
                 setTimeout(()=>{
                     $alert_password.removeClass('alert-danger');
                     $alert_password.html('');
-                },3000);
+                },10000);
             }
             if(!$nameValue){
                 $alert_name.addClass('alert-danger');
@@ -100,7 +102,7 @@
                 setTimeout(()=>{
                     $alert_name.removeClass('alert-danger');
                     $alert_name.html('');
-                },3000);
+                },10000);
             }
         })
     })

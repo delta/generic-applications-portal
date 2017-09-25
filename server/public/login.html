@@ -57,15 +57,18 @@
                         password:$passwordValue
                     }
                 }).done((data)=>{
+                    //console.log(data);
                     if(data.success){
-                        location.href = '/users/dashboard';
+                        $globalAlert.html(data.message);
+                        $globalAlert.addClass('alert-success');
+                        //location.href = '/users/dashboard';
                     }else{
                         $globalAlert.html(data.message);
                         $globalAlert.addClass('alert-danger');
                         setTimeout(()=>{
                             $globalAlert.html('');
                             $globalAlert.removeClass('alert-danger');
-                        }, 5000)
+                        }, 10000)
                     }
                     //r.status
                 });
@@ -77,7 +80,7 @@
                 setTimeout(()=>{
                     $alertEmail.removeClass('alert-danger');
                     $alertEmail.html('');
-                },3000);
+                },10000);
             }
             if(!$passwordValue){
                 $alertPassword.addClass('alert-danger');
@@ -85,7 +88,7 @@
                 setTimeout(()=>{
                     $alertPassword.removeClass('alert-danger');
                     $alertPassword.html('');
-                },3000);
+                },10000);
             }
         })
     })
