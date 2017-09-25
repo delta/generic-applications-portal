@@ -12,6 +12,10 @@ const error = (msg) => {
   throw new Error(msg);
 };
 
+const safeName = (name) => {
+  return name.replace(/[^a-zA-Z0-9_]/g, "");
+};
+
 // This object is a stub. It will be created in the generated script
 // and will always have an up-to-date collection of values in the form.
 // Values can be accessed using $f.inputName.
@@ -80,31 +84,32 @@ class Manager {
   registerNode(nodeName, nodeTransformer) {
     this.nodeList[nodeName] = nodeTransformer;
   }
-  transformNode(node) {
+  transformNode(node, leaveNameUnsafe) {
     let Transformer = this.nodeList[node.name];
 
     if (!Transformer) {
       if (node.type === "tag") {
-        Transformer = new NodeTransformer(node);
-        let innerHtml = Transformer.transformChildren();
+        Transformer = new NodeTransformer(node, leaveNameUnsafe);
+        let innerHtml = Transformer.transformChildren(leaveNameUnsafe);
 
         $(node).html(innerHtml);
       }
       return $.html(node); // now return the outer html
     }
-    return (new Transformer(node)).transform();
+    return (new Transformer(node, leaveNameUnsafe)).transform();
   }
 }
 
 let manager = new Manager();
 
 class NodeTransformer {
-  constructor(node) {
+  constructor(node, leaveNameUnsafe) {
     this.originalName = node.attribs.name || "";
-    this.name = this.originalName.replace(/[^a-zA-Z0-9_]/g, "");
+    this.name = !leaveNameUnsafe ? safeName(this.originalName) : this.originalName;
     this.node = node;
     this.node.attribs && (this.node.attribs.name = this.name);    
     this.$node = $(node);
+    this.node.attribs.name = this.name;
   }
   consumeAttr(attr) {
     let val = this.$node.attr(attr);
@@ -115,11 +120,11 @@ class NodeTransformer {
   transform() {
     return $.html(this.$node);
   }
-  transformChildren() {
+  transformChildren(leaveNameUnsafe) {
     let html = "";
 
     for (let child of this.node.children) {
-      html += manager.transformNode(child);
+      html += manager.transformNode(child, leaveNameUnsafe);
     }
     return html;
   }
@@ -138,7 +143,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
       let name = child.attribs.name;
       let dashedName = name.replace(/ /g, "-");
 
-      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${name}</a>`;
+      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i+1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
             
       isFirst = false;
@@ -155,17 +160,19 @@ class ApplicationNodeTransformer extends NodeTransformer {
   }
 }
 
+class InstructionsNodeTransformer extends NodeTransformer {
+  transform() {
+    return `<div class="instructions">
+    <h5 style="margin-left: -10px">Instructions for this page</h5>
+    <p style="color:red">${this.transformChildren()}</p>
+  </div>
+  <hr>`;
+  }
+}
+
 class SectionNodeTransformer extends NodeTransformer {
   transform() {
-    let instructions = this.consumeAttr("instructions");
-
-    if (!instructions) {
-      instructions = "No special instructions for this page";
-    }
     return `
-            <div class="instructions">
-              <p style="color:red">${instructions}</p>
-            </div>
             <form>
             <div class='section'>
                 <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
@@ -532,10 +539,9 @@ class TableInputNodeTransformer extends NodeTransformer {
 
       if (child.type !== "tag") continue;
       let width = child.attribs.width || "auto";
-      //let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
+      let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
       
-      //label = label.replace("count", "");
-      let label = '';
+      label = label.replace("count", "");
       html += `<th style="width:${width}">${label}</th>`;
     }
 
@@ -617,6 +623,115 @@ class TableInputNodeTransformer extends NodeTransformer {
   }
 }
 
+// TODO: Fix name of id of elements generated.
+class BoxNodeTransformer extends NodeTransformer {
+  transform() {
+    let minCount = this.node.attribs.mincount || 1;
+    let maxCount = this.node.attribs.maxcount || 100; // good enough upper limit
+
+    let compiledHtml = "";
+    let compiledElements = [];
+
+    // boxnode will have a bunch of fieldsets.
+    // we must loop through each of the fieldsets, not the direct children of boxnode
+    for (let i = 0; i < this.node.children.length; i++) {
+      let fieldsetChild = this.node.children[i];
+
+      if (fieldsetChild.type !== "tag" && fieldsetChild.name !== "fieldset") {
+        continue;
+      }
+
+      for (let j = 0; j < fieldsetChild.children.length; j++) {
+        const child = fieldsetChild.children[j];
+        
+        if (child.type !== "tag") continue;
+
+        child.attribs.name += "__{{count}}__";
+        compiledElements.push({
+          "name": child.attribs.name,
+          "validationrule": child.attribs.validationrule,
+        });
+      }
+    }
+
+    compiledHtml = this.transformChildren(true);
+
+    // Will be run in the context of the browser. Won't have access
+    // to server side variables.
+    scripts.push(`
+    let nRows_${this.name} = 0;
+    let nRows_${this.name}_real = 0;
+    function delRow_${this.name}(event, rowNumber) {
+        let rowId = "${this.name}-" + rowNumber;
+        $("#" + rowId).remove();
+        nRows_${this.name}_real--;
+        if (nRows_${this.name}_real < ${maxCount}) {
+            $("#rowAdder_${this.name}").attr('disabled', false);
+        }
+        event && event.preventDefault();
+        event && event.stopPropagation();
+        return false;
+    }
+    function addRow_${this.name}(event) {
+        // create every element in the row
+        // add each element to the rules array
+        // NOT-SUPPORTED: call addTrigger on each element
+        // add function to onValidates for each element
+        // add each element to the $f object
+        let nRows = ++nRows_${this.name};
+        let rowId = "${this.name}-" + nRows;
+        let elements = ${JSON.stringify(compiledElements)};
+        let html = ${JSON.stringify(compiledHtml)};
+
+        let delRowButtonHtml = "";
+        if (nRows > ${minCount}) {
+            // while removing we only remove the element in the DOM, 
+            // and don't clean up onValidates, $f, rules variables for simplicity.
+            delRowButtonHtml = "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_${this.name}(event, " + nRows + ")'><span class='fa fa-minus-circle'></span> Delete row</a>"
+        }
+        if (nRows_${this.name}_real + 1 >= ${maxCount}) {
+            $("#rowAdder_${this.name}").attr('disabled', 'true');
+        }
+        let rowHtml = "<div class='box-row' id='" + rowId + "'>" + html.replace(/\\{\\{count\\}\\}/g, nRows_${this.name}) + delRowButtonHtml + "</div>";
+        for (let i = 0; i < elements.length; i++) {
+            let elemName = elements[i].name.replace(/\\{\\{count\\}\\}/g, nRows_${this.name});
+
+            rules[elemName] = elements[i].validationrule;
+            onValidates[elemName] = (err) => {
+                if (!err) $("#error-" + elemName).hide();
+                else      $("#error-" + elemName).show().html("Error!");
+            };
+
+            $f[elemName] = "";
+        }
+        //rowHtml += "</div>";
+
+        // finally append the row to the table
+        $("#${this.name}").append(rowHtml);
+
+        event && event.preventDefault();
+        event && event.stopPropagation();
+
+        return false;
+    }
+    
+    for (let i = 0; i < ${minCount}; i++)
+        addRow_${this.name}();
+    `);
+    
+    let html = `
+    <div id="${this.name}_wrapper">
+      <div id="${this.name}"></div>
+      <hr>
+      <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_${this.name}" onclick="addRow_${this.name}(event)">
+        <span class="fa fa-plus-square"></span> Add row
+      </a>
+    </div>`; // rows will be added by the client.
+
+    return html;
+  }
+}
+
 manager.registerNode("application", ApplicationNodeTransformer);
 manager.registerNode("section", SectionNodeTransformer);
 manager.registerNode("subsection", SubsectionNodeTransformer);
@@ -625,6 +740,8 @@ manager.registerNode("input", InputNodeTransformer);
 manager.registerNode("textarea", InputNodeTransformer);
 manager.registerNode("select", SelectNodeTransformer);
 manager.registerNode("tableinput", TableInputNodeTransformer);
+manager.registerNode("box", BoxNodeTransformer);
+manager.registerNode("instructions", InstructionsNodeTransformer);
 
 const stringifyObject = (obj) => {
   if (typeof obj == "function") {
@@ -673,7 +790,6 @@ indicative.extend('js', (data, field, message, args) => {
     return Promise.reject('Invalid data');
 });
 
-<<<<<<< d74d380998bd38062910fd14c41d5bc0d6bad307
 indicative.extend('requiredFile', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
@@ -743,8 +859,6 @@ indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
     });
 });
 
-||||||| merged common ancestors
-=======
 function calcDate(date_old,date_new){
   // gets two dates of format dd/mm/yyyy
   date_old = date_old.split("/");
@@ -754,7 +868,6 @@ function calcDate(date_old,date_new){
   return [date_new[0]-date_old[0], date_new[1]-date_old[1], date_new[2]-date_old[2]];
 }
 
->>>>>>> added computedvalue for date
 ${scripts.join("\n\n")};
 </script>`);
 
