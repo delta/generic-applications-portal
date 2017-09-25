@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   "host": dbConfig.host,
   "user": dbConfig.username,
   "password": dbConfig.password,
-  "database": "generic-applications-portal",
+  "database": "generic_applications_portal",
 });
 
 module.exports.initDb = function() {

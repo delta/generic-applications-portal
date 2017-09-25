@@ -5,17 +5,19 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const secretString = require("./config/session_config.js").secretString;
+const loginAndSignup = require("./routes/loginAndSignup");
 const users = require("./routes/users");
 const usersProtected = require("./routes/users_protected");
 const session = require("express-session");
 const app = express();
-app.use(express.static('public'));
+
+app.use(express.static("public"));
 app.use(session({
   "secret": secretString,
   "cookie": {
     "maxAge": 186000000,
   },
-  "path": "*",
+  "path": "/",
 }));
 
 const initDb = require("./middlewares/db_init").initDb;
@@ -33,6 +35,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", loginAndSignup);
 app.use("/users", users);
 app.use(authenticate);
 app.use("/users", usersProtected);
