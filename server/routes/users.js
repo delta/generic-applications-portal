@@ -1,9 +1,10 @@
+"use strict";
+
 const express = require("express");
 const router = express.Router();
 const md5 = require("md5");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-const session = require("express-session");
 const senderEmailId = require("../config/gmail.js").emailId; // use const here
 const senderPassword = require("../config/gmail.js").password;
 const validate = require("../middlewares/validator").validate;
@@ -220,7 +221,7 @@ router.post("/forgotPassword/reset/:key", (req, res, next) => {
 });
 
 router.post("/register/resendToken", (req, res, next) => {
-  if (session.sessId) {
+  if (req.session.sessId) {
     return res.json({ "status": 200, "success": false, "redirect": "/users/dashboard" });
   }
 
