@@ -88,19 +88,19 @@ class Manager {
   registerNode(nodeName, nodeTransformer) {
     this.nodeList[nodeName] = nodeTransformer;
   }
-  transformNode(node, leaveNameUnsafe) {
+  transformNode(node) {
     let Transformer = this.nodeList[node.name];
 
     if (!Transformer) {
       if (node.type === "tag") {
-        Transformer = new NodeTransformer(node, leaveNameUnsafe);
-        let innerHtml = Transformer.transformChildren(leaveNameUnsafe);
+        Transformer = new NodeTransformer(node);
+        let innerHtml = Transformer.transformChildren();
 
         $(node).html(innerHtml);
       }
       return $.html(node); // now return the outer html
     }
-    return (new Transformer(node, leaveNameUnsafe)).transform();
+    return (new Transformer(node)).transform();
   }
   processJsExpression(expression, myFunction) {
     let matches = expression.match(/\$f.[^ ]+/g);
@@ -118,9 +118,9 @@ class Manager {
 let manager = new Manager();
 
 class NodeTransformer {
-  constructor(node, leaveNameUnsafe) {
+  constructor(node) {
     this.originalName = node.attribs.name || "";
-    this.name = !leaveNameUnsafe ? safeName(this.originalName) : this.originalName;
+    this.name = safeName(this.originalName);
     this.node = node;
     this.node.attribs && (this.node.attribs.name = this.name);
     this.$node = $(node);
@@ -135,11 +135,11 @@ class NodeTransformer {
   transform() {
     return $.html(this.$node);
   }
-  transformChildren(leaveNameUnsafe) {
+  transformChildren() {
     let html = "";
 
     for (let child of this.node.children) {
-      html += manager.transformNode(child, leaveNameUnsafe);
+      html += manager.transformNode(child);
     }
     return html;
   }
