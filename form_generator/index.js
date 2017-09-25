@@ -66,6 +66,10 @@ const validate = (name) => {
   myData[name] = $f[name];
   myRules[name] = rules[name];
 
+  if (!myRules[name]) {
+    return onValidates[name]({});
+  }
+
   // same handler will handle both validation success and validation failure
   indicative.validate(myData, myRules, {
     "required": "This field is required to complete registeration process",
@@ -305,34 +309,35 @@ class InputNodeTransformer extends NodeTransformer {
     let name = this.node.attribs.name;
 
     onValidates[name] = `(err) => {
-        console.log(err);
-        if (!err) $("#error-${name}").hide();
-        else      $("#error-${name}").show().html(err);
+        if (err.constructor !== Array) $("#error-${name}").hide();
+        else                           $("#error-${name}").show().html(err[0].message);
     }`;
 
     return `<span class="error" id="error-${name}" style="display:none">Error</span>`;
   }
 
   addEventHandlersAndId() {
-    addTrigger(this.name, `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`, true);
+    let valFun = `function(event) { $f["${this.name}"] = $("#${this.name}").val(); validate('${this.name}'); }`;
+
+    if (this.node.attribs.type === "checkbox") {
+      valFun = `function(event) { $f["${this.name}"] = $("#${this.name}").is(":checked"); validate('${this.name}'); }`;
+    }
+    addTrigger(this.name, valFun, true);
     this.$node.attr("onchange", `triggers["${this.name}"].forEach(function(f, i) { f.call(this, event) });`);
     this.$node.attr("id", this.name);
   }
 
   transform() {
-    let attrs = this.node.attribs;
+    const attrs = this.node.attribs;
     
     if (attrs.type === "file") {
       return (new FileInputNodeTransformer(this.node)).transform();
     }
 
-    let name = this.name;
-    let validationRules = this.consumeAttr("validationrule");
-
-    this.addEventHandlersAndId();
-    
+    const name = this.name;
+    const validationRules = this.consumeAttr("validationrule");
     const showIf = this.consumeAttr("showif");
-    let computedValue = this.consumeAttr("computedvalue");
+    const computedValue = this.consumeAttr("computedvalue");
 
     if (showIf) {
       manager.processJsExpression(showIf,
@@ -348,6 +353,7 @@ class InputNodeTransformer extends NodeTransformer {
           }}`);
     }
 
+    // TODO: Fix computedValue
     if (computedValue) {
       let match = computedValue.match(/\$f.[^ ]+/g)[0].substr(3);
       let currentDate = new Date();
@@ -363,10 +369,7 @@ class InputNodeTransformer extends NodeTransformer {
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
 
-    this.$node.attr("onblur", `validate('${name}')`);
-    this.$node.attr("onchange", `$f["${name}"] = this.value`);
-    this.$node.attr("id", name);
-
+    this.addEventHandlersAndId();
     this.$node.addClass("form-control form-control-sm");
 
     if (this.$node.hasClass("form-control-plaintext")) {
@@ -379,12 +382,9 @@ class InputNodeTransformer extends NodeTransformer {
 
 class SelectNodeTransformer extends InputNodeTransformer {
   transform() {
-    let attrs = this.node.attribs;
-    let name = attrs.name;
-    let validationRules = this.consumeAttr("validationrule");
-
-    this.addEventHandlersAndId();
-
+    const attrs = this.node.attribs;
+    const name = attrs.name;
+    const validationRules = this.consumeAttr("validationrule");
     const showIf = this.consumeAttr("showif");
 
     if (showIf) {
@@ -404,15 +404,12 @@ class SelectNodeTransformer extends InputNodeTransformer {
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
         
-    this.$node.attr("onblur", `validate("${name}")`);
-    this.$node.attr("id", name);
+    this.addEventHandlersAndId();
     this.$node.addClass("custom-select form-control form-control-sm");
 
     this.$node.prepend(`<option>${attrs.placeholder}</option>`);
 
-    let html = this.createLabelAndInput(/required/.test(validationRules));
-
-    return html;
+    return this.createLabelAndInput(/required/.test(validationRules));
   }
 }
 
@@ -426,7 +423,7 @@ class FileInputNodeTransformer extends InputNodeTransformer {
       inputCols = cols.split(",")[1];
     }
 
-    let displayPreview = ""; //Stores the commands required for displaying the preview
+    let displayPreview = ""; // Stores the commands required for displaying the preview
         
     // Check whether a preview of the input should be displayed
     // If yes, update the displayPreview variable and 
@@ -496,10 +493,10 @@ class FileInputNodeTransformer extends InputNodeTransformer {
   }
 
   transform() {
-    let name = this.node.attribs.name;
+    const name = this.node.attribs.name;
 
     // Add the necessary validation rules
-    let validationRules = this.consumeAttr("validationrule");
+    const validationRules = this.consumeAttr("validationrule");
 
     manager.addValidationRule(name, validationRules);
     this.processJsValidationRules(validationRules);
@@ -507,7 +504,7 @@ class FileInputNodeTransformer extends InputNodeTransformer {
     // Define the event listeners for the input element
     // this.$node.attr("onblur", `validate("${name}")`);
     this.$node.attr("onchange", `$f["${name}"] = (this.files)?this.files[0]:null; toggleRemoveButtonAndPreview_${this.name}(); validate('${name}');`);
-        
+
     // Define the classes and id for the input element
     this.$node.attr("id", name);
     this.$node.addClass("form-control-file");
@@ -523,23 +520,6 @@ class TableInputNodeTransformer extends NodeTransformer {
 
     let compiledElements = [];
 
-    for (let i = 0; i < this.node.children.length; i++) {
-      let child = this.node.children[i];
-
-      if (child.type !== "tag") {
-        continue;
-      }
-      if (child.attribs === undefined) {
-        error(child);
-      }
-      child.attribs.name += "[{{count}}]";
-      compiledElements.push({
-        "name": child.attribs.name.replace(/[^a-zA-Z0-9_]/g, ""),
-        "validationrule": child.attribs.validationrule,
-        "html": manager.transformNode(child),
-      });
-    }
-
     const nColumns = this.node.children.length;
     let html = `<table id="${this.name}"><thead><tr>`;
 
@@ -550,8 +530,14 @@ class TableInputNodeTransformer extends NodeTransformer {
       let width = child.attribs.width || "auto";
       let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
       
-      label = label.replace("count", "");
       html += `<th style="width:${width}">${label}</th>`;
+
+      child.attribs.name += "__count__";
+      compiledElements.push({
+        "name": child.attribs.name.replace(/[^a-zA-Z0-9_]/g, ""),
+        "validationrule": child.attribs.validationrule,
+        "html": manager.transformNode(child),
+      });
     }
 
     html += `<th>
@@ -600,15 +586,15 @@ class TableInputNodeTransformer extends NodeTransformer {
             }
             let rowHtml = "<tr id='" + rowId + "'>";
             for (let i = 0; i < elements.length; i++) {
-                let elemName = elements[i].name.replace(/\\{\\{count\\}\\}/g, nRows_${this.name});
+                let elemName = elements[i].name.replace(/__count__/g, nRows_${this.name});
 
-                let elemHtml = elements[i].html.replace(/\\{\\{count\\}\\}/g, nRows_${this.name});
+                let elemHtml = elements[i].html.replace(/__count__/g, nRows_${this.name});
                 rowHtml += "<td>" + elemHtml + "</td>";
 
                 rules[elemName] = elements[i].validationrule;
                 onValidates[elemName] = (err) => {
-                    if (!err) $("#error-" + elemName).hide();
-                    else      $("#error-" + elemName).show().html("Error!");
+                  if (err.constructor !== Array) $("#error-" + elemName).hide();
+                  else                           $("#error-" + elemName).show().html(err[0].message);
                 };
 
                 $f[elemName] = "";
@@ -655,7 +641,7 @@ class BoxNodeTransformer extends NodeTransformer {
         
         if (child.type !== "tag") continue;
 
-        child.attribs.name += "__{{count}}__";
+        child.attribs.name += "__count__";
         compiledElements.push({
           "name": child.attribs.name,
           "validationrule": child.attribs.validationrule,
@@ -707,8 +693,8 @@ class BoxNodeTransformer extends NodeTransformer {
 
             rules[elemName] = elements[i].validationrule;
             onValidates[elemName] = (err) => {
-                if (!err) $("#error-" + elemName).hide();
-                else      $("#error-" + elemName).show().html("Error!");
+              if (err.constructor !== Array) $("#error-" + elemName).hide();
+              else                           $("#error-" + elemName).show().html(err[0].message);
             };
 
             $f[elemName] = "";
