@@ -126,17 +126,6 @@ class Manager {
     }
     return (new Transformer(node)).transform();
   }
-  processJsExpression(expression, myFunction) {
-    let matches = expression.match(/\$f.[^ ]+/g);
-
-    for (let match of matches) {
-      match = match.substr(3);
-      if ($(`[name=${match}]`).length === 0) {
-        error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
-      }
-      addTrigger(match, myFunction);
-    }
-  }
 }
 
 let manager = new Manager();
@@ -167,6 +156,21 @@ class NodeTransformer {
     }
     return html;
   }
+
+  // FIXME: For some reason, expressions belonging to elements having space in their names
+  // can't refer to themselves. Currently, the only solution is to give separate name
+  // and label attributes to them.
+  processJsExpression(expression, myFunction) {
+    let matches = expression.match(/\$f.[a-zA-Z0-9_]+/g);
+
+    for (let match of matches) {
+      match = match.substr(3);
+      if ($(`[name=${match}]`).length === 0) {
+        error(`${this.name} uses a validation rule that refers to non-existing element ${match}`);
+      }
+      addTrigger(match, myFunction);
+    }
+  }
 }
 
 class ApplicationNodeTransformer extends NodeTransformer {
@@ -175,10 +179,18 @@ class ApplicationNodeTransformer extends NodeTransformer {
     let bodyHtml = "<div class=\"tab-content\" id=\"v-pills-tabContent\">";
 
     let isFirst = true;
-    let sections = this.$node.children("section");
+    let sections = this.$node.children();
 
     for (let i = 0; i < sections.length; i++) {
       let child = sections[i];
+
+      if (child.type !== "tag") {
+        continue;
+      }
+      if (child.name !== "section") {
+        error("Application tag cannot contain anything other than section tags");
+      }
+
       let name = child.attribs.name;
       let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
 
@@ -239,7 +251,7 @@ class FieldsetNodeTransformer extends NodeTransformer {
     let id = `fieldset_${this.name}_${Math.random().toString().substr(2, 5)}`;
 
     if (showIf) {
-      manager.processJsExpression(showIf,
+      this.processJsExpression(showIf,
         `function(){ 
           if(${showIf}) {
             $("#${id}").show();
@@ -282,8 +294,8 @@ class InputNodeTransformer extends NodeTransformer {
         if (/^js:/.test(rule)) { // custom rule. wrap in a function.
           // first do one-time checking if the rule refers to non-existing elements
           // js: $f.salary + $f.dadSalary >= $f.maxSalary
-          manager.processJsExpression(rule, `() => {
-            validate(${this.name});
+          this.processJsExpression(rule, `() => {
+            validate("${this.name}");
           }`);
         }
         // The pre-registered 'js' rule in indicative will then
@@ -376,7 +388,7 @@ class InputNodeTransformer extends NodeTransformer {
     const computedValue = this.consumeAttr("computedvalue");
 
     if (showIf) {
-      manager.processJsExpression(showIf,
+      this.processJsExpression(showIf,
         `function(){ 
           if(${showIf}) {
             $("#${name}").show();
@@ -391,14 +403,10 @@ class InputNodeTransformer extends NodeTransformer {
 
     // TODO: Fix computedValue
     if (computedValue) {
-      let match = computedValue.match(/\$f.[^ ]+/g)[0].substr(3);
-      let currentDate = new Date();
-
-      currentDate = `${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`;
-
-      manager.processJsExpression(computedValue,
-        `function(){
-            $("#${name}").val(calcDate($("#${match}").val(),"${currentDate}")[2]);
+      this.processJsExpression(computedValue,
+        `function() {
+            let val = eval("${computedValue}");
+            $("#${name}").val(val);
         }`);
     }
 
@@ -433,7 +441,7 @@ class SelectNodeTransformer extends InputNodeTransformer {
     const showIf = this.consumeAttr("showif");
 
     if (showIf) {
-      manager.processJsExpression(showIf,
+      this.processJsExpression(showIf,
         `function(){ 
           if(${showIf}) {
             $("#${name}").show();
@@ -897,16 +905,9 @@ indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
     });
 });
 
-function calcDate(date_old,date_new){
-  // gets two dates of format dd/mm/yyyy
-  date_old = date_old.split("/");
-  date_new = date_new.split("/");
-
-  // returns difference of day, month, year
-  return [date_new[0]-date_old[0], date_new[1]-date_old[1], date_new[2]-date_old[2]];
-}
-
 ${scripts.join("\n\n")};
+
+${$("script").html()}
 </script>`);
 
 // TODO: Write to a file instead of console. Or generate better tooling.
