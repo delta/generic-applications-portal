@@ -232,7 +232,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
       let name = child.attribs.name;
       let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
 
-      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
+      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
 
       isFirst = false;
@@ -253,7 +253,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
 class InstructionsNodeTransformer extends NodeTransformer {
   transform() {
     return `<div class="instructions">
-    <h5 style="margin-left: -10px">Instructions for this page</h5>
+    <h7 style="margin-left: -10px">Instructions for this page</h7>
     <p style="color:red">${this.transformChildren()}</p>
   </div>
   <hr>`;
