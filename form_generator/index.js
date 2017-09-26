@@ -1,11 +1,53 @@
+#!/usr/bin/env node
+
 "use strict";
+
+let args = process.argv;
+
+if (/node(js)?$/.test(args[0])) {
+  args = args.slice(2);
+} else {
+  args = args.slice(1);
+}
+
+args = require("minimist")(args);
 
 const indicative = require("indicative");
 const cheerio = require("cheerio");
 const fs = require("fs");
-const inputHtml = fs.readFileSync("./sample.html", { "encoding": "utf8" });
 
+let inputFile = "";
+let layoutFile = "";
+let seedFile = "";
+
+if (args._.length === 0) { // args will always have the key '_'
+  const usage = `FormGenerator - A tool to generate an application portal from a simple markup.
+  
+  Usage: ./formgen.js [-l|--layout=layout.html] [-s|--seedfile=formElementSeeder.js] <input_markup.html>
+  
+  This will create a formElementSeeder.js file that uses Sequelize to seed two tables
+  of the database
+    1. Forms (inserts name of the <application> tag in the input markup)
+    2. FormElements (inserts all the formElements inside it)
+  
+    It also generates the output html to stdout using the input markup and the layout file.`;
+  
+  process.stderr.write(usage + "\n");
+  process.exit();
+} else {
+  layoutFile = args["-l"] || args["--layout"] || "layout.html";
+  inputFile = args._[0];
+  seedFile = args["-s"] || args["--seedfile"] || "formElementSeeder.js";
+}
+
+const inputHtml = fs.readFileSync(inputFile, { "encoding": "utf8" });
 const $ = cheerio.load(inputHtml, { "ignoreWhitespace": true });
+
+// This is used to store all the formElements to be stored in the FormElements
+// table on the backend for the given application.
+const formElementsGenerator = require("./formElementsGenerator");
+
+formElementsGenerator.init(seedFile);
 
 const error = (msg) => {
   console.error(msg);
@@ -49,10 +91,6 @@ let onValidates = {
 // the form. These are then concatenated and put into resulting html form
 // as a script tag.
 let scripts = [];
-
-// This is used to store all the formElements to be stored in the FormElements
-// table on the backend for the given application.
-let formElements = [];
 
 const addTrigger = (el, func, is$f) => {
   triggers[el] = triggers[el] || [];
@@ -98,7 +136,7 @@ class Manager {
     }
 
     rules[elemName] = details.validationRules;
-    formElements.push({
+    formElementsGenerator.addElement({
       "name": details.name,
       "originalName": details.originalName,
       "section": this.currentSection,
@@ -188,7 +226,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
         continue;
       }
       if (child.name !== "section") {
-        error("Application tag cannot contain anything other than section tags");
+        error(`Application tag cannot contain anything other than section tags. Found ${child.name}`);
       }
 
       let name = child.attribs.name;
@@ -283,7 +321,6 @@ class InputNodeTransformer extends NodeTransformer {
       "validationRules": this.validationRules,
     });
   }
-
   processJsValidationRules() {
     const validationRules = this.validationRules;
 
@@ -401,7 +438,6 @@ class InputNodeTransformer extends NodeTransformer {
           }}`);
     }
 
-    // TODO: Fix computedValue
     if (computedValue) {
       this.processJsExpression(computedValue,
         `function() {
@@ -814,7 +850,7 @@ const stringifyObject = (obj) => {
   return `${str}}`;
 };
 
-let layout = fs.readFileSync("./layout.html", { "encoding": "utf8" });
+let layout = fs.readFileSync(layoutFile, { "encoding": "utf8" });
 
 layout = layout.replace(/\{\{body\}\}/, manager.transformNode($("application")[0]));
 layout = layout.replace(/\{\{script\}\}/, `
@@ -913,5 +949,5 @@ ${$("script").html()}
 // TODO: Write to a file instead of console. Or generate better tooling.
 console.log(layout);
 
-// TODO: Deal with formId for each formElement.
-fs.writeFileSync("formElements.json", JSON.stringify(formElements));
+formElementsGenerator.setApplicationName($("application")[0].attribs.name);
+formElementsGenerator.writeToFile();
