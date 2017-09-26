@@ -71,7 +71,7 @@
             </fieldset>
             
             <fieldset>
-                <input cols="3,3" label="Specialization" name="ApplicationSpecialization" validationRule="required">
+                <input cols="3,3" name="Specialization" validationRule="required">
             </fieldset>
             
             <fieldset>
@@ -86,7 +86,7 @@
                 <input name="Date of Last Promotion" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required">
             </fieldset>
         </subsection>
-        <subsection name="Biographic information">
+        <subsection name="Personal Details">
             <fieldset>
                 <input label="Full Name" cols="3,6" name="Full Name" placeholder="Full Name" validationRule="required">
             </fieldset>
@@ -139,7 +139,7 @@
                 <input cols="3,3" name="AadhaarNumber" label="Aadhaar Number" validationRule="required">
             </fieldset>
         </subsection>
-        <subsection name="Contact Information">
+        <subsection name="Contact Details">
             <fieldset>
                 <input cols="3,3" name="Email" readonly validationRule="required">
             </fieldset>
@@ -150,8 +150,19 @@
             </fieldset>
             
             <fieldset>
-                <textarea name="Address" cols="3,3" validationRule="required" placeholder="Mailing address"></textarea>
-                <textarea name="Permanent Address" cols="3" validationRule="required" placeholder="Permanent address"></textarea>
+                <label class='col-md-2'></label>
+                <label class='col-md-5'>Correspondence Address</label>
+                <label class='col-md-5'>Permanent Address</label>
+                <input cols="2,5" label="Address 1" name="Correspondence Address1" validationRule="required" placeholder="Correspondence Address">              
+                <input cols="5" name="Permanent Address1" validationRule="required" placeholder="Permanent Address">
+                <input cols="2,5" label="Address 2" name="Correspondence Address2" validationRule="required" placeholder="Correspondence Address">              
+                <input cols="5" name="Permanent Address2" validationRule="required" placeholder="Permanent Address">  
+                <input cols="2,5" label="City" name="Correspondence City" validationRule="required" placeholder="Please enter">              
+                <input cols="5" name="Permanent City" validationRule="required" placeholder="Please enter">
+                <input cols="2,5" label="State" name="Correspondence State" validationRule="required" placeholder="Please enter">              
+                <input cols="5" name="Permanent State" validationRule="required" placeholder="Please enter">
+                <input cols="2,5" label="Pincode" name="Correspondence Pincode" validationRule="required" placeholder="Please enter">              
+                <input cols="5" name="Permanent Pincode" validationRule="required" placeholder="Please enter">
             </fieldset>
             
             <fieldset>
@@ -159,113 +170,7 @@
             </fieldset>
         </subsection>
     </section>
-    
-    <section name="High School Details">
-        <instructions>
-            <li>All fields are mandatory"</li>
-        </instructions>
-        <box name="matriculationDetails" minCount="2">
-            <fieldset>
-                <select cols="3,3" label="Examination" name="Examination" placeholder="Examination" validationRule="required">
-                    <option>Exam1</option>
-                    <option>Exam2</option>
-                </select>
-                <input cols="3,3" label="Specialization" name="MatriculationSpecialization" placeholder="Examination Passed" validationRule="required"/>
-            </fieldset>
-            <fieldset>
-                <textarea cols="3,3" label="Description" name="Description" placeholder="Description" validationRule="required"></textarea>
-            </fieldset>
-        </box>
-    </section>
-    
-    <section name="Undergraduate Education">
-        <instructions>
-            <li>All the fields are mandatory</li>
-            <li>Only First Class is eligible for UG</li>
-            <li>Photocopy of Degree Certificate to be attached</li>
-        </instructions>
-        <fieldset>
-            <input label="Degree Name" name="UGDegreeName" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="Specialization" name="UGSpecialization" cols="3,3" validationRule="required">
-            <input label="Name of Institute/College" name="UGCollege" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="Year of Passing" name="UGYearOfPassing" cols="3,3" validationRule="required">
-            <input label="Board/University" name="UGBoardUniv" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="Marks / CGPA obtained" name="UG Marks / CGPA obtained" cols="3,3" validationRule="required">
-            <input label="Maximum marks / CGPA" name="UG Maximum marks / CGPA" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="% Marks / CGPA" name="UG % Marks / CGPA" cols="3,3" validationRule="required">
-            <select label="Passed Class/Division" name="UG Passed Class/Division" cols="3,3" placeholder="Please select" validationRule="required">
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </fieldset>
-        <tableinput name="ugDetails">
-            <select cols="2,3" label="Semester No." name="UG Semester No." label="Semester No." placeholder="Semester No." validationRule="required">
-                <option>I</option>
-                <option>II</option>
-                <option>III</option>
-                <option>IV</option>
-                <option>V</option>
-                <option>VI</option>
-                <option>VII</option>
-                <option>VIII</option>
-                <option>IX</option>
-                <option>X</option>
-            </select>
-            <input cols="2,3" label="Code & Name of subject" name="UG Code & Name of subject" placeholder="Code and Name of subject" validationRule="required"/>
-            <input cols="2,3" label="Number of attempts" name="UG Number of attempts" placeholder="Number of attempts" validationRule="required"/>
-            <input cols="2,3" label="Month & Year of Passing" name="UG Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
-            <input cols="2,3" label="% of Marks/Grade" name="UG % of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
-        </tableinput>
-    </section>
-    
-    <section name="Postgraduate Education">
-        <fieldset>
-            <input label="Degree Name" name="PGDegreeName" cols="3,6" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input name="PG Subjects/Discipline" cols="3,3" validationRule="required">
-            <textarea label="Name of Institute/College" name="PG Institute Name" cols="3,4" validationRule="required"></textarea>
-        </fieldset>
-        <fieldset>
-            <input label="Year of Passing" name="PG Year of Passing" cols="3,3" validationRule="required">
-            <input label="Board/University" name="PG Board/University" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="Marks/CGPA obtained" name="PG Marks/CGPA obtained" cols="3,3" validationRule="required">
-            <input label="Maximum Marks/CGPA" name="PG Maximum Marks/CGPA" cols="3,3" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input label="% Marks/CGPA" name="PG % Marks/CGPA" cols="3,3" validationRule="required">
-            <input label="Division" name="PG Division" cols="3,3" validationRule="required">
-        </fieldset>
-        <tableinput name="pgDetails">
-            <select cols="2,3" name="PG Semester No." placeholder="Semester No." validationRule="required">
-                <option>I</option>
-                <option>II</option>
-                <option>III</option>
-                <option>IV</option>
-                <option>V</option>
-                <option>VI</option>
-                <option>VII</option>
-                <option>VIII</option>
-                <option>IX</option>
-                <option>X</option>
-            </select>
-            <input cols="2,3" label="Code & Name of subject" name="PG Code & Name of subject" placeholder="Code and Name of subject" validationRule="required"/>
-            <input cols="2,3" label="Number of attempts" name="PG Number of attempts" placeholder="Number of attempts" validationRule="required"/>
-            <input cols="2,3" label="Month & Year of Passing" name="PG Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
-            <input cols="2,3" label="% of Marks/Grade" name="PG % of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
-        </tableinput>
-    </section>
-    
+
     <section name="PhD Details">
         <instructions>
             <li>Only awarded PhD are eligible.</li>
@@ -281,6 +186,118 @@
         <fieldset>
             <input name="University" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
+    </section>
+    
+    <section name="School Education">
+        <instructions>
+            <li>All fields are mandatory</li>
+        </instructions>
+            <fieldset>
+                <label class="col-md-12">Matric / 10th</label>
+                <select cols="2,4" label="Examination" name="Matric Examination" placeholder="Examination" validationRule="required">
+                    <option>Matric / 10th</option>
+                </select>
+                <input cols="2,4" label="Year of Passing" name="Matric Year" placeholder="Year Examination Was Passed" validationRule="required"/>
+                <input cols="2,4" label="% of Mark / Grade" name="Matric Grade" placeholder="Please enter" validationRule="required">
+                <input cols="2,4" label="Division / Class" name="Matric Division" placeholder="Please enter" validationRule="required">                
+            </fieldset>
+            <fieldset>
+                <label class="col-md-12">Pre-Uni / 12th</label>
+                <select cols="2,4" label="Examination" name="PreUni Examination" placeholder="Examination" validationRule="required">
+                    <option>Pre-Uni / 12th</option>
+                </select>
+                <input cols="2,4" label="Year of Passing" name="PreUni Year" placeholder="Year Examination Was Passed" validationRule="required"/>
+                <input cols="2,4" label="% of Mark / Grade" name="PreUni Grade" placeholder="Please enter" validationRule="required">
+                <input cols="2,4" label="Division / Class" name="PreUni Division" placeholder="Please enter" validationRule="required">
+            </fieldset>
+    </section>
+    
+    <section name="UG Education">
+        <instructions>
+            <li>All the fields are mandatory</li>
+            <li>Only First Class is eligible for UG</li>
+            <li>Photocopy of Degree Certificate to be attached</li>
+        </instructions>
+        <fieldset>
+            <input name="Degree Name" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Specialization" cols="3,3" validationRule="required">
+            <input name="Name of institute/College" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Year of Passing" cols="3,3" validationRule="required">
+            <input name="Board/University" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Marks / CGPA obtained" cols="3,3" validationRule="required">
+            <input name="Maximum marks / CGPA" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="% Marks / CGPA" cols="3,3" validationRule="required">
+            <select name="Passed Class/Division" cols="3,3" placeholder="Please select" validationRule="required">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </fieldset>
+        <tableinput name="ugDetails">
+            <select name="Semester No." placeholder="Semester No." validationRule="required">
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+                <option>V</option>
+                <option>VI</option>
+                <option>VII</option>
+                <option>VIII</option>
+                <option>IX</option>
+                <option>X</option>
+            </select>
+            <input name="Code & Name of subject" placeholder="Code and Name of subject" validationRule="required"/>
+            <input name="Number of attempts" placeholder="Number of attempts" validationRule="required"/>
+            <input name="Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
+            <input name="% of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
+        </tableinput>
+    </section>
+    
+    <section name="PG Education">
+        <fieldset>
+            <input name="Degree Name" cols="3,6" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Subjects / Discipline" cols="3,3" validationRule="required">
+            <textarea name="Institute Name" cols="3,4" validationRule="required"></textarea>
+        </fieldset>
+        <fieldset>
+            <input name="Year of Passing" cols="3,3" validationRule="required">
+            <input name="Board/University" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="Marks/CGPA obtained" cols="3,3" validationRule="required">
+            <input name="Maximum Marks/CGPA" cols="3,3" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input name="% Marks/CGPA" cols="3,3" validationRule="required">
+            <input name="Division" cols="3,3" validationRule="required">
+        </fieldset>
+        <tableinput name="pgDetails">
+            <select name="Semester No." placeholder="Semester No." validationRule="required">
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+                <option>V</option>
+                <option>VI</option>
+                <option>VII</option>
+                <option>VIII</option>
+                <option>IX</option>
+                <option>X</option>
+            </select>
+            <input name="Code & Name of subject" placeholder="Code and Name of subject" validationRule="required"/>
+            <input name="Number of attempts" placeholder="Number of attempts" validationRule="required"/>
+            <input name="Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"/>
+            <input name="% of Marks/Grade" placeholder="% of Marks/Grade" validationRule="required"/>
+        </tableinput>
     </section>
     
     
@@ -312,7 +329,7 @@
         </fieldset>
     </section>
     
-    <section name="Research Experience">
+    <section name="Research / Professional Experience">
         <fieldset>
             <input name="Research Organization" cols="3,6" placeholder="Please enter" validationRule="required">
         </fieldset>
@@ -331,7 +348,7 @@
         </fieldset>
     </section>
     
-    <section name="Professional Experience">
+    <!-- <section name="Professional Experience">
         <tableinput name="teachingExperience" minCount="2">
             <input name="Name Of Organization" placeholder="Name Of Organization" validationRule="required"/>
             <input name="Address Of Organization" placeholder="Address Of Organization" validationRule="required"/>
@@ -342,7 +359,7 @@
             <input name="Type of Organization" placeholder="Type of Organization" validationRule="required"/>
             <input name="Reasons for leaving" placeholder="Reasons for leaving" validationRule="required"/>
         </tableinput>
-    </section>
+    </section> -->
     
     <section name="Sponsored Project">
         <fieldset>
@@ -418,11 +435,51 @@
         </fieldset>
     </section>
     
-    <section name="Research Publications">
+
+    <section name="Consultancy Details">
+            <fieldset>
+                <input name="Consultancy Title" label="Title" cols="3,6" validationRule="required"/>
+            </fieldset>
+            <fieldset>
+                <input name="Consultancy Agency" label="Funding Agency" cols="3,6" validationRule="required"/>
+            </fieldset>
+            <fieldset>
+                <input name="Consultancy From"  label="From (dd/mm/yyy)" cols="3,3"  placeholder="dd/mm/yyyy" validationRule="required"/>
+                <input name="Consultancy To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">            
+            </fieldset>
+            <fieldset>
+                <input name="Consultancy Amount" label="Amount in Lacs" cols="3,6" validationRule="required"/>
+            </fieldset>
+            <fieldset>
+                <select name="Patent Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option value="Investigator">Investigator</option>
+                    <option value="Co Investigator">Co Investigator</option>
+                </select>
+                <select name="Patent Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>              
+                </select>
+            </fieldset>
+            <fieldset>
+                <select name="Patent PI" label="Status" cols="3,6" placeholder="Please select" validationRule="required">
+                    <option value="Awarded">Awarded</option>
+                    <option value="Filed">Filed</option>
+                </select>
+            </fieldset>
+        </section>
+
+    <section name=" Research Publications">
         <tableinput name="Papers" minCount="2">
             <input name="Name of the Journal" placeholder="Name of the journal" validationRule="required"/>
             <input name="Volume No." placeholder="Volume No." validationRule="required"/>
-            <select name="month" placeholder="month" validationRule="required">
+            <select name="month"placeholder="month" validationRule="required">
                 
             </select>
             <select name="Year" placeholder="Year" validationRule="required">
@@ -475,10 +532,10 @@
     </section>
     <section name="Other Publications">
         <tableinput name="otherPapers" minCount="2">
-            <input cols="2,3" label="Name of conference with venue" name="OP Name of conference with venue" placeholder="Name of conference with venue" validationRule="required"/>
-            <input cols="2,3" label="Authors" name="OP Authors" placeholder="Authors" validationRule="required"/>
-            <input cols="2,3" label="Title of the paper" name="OP Title of the paper" placeholder="Title of the paper" validationRule="required"/>
-            <input cols="2,3" label="Impact factor" name="OP Impact factor" placeholder="Impact factor" validationRule="required"/>
+            <input name="Name of conference with venue" placeholder="Name of conference with venue" validationRule="required"/>
+            <input name="Authors" placeholder="Authors" validationRule="required"/>
+            <input name="Title of the paper" placeholder="Title of the paper" validationRule="required"/>
+            <input name="Impact factor" placeholder="Impact factor" validationRule="required"/>
         </tableinput>
     </section>
     
@@ -487,7 +544,7 @@
     <section name="Conferences">
         <tableinput name="conferenceSymposium" mincount="2">
             <input name="Name of the Connference" placeholder="Name of the Connference" validationRule="required"/>
-            <select cols="2,3" label="Year" name="ConferenceYear" placeholder="Year" validationRule="required">
+            <select name="Year" placeholder="Year" validationRule="required">
                 <option value="2013">2013</option>
                 <option value="2012">2012</option>
                 <option value="2011">2011</option>
@@ -530,14 +587,14 @@
                 <option value="1974">1974</option>
                 <option value="1973">1973</option>
             </select>
-            <input cols="2,3" label="Volume No." name="Conference Volume No." placeholder="Volume No." validationRule="required"/>
-            <input cols="2,3" label="Title of the paper" name="Conference Title of the paper" placeholder="Title of the paper" validationRule="required"/>
+            <input name="Volume No." placeholder="Volume No." validationRule="required"/>
+            <input name="Title of the paper" placeholder="Title of the paper" validationRule="required"/>
         </tableinput>
     </section>
     <section name="Workshops / Training Programs">
-        <tableinput name="workshops" minCount="2">
+        <tableinput  name="workshops" minCount="2">
             <input name="Title of the Workshop organized" placeholder="Title of the workshop organized" validationRule="required"/>
-            <select cols="2,3" label="Year" name="WT Year" placeholder="Year" validationRule="required">
+            <select name="Year" placeholder="Year" validationRule="required">
                 <option value="2013">2013</option>
                 <option value="2012">2012</option>
                 <option value="2011">2011</option>
@@ -580,25 +637,16 @@
                 <option value="1974">1974</option>
                 <option value="1973">1973</option>
             </select>
-            <input cols="2,3" label="Venue" name="WT Venue" placeholder="Venue" validationRule="required"/>
-            <input cols="2,3" label="Sponsoring Authority" name="Sponsoring Authority" placeholder="Sponsoring Authority" validationRule="required"/>
-        </tableinput>
-    </section>
-    
-    <section name="Thesis spervised">
-        <tableinput name="Thesis" minCount="2">
-            <input name="Title of the Thesis Supervised"placeholder="Title of the Thesis Supervised" validationRule="required"/>
-            <input name="Completed(year)" placeholder="Completed(year)" validationRule="required"/>
-            <input name="In progress(With status)" placeholder="In progress(With status)" validationRule="required"/>
-            <input name="Principal or Co-Supervisor" placeholder="Principal or Co-Supervisor" validationRule="required"/>
+            <input name="venue" placeholder="venue" validationRule="required"/>
+            <input name="Sponsoring Authority" placeholder="Sponsoring Authority" validationRule="required"/>
         </tableinput>
     </section>
     
     <section name="Administrative and Other Activities">
         <tableinput name="adminSupport" minCount="3">
             <input name="Section/Office/Institute level committee"placeholder="Section/Office/Institute level committee" validationRule="required"/>
-            <input cols="2,3" label="From" name="AOA From" placeholder="From" validationRule="required"/>
-            <input cols="2,3" label="To" name="AOA To" placeholder="To" validationRule="required"/>
+            <input name="From"placeholder="From" validationRule="required"/>
+            <input name="To"placeholder="To" validationRule="required"/>
             <input name="Position Held"placeholder="Position Held" validationRule="required"/>
             <select name="Responsibility Type" placeholder="Responsibility Type" validationRule="required">
                 <option value="Dean">Dean</option>
@@ -609,7 +657,7 @@
         </tableinput>
         <tableinput name="outreach" minCount="2">
             <input name="Academic Outreach Activities" placeholder="Academic Outreach Activities" validationRule="required"/>
-            <select cols="2,3" label="Year" name="AOA Year" placeholder="Year" validationRule="required">
+            <select name="Year" placeholder="Year" validationRule="required">
                 <option value="2013">2013</option>
                 <option value="2012">2012</option>
                 <option value="2011">2011</option>
@@ -657,7 +705,7 @@
     
     <section name="Placement Percentage">
         <tableinput name="placementPercentage" minCount="3">
-            <select cols="2,3" label="Year" name="PP Year" placeholder="Year" validationRule="required">
+            <select name="Year" placeholder="Year" validationRule="required">
                 <option value="2013">2013</option>
                 <option value="2012">2012</option>
                 <option value="2011">2011</option>
@@ -700,7 +748,7 @@
                 <option value="1974">1974</option>
                 <option value="1973">1973</option>
             </select>
-            <input cols="2,3" label="Percentage" name="PP percentage" placeholder="Percentage" validationRule="required"/>
+            <input name="percentage" placeholder="percentage"  validationRule="required"/>
         </tableinput>
     </section>
     
@@ -722,12 +770,12 @@
     
     <section name="Name and address of Reference">
         <fieldset>
-            <input cols="2,3" label="Name" name="Ref Name" placeholder="Name" cols="3,4" validationRule="required"/>
-            <input cols="2,3" label="Position" name="Ref Position" placeholder="Position" cols="3,4" validationRule="required"/>
-            <input cols="2,3" label="Address" name="Ref Address" placeholder="Address" cols="3,4" validationRule="required"/>
-            <input cols="2,3" label="Email" name="Ref Email" placeholder="Email" cols="3,4" validationRule="required"/>
-            <input cols="2,3" label="Phone Number" name="Ref Phone Number:" placeholder="Phone Number:" cols="3,4" validationRule="required"/>
-            <input cols="2,3" label="Mobile" name="Ref Mobile" placeholder="Mobile" cols="3,4" validationRule="required"/>
+            <input name="Name" placeholder="Name" cols="3,4" validationRule="required"/>
+            <input name="Position" placeholder="Position" cols="3,4" validationRule="required"/>
+            <input name="Address" placeholder="Address" cols="3,4" validationRule="required"/>
+            <input name="Email" placeholder="Email" cols="3,4" validationRule="required"/>
+            <input name="Phone Number:" placeholder="Phone Number:" cols="3,4" validationRule="required"/>
+            <input name="Mobile" placeholder="Mobile" cols="3,4" validationRule="required"/>
         </fieldset>
         
         <fieldset>
