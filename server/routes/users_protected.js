@@ -52,10 +52,5 @@ router.post("/changePassword", (req, res) => {
   });
 });
 
-router.get("/dashboard", (req, res) => {
-  console.log("came to dashboard generator");
-  // render dashboard
-  res.json({ "status": 200, "success": true, "message": "Your dashboard." });
-});
 
 module.exports = router;
