@@ -29,6 +29,7 @@ module.exports = {
       },
       "submittedAt": {
         "type": Sequelize.DATE,
+        "allowNull": true,
       },
       "createdAt": {
         "allowNull": false,

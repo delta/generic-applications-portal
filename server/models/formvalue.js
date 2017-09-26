@@ -5,16 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     "formElementId": DataTypes.INTEGER,
     "applicationId": DataTypes.INTEGER,
     "value": DataTypes.STRING,
-  }, {
-    "classMethods": {
-      "associate": function(models) {
-        FormValue.belongsTo(models.Application, {
-          "onUpdate": "CASCADE",
-          "onDelete": "RESTRICT",
-        });
-      },
-    },
   });
+
+  FormValue.associate = (models) => {
+    FormValue.belongsTo(models.Application, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
+  };
 
   return FormValue;
 };
