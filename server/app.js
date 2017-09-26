@@ -50,6 +50,15 @@ app.use("/", loginAndSignup);
 app.use("/users", users);
 app.use(authenticate);
 app.use("/users", usersProtected);
+
+app.get("/dashboard", (req, res) => {
+  console.log("To dashboard");
+  var user = {
+    applications:[{id:1, status:"pending", appliedDate:"12/2/2102"}, {id:2, status:"converted", appliedDate:"12/2/2103"}],
+    name: "Anshul Sekhar",
+  };
+  res.render('dashboard',{user:user});
+});
 // / catch 404 and forwarding to error handler
 app.use((req, res, next) => {
   const err = new Error("Not Found");
