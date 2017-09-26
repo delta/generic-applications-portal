@@ -7,19 +7,17 @@ module.exports = (sequelize, DataTypes) => {
     "passwordHash": DataTypes.STRING,
     "isActive": DataTypes.BOOLEAN,
     "activationToken": DataTypes.STRING,
-    "activationTokenExpiryTime": DataTypes.DATETIME,
+    "activationTokenExpiryTime": DataTypes.DATE,
     "passwordResetToken": DataTypes.STRING,
-    "passwordResetTokenExpiryTime": DataTypes.DATETIME,
-  }, {
-    "classMethods": {
-      "associate": function(models) {
-        User.hasMany(models.Application, {
-          "onUpdate": "CASCADE",
-          "onDelete": "RESTRICT",
-        });
-      },
-    },
+    "passwordResetTokenExpiryTime": DataTypes.DATE,
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Application, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
+  };
 
   return User;
 };
