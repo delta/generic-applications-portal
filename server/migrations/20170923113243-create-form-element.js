@@ -21,8 +21,14 @@ module.exports = {
       "name": {
         "type": Sequelize.STRING,
       },
-      "validationRule": {
+      "originalName": {
         "type": Sequelize.STRING,
+      },
+      "section": {
+        "type": Sequelize.STRING,
+      },
+      "validationRules": {
+        "type": Sequelize.TEXT,
       },
       "createdAt": {
         "allowNull": false,
