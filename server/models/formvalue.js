@@ -2,8 +2,14 @@
 
 module.exports = (sequelize, DataTypes) => {
   let FormValue = sequelize.define("FormValue", {
-    "formElementId": DataTypes.INTEGER,
-    "applicationId": DataTypes.INTEGER,
+    "formElementId": {
+      "type": DataTypes.INTEGER,
+      "primaryKey": true,
+    },
+    "applicationId": {
+      "type": DataTypes.INTEGER,
+      "primaryKey": true,
+    },
     "value": DataTypes.STRING,
   });
 
