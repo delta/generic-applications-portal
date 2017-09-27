@@ -2,67 +2,19 @@
 <html>
 <head>
     <title>Faculty Recruitment | NIT Trichy</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    
-    <style>
-        label {
-            font-weight: 600;
-            font-size: 14px;
-            color: #394263;
-        }
-        .form-group {
-            border-bottom: 1px dashed lightblue;
-            padding: 5px 0;
-            margin: 0 2px;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-        .nav-link{
-            margin-left: -5px;
-            padding:3px 8px;
-            font-size:15px;
-        }
-        .instructions {
-            margin:25px;
-        }
-        li{
-            font-size:15px;
-        }
-        .box-row {
-            padding: 10px;
-            padding-bottom: -15px;
-        }
-        .box-row:nth-child(odd) {
-            background: lightblue;
-        }
-        .box-row:nth-child(even) {
-            background: rgb(240,240,255);
-        }
-    </style>
+    <%- include('partials/commonHeaderIncludes.partial.ejs') %>
 </head>
 <body>
-    
-    <nav class="navbar navbar-dark bg-dark">
-        <div>
-            <img src="/images/logo.png" style="max-width: 75px">
-            <a class="navbar-brand" href="#" style="padding: 10px; font-weight:bold">Faculty Recruitment | NIT Trichy</a>
-        </div>
-    </nav>
+    <%- include('partials/topNavbar.partial.ejs') %>
 
     <div class="container-fluid" style="margin-top: 10px; padding-bottom: 75px">
             <div class="row">
                 <div class="col-2"><div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"><a class="nav-link active" id="v-pills-Personal-Information-tab" data-toggle="pill" href="#v-pills-Personal-Information" role="tab" aria-controls="v-pills-Personal-Information" aria-expanded="true">1. Personal Information</a><a class="nav-link " id="v-pills-High-School-Details-tab" data-toggle="pill" href="#v-pills-High-School-Details" role="tab" aria-controls="v-pills-High-School-Details" aria-expanded="true">2. High School Details</a><a class="nav-link " id="v-pills-Undergraduate-Education-tab" data-toggle="pill" href="#v-pills-Undergraduate-Education" role="tab" aria-controls="v-pills-Undergraduate-Education" aria-expanded="true">3. Undergraduate Education</a><a class="nav-link " id="v-pills-Postgraduate-Education-tab" data-toggle="pill" href="#v-pills-Postgraduate-Education" role="tab" aria-controls="v-pills-Postgraduate-Education" aria-expanded="true">4. Postgraduate Education</a><a class="nav-link " id="v-pills-PhD-Details-tab" data-toggle="pill" href="#v-pills-PhD-Details" role="tab" aria-controls="v-pills-PhD-Details" aria-expanded="true">5. PhD Details</a><a class="nav-link " id="v-pills-Present-Employer-tab" data-toggle="pill" href="#v-pills-Present-Employer" role="tab" aria-controls="v-pills-Present-Employer" aria-expanded="true">6. Present Employer</a><a class="nav-link " id="v-pills-Research-Experience-tab" data-toggle="pill" href="#v-pills-Research-Experience" role="tab" aria-controls="v-pills-Research-Experience" aria-expanded="true">7. Research Experience</a><a class="nav-link " id="v-pills-Professional-Experience-tab" data-toggle="pill" href="#v-pills-Professional-Experience" role="tab" aria-controls="v-pills-Professional-Experience" aria-expanded="true">8. Professional Experience</a><a class="nav-link " id="v-pills-Sponsored-Project-tab" data-toggle="pill" href="#v-pills-Sponsored-Project" role="tab" aria-controls="v-pills-Sponsored-Project" aria-expanded="true">9. Sponsored Project</a><a class="nav-link " id="v-pills-Patent-Details-tab" data-toggle="pill" href="#v-pills-Patent-Details" role="tab" aria-controls="v-pills-Patent-Details" aria-expanded="true">10. Patent Details</a><a class="nav-link " id="v-pills-Research-Publications-tab" data-toggle="pill" href="#v-pills-Research-Publications" role="tab" aria-controls="v-pills-Research-Publications" aria-expanded="true">11. Research Publications</a><a class="nav-link " id="v-pills-Other-Publications-tab" data-toggle="pill" href="#v-pills-Other-Publications" role="tab" aria-controls="v-pills-Other-Publications" aria-expanded="true">12. Other Publications</a><a class="nav-link " id="v-pills-Fellow-tab" data-toggle="pill" href="#v-pills-Fellow" role="tab" aria-controls="v-pills-Fellow" aria-expanded="true">13. Fellow</a><a class="nav-link " id="v-pills-Conferences-tab" data-toggle="pill" href="#v-pills-Conferences" role="tab" aria-controls="v-pills-Conferences" aria-expanded="true">14. Conferences</a><a class="nav-link " id="v-pills-Workshops---Training-Programs-tab" data-toggle="pill" href="#v-pills-Workshops---Training-Programs" role="tab" aria-controls="v-pills-Workshops---Training-Programs" aria-expanded="true">15. Workshops / Training Programs</a><a class="nav-link " id="v-pills-Thesis-spervised-tab" data-toggle="pill" href="#v-pills-Thesis-spervised" role="tab" aria-controls="v-pills-Thesis-spervised" aria-expanded="true">16. Thesis spervised</a><a class="nav-link " id="v-pills-Administrative-and-Other-Activities-tab" data-toggle="pill" href="#v-pills-Administrative-and-Other-Activities" role="tab" aria-controls="v-pills-Administrative-and-Other-Activities" aria-expanded="true">17. Administrative and Other Activities</a><a class="nav-link " id="v-pills-Placement-Percentage-tab" data-toggle="pill" href="#v-pills-Placement-Percentage" role="tab" aria-controls="v-pills-Placement-Percentage" aria-expanded="true">18. Placement Percentage</a><a class="nav-link " id="v-pills-Miscellaneous-tab" data-toggle="pill" href="#v-pills-Miscellaneous" role="tab" aria-controls="v-pills-Miscellaneous" aria-expanded="true">19. Miscellaneous</a><a class="nav-link " id="v-pills-Name-and-address-of-Reference-tab" data-toggle="pill" href="#v-pills-Name-and-address-of-Reference" role="tab" aria-controls="v-pills-Name-and-address-of-Reference" aria-expanded="true">20. Name and address of Reference</a></div></div>
                 <div class="col-10"><div class="tab-content" id="v-pills-tabContent"><div class="tab-pane fade show active" id="v-pills-Personal-Information" role="tabpanel" aria-labelledby="v-pills-Personal-Information-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Personal Information</h2>
-                
+        <form method='POST' id='frm_PersonalInformation'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Personal Information</h2>
+            
         <div class="instructions">
     <h5 style="margin-left: -10px">Instructions for this page</h5>
     <p style="color:red">
@@ -77,7 +29,7 @@
         <div class='subsection' id="Applicationinformation">
             <br><h4 style="color: #1bbae1">&gt; Application information</h4><br>
             
-            <div class="form-group row" id="fieldset__85372">
+            <div class="form-group row" id="fieldset__50291">
         <div class="col row">
                 <label  id="label-DepartmentAppliedFor" class="col-form-label col-md-3" for="DepartmentAppliedFor">Department Applied For<span id="asterisk-DepartmentAppliedFor" style="color:red">*</span></label><div class="col-md-6"><select name="DepartmentAppliedFor" placeholder="Please select" onchange="triggers[&quot;DepartmentAppliedFor&quot;].forEach(function(f, i) { f.call(this, event) });" id="DepartmentAppliedFor" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Architecture</option>
@@ -99,7 +51,7 @@
                     <option>Management Studies</option>
                 </select><span class="error" id="error-DepartmentAppliedFor" style="display:none">Error</span></div>
             </div></div>
-            <div class="form-group row" id="fieldset__14559">
+            <div class="form-group row" id="fieldset__00532">
         <div class="col row">
                 <label  id="label-PostAppliedFor" class="col-form-label col-md-3" for="PostAppliedFor">Post Applied For<span id="asterisk-PostAppliedFor" style="color:red">*</span></label><div class="col-md-6"><select name="PostAppliedFor" placeholder="Please select" onchange="triggers[&quot;PostAppliedFor&quot;].forEach(function(f, i) { f.call(this, event) });" id="PostAppliedFor" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Assistant Professor (6000)</option>
@@ -114,12 +66,12 @@
                 </select><span class="error" id="error-PostAppliedFor" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__45331">
+            <div class="form-group row" id="fieldset__01426">
         <div class="col row">
                 <label  id="label-ApplicationSpecialization" class="col-form-label col-md-3" for="ApplicationSpecialization">Specialization<span id="asterisk-ApplicationSpecialization" style="color:red">*</span></label><div class="col-md-3"><input name="ApplicationSpecialization" onchange="triggers[&quot;ApplicationSpecialization&quot;].forEach(function(f, i) { f.call(this, event) });" id="ApplicationSpecialization" class="form-control form-control-sm" placeholder="Specialization"><span class="error" id="error-ApplicationSpecialization" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__90725">
+            <div class="form-group row" id="fieldset__68149">
         <div class="col row">
                 <label  id="label-internalCandidate" class="col-form-label col-md-3" for="internalCandidate">Internal Candidate of NITT?<span id="asterisk-internalCandidate" style="color:red">*</span></label><div class="col-md-3"><select name="internalCandidate" placeholder="Please select" onchange="triggers[&quot;internalCandidate&quot;].forEach(function(f, i) { f.call(this, event) });" id="internalCandidate" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Yes</option>
@@ -128,7 +80,7 @@
                 <label  id="label-StaffNumber" class="col-form-label col-md-3" for="StaffNumber">Staff Number<span id="asterisk-StaffNumber" style="color:red">*</span></label><div class="col-md-3"><input name="StaffNumber" placeholder="Staff Number" onchange="triggers[&quot;StaffNumber&quot;].forEach(function(f, i) { f.call(this, event) });" id="StaffNumber" class="form-control form-control-sm"><span class="error" id="error-StaffNumber" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__58460">
+            <div class="form-group row" id="fieldset__77660">
         <div class="col row">
                 <label  id="label-DateofLastPromotion" class="col-form-label col-md-3" for="DateofLastPromotion">Date of Last Promotion<span id="asterisk-DateofLastPromotion" style="color:red">*</span></label><div class="col-md-3"><input name="DateofLastPromotion" placeholder="dd/mm/yyyy" onchange="triggers[&quot;DateofLastPromotion&quot;].forEach(function(f, i) { f.call(this, event) });" id="DateofLastPromotion" class="form-control form-control-sm"><span class="error" id="error-DateofLastPromotion" style="display:none">Error</span></div>
             </div></div>
@@ -137,23 +89,23 @@
         <div class='subsection' id="Biographicinformation">
             <br><h4 style="color: #1bbae1">&gt; Biographic information</h4><br>
             
-            <div class="form-group row" id="fieldset__21350">
+            <div class="form-group row" id="fieldset__86172">
         <div class="col row">
                 <label  id="label-FullName" class="col-form-label col-md-3" for="FullName">Full Name<span id="asterisk-FullName" style="color:red">*</span></label><div class="col-md-6"><input name="FullName" placeholder="Full Name" onchange="triggers[&quot;FullName&quot;].forEach(function(f, i) { f.call(this, event) });" id="FullName" class="form-control form-control-sm"><span class="error" id="error-FullName" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__78688">
+            <div class="form-group row" id="fieldset__89656">
         <div class="col row">
                 <label  id="label-FathersHusbandsName" class="col-form-label col-md-3" for="FathersHusbandsName">Father's/Husband's Name<span id="asterisk-FathersHusbandsName" style="color:red">*</span></label><div class="col-md-3"><input name="FathersHusbandsName" onchange="triggers[&quot;FathersHusbandsName&quot;].forEach(function(f, i) { f.call(this, event) });" id="FathersHusbandsName" class="form-control form-control-sm" placeholder="Father&apos;s/Husband&apos;s Name"><span class="error" id="error-FathersHusbandsName" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__45153">
+            <div class="form-group row" id="fieldset__87907">
         <div class="col row">
-                <label  id="label-DateofBirth" class="col-form-label col-md-3" for="DateofBirth">Date of Birth<span id="asterisk-DateofBirth" style="color:red">*</span></label><div class="col-md-3"><input name="DateofBirth" placeholder="dd/mm/yyyy" onchange="triggers[&quot;DateofBirth&quot;].forEach(function(f, i) { f.call(this, event) });" id="DateofBirth" class="form-control form-control-sm"><span class="error" id="error-DateofBirth" style="display:none">Error</span></div>
+                <label  id="label-dob" class="col-form-label col-md-3" for="dob">Date of Birth<span id="asterisk-dob" style="color:red">*</span></label><div class="col-md-3"><input name="dob" placeholder="dd/mm/yyyy" onchange="triggers[&quot;dob&quot;].forEach(function(f, i) { f.call(this, event) });" id="dob" class="form-control form-control-sm"><span class="error" id="error-dob" style="display:none">Error</span></div>
                 <label  id="label-Age" class="col-form-label col-md-3" for="Age">Age<span id="asterisk-Age" style="color:red">*</span></label><div class="col-md-3"><input name="Age" placeholder="In Years" readonly onchange="triggers[&quot;Age&quot;].forEach(function(f, i) { f.call(this, event) });" id="Age" class="form-control form-control-sm"><span class="error" id="error-Age" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__76730">
+            <div class="form-group row" id="fieldset__38904">
         <div class="col row">
                 <label  id="label-Gender" class="col-form-label col-md-3" for="Gender">Gender<span id="asterisk-Gender" style="color:red">*</span></label><div class="col-md-3"><select name="Gender" placeholder="Please select" onchange="triggers[&quot;Gender&quot;].forEach(function(f, i) { f.call(this, event) });" id="Gender" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Male</option>
@@ -170,7 +122,7 @@
                 </select><span class="error" id="error-Category" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__65326">
+            <div class="form-group row" id="fieldset__64776">
         <div class="col row">
                 <label  id="label-Nationality" class="col-form-label col-md-3" for="Nationality">Nationality<span id="asterisk-Nationality" style="color:red">*</span></label><div class="col-md-3"><select name="Nationality" placeholder="Please select" onchange="triggers[&quot;Nationality&quot;].forEach(function(f, i) { f.call(this, event) });" id="Nationality" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Indian</option>
@@ -179,7 +131,7 @@
                 <label  id="label-StateUT" class="col-form-label col-md-3" for="StateUT">State/UT<span id="asterisk-StateUT" style="color:red">*</span></label><div class="col-md-3"><input name="StateUT" placeholder="State/UT to which you belong" onchange="triggers[&quot;StateUT&quot;].forEach(function(f, i) { f.call(this, event) });" id="StateUT" class="form-control form-control-sm"><span class="error" id="error-StateUT" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__89044">
+            <div class="form-group row" id="fieldset__95622">
         <div class="col row">
                 <label  id="label-MaritalStatus" class="col-form-label col-md-3" for="MaritalStatus">Marital Status<span id="asterisk-MaritalStatus" style="color:red">*</span></label><div class="col-md-3"><select name="MaritalStatus" placeholder="Please select" onchange="triggers[&quot;MaritalStatus&quot;].forEach(function(f, i) { f.call(this, event) });" id="MaritalStatus" class="custom-select form-control form-control-sm"><option>Please select</option>
                     <option>Single</option>
@@ -190,7 +142,7 @@
                 </select><span class="error" id="error-MaritalStatus" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__28720">
+            <div class="form-group row" id="fieldset__64269">
         <div class="col row">
                 <label  id="label-PANnumber" class="col-form-label col-md-3" for="PANnumber">PAN number<span id="asterisk-PANnumber" style="color:red">*</span></label><div class="col-md-3"><input name="PANnumber" onchange="triggers[&quot;PANnumber&quot;].forEach(function(f, i) { f.call(this, event) });" id="PANnumber" class="form-control form-control-sm" placeholder="PAN number"><span class="error" id="error-PANnumber" style="display:none">Error</span></div>              
                 <label  id="label-AadhaarNumber" class="col-form-label col-md-3" for="AadhaarNumber">Aadhaar Number<span id="asterisk-AadhaarNumber" style="color:red">*</span></label><div class="col-md-3"><input name="AadhaarNumber" onchange="triggers[&quot;AadhaarNumber&quot;].forEach(function(f, i) { f.call(this, event) });" id="AadhaarNumber" class="form-control form-control-sm" placeholder="Aadhaar Number"><span class="error" id="error-AadhaarNumber" style="display:none">Error</span></div>
@@ -200,24 +152,24 @@
         <div class='subsection' id="ContactInformation">
             <br><h4 style="color: #1bbae1">&gt; Contact Information</h4><br>
             
-            <div class="form-group row" id="fieldset__98703">
+            <div class="form-group row" id="fieldset__15640">
         <div class="col row">
                 <label  id="label-Email" class="col-form-label col-md-3" for="Email">Email<span id="asterisk-Email" style="color:red">*</span></label><div class="col-md-3"><input name="Email" readonly onchange="triggers[&quot;Email&quot;].forEach(function(f, i) { f.call(this, event) });" id="Email" class="form-control form-control-sm" placeholder="Email"><span class="error" id="error-Email" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__81339">
+            <div class="form-group row" id="fieldset__98380">
         <div class="col row">
                 <label  id="label-ContactNobrwithcountrycode" class="col-form-label col-md-3" for="ContactNobrwithcountrycode">Contact No.<br>(with country code)<span id="asterisk-ContactNobrwithcountrycode" style="color:red">*</span></label><div class="col-md-3"><input name="ContactNobrwithcountrycode" placeholder="Contact No. (Preferably cell phone)" onchange="triggers[&quot;ContactNobrwithcountrycode&quot;].forEach(function(f, i) { f.call(this, event) });" id="ContactNobrwithcountrycode" class="form-control form-control-sm"><span class="error" id="error-ContactNobrwithcountrycode" style="display:none">Error</span></div>
                 <label  id="label-AlternativeContactNo" class="col-form-label col-md-3" for="AlternativeContactNo">Alternative Contact No.<span id="asterisk-AlternativeContactNo" style="color:red">*</span></label><div class="col-md-3"><input name="AlternativeContactNo" placeholder="Alternative Contact No." onchange="triggers[&quot;AlternativeContactNo&quot;].forEach(function(f, i) { f.call(this, event) });" id="AlternativeContactNo" class="form-control form-control-sm"><span class="error" id="error-AlternativeContactNo" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__00550">
+            <div class="form-group row" id="fieldset__89987">
         <div class="col row">
                 <label  id="label-Address" class="col-form-label col-md-3" for="Address">Address<span id="asterisk-Address" style="color:red">*</span></label><div class="col-md-3"><textarea name="Address" placeholder="Mailing address" onchange="triggers[&quot;Address&quot;].forEach(function(f, i) { f.call(this, event) });" id="Address" class="form-control form-control-sm"></textarea><span class="error" id="error-Address" style="display:none">Error</span></div>
                 <div class="col-md-3"><textarea name="PermanentAddress" placeholder="Permanent address" onchange="triggers[&quot;PermanentAddress&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentAddress" class="form-control form-control-sm"></textarea><span class="error" id="error-PermanentAddress" style="display:none">Error</span></div>
             </div></div>
             
-            <div class="form-group row" id="fieldset__80131">
+            <div class="form-group row" id="fieldset__49425">
         <div class="col row">
                 <label  id="label-Photo" class="col-form-label col-md-3" for="Photo">Photo</label><div class="col-md-9">
             <div class="row">
@@ -232,13 +184,13 @@
         
         </div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-High-School-Details" role="tabpanel" aria-labelledby="v-pills-High-School-Details-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">High School Details</h2>
-                
+        <form method='POST' id='frm_HighSchoolDetails'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">High School Details</h2>
+            
         <div class="instructions">
     <h5 style="margin-left: -10px">Instructions for this page</h5>
     <p style="color:red">
@@ -255,13 +207,13 @@
       </a>
     </div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Undergraduate-Education" role="tabpanel" aria-labelledby="v-pills-Undergraduate-Education-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Undergraduate Education</h2>
-                
+        <form method='POST' id='frm_UndergraduateEducation'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Undergraduate Education</h2>
+            
         <div class="instructions">
     <h5 style="margin-left: -10px">Instructions for this page</h5>
     <p style="color:red">
@@ -271,26 +223,26 @@
         </p>
   </div>
   <hr>
-        <div class="form-group row" id="fieldset__17849">
+        <div class="form-group row" id="fieldset__88342">
         <div class="col row">
             <label  id="label-UGDegreeName" class="col-form-label col-md-3" for="UGDegreeName">Degree Name<span id="asterisk-UGDegreeName" style="color:red">*</span></label><div class="col-md-3"><input name="UGDegreeName" onchange="triggers[&quot;UGDegreeName&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGDegreeName" class="form-control form-control-sm" placeholder="Degree Name"><span class="error" id="error-UGDegreeName" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__75950">
+        <div class="form-group row" id="fieldset__89991">
         <div class="col row">
             <label  id="label-UGSpecialization" class="col-form-label col-md-3" for="UGSpecialization">Specialization<span id="asterisk-UGSpecialization" style="color:red">*</span></label><div class="col-md-3"><input name="UGSpecialization" onchange="triggers[&quot;UGSpecialization&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGSpecialization" class="form-control form-control-sm" placeholder="Specialization"><span class="error" id="error-UGSpecialization" style="display:none">Error</span></div>
             <label  id="label-UGCollege" class="col-form-label col-md-3" for="UGCollege">Name of Institute/College<span id="asterisk-UGCollege" style="color:red">*</span></label><div class="col-md-3"><input name="UGCollege" onchange="triggers[&quot;UGCollege&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGCollege" class="form-control form-control-sm" placeholder="Name of Institute/College"><span class="error" id="error-UGCollege" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__50523">
+        <div class="form-group row" id="fieldset__12467">
         <div class="col row">
             <label  id="label-UGYearOfPassing" class="col-form-label col-md-3" for="UGYearOfPassing">Year of Passing<span id="asterisk-UGYearOfPassing" style="color:red">*</span></label><div class="col-md-3"><input name="UGYearOfPassing" onchange="triggers[&quot;UGYearOfPassing&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGYearOfPassing" class="form-control form-control-sm" placeholder="Year of Passing"><span class="error" id="error-UGYearOfPassing" style="display:none">Error</span></div>
             <label  id="label-UGBoardUniv" class="col-form-label col-md-3" for="UGBoardUniv">Board/University<span id="asterisk-UGBoardUniv" style="color:red">*</span></label><div class="col-md-3"><input name="UGBoardUniv" onchange="triggers[&quot;UGBoardUniv&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGBoardUniv" class="form-control form-control-sm" placeholder="Board/University"><span class="error" id="error-UGBoardUniv" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__74831">
+        <div class="form-group row" id="fieldset__24057">
         <div class="col row">
             <label  id="label-UGMarksCGPAobtained" class="col-form-label col-md-3" for="UGMarksCGPAobtained">Marks / CGPA obtained<span id="asterisk-UGMarksCGPAobtained" style="color:red">*</span></label><div class="col-md-3"><input name="UGMarksCGPAobtained" onchange="triggers[&quot;UGMarksCGPAobtained&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGMarksCGPAobtained" class="form-control form-control-sm" placeholder="Marks / CGPA obtained"><span class="error" id="error-UGMarksCGPAobtained" style="display:none">Error</span></div>
             <label  id="label-UGMaximummarksCGPA" class="col-form-label col-md-3" for="UGMaximummarksCGPA">Maximum marks / CGPA<span id="asterisk-UGMaximummarksCGPA" style="color:red">*</span></label><div class="col-md-3"><input name="UGMaximummarksCGPA" onchange="triggers[&quot;UGMaximummarksCGPA&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGMaximummarksCGPA" class="form-control form-control-sm" placeholder="Maximum marks / CGPA"><span class="error" id="error-UGMaximummarksCGPA" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__35039">
+        <div class="form-group row" id="fieldset__28998">
         <div class="col row">
             <label  id="label-UGMarksCGPA" class="col-form-label col-md-3" for="UGMarksCGPA">% Marks / CGPA<span id="asterisk-UGMarksCGPA" style="color:red">*</span></label><div class="col-md-3"><input name="UGMarksCGPA" onchange="triggers[&quot;UGMarksCGPA&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGMarksCGPA" class="form-control form-control-sm" placeholder="% Marks / CGPA"><span class="error" id="error-UGMarksCGPA" style="display:none">Error</span></div>
             <label  id="label-UGPassedClassDivision" class="col-form-label col-md-3" for="UGPassedClassDivision">Passed Class/Division<span id="asterisk-UGPassedClassDivision" style="color:red">*</span></label><div class="col-md-3"><select name="UGPassedClassDivision" placeholder="Please select" onchange="triggers[&quot;UGPassedClassDivision&quot;].forEach(function(f, i) { f.call(this, event) });" id="UGPassedClassDivision" class="custom-select form-control form-control-sm"><option>Please select</option>
@@ -304,33 +256,33 @@
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Postgraduate-Education" role="tabpanel" aria-labelledby="v-pills-Postgraduate-Education-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Postgraduate Education</h2>
-                
-        <div class="form-group row" id="fieldset__02582">
+        <form method='POST' id='frm_PostgraduateEducation'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Postgraduate Education</h2>
+            
+        <div class="form-group row" id="fieldset__91177">
         <div class="col row">
             <label  id="label-PGDegreeName" class="col-form-label col-md-3" for="PGDegreeName">Degree Name<span id="asterisk-PGDegreeName" style="color:red">*</span></label><div class="col-md-6"><input name="PGDegreeName" onchange="triggers[&quot;PGDegreeName&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGDegreeName" class="form-control form-control-sm" placeholder="Degree Name"><span class="error" id="error-PGDegreeName" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__30536">
+        <div class="form-group row" id="fieldset__90509">
         <div class="col row">
             <label  id="label-PGSubjectsDiscipline" class="col-form-label col-md-3" for="PGSubjectsDiscipline">PG Subjects/Discipline<span id="asterisk-PGSubjectsDiscipline" style="color:red">*</span></label><div class="col-md-3"><input name="PGSubjectsDiscipline" onchange="triggers[&quot;PGSubjectsDiscipline&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGSubjectsDiscipline" class="form-control form-control-sm" placeholder="PG Subjects/Discipline"><span class="error" id="error-PGSubjectsDiscipline" style="display:none">Error</span></div>
             <label  id="label-PGInstituteName" class="col-form-label col-md-3" for="PGInstituteName">Name of Institute/College<span id="asterisk-PGInstituteName" style="color:red">*</span></label><div class="col-md-4"><textarea name="PGInstituteName" onchange="triggers[&quot;PGInstituteName&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGInstituteName" class="form-control form-control-sm" placeholder="Name of Institute/College"></textarea><span class="error" id="error-PGInstituteName" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__54074">
+        <div class="form-group row" id="fieldset__46830">
         <div class="col row">
             <label  id="label-PGYearofPassing" class="col-form-label col-md-3" for="PGYearofPassing">Year of Passing<span id="asterisk-PGYearofPassing" style="color:red">*</span></label><div class="col-md-3"><input name="PGYearofPassing" onchange="triggers[&quot;PGYearofPassing&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGYearofPassing" class="form-control form-control-sm" placeholder="Year of Passing"><span class="error" id="error-PGYearofPassing" style="display:none">Error</span></div>
             <label  id="label-PGBoardUniversity" class="col-form-label col-md-3" for="PGBoardUniversity">Board/University<span id="asterisk-PGBoardUniversity" style="color:red">*</span></label><div class="col-md-3"><input name="PGBoardUniversity" onchange="triggers[&quot;PGBoardUniversity&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGBoardUniversity" class="form-control form-control-sm" placeholder="Board/University"><span class="error" id="error-PGBoardUniversity" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__49611">
+        <div class="form-group row" id="fieldset__40582">
         <div class="col row">
             <label  id="label-PGMarksCGPAobtained" class="col-form-label col-md-3" for="PGMarksCGPAobtained">Marks/CGPA obtained<span id="asterisk-PGMarksCGPAobtained" style="color:red">*</span></label><div class="col-md-3"><input name="PGMarksCGPAobtained" onchange="triggers[&quot;PGMarksCGPAobtained&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGMarksCGPAobtained" class="form-control form-control-sm" placeholder="Marks/CGPA obtained"><span class="error" id="error-PGMarksCGPAobtained" style="display:none">Error</span></div>
             <label  id="label-PGMaximumMarksCGPA" class="col-form-label col-md-3" for="PGMaximumMarksCGPA">Maximum Marks/CGPA<span id="asterisk-PGMaximumMarksCGPA" style="color:red">*</span></label><div class="col-md-3"><input name="PGMaximumMarksCGPA" onchange="triggers[&quot;PGMaximumMarksCGPA&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGMaximumMarksCGPA" class="form-control form-control-sm" placeholder="Maximum Marks/CGPA"><span class="error" id="error-PGMaximumMarksCGPA" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__13414">
+        <div class="form-group row" id="fieldset__06237">
         <div class="col row">
             <label  id="label-PGMarksCGPA" class="col-form-label col-md-3" for="PGMarksCGPA">% Marks/CGPA<span id="asterisk-PGMarksCGPA" style="color:red">*</span></label><div class="col-md-3"><input name="PGMarksCGPA" onchange="triggers[&quot;PGMarksCGPA&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGMarksCGPA" class="form-control form-control-sm" placeholder="% Marks/CGPA"><span class="error" id="error-PGMarksCGPA" style="display:none">Error</span></div>
             <label  id="label-PGDivision" class="col-form-label col-md-3" for="PGDivision">Division<span id="asterisk-PGDivision" style="color:red">*</span></label><div class="col-md-3"><input name="PGDivision" onchange="triggers[&quot;PGDivision&quot;].forEach(function(f, i) { f.call(this, event) });" id="PGDivision" class="form-control form-control-sm" placeholder="Division"><span class="error" id="error-PGDivision" style="display:none">Error</span></div>
@@ -341,13 +293,13 @@
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-PhD-Details" role="tabpanel" aria-labelledby="v-pills-PhD-Details-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">PhD Details</h2>
-                
+        <form method='POST' id='frm_PhDDetails'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">PhD Details</h2>
+            
         <div class="instructions">
     <h5 style="margin-left: -10px">Instructions for this page</h5>
     <p style="color:red">
@@ -357,31 +309,31 @@
         </p>
   </div>
   <hr>
-        <div class="form-group row" id="fieldset__04574">
+        <div class="form-group row" id="fieldset__36983">
         <div class="col row">
             <label  id="label-AwardedDate" class="col-form-label col-md-3" for="AwardedDate">Awarded Date: (dd/mm/yyy)<span id="asterisk-AwardedDate" style="color:red">*</span></label><div class="col-md-6"><input name="AwardedDate" placeholder="dd/mm/yyyy" onchange="triggers[&quot;AwardedDate&quot;].forEach(function(f, i) { f.call(this, event) });" id="AwardedDate" class="form-control form-control-sm"><span class="error" id="error-AwardedDate" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__98651">
+        <div class="form-group row" id="fieldset__91088">
         <div class="col row">
             <label  id="label-Title" class="col-form-label col-md-3" for="Title">Title<span id="asterisk-Title" style="color:red">*</span></label><div class="col-md-6"><input name="Title" placeholder="Please enter" onchange="triggers[&quot;Title&quot;].forEach(function(f, i) { f.call(this, event) });" id="Title" class="form-control form-control-sm"><span class="error" id="error-Title" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__23738">
+        <div class="form-group row" id="fieldset__95975">
         <div class="col row">
             <label  id="label-University" class="col-form-label col-md-3" for="University">University<span id="asterisk-University" style="color:red">*</span></label><div class="col-md-6"><input name="University" placeholder="Please enter" onchange="triggers[&quot;University&quot;].forEach(function(f, i) { f.call(this, event) });" id="University" class="form-control form-control-sm"><span class="error" id="error-University" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Present-Employer" role="tabpanel" aria-labelledby="v-pills-Present-Employer-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Present Employer</h2>
-                
-        <div class="form-group row" id="fieldset__54946">
+        <form method='POST' id='frm_PresentEmployer'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Present Employer</h2>
+            
+        <div class="form-group row" id="fieldset__70824">
         <div class="col row">
             <label  id="label-EmployerOrganization" class="col-form-label col-md-3" for="EmployerOrganization">Employer Organization<span id="asterisk-EmployerOrganization" style="color:red">*</span></label><div class="col-md-6"><input name="EmployerOrganization" placeholder="Please enter" onchange="triggers[&quot;EmployerOrganization&quot;].forEach(function(f, i) { f.call(this, event) });" id="EmployerOrganization" class="form-control form-control-sm"><span class="error" id="error-EmployerOrganization" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__03668">
+        <div class="form-group row" id="fieldset__39701">
         <div class="col row">
             <label  id="label-PositionHeld" class="col-form-label col-md-3" for="PositionHeld">Position Held<span id="asterisk-PositionHeld" style="color:red">*</span></label><div class="col-md-3"><input name="PositionHeld" placeholder="Please enter" onchange="triggers[&quot;PositionHeld&quot;].forEach(function(f, i) { f.call(this, event) });" id="PositionHeld" class="form-control form-control-sm"><span class="error" id="error-PositionHeld" style="display:none">Error</span></div>
             <label  id="label-TypeofEmployer" class="col-form-label col-md-3" for="TypeofEmployer">Type of Employer<span id="asterisk-TypeofEmployer" style="color:red">*</span></label><div class="col-md-3"><select name="TypeofEmployer" placeholder="Please select an option" onchange="triggers[&quot;TypeofEmployer&quot;].forEach(function(f, i) { f.call(this, event) });" id="TypeofEmployer" class="custom-select form-control form-control-sm"><option>Please select an option</option>
@@ -390,88 +342,88 @@
                 <option value="PSU/Autonomous Body">PSU/Autonomous Body</option>
             </select><span class="error" id="error-TypeofEmployer" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__78932">
+        <div class="form-group row" id="fieldset__20027">
         <div class="col row">
             <label  id="label-WorkedFrom" class="col-form-label col-md-3" for="WorkedFrom">From: (dd/mm/yyyy)<span id="asterisk-WorkedFrom" style="color:red">*</span></label><div class="col-md-3"><input name="WorkedFrom" placeholder="dd/mm/yyyy" onchange="triggers[&quot;WorkedFrom&quot;].forEach(function(f, i) { f.call(this, event) });" id="WorkedFrom" class="form-control form-control-sm"><span class="error" id="error-WorkedFrom" style="display:none">Error</span></div>
             <label  id="label-WorkedTill" class="col-form-label col-md-3" for="WorkedTill">To: (dd/mm/yyyy)<span id="asterisk-WorkedTill" style="color:red">*</span></label><div class="col-md-3"><input name="WorkedTill" placeholder="dd/mm/yyyy" onchange="triggers[&quot;WorkedTill&quot;].forEach(function(f, i) { f.call(this, event) });" id="WorkedTill" class="form-control form-control-sm"><span class="error" id="error-WorkedTill" style="display:none">Error</span></div>            
         </div></div>
-        <div class="form-group row" id="fieldset__59261">
+        <div class="form-group row" id="fieldset__63000">
         <div class="col row">
             <label  id="label-PayinPayBand" class="col-form-label col-md-3" for="PayinPayBand">Pay in Pay Band</label><div class="col-md-3"><input name="PayinPayBand" placeholder="Please enter" onchange="triggers[&quot;PayinPayBand&quot;].forEach(function(f, i) { f.call(this, event) });" id="PayinPayBand" class="form-control form-control-sm"><span class="error" id="error-PayinPayBand" style="display:none">Error</span></div>
             <label  id="label-AGPGP" class="col-form-label col-md-3" for="AGPGP">AGP/GP</label><div class="col-md-3"><input name="AGPGP" placeholder="Please enter" onchange="triggers[&quot;AGPGP&quot;].forEach(function(f, i) { f.call(this, event) });" id="AGPGP" class="form-control form-control-sm"><span class="error" id="error-AGPGP" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__08799">
+        <div class="form-group row" id="fieldset__33944">
         <div class="col row">
             <label  id="label-BasicPay" class="col-form-label col-md-3" for="BasicPay">Basic Pay<span id="asterisk-BasicPay" style="color:red">*</span></label><div class="col-md-6"><input name="BasicPay" placeholder="Please enter" onchange="triggers[&quot;BasicPay&quot;].forEach(function(f, i) { f.call(this, event) });" id="BasicPay" class="form-control form-control-sm"><span class="error" id="error-BasicPay" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__05907">
+        <div class="form-group row" id="fieldset__56406">
         <div class="col row">
             <label  id="label-NatureofWork" class="col-form-label col-md-3" for="NatureofWork">Nature of Work<span id="asterisk-NatureofWork" style="color:red">*</span></label><div class="col-md-6"><input name="NatureofWork" placeholder="Please enter" onchange="triggers[&quot;NatureofWork&quot;].forEach(function(f, i) { f.call(this, event) });" id="NatureofWork" class="form-control form-control-sm"><span class="error" id="error-NatureofWork" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Research-Experience" role="tabpanel" aria-labelledby="v-pills-Research-Experience-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Research Experience</h2>
-                
-        <div class="form-group row" id="fieldset__43679">
+        <form method='POST' id='frm_ResearchExperience'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Research Experience</h2>
+            
+        <div class="form-group row" id="fieldset__53538">
         <div class="col row">
             <label  id="label-ResearchOrganization" class="col-form-label col-md-3" for="ResearchOrganization">Research Organization<span id="asterisk-ResearchOrganization" style="color:red">*</span></label><div class="col-md-6"><input name="ResearchOrganization" placeholder="Please enter" onchange="triggers[&quot;ResearchOrganization&quot;].forEach(function(f, i) { f.call(this, event) });" id="ResearchOrganization" class="form-control form-control-sm"><span class="error" id="error-ResearchOrganization" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__66948">
+        <div class="form-group row" id="fieldset__98888">
         <div class="col row">
             <label  id="label-ResearchPositionHeld" class="col-form-label col-md-3" for="ResearchPositionHeld">Research Position Held<span id="asterisk-ResearchPositionHeld" style="color:red">*</span></label><div class="col-md-6"><input name="ResearchPositionHeld" placeholder="Please enter" onchange="triggers[&quot;ResearchPositionHeld&quot;].forEach(function(f, i) { f.call(this, event) });" id="ResearchPositionHeld" class="form-control form-control-sm"><span class="error" id="error-ResearchPositionHeld" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__72924">
+        <div class="form-group row" id="fieldset__79114">
         <div class="col row">
             <label  id="label-ResearchFrom" class="col-form-label col-md-3" for="ResearchFrom">From: (dd/mm/yyyy)<span id="asterisk-ResearchFrom" style="color:red">*</span></label><div class="col-md-3"><input name="ResearchFrom" placeholder="dd/mm/yyyy" onchange="triggers[&quot;ResearchFrom&quot;].forEach(function(f, i) { f.call(this, event) });" id="ResearchFrom" class="form-control form-control-sm"><span class="error" id="error-ResearchFrom" style="display:none">Error</span></div>
             <label  id="label-ResearchTill" class="col-form-label col-md-3" for="ResearchTill">To: (dd/mm/yyyy)<span id="asterisk-ResearchTill" style="color:red">*</span></label><div class="col-md-3"><input name="ResearchTill" placeholder="dd/mm/yyyy" onchange="triggers[&quot;ResearchTill&quot;].forEach(function(f, i) { f.call(this, event) });" id="ResearchTill" class="form-control form-control-sm"><span class="error" id="error-ResearchTill" style="display:none">Error</span></div>            
         </div></div>
-        <div class="form-group row" id="fieldset__32411">
+        <div class="form-group row" id="fieldset__58104">
         <div class="col row">
             <label  id="label-TotalResearchGrant" class="col-form-label col-md-3" for="TotalResearchGrant">Total Research Grant<span id="asterisk-TotalResearchGrant" style="color:red">*</span></label><div class="col-md-6"><input name="TotalResearchGrant" placeholder="Please enter" onchange="triggers[&quot;TotalResearchGrant&quot;].forEach(function(f, i) { f.call(this, event) });" id="TotalResearchGrant" class="form-control form-control-sm"><span class="error" id="error-TotalResearchGrant" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__06522">
+        <div class="form-group row" id="fieldset__17501">
         <div class="col row">
             <label  id="label-ReasonforLeaving" class="col-form-label col-md-3" for="ReasonforLeaving">Reason for Leaving<span id="asterisk-ReasonforLeaving" style="color:red">*</span></label><div class="col-md-6"><input name="ReasonforLeaving" placeholder="Please enter" onchange="triggers[&quot;ReasonforLeaving&quot;].forEach(function(f, i) { f.call(this, event) });" id="ReasonforLeaving" class="form-control form-control-sm"><span class="error" id="error-ReasonforLeaving" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Professional-Experience" role="tabpanel" aria-labelledby="v-pills-Professional-Experience-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Professional Experience</h2>
-                
+        <form method='POST' id='frm_ProfessionalExperience'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Professional Experience</h2>
+            
         <table id="teachingExperience"><thead><tr><th style="width:auto">Name Of Organization</th><th style="width:auto">Address Of Organization</th><th style="width:auto">Nature of work</th><th style="width:auto">payscale</th><th style="width:auto">From</th><th style="width:auto">To</th><th style="width:auto">Type of Organization</th><th style="width:auto">Reasons for leaving</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_teachingExperience" onclick="addRow_teachingExperience(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Sponsored-Project" role="tabpanel" aria-labelledby="v-pills-Sponsored-Project-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Sponsored Project</h2>
-                
-        <div class="form-group row" id="fieldset__39949">
+        <form method='POST' id='frm_SponsoredProject'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Sponsored Project</h2>
+            
+        <div class="form-group row" id="fieldset__13801">
         <div class="col row">
             <label  id="label-ProjectTitle" class="col-form-label col-md-3" for="ProjectTitle">Project Title<span id="asterisk-ProjectTitle" style="color:red">*</span></label><div class="col-md-6"><input name="ProjectTitle" onchange="triggers[&quot;ProjectTitle&quot;].forEach(function(f, i) { f.call(this, event) });" id="ProjectTitle" class="form-control form-control-sm" placeholder="Project Title"><span class="error" id="error-ProjectTitle" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__09546">
+        <div class="form-group row" id="fieldset__90759">
         <div class="col row">
             <label  id="label-SponsoringAgency" class="col-form-label col-md-3" for="SponsoringAgency">Sponsoring Agency<span id="asterisk-SponsoringAgency" style="color:red">*</span></label><div class="col-md-6"><input name="SponsoringAgency" onchange="triggers[&quot;SponsoringAgency&quot;].forEach(function(f, i) { f.call(this, event) });" id="SponsoringAgency" class="form-control form-control-sm" placeholder="Sponsoring Agency"><span class="error" id="error-SponsoringAgency" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__77898">
+        <div class="form-group row" id="fieldset__47069">
         <div class="col row">
             <label  id="label-ProjectFrom" class="col-form-label col-md-3" for="ProjectFrom">From: (dd/mm/yyyy)<span id="asterisk-ProjectFrom" style="color:red">*</span></label><div class="col-md-3"><input name="ProjectFrom" placeholder="dd/mm/yyyy" onchange="triggers[&quot;ProjectFrom&quot;].forEach(function(f, i) { f.call(this, event) });" id="ProjectFrom" class="form-control form-control-sm"><span class="error" id="error-ProjectFrom" style="display:none">Error</span></div>
             <label  id="label-ProjectTo" class="col-form-label col-md-3" for="ProjectTo">From: (dd/mm/yyyy)<span id="asterisk-ProjectTo" style="color:red">*</span></label><div class="col-md-3"><input name="ProjectTo" placeholder="dd/mm/yyyy" onchange="triggers[&quot;ProjectTo&quot;].forEach(function(f, i) { f.call(this, event) });" id="ProjectTo" class="form-control form-control-sm"><span class="error" id="error-ProjectTo" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__85965">
+        <div class="form-group row" id="fieldset__20709">
         <div class="col row">
             <label  id="label-ProjectAmount" class="col-form-label col-md-3" for="ProjectAmount">Amount(In Lacs)<span id="asterisk-ProjectAmount" style="color:red">*</span></label><div class="col-md-3"><input name="ProjectAmount" placeholder="dd/mm/yyyy" onchange="triggers[&quot;ProjectAmount&quot;].forEach(function(f, i) { f.call(this, event) });" id="ProjectAmount" class="form-control form-control-sm"><span class="error" id="error-ProjectAmount" style="display:none">Error</span></div>
             <label  id="label-Status" class="col-form-label col-md-3" for="Status">Status<span id="asterisk-Status" style="color:red">*</span></label><div class="col-md-3"><select name="Status" placeholder="Please select" onchange="triggers[&quot;Status&quot;].forEach(function(f, i) { f.call(this, event) });" id="Status" class="custom-select form-control form-control-sm"><option>Please select</option>
@@ -479,7 +431,7 @@
                 <option value="Completed">Completed</option>
             </select><span class="error" id="error-Status" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__00278">
+        <div class="form-group row" id="fieldset__49414">
         <div class="col row">
             <label  id="label-ProjectRole" class="col-form-label col-md-3" for="ProjectRole">Role<span id="asterisk-ProjectRole" style="color:red">*</span></label><div class="col-md-3"><select name="ProjectRole" placeholder="Please select" onchange="triggers[&quot;ProjectRole&quot;].forEach(function(f, i) { f.call(this, event) });" id="ProjectRole" class="custom-select form-control form-control-sm"><option>Please select</option>
                 <option value="Investigator">Investigator</option>
@@ -498,27 +450,27 @@
             </select><span class="error" id="error-CoPI" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Patent-Details" role="tabpanel" aria-labelledby="v-pills-Patent-Details-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Patent Details</h2>
-                
-        <div class="form-group row" id="fieldset__72029">
+        <form method='POST' id='frm_PatentDetails'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Patent Details</h2>
+            
+        <div class="form-group row" id="fieldset__39458">
         <div class="col row">
             <label  id="label-PatentName" class="col-form-label col-md-3" for="PatentName">Patent Name<span id="asterisk-PatentName" style="color:red">*</span></label><div class="col-md-6"><input name="PatentName" onchange="triggers[&quot;PatentName&quot;].forEach(function(f, i) { f.call(this, event) });" id="PatentName" class="form-control form-control-sm" placeholder="Patent Name"><span class="error" id="error-PatentName" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__89234">
+        <div class="form-group row" id="fieldset__92236">
         <div class="col row">
             <label  id="label-PatentRegistrationNo" class="col-form-label col-md-3" for="PatentRegistrationNo">Patent Registration No<span id="asterisk-PatentRegistrationNo" style="color:red">*</span></label><div class="col-md-3"><input name="PatentRegistrationNo" onchange="triggers[&quot;PatentRegistrationNo&quot;].forEach(function(f, i) { f.call(this, event) });" id="PatentRegistrationNo" class="form-control form-control-sm" placeholder="Patent Registration No"><span class="error" id="error-PatentRegistrationNo" style="display:none">Error</span></div>
             <label  id="label-PatentDate" class="col-form-label col-md-3" for="PatentDate">Date of Award (dd/mm/yyyy)<span id="asterisk-PatentDate" style="color:red">*</span></label><div class="col-md-3"><input name="PatentDate" placeholder="dd/mm/yyyy" onchange="triggers[&quot;PatentDate&quot;].forEach(function(f, i) { f.call(this, event) });" id="PatentDate" class="form-control form-control-sm"><span class="error" id="error-PatentDate" style="display:none">Error</span></div>            
         </div></div>
-        <div class="form-group row" id="fieldset__97672">
+        <div class="form-group row" id="fieldset__32688">
         <div class="col row">
             <label  id="label-AwardingOrganization" class="col-form-label col-md-3" for="AwardingOrganization">Awarding Organization<span id="asterisk-AwardingOrganization" style="color:red">*</span></label><div class="col-md-6"><input name="AwardingOrganization" onchange="triggers[&quot;AwardingOrganization&quot;].forEach(function(f, i) { f.call(this, event) });" id="AwardingOrganization" class="form-control form-control-sm" placeholder="Awarding Organization"><span class="error" id="error-AwardingOrganization" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__21181">
+        <div class="form-group row" id="fieldset__21413">
         <div class="col row">
             <label  id="label-PatentRole" class="col-form-label col-md-3" for="PatentRole">Role<span id="asterisk-PatentRole" style="color:red">*</span></label><div class="col-md-3"><select name="PatentRole" placeholder="Please select" onchange="triggers[&quot;PatentRole&quot;].forEach(function(f, i) { f.call(this, event) });" id="PatentRole" class="custom-select form-control form-control-sm"><option>Please select</option>
                 <option value="Investigator">Investigator</option>
@@ -536,7 +488,7 @@
                 <option value="8">8</option>              
             </select><span class="error" id="error-PatentCoPI" style="display:none">Error</span></div>
         </div></div>
-        <div class="form-group row" id="fieldset__40893">
+        <div class="form-group row" id="fieldset__22499">
         <div class="col row">
             <label  id="label-PatentPI" class="col-form-label col-md-3" for="PatentPI">Status<span id="asterisk-PatentPI" style="color:red">*</span></label><div class="col-md-6"><select name="PatentPI" placeholder="Please select" onchange="triggers[&quot;PatentPI&quot;].forEach(function(f, i) { f.call(this, event) });" id="PatentPI" class="custom-select form-control form-control-sm"><option>Please select</option>
                 <option value="Awarded">Awarded</option>
@@ -544,86 +496,86 @@
             </select><span class="error" id="error-PatentPI" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Research-Publications" role="tabpanel" aria-labelledby="v-pills-Research-Publications-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Research Publications</h2>
-                
+        <form method='POST' id='frm_ResearchPublications'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Research Publications</h2>
+            
         <table id="Papers"><thead><tr><th style="width:auto">Name of the Journal</th><th style="width:auto">Volume No.</th><th style="width:auto">month</th><th style="width:auto">Year</th><th style="width:auto">Authors</th><th style="width:auto">Title of the paper</th><th style="width:auto">Impact factor</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_Papers" onclick="addRow_Papers(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Other-Publications" role="tabpanel" aria-labelledby="v-pills-Other-Publications-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Other Publications</h2>
-                
+        <form method='POST' id='frm_OtherPublications'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Other Publications</h2>
+            
         <table id="otherPapers"><thead><tr><th style="width:auto">Name of conference with venue</th><th style="width:auto">Authors</th><th style="width:auto">Title of the paper</th><th style="width:auto">Impact factor</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_otherPapers" onclick="addRow_otherPapers(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Fellow" role="tabpanel" aria-labelledby="v-pills-Fellow-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Fellow</h2>
-                
+        <form method='POST' id='frm_Fellow'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Fellow</h2>
+            
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Conferences" role="tabpanel" aria-labelledby="v-pills-Conferences-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Conferences</h2>
-                
+        <form method='POST' id='frm_Conferences'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Conferences</h2>
+            
         <table id="conferenceSymposium"><thead><tr><th style="width:auto">Name of the Connference</th><th style="width:auto">Year</th><th style="width:auto">Volume No.</th><th style="width:auto">Title of the paper</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_conferenceSymposium" onclick="addRow_conferenceSymposium(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Workshops---Training-Programs" role="tabpanel" aria-labelledby="v-pills-Workshops---Training-Programs-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Workshops / Training Programs</h2>
-                
+        <form method='POST' id='frm_WorkshopsTrainingPrograms'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Workshops / Training Programs</h2>
+            
         <table id="workshops"><thead><tr><th style="width:auto">Title of the Workshop organized</th><th style="width:auto">Year</th><th style="width:auto">Venue</th><th style="width:auto">Sponsoring Authority</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_workshops" onclick="addRow_workshops(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Thesis-spervised" role="tabpanel" aria-labelledby="v-pills-Thesis-spervised-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Thesis spervised</h2>
-                
+        <form method='POST' id='frm_Thesisspervised'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Thesis spervised</h2>
+            
         <table id="Thesis"><thead><tr><th style="width:auto">Title of the Thesis Supervised</th><th style="width:auto">Completed(year)</th><th style="width:auto">In progress(With status)</th><th style="width:auto">Principal or Co-Supervisor</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_Thesis" onclick="addRow_Thesis(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Administrative-and-Other-Activities" role="tabpanel" aria-labelledby="v-pills-Administrative-and-Other-Activities-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Administrative and Other Activities</h2>
-                
+        <form method='POST' id='frm_AdministrativeandOtherActivities'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Administrative and Other Activities</h2>
+            
         <table id="adminSupport"><thead><tr><th style="width:auto">Section/Office/Institute level committee</th><th style="width:auto">From</th><th style="width:auto">To</th><th style="width:auto">Position Held</th><th style="width:auto">Responsibility Type</th><th style="width:auto">Responsibilities</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_adminSupport" onclick="addRow_adminSupport(event)">
                 <span class="fa fa-plus-square"></span>
@@ -635,51 +587,51 @@
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Placement-Percentage" role="tabpanel" aria-labelledby="v-pills-Placement-Percentage-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Placement Percentage</h2>
-                
+        <form method='POST' id='frm_PlacementPercentage'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Placement Percentage</h2>
+            
         <table id="placementPercentage"><thead><tr><th style="width:auto">Year</th><th style="width:auto">Percentage</th><th>
             <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_placementPercentage" onclick="addRow_placementPercentage(event)">
                 <span class="fa fa-plus-square"></span>
             </a>
             </th></tr></thead></table>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Miscellaneous" role="tabpanel" aria-labelledby="v-pills-Miscellaneous-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Miscellaneous</h2>
-                
+        <form method='POST' id='frm_Miscellaneous'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Miscellaneous</h2>
+            
         
-        <div class="form-group row" id="fieldset__25575">
+        <div class="form-group row" id="fieldset__56060">
         <div class="col row">
             <label  id="label-AwardsHonorsDistinction" class="col-form-label col-md-12" for="AwardsHonorsDistinction">Awards/HonorsDistinction<span id="asterisk-AwardsHonorsDistinction" style="color:red">*</span></label><div class="col-md-12"><input name="AwardsHonorsDistinction" placeholder="Awards/HonorsDistinction" onchange="triggers[&quot;AwardsHonorsDistinction&quot;].forEach(function(f, i) { f.call(this, event) });" id="AwardsHonorsDistinction" class="form-control form-control-sm"><span class="error" id="error-AwardsHonorsDistinction" style="display:none">Error</span></div>
         </div></div>
         
-        <div class="form-group row" id="fieldset__36107">
+        <div class="form-group row" id="fieldset__96189">
         <div class="col row">
             <label  id="label-TeachingandResearchPlanforNextFiveYears" class="col-form-label col-md-12" for="TeachingandResearchPlanforNextFiveYears">Teaching and Research Plan for Next Five Years<span id="asterisk-TeachingandResearchPlanforNextFiveYears" style="color:red">*</span></label><div class="col-md-12"><input name="TeachingandResearchPlanforNextFiveYears" placeholder="Teaching and Research Plan for Next Five Years" onchange="triggers[&quot;TeachingandResearchPlanforNextFiveYears&quot;].forEach(function(f, i) { f.call(this, event) });" id="TeachingandResearchPlanforNextFiveYears" class="form-control form-control-sm"><span class="error" id="error-TeachingandResearchPlanforNextFiveYears" style="display:none">Error</span></div>
         </div></div>
         
-        <div class="form-group row" id="fieldset__13948">
+        <div class="form-group row" id="fieldset__91454">
         <div class="col row">
             <label  id="label-AnyOtherRelevantInfo" class="col-form-label col-md-12" for="AnyOtherRelevantInfo">Any Other Relevant Info<span id="asterisk-AnyOtherRelevantInfo" style="color:red">*</span></label><div class="col-md-12"><input name="AnyOtherRelevantInfo" placeholder="Any Other Relevant Info" onchange="triggers[&quot;AnyOtherRelevantInfo&quot;].forEach(function(f, i) { f.call(this, event) });" id="AnyOtherRelevantInfo" class="form-control form-control-sm"><span class="error" id="error-AnyOtherRelevantInfo" style="display:none">Error</span></div>
         </div></div>
         
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div><div class="tab-pane fade " id="v-pills-Name-and-address-of-Reference" role="tabpanel" aria-labelledby="v-pills-Name-and-address-of-Reference-tab">
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Name and address of Reference</h2>
-                
-        <div class="form-group row" id="fieldset__93438">
+        <form method='POST' id='frm_NameandaddressofReference'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Name and address of Reference</h2>
+            
+        <div class="form-group row" id="fieldset__34010">
         <div class="col row">
             <label  id="label-RefName" class="col-form-label col-md-2" for="RefName">Name<span id="asterisk-RefName" style="color:red">*</span></label><div class="col-md-3"><input name="RefName" placeholder="Name" onchange="triggers[&quot;RefName&quot;].forEach(function(f, i) { f.call(this, event) });" id="RefName" class="form-control form-control-sm"><span class="error" id="error-RefName" style="display:none">Error</span></div>
             <label  id="label-RefPosition" class="col-form-label col-md-2" for="RefPosition">Position<span id="asterisk-RefPosition" style="color:red">*</span></label><div class="col-md-3"><input name="RefPosition" placeholder="Position" onchange="triggers[&quot;RefPosition&quot;].forEach(function(f, i) { f.call(this, event) });" id="RefPosition" class="form-control form-control-sm"><span class="error" id="error-RefPosition" style="display:none">Error</span></div>
@@ -689,26 +641,41 @@
             <label  id="label-RefMobile" class="col-form-label col-md-2" for="RefMobile">Mobile<span id="asterisk-RefMobile" style="color:red">*</span></label><div class="col-md-3"><input name="RefMobile" placeholder="Mobile" onchange="triggers[&quot;RefMobile&quot;].forEach(function(f, i) { f.call(this, event) });" id="RefMobile" class="form-control form-control-sm"><span class="error" id="error-RefMobile" style="display:none">Error</span></div>
         </div></div>
         
-        <div class="form-group row" id="fieldset__03971">
+        <div class="form-group row" id="fieldset__03627">
         <div class="col row">
             <label  id="label-DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" class="col-form-label col-md-12" for="DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars">Did you previously apply for any post in this institute ? If yes, give particulars<span id="asterisk-DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" style="color:red">*</span></label><div class="col-md-12"><input name="DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" placeholder="Did you previously apply for any post in this institute ? If yes, give particulars" onchange="triggers[&quot;DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars&quot;].forEach(function(f, i) { f.call(this, event) });" id="DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" class="form-control form-control-sm"><span class="error" id="error-DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars" style="display:none">Error</span></div>
         </div></div>
     
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form></div></div></div>
             </div>
         </div>
 
-    <div class="footer bg-dark" style="position: fixed; bottom: 0; left: 0; right: 0px; text-align: center; color: white">
-        Copyright 2017 &copy; NIT Trichy
-    </div>
+    <%- include('partials/footer.partial.ejs') %>
+
+    <script type="text/javascript">
+        var applicationData = <%- JSON.stringify(applicationData) %>;
+        var applicationId = applicationData.id;
+
+        $("form").each(function(id, el) {
+            var id = $(el).attr("id");
+            id = id.replace(/^frm_/, "");
+            $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+        });
+
+        for (var i = 0; i < applicationData.FormValues.length; i++) {
+            var key = applicationData.FormValues[i].FormElement.name;
+            var val = applicationData.FormValues[i].value;
+            $("[name=" + key + "]").val(val);
+        }
+    </script>
 
     
-<script type='text/javascript' src='js/indicative_bundle.js'></script>
+<script type='text/javascript' src='/js/indicative_bundle.js'></script>
 <script type='text/javascript'>
-let $f = {"DepartmentAppliedFor":"","PostAppliedFor":"","ApplicationSpecialization":"","internalCandidate":"","StaffNumber":"","DateofLastPromotion":"","FullName":"","FathersHusbandsName":"","DateofBirth":"","Age":"","Gender":"","Category":"","Nationality":"","StateUT":"","MaritalStatus":"","PANnumber":"","AadhaarNumber":"","Email":"","ContactNobrwithcountrycode":"","AlternativeContactNo":"","Address":"","PermanentAddress":"","Photo":"","Examination__count__":"","MatriculationSpecialization__count__":"","Description__count__":"","UGDegreeName":"","UGSpecialization":"","UGCollege":"","UGYearOfPassing":"","UGBoardUniv":"","UGMarksCGPAobtained":"","UGMaximummarksCGPA":"","UGMarksCGPA":"","UGPassedClassDivision":"","UGSemesterNo__count__":"","UGCodeNameofsubject__count__":"","UGNumberofattempts__count__":"","UGMonthYearofPassing__count__":"","UGofMarksGrade__count__":"","PGDegreeName":"","PGSubjectsDiscipline":"","PGInstituteName":"","PGYearofPassing":"","PGBoardUniversity":"","PGMarksCGPAobtained":"","PGMaximumMarksCGPA":"","PGMarksCGPA":"","PGDivision":"","PGSemesterNo__count__":"","PGCodeNameofsubject__count__":"","PGNumberofattempts__count__":"","PGMonthYearofPassing__count__":"","PGofMarksGrade__count__":"","AwardedDate":"","Title":"","University":"","EmployerOrganization":"","PositionHeld":"","TypeofEmployer":"","WorkedFrom":"","WorkedTill":"","PayinPayBand":"","AGPGP":"","BasicPay":"","NatureofWork":"","ResearchOrganization":"","ResearchPositionHeld":"","ResearchFrom":"","ResearchTill":"","TotalResearchGrant":"","ReasonforLeaving":"","NameOfOrganization__count__":"","AddressOfOrganization__count__":"","Natureofwork__count__":"","payscale__count__":"","From__count__":"","To__count__":"","TypeofOrganization__count__":"","Reasonsforleaving__count__":"","ProjectTitle":"","SponsoringAgency":"","ProjectFrom":"","ProjectTo":"","ProjectAmount":"","Status":"","ProjectRole":"","CoPI":"","PatentName":"","PatentRegistrationNo":"","PatentDate":"","AwardingOrganization":"","PatentRole":"","PatentCoPI":"","PatentPI":"","NameoftheJournal__count__":"","VolumeNo__count__":"","month__count__":"","Year__count__":"","Authors__count__":"","Titleofthepaper__count__":"","Impactfactor__count__":"","OPNameofconferencewithvenue__count__":"","OPAuthors__count__":"","OPTitleofthepaper__count__":"","OPImpactfactor__count__":"","NameoftheConnference__count__":"","ConferenceYear__count__":"","ConferenceVolumeNo__count__":"","ConferenceTitleofthepaper__count__":"","TitleoftheWorkshoporganized__count__":"","WTYear__count__":"","WTVenue__count__":"","SponsoringAuthority__count__":"","TitleoftheThesisSupervised__count__":"","Completedyear__count__":"","InprogressWithstatus__count__":"","PrincipalorCoSupervisor__count__":"","SectionOfficeInstitutelevelcommittee__count__":"","AOAFrom__count__":"","AOATo__count__":"","PositionHeld__count__":"","ResponsibilityType__count__":"","Responsibilities__count__":"","AcademicOutreachActivities__count__":"","AOAYear__count__":"","PPYear__count__":"","PPpercentage__count__":"","AwardsHonorsDistinction":"","TeachingandResearchPlanforNextFiveYears":"","AnyOtherRelevantInfo":"","RefName":"","RefPosition":"","RefAddress":"","RefEmail":"","RefPhoneNumber":"","RefMobile":"","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":""};
-let rules = {"DepartmentAppliedFor":"required|in:Architecture,Civil Engineering,Chemical Engineering,Computer Science Engineering,Electronics and Communication Engineering,Electricals and Electronics Engineering,Instrumentation and Control Engineering,Mechanical Engineering,Metallurgical and Materials Engineering,Production Engineering,Energy and Environment,Physics,Chemistry,Mathematics,Humanities (English/Economics),Computer Application,Management Studies","PostAppliedFor":"required|in:Assistant Professor (6000),Assistant Professor (7000),Assistant Professor (8000),Associate Professor 1,Associate Professor 2,Associate Professor 3,Professor 1,Professor 2,Professor 3","ApplicationSpecialization":"required","internalCandidate":"required|in:Yes,No","StaffNumber":"required","DateofLastPromotion":"required","FullName":"required","FathersHusbandsName":"required","DateofBirth":"required|date","Age":"required|integer","Gender":"required|in:Male,Female,Transgender,I don&apos;t want to disclose","Category":"required|in:General,Other Backward Classes (OBC),Scheduled Cast (SC),Scheduled Tribe (ST),Person with disabilities","Nationality":"required|in:Indian","StateUT":"required","MaritalStatus":"required|in:Single,Married,Widowed,Divorced,Separated","PANnumber":"required","AadhaarNumber":"required","Email":"required","ContactNobrwithcountrycode":"required|phone","AlternativeContactNo":"required|phone","Address":"required","PermanentAddress":"required","Examination__count__":"required|in:Exam1,Exam2","MatriculationSpecialization__count__":"required","Description__count__":"required","UGDegreeName":"required","UGSpecialization":"required","UGCollege":"required","UGYearOfPassing":"required","UGBoardUniv":"required","UGMarksCGPAobtained":"required","UGMaximummarksCGPA":"required","UGMarksCGPA":"required","UGPassedClassDivision":"required|in:Yes,No","UGSemesterNo__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","UGCodeNameofsubject__count__":"required","UGNumberofattempts__count__":"required","UGMonthYearofPassing__count__":"required","UGofMarksGrade__count__":"required","PGDegreeName":"required","PGSubjectsDiscipline":"required","PGInstituteName":"required","PGYearofPassing":"required","PGBoardUniversity":"required","PGMarksCGPAobtained":"required","PGMaximumMarksCGPA":"required","PGMarksCGPA":"required","PGDivision":"required","PGSemesterNo__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","PGCodeNameofsubject__count__":"required","PGNumberofattempts__count__":"required","PGMonthYearofPassing__count__":"required","PGofMarksGrade__count__":"required","AwardedDate":"required|date","Title":"required","University":"required","EmployerOrganization":"required","PositionHeld":"required","TypeofEmployer":"required|in:Government,Private,PSU/Autonomous Body","WorkedFrom":"required|date","WorkedTill":"required|date","BasicPay":"required","NatureofWork":"required","ResearchOrganization":"required","ResearchPositionHeld":"required","ResearchFrom":"required|date","ResearchTill":"required|date","TotalResearchGrant":"required","ReasonforLeaving":"required","NameOfOrganization__count__":"required","AddressOfOrganization__count__":"required","Natureofwork__count__":"required","payscale__count__":"required","From__count__":"required","To__count__":"required","TypeofOrganization__count__":"required","Reasonsforleaving__count__":"required","ProjectTitle":"required","SponsoringAgency":"required","ProjectFrom":"required|date","ProjectTo":"required|date","ProjectAmount":"required|date","Status":"required|in:In Progress,Completed","ProjectRole":"required|in:Investigator,Co Investigator","CoPI":"required|in:0,1,2,3,4,5,6,7,8","PatentName":"required","PatentRegistrationNo":"required","PatentDate":"required|date","AwardingOrganization":"required","PatentRole":"required|in:Investigator,Co Investigator","PatentCoPI":"required|in:0,1,2,3,4,5,6,7,8","PatentPI":"required|in:Awarded,Filed","NameoftheJournal__count__":"required","VolumeNo__count__":"required","month__count__":"required|in:","Year__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","Authors__count__":"required","Titleofthepaper__count__":"required","Impactfactor__count__":"required","OPNameofconferencewithvenue__count__":"required","OPAuthors__count__":"required","OPTitleofthepaper__count__":"required","OPImpactfactor__count__":"required","NameoftheConnference__count__":"required","ConferenceYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","ConferenceVolumeNo__count__":"required","ConferenceTitleofthepaper__count__":"required","TitleoftheWorkshoporganized__count__":"required","WTYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","WTVenue__count__":"required","SponsoringAuthority__count__":"required","TitleoftheThesisSupervised__count__":"required","Completedyear__count__":"required","InprogressWithstatus__count__":"required","PrincipalorCoSupervisor__count__":"required","SectionOfficeInstitutelevelcommittee__count__":"required","AOAFrom__count__":"required","AOATo__count__":"required","PositionHeld__count__":"required","ResponsibilityType__count__":"required|in:Dean,HOD,ChiefWarden","Responsibilities__count__":"required","AcademicOutreachActivities__count__":"required","AOAYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","PPYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","PPpercentage__count__":"required","AwardsHonorsDistinction":"required","TeachingandResearchPlanforNextFiveYears":"required","AnyOtherRelevantInfo":"required","RefName":"required","RefPosition":"required","RefAddress":"required","RefEmail":"required","RefPhoneNumber":"required","RefMobile":"required","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":"required"};
+let $f = {"DepartmentAppliedFor":"","PostAppliedFor":"","ApplicationSpecialization":"","internalCandidate":"","StaffNumber":"","DateofLastPromotion":"","FullName":"","FathersHusbandsName":"","dob":"","Age":"","Gender":"","Category":"","Nationality":"","StateUT":"","MaritalStatus":"","PANnumber":"","AadhaarNumber":"","Email":"","ContactNobrwithcountrycode":"","AlternativeContactNo":"","Address":"","PermanentAddress":"","Photo":"","Examination__count__":"","MatriculationSpecialization__count__":"","Description__count__":"","UGDegreeName":"","UGSpecialization":"","UGCollege":"","UGYearOfPassing":"","UGBoardUniv":"","UGMarksCGPAobtained":"","UGMaximummarksCGPA":"","UGMarksCGPA":"","UGPassedClassDivision":"","UGSemesterNo__count__":"","UGCodeNameofsubject__count__":"","UGNumberofattempts__count__":"","UGMonthYearofPassing__count__":"","UGofMarksGrade__count__":"","PGDegreeName":"","PGSubjectsDiscipline":"","PGInstituteName":"","PGYearofPassing":"","PGBoardUniversity":"","PGMarksCGPAobtained":"","PGMaximumMarksCGPA":"","PGMarksCGPA":"","PGDivision":"","PGSemesterNo__count__":"","PGCodeNameofsubject__count__":"","PGNumberofattempts__count__":"","PGMonthYearofPassing__count__":"","PGofMarksGrade__count__":"","AwardedDate":"","Title":"","University":"","EmployerOrganization":"","PositionHeld":"","TypeofEmployer":"","WorkedFrom":"","WorkedTill":"","PayinPayBand":"","AGPGP":"","BasicPay":"","NatureofWork":"","ResearchOrganization":"","ResearchPositionHeld":"","ResearchFrom":"","ResearchTill":"","TotalResearchGrant":"","ReasonforLeaving":"","NameOfOrganization__count__":"","AddressOfOrganization__count__":"","Natureofwork__count__":"","payscale__count__":"","From__count__":"","To__count__":"","TypeofOrganization__count__":"","Reasonsforleaving__count__":"","ProjectTitle":"","SponsoringAgency":"","ProjectFrom":"","ProjectTo":"","ProjectAmount":"","Status":"","ProjectRole":"","CoPI":"","PatentName":"","PatentRegistrationNo":"","PatentDate":"","AwardingOrganization":"","PatentRole":"","PatentCoPI":"","PatentPI":"","NameoftheJournal__count__":"","VolumeNo__count__":"","month__count__":"","Year__count__":"","Authors__count__":"","Titleofthepaper__count__":"","Impactfactor__count__":"","OPNameofconferencewithvenue__count__":"","OPAuthors__count__":"","OPTitleofthepaper__count__":"","OPImpactfactor__count__":"","NameoftheConnference__count__":"","ConferenceYear__count__":"","ConferenceVolumeNo__count__":"","ConferenceTitleofthepaper__count__":"","TitleoftheWorkshoporganized__count__":"","WTYear__count__":"","WTVenue__count__":"","SponsoringAuthority__count__":"","TitleoftheThesisSupervised__count__":"","Completedyear__count__":"","InprogressWithstatus__count__":"","PrincipalorCoSupervisor__count__":"","SectionOfficeInstitutelevelcommittee__count__":"","AOAFrom__count__":"","AOATo__count__":"","PositionHeld__count__":"","ResponsibilityType__count__":"","Responsibilities__count__":"","AcademicOutreachActivities__count__":"","AOAYear__count__":"","PPYear__count__":"","PPpercentage__count__":"","AwardsHonorsDistinction":"","TeachingandResearchPlanforNextFiveYears":"","AnyOtherRelevantInfo":"","RefName":"","RefPosition":"","RefAddress":"","RefEmail":"","RefPhoneNumber":"","RefMobile":"","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":""};
+let rules = {"DepartmentAppliedFor":"required|in:Architecture,Civil Engineering,Chemical Engineering,Computer Science Engineering,Electronics and Communication Engineering,Electricals and Electronics Engineering,Instrumentation and Control Engineering,Mechanical Engineering,Metallurgical and Materials Engineering,Production Engineering,Energy and Environment,Physics,Chemistry,Mathematics,Humanities (English/Economics),Computer Application,Management Studies","PostAppliedFor":"required|in:Assistant Professor (6000),Assistant Professor (7000),Assistant Professor (8000),Associate Professor 1,Associate Professor 2,Associate Professor 3,Professor 1,Professor 2,Professor 3","ApplicationSpecialization":"required","internalCandidate":"required|in:Yes,No","StaffNumber":"required","DateofLastPromotion":"required","FullName":"required","FathersHusbandsName":"required","dob":"required|js: verifyDateInddmmyyyy($f.dob)","Age":"required","Gender":"required|in:Male,Female,Transgender,I don&apos;t want to disclose","Category":"required|in:General,Other Backward Classes (OBC),Scheduled Cast (SC),Scheduled Tribe (ST),Person with disabilities","Nationality":"required|in:Indian","StateUT":"required","MaritalStatus":"required|in:Single,Married,Widowed,Divorced,Separated","PANnumber":"required","AadhaarNumber":"required","Email":"required","ContactNobrwithcountrycode":"required|phone","AlternativeContactNo":"required|phone","Address":"required","PermanentAddress":"required","Examination__count__":"required|in:Exam1,Exam2","MatriculationSpecialization__count__":"required","Description__count__":"required","UGDegreeName":"required","UGSpecialization":"required","UGCollege":"required","UGYearOfPassing":"required","UGBoardUniv":"required","UGMarksCGPAobtained":"required","UGMaximummarksCGPA":"required","UGMarksCGPA":"required","UGPassedClassDivision":"required|in:Yes,No","UGSemesterNo__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","UGCodeNameofsubject__count__":"required","UGNumberofattempts__count__":"required","UGMonthYearofPassing__count__":"required","UGofMarksGrade__count__":"required","PGDegreeName":"required","PGSubjectsDiscipline":"required","PGInstituteName":"required","PGYearofPassing":"required","PGBoardUniversity":"required","PGMarksCGPAobtained":"required","PGMaximumMarksCGPA":"required","PGMarksCGPA":"required","PGDivision":"required","PGSemesterNo__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","PGCodeNameofsubject__count__":"required","PGNumberofattempts__count__":"required","PGMonthYearofPassing__count__":"required","PGofMarksGrade__count__":"required","AwardedDate":"required|date","Title":"required","University":"required","EmployerOrganization":"required","PositionHeld":"required","TypeofEmployer":"required|in:Government,Private,PSU/Autonomous Body","WorkedFrom":"required|date","WorkedTill":"required|date","BasicPay":"required","NatureofWork":"required","ResearchOrganization":"required","ResearchPositionHeld":"required","ResearchFrom":"required|date","ResearchTill":"required|date","TotalResearchGrant":"required","ReasonforLeaving":"required","NameOfOrganization__count__":"required","AddressOfOrganization__count__":"required","Natureofwork__count__":"required","payscale__count__":"required","From__count__":"required","To__count__":"required","TypeofOrganization__count__":"required","Reasonsforleaving__count__":"required","ProjectTitle":"required","SponsoringAgency":"required","ProjectFrom":"required|date","ProjectTo":"required|date","ProjectAmount":"required|date","Status":"required|in:In Progress,Completed","ProjectRole":"required|in:Investigator,Co Investigator","CoPI":"required|in:0,1,2,3,4,5,6,7,8","PatentName":"required","PatentRegistrationNo":"required","PatentDate":"required|date","AwardingOrganization":"required","PatentRole":"required|in:Investigator,Co Investigator","PatentCoPI":"required|in:0,1,2,3,4,5,6,7,8","PatentPI":"required|in:Awarded,Filed","NameoftheJournal__count__":"required","VolumeNo__count__":"required","month__count__":"required|in:","Year__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","Authors__count__":"required","Titleofthepaper__count__":"required","Impactfactor__count__":"required","OPNameofconferencewithvenue__count__":"required","OPAuthors__count__":"required","OPTitleofthepaper__count__":"required","OPImpactfactor__count__":"required","NameoftheConnference__count__":"required","ConferenceYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","ConferenceVolumeNo__count__":"required","ConferenceTitleofthepaper__count__":"required","TitleoftheWorkshoporganized__count__":"required","WTYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","WTVenue__count__":"required","SponsoringAuthority__count__":"required","TitleoftheThesisSupervised__count__":"required","Completedyear__count__":"required","InprogressWithstatus__count__":"required","PrincipalorCoSupervisor__count__":"required","SectionOfficeInstitutelevelcommittee__count__":"required","AOAFrom__count__":"required","AOATo__count__":"required","PositionHeld__count__":"required","ResponsibilityType__count__":"required|in:Dean,HOD,ChiefWarden","Responsibilities__count__":"required","AcademicOutreachActivities__count__":"required","AOAYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","PPYear__count__":"required|in:2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973","PPpercentage__count__":"required","AwardsHonorsDistinction":"required","TeachingandResearchPlanforNextFiveYears":"required","AnyOtherRelevantInfo":"required","RefName":"required","RefPosition":"required","RefAddress":"required","RefEmail":"required","RefPhoneNumber":"required","RefMobile":"required","DidyoupreviouslyapplyforanypostinthisinstituteIfyesgiveparticulars":"required"};
 let triggers = { DepartmentAppliedFor: [function(event) { $f["DepartmentAppliedFor"] = $("#DepartmentAppliedFor").val(); validate('DepartmentAppliedFor'); }],PostAppliedFor: [function(event) { $f["PostAppliedFor"] = $("#PostAppliedFor").val(); validate('PostAppliedFor'); }],ApplicationSpecialization: [function(event) { $f["ApplicationSpecialization"] = $("#ApplicationSpecialization").val(); validate('ApplicationSpecialization'); }],internalCandidate: [function(event) { $f["internalCandidate"] = $("#internalCandidate").val(); validate('internalCandidate'); },function(){ 
           if($f.internalCandidate == 'Yes') {
             $("#StaffNumber").show();
@@ -720,11 +687,14 @@ let triggers = { DepartmentAppliedFor: [function(event) { $f["DepartmentAppliedF
             $("#asterisk-StaffNumber").hide();
           }},function(){ 
           if($f.internalCandidate == 'No') {
-            $("#fieldset__58460").show();
+            $("#fieldset__77660").show();
           } else {
-            $("#fieldset__58460").hide();
-          }}],StaffNumber: [function(event) { $f["StaffNumber"] = $("#StaffNumber").val(); validate('StaffNumber'); }],DateofLastPromotion: [function(event) { $f["DateofLastPromotion"] = $("#DateofLastPromotion").val(); validate('DateofLastPromotion'); }],FullName: [function(event) { $f["FullName"] = $("#FullName").val(); validate('FullName'); }],FathersHusbandsName: [function(event) { $f["FathersHusbandsName"] = $("#FathersHusbandsName").val(); validate('FathersHusbandsName'); }],DateofBirth: [function(event) { $f["DateofBirth"] = $("#DateofBirth").val(); validate('DateofBirth'); },function(){
-            $("#Age").val(calcDate($("#DateofBirth").val(),"25/8/2017")[2]);
+            $("#fieldset__77660").hide();
+          }}],StaffNumber: [function(event) { $f["StaffNumber"] = $("#StaffNumber").val(); validate('StaffNumber'); }],DateofLastPromotion: [function(event) { $f["DateofLastPromotion"] = $("#DateofLastPromotion").val(); validate('DateofLastPromotion'); }],FullName: [function(event) { $f["FullName"] = $("#FullName").val(); validate('FullName'); }],FathersHusbandsName: [function(event) { $f["FathersHusbandsName"] = $("#FathersHusbandsName").val(); validate('FathersHusbandsName'); }],dob: [function(event) { $f["dob"] = $("#dob").val(); validate('dob'); },() => {
+            validate("dob");
+          },function() {
+            let val = eval("calcAge($f.dob) + ' Years'");
+            $("#Age").val(val);
         }],Age: [function(event) { $f["Age"] = $("#Age").val(); validate('Age'); }],Gender: [function(event) { $f["Gender"] = $("#Gender").val(); validate('Gender'); }],Category: [function(event) { $f["Category"] = $("#Category").val(); validate('Category'); }],Nationality: [function(event) { $f["Nationality"] = $("#Nationality").val(); validate('Nationality'); }],StateUT: [function(event) { $f["StateUT"] = $("#StateUT").val(); validate('StateUT'); }],MaritalStatus: [function(event) { $f["MaritalStatus"] = $("#MaritalStatus").val(); validate('MaritalStatus'); }],AadhaarNumber: [function(event) { $f["AadhaarNumber"] = $("#AadhaarNumber").val(); validate('AadhaarNumber'); },function(){ 
           if($f.AadhaarNumber > 0) {
             $("#PANnumber").show();
@@ -759,9 +729,9 @@ let onValidates = {"DepartmentAppliedFor": (err) => {
     },"FathersHusbandsName": (err) => {
         if (err.constructor !== Array) $("#error-FathersHusbandsName").hide();
         else                           $("#error-FathersHusbandsName").show().html(err[0].message);
-    },"DateofBirth": (err) => {
-        if (err.constructor !== Array) $("#error-DateofBirth").hide();
-        else                           $("#error-DateofBirth").show().html(err[0].message);
+    },"dob": (err) => {
+        if (err.constructor !== Array) $("#error-dob").hide();
+        else                           $("#error-dob").show().html(err[0].message);
     },"Age": (err) => {
         if (err.constructor !== Array) $("#error-Age").hide();
         else                           $("#error-Age").show().html(err[0].message);
@@ -1248,15 +1218,6 @@ indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
     });
 });
 
-function calcDate(date_old,date_new){
-  // gets two dates of format dd/mm/yyyy
-  date_old = date_old.split("/");
-  date_new = date_new.split("/");
-
-  // returns difference of day, month, year
-  return [date_new[0]-date_old[0], date_new[1]-date_old[1], date_new[2]-date_old[2]];
-}
-
 
             function toggleRemoveButtonAndPreview_Photo(event) {
               // Display the preview and remove button if a file has been selected
@@ -1324,7 +1285,7 @@ function calcDate(date_old,date_new){
         let nRows = ++nRows_matriculationDetails;
         let rowId = "matriculationDetails-" + nRows;
         let elements = [{"name":"Examination__count__","validationrule":"required"},{"name":"MatriculationSpecialization__count__","validationrule":"required"},{"name":"Description__count__","validationrule":"required"}];
-        let html = "\n            <div class=\"form-group row\" id=\"fieldset__79931\">\n        <div class=\"col row\">\n                <label  id=\"label-Examination__count__\" class=\"col-form-label col-md-3\" for=\"Examination__count__\">Examination<span id=\"asterisk-Examination__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><select name=\"Examination__count__\" placeholder=\"Examination\" onchange=\"triggers[&quot;Examination__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"Examination__count__\" class=\"custom-select form-control form-control-sm\"><option>Examination</option>\n                    <option>Exam1</option>\n                    <option>Exam2</option>\n                </select><span class=\"error\" id=\"error-Examination__count__\" style=\"display:none\">Error</span></div>\n                <label  id=\"label-MatriculationSpecialization__count__\" class=\"col-form-label col-md-3\" for=\"MatriculationSpecialization__count__\">Specialization<span id=\"asterisk-MatriculationSpecialization__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><input name=\"MatriculationSpecialization__count__\" placeholder=\"Examination Passed\" onchange=\"triggers[&quot;MatriculationSpecialization__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MatriculationSpecialization__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MatriculationSpecialization__count__\" style=\"display:none\">Error</span></div>\n            </div></div>\n            <div class=\"form-group row\" id=\"fieldset__47890\">\n        <div class=\"col row\">\n                <label  id=\"label-Description__count__\" class=\"col-form-label col-md-3\" for=\"Description__count__\">Description<span id=\"asterisk-Description__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><textarea name=\"Description__count__\" placeholder=\"Description\" onchange=\"triggers[&quot;Description__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"Description__count__\" class=\"form-control form-control-sm\"></textarea><span class=\"error\" id=\"error-Description__count__\" style=\"display:none\">Error</span></div>\n            </div></div>\n        ";
+        let html = "\n            <div class=\"form-group row\" id=\"fieldset__88545\">\n        <div class=\"col row\">\n                <label  id=\"label-Examination__count__\" class=\"col-form-label col-md-3\" for=\"Examination__count__\">Examination<span id=\"asterisk-Examination__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><select name=\"Examination__count__\" placeholder=\"Examination\" onchange=\"triggers[&quot;Examination__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"Examination__count__\" class=\"custom-select form-control form-control-sm\"><option>Examination</option>\n                    <option>Exam1</option>\n                    <option>Exam2</option>\n                </select><span class=\"error\" id=\"error-Examination__count__\" style=\"display:none\">Error</span></div>\n                <label  id=\"label-MatriculationSpecialization__count__\" class=\"col-form-label col-md-3\" for=\"MatriculationSpecialization__count__\">Specialization<span id=\"asterisk-MatriculationSpecialization__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><input name=\"MatriculationSpecialization__count__\" placeholder=\"Examination Passed\" onchange=\"triggers[&quot;MatriculationSpecialization__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MatriculationSpecialization__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MatriculationSpecialization__count__\" style=\"display:none\">Error</span></div>\n            </div></div>\n            <div class=\"form-group row\" id=\"fieldset__97996\">\n        <div class=\"col row\">\n                <label  id=\"label-Description__count__\" class=\"col-form-label col-md-3\" for=\"Description__count__\">Description<span id=\"asterisk-Description__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><textarea name=\"Description__count__\" placeholder=\"Description\" onchange=\"triggers[&quot;Description__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"Description__count__\" class=\"form-control form-control-sm\"></textarea><span class=\"error\" id=\"error-Description__count__\" style=\"display:none\">Error</span></div>\n            </div></div>\n        ";
 
         let delRowButtonHtml = "";
         if (nRows > 2) {
@@ -2087,7 +2048,32 @@ function calcDate(date_old,date_new){
         for (let i = 0; i < 3; i++)
             addRow_placementPercentage();
         ;
-</script>
 
+
+    function verifyDateInddmmyyyy(date) {
+        // date is in format 'dd/mm/yyyy'
+        const stdFormat = date.split("/").reverse().join("-");
+        const today = new Date();
+        const parsedDate = new Date(stdFormat);
+
+        let dd = '' + parsedDate.getDate();
+        let mm = '' + (parsedDate.getMonth() + 1);
+        let yyyy = '' + parsedDate.getFullYear();
+
+        dd = dd.length == 1 ? ('0' + dd) : dd;
+        mm = mm.length == 1 ? ('0' + mm) : mm;
+
+        return date == `${dd}/${mm}/${yyyy}`;
+    }
+    function calcAge(dob){
+        // dob is in format 'dd/mm/yyyy'
+        const stdFormat = dob.split("/").reverse().join("-");
+        const today = new Date();
+
+        dob = new Date(stdFormat);
+        return Math.floor((today.getTime() - dob.getTime()) / (1000*60*60*24*365));
+    }
+
+</script>
 </body>
 </html>
