@@ -236,7 +236,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
       let name = child.attribs.name;
       let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
 
-      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${name}</a>`;
+      navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
 
       isFirst = false;
@@ -848,13 +848,14 @@ const stringifyObject = (obj) => {
   }
 
   let str = "{";
-  
+
   for (let key in obj) {
     str += `"${key}": ${stringifyObject(obj[key])},`;
   }
   return `${str}}`;
 };
 
+const indicativeCustomCommon = fs.readFileSync(__dirname + "/indicative-custom-common.js", { "encoding": "utf8" });
 let layout = fs.readFileSync(layoutFile, { "encoding": "utf8" });
 
 layout = layout.replace(/\{\{body\}\}/, manager.transformNode($("application")[0]));
@@ -867,40 +868,7 @@ let triggers = { ${Object.keys(triggers).map((x) => x + ": [" + triggers[x].join
 let onValidates = ${stringifyObject(onValidates)};
 let validate = ${stringifyObject(validate)};
 
-
-indicative.extend("phone",(data,field,message,args,get) =>{
-    args = get(data,field);
-    if(indicative.is.phone(args))
-      return Promise.resolve('');
-    return Promise.reject('Please enter a valid phone number');
-});
-
-indicative.extend("email",(data,field,message,args,get) => {
-    args = get(data,field);
-    if(indicative.is.email(args))
-      return Promise.resolve('');
-    return Promise.reject('Please enter a valid email id');
-});
-
-indicative.extend('js', (data, field, message, args) => {
-    let code = args.join(","); // in case there was a ',' in code, and indicative thought it 
-                               // was indicative of separating an argument instead of part
-                               // of js code itself
-    if (eval(code)) {
-        return Promise.resolve('');
-    }
-    return Promise.reject('Invalid data');
-});
-
-indicative.extend('pincode', (data, field, message, args, get) => {
-    args = get(data,field);
-    myRegEx = new RegExp('[0-9]{6}');
-    if (myRegEx.test(args)){
-      return Promise.resolve('');
-    }
-    return Promise.reject("Invalid Pincode");
-});
-
+${indicativeCustomCommon}
 
 indicative.extend('requiredFile', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
@@ -911,21 +879,12 @@ indicative.extend('requiredFile', (data, field, message, args, get) => {
     });
 });
 
-indicative.extend('year', (data, field, message, args, get) => {
-  args = get(data,field);
-  myRegEx = new RegExp('[0-9]{4}');
-  if (myRegEx.test(args) && args>=1950){
-    return Promise.resolve('');
-  }
-  return Promise.reject("Please enter a valid year greater than 1950");
-});
-
 indicative.extend('fileMimeType', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
             return reject('Field is required for completing the registration');
-        
+
         for(let i in args) {
             if(file.name.endsWith("." + args[i]))
                 return resolve("");
@@ -939,7 +898,7 @@ indicative.extend('fileSize', (data, field, message, args, get) => {
         const file = get(data, field);
         if(!file)
             return reject('Field is required for completing the registration');
-        
+
         if(file.size/1024 > args[0])
             return reject('File size limit exceeded. Upload a file lesser than ' + args[0] + 'KB');
         return resolve("");
@@ -951,7 +910,7 @@ indicative.extend('imageMaxHeight', (data, field, message, args, get) => {
         const file = get(data, field);
         if(!file)
             return reject('Field is required for completing the registration');
-        
+
         let reader = new FileReader();
         reader.onload = function(e) {
             let img = $('<img>', {src: e.target.result})[0];
@@ -968,7 +927,7 @@ indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
         const file = get(data, field);
         if(!file)
             return reject('Field is required for completing the registration');
-        
+
         let reader = new FileReader();
         reader.onload = function(e) {
             let img = $('<img>', {src: e.target.result})[0];
@@ -990,3 +949,15 @@ console.log(layout);
 
 formElementsGenerator.setApplicationName($("application")[0].attribs.name);
 formElementsGenerator.writeToFile();
+
+// Generate the indicative-custom-validation-server.js
+// Requires only two substitutions:
+// 1. {{script-tag-functions}}
+// 2. {{indicative-custom-common}}
+
+let indicativeCustomValidationServer = fs.readFileSync(__dirname + "/../server/utils/indicative-custom-validation-server-template.js", { "encoding": "utf8" });
+
+indicativeCustomValidationServer = indicativeCustomValidationServer.replace("{{script-tag-functions}}", $("script").html());
+indicativeCustomValidationServer = indicativeCustomValidationServer.replace("{{indicative-custom-common}}", indicativeCustomCommon);
+
+fs.writeFileSync(__dirname + "/../server/utils/indicative-custom-validation-server.js", indicativeCustomValidationServer);

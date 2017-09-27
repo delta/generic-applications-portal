@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const indicative = require("indicative");
+const validator = require("../utils/indicative-custom-validation-server.js");
 
 const Application = require("../models").Application;
 const FormElement = require("../models/").FormElement;
@@ -60,7 +60,7 @@ router.post("/save/:id/:section", (req, res) => {
         const name = formElements[i].name;
 
         if (!/__count__$/.test(name)) {
-          validationRules[name] = formElements[i].validationRules;
+          validationRules[name] = formElements[i].validationRules || "sometimes";
           data[name] = req.body[name];
 
           // fill only that data which is a valid formElement
@@ -134,7 +134,7 @@ router.post("/save/:id/:section", (req, res) => {
         }
       }
 
-      return indicative.validateAll(data, {});// validationRules);
+      return validator.validateAll(data, validationRules);
     })
     .then((validationResults) => {
       const promises = [];
@@ -149,6 +149,7 @@ router.post("/save/:id/:section", (req, res) => {
       res.redirect("/applications/" + appId);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json(err);
     });
 });
