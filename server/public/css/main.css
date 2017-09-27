@@ -1,0 +1,66 @@
+label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #394263;
+}
+.form-group {
+    border-bottom: 1px dashed lightblue;
+    padding: 5px 0;
+    margin: 0 2px;
+}
+.error {
+    color: red;
+    font-size: 14px;
+}
+.nav-link{
+    margin-left: -5px;
+    padding:3px 8px;
+    font-size:15px;
+}
+.instructions {
+    margin:25px;
+}
+li{
+    font-size:15px;
+}
+.box-row {
+    padding: 10px;
+    padding-bottom: -15px;
+}
+.box-row:nth-child(odd) {
+    background: lightblue;
+}
+.box-row:nth-child(even) {
+    background: rgb(240,240,255);
+}
+.links{
+    /*margin-left:50%;
+    width:50%;*/
+    float: right;
+    margin-bottom: 0;
+    padding: 15px 0;
+}
+.links a{
+    color:white;
+    text-decoration: none;
+    padding:23px;
+}
+.links a:hover{
+    color:#0084FF;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+th, td{
+    width:200px;
+}
+.table{
+    margin-left:30px;
+    width: auto;
+}
+.newApplication{
+    color:white;
+}
+.newApplication:hover{
+    color:black;
+    transition-duration: 0.5s;
+}
