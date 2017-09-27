@@ -305,6 +305,7 @@ router.post("/login", (req, res) => {
 
       // const user = results[ 0 ];
       req.session.isLoggedIn = true;
+      req.session.userId = results[0].id;
       req.session.path = "/";
       res.json({ "status": 200, "success": true, "message": "Redirect to /users/dashboard" }); // Give redirection headers
     });

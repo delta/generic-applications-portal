@@ -263,12 +263,12 @@ class InstructionsNodeTransformer extends NodeTransformer {
 class SectionNodeTransformer extends NodeTransformer {
   transform() {
     return `
-            <form>
-            <div class='section'>
-                <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
-                ${this.transformChildren()}
-                <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
-            </div>
+        <form method='POST' id='frm_${this.name}'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
+            ${this.transformChildren()}
+            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+          </div>
         </form>`;
   }
 }
@@ -854,7 +854,7 @@ let layout = fs.readFileSync(layoutFile, { "encoding": "utf8" });
 
 layout = layout.replace(/\{\{body\}\}/, manager.transformNode($("application")[0]));
 layout = layout.replace(/\{\{script\}\}/, `
-<script type='text/javascript' src='js/indicative_bundle.js'></script>
+<script type='text/javascript' src='/js/indicative_bundle.js'></script>
 <script type='text/javascript'>
 let $f = ${JSON.stringify($f)};
 let rules = ${JSON.stringify(rules)};

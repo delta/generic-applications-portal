@@ -4,17 +4,24 @@ Two folders:
 1. form\_generator - code to generate form related code.
 2. server - actual application portal
 
-## Only compiling the markup to HTML
+## 0. One-off command:
+    From `server` directory, run this:
+
+```node ../form_generator/index.js -l views/formLayout.ejs > views/form.ejs```
+
+Look at #3 to see all details.
+
+## 1. Only compiling the markup to HTML
 To compile the markup, go to **`server`** (~`form_generator`~) folder, and then, use:
 
 ```node ../form_generator/index.js sample.html```
 
-## Compiling the markup to HTML with custom layout file
+## 2. Compiling the markup to HTML with custom layout file
 To compile the markup with custom layout file, go to **`server`** (~`form_generator`~) folder, and then, use:
 
 ```node ../form_generator/index.js -l mylayout.html sample.html```
 
-## Compiling the markup to HTML with custom layout file and also generating Database seed files
+## 3. Compiling the markup to HTML with custom layout file and also generating Database seed files
 
 1. First of all you need to bring up the database.
     ```../node_modules/.bin/sequelize db:migrate```

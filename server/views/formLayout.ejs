@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Recruitment | NIT Trichy</title>
+    <%- include('partials/commonHeaderIncludes.partial.ejs') %>
+</head>
+<body>
+    <%- include('partials/topNavbar.partial.ejs') %>
+
+    {{body}}
+
+    <%- include('partials/footer.partial.ejs') %>
+
+    <script type="text/javascript">
+        var applicationData = <%- JSON.stringify(applicationData) %>;
+        var applicationId = applicationData.id;
+
+        $("form").each(function(id, el) {
+            var id = $(el).attr("id");
+            id = id.replace(/^frm_/, "");
+            $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+        });
+
+        for (var i = 0; i < applicationData.FormValues.length; i++) {
+            var key = applicationData.FormValues[i].FormElement.name;
+            var val = applicationData.FormValues[i].value;
+            $("[name=" + key + "]").val(val);
+        }
+    </script>
+
+    {{script}}
+</body>
+</html>

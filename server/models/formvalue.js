@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       "onUpdate": "CASCADE",
       "onDelete": "RESTRICT",
     });
+    FormValue.belongsTo(models.FormElement, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
   };
 
   return FormValue;
