@@ -115,6 +115,10 @@ const validate = (name) => {
   // same handler will handle both validation success and validation failure
   indicative.validate(myData, myRules, {
     "required": "This field is required to complete registeration process",
+    "date":"Please make sure you match the format dd/mm/yyy",
+    "email":"Please enter a valid email",
+    "phone":"Please enter a valid phone number",
+    "above":"Value must be greater than {{argument.0}}"
   })
     .then(onValidates[name])
     .catch(onValidates[name]);
@@ -615,6 +619,7 @@ class TableInputNodeTransformer extends NodeTransformer {
       if (child.type !== "tag") continue;
       let width = child.attribs.width || "auto";
       let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
+      child.attribs.label = "";
       
       html += `<th style="width:${width}">${label}</th>`;
 
@@ -862,6 +867,21 @@ let triggers = { ${Object.keys(triggers).map((x) => x + ": [" + triggers[x].join
 let onValidates = ${stringifyObject(onValidates)};
 let validate = ${stringifyObject(validate)};
 
+
+indicative.extend("phone",(data,field,message,args,get) =>{
+    args = get(data,field);
+    if(indicative.is.phone(args))
+      return Promise.resolve('');
+    return Promise.reject('Please enter a valid phone number');
+});
+
+indicative.extend("email",(data,field,message,args,get) => {
+    args = get(data,field);
+    if(indicative.is.email(args))
+      return Promise.resolve('');
+    return Promise.reject('Please enter a valid email id');
+});
+
 indicative.extend('js', (data, field, message, args) => {
     let code = args.join(","); // in case there was a ',' in code, and indicative thought it 
                                // was indicative of separating an argument instead of part
@@ -872,6 +892,16 @@ indicative.extend('js', (data, field, message, args) => {
     return Promise.reject('Invalid data');
 });
 
+indicative.extend('pincode', (data, field, message, args, get) => {
+    args = get(data,field);
+    myRegEx = new RegExp('[0-9]{6}');
+    if (myRegEx.test(args)){
+      return Promise.resolve('');
+    }
+    return Promise.reject("Invalid Pincode");
+});
+
+
 indicative.extend('requiredFile', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
@@ -879,6 +909,15 @@ indicative.extend('requiredFile', (data, field, message, args, get) => {
             return reject('Field is required for completing the registration');
         return resolve('');
     });
+});
+
+indicative.extend('year', (data, field, message, args, get) => {
+  args = get(data,field);
+  myRegEx = new RegExp('[0-9]{4}');
+  if (myRegEx.test(args) && args>=1950){
+    return Promise.resolve('');
+  }
+  return Promise.reject("Please enter a valid year greater than 1950");
 });
 
 indicative.extend('fileMimeType', (data, field, message, args, get) => {
