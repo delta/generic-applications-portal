@@ -29,15 +29,15 @@ if (args._.length === 0) { // args will always have the key '_'
   of the database
     1. Forms (inserts name of the <application> tag in the input markup)
     2. FormElements (inserts all the formElements inside it)
-  
+
     It also generates the output html to stdout using the input markup and the layout file.`;
-  
+
   process.stderr.write(usage + "\n");
   process.exit();
 } else {
-  layoutFile = args["-l"] || args["--layout"] || "layout.html";
+  layoutFile = args.l || args.layout || "layout.html";
   inputFile = args._[0];
-  seedFile = args["-s"] || args["--seedfile"] || "formElementSeeder.js";
+  seedFile = args.s || args.seedfile || "formElementSeeder.js";
 }
 
 const inputHtml = fs.readFileSync(inputFile, { "encoding": "utf8" });
