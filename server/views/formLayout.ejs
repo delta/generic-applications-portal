@@ -19,10 +19,23 @@
             var applicationId = applicationData.id;
 
             $("form").each(function(id, el) {
+            var id = $(el).attr("id");
+            id = id.replace(/^frm_/, "");
+            $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+
+            $("form").each(function(id, el) {
                 var id = $(el).attr("id");
                 id = id.replace(/^frm_/, "");
                 $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
             });
+
+            var $forms = $('form');
+            for(var i=0; i< $forms.length; i++){
+                $forms[i].ajaxForm(function(){
+                    //form saved
+                })
+            }
+
 
             for (var i = 0; i < applicationData.FormValues.length; i++) {
                 var key = applicationData.FormValues[i].FormElement.name;

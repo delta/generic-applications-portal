@@ -271,7 +271,7 @@ class SectionNodeTransformer extends NodeTransformer {
           <div class='section'>
             <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
             ${this.transformChildren()}
-            <div class="text-center row"><button type="submit" class="btn btn-primary" style="margin: 15px auto">Save</button></div>
+            <div class="text-center row"><button type="submit" id="submit_${this.name}" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
           </div>
         </form>`;
   }
