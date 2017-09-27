@@ -7,13 +7,12 @@ const indicative = require("indicative");
 const Application = require("../models").Application;
 const FormElement = require("../models/").FormElement;
 const FormValue = require("../models").FormValue;
-// User login+signup handlers
 
 /*
   request parameters:
     - formId
 */
-router.get("/create", (req, res) => {
+router.post("/create", (req, res) => {
   if (!req.param("formId")) {
     return res.status(400).json({
       "success": false,
@@ -25,7 +24,7 @@ router.get("/create", (req, res) => {
     "formId": req.param("formId"),
     "userId": req.session.userId,
   }).then((application) => {
-    res.status(200).json(application);
+    res.redirect("/applications/" + application.id);
   }).catch((err) => {
     console.error(err);
     res.status(500).json("Internal server error. Please retry in some time.");
@@ -95,7 +94,11 @@ router.get("/submit/:id", (req, res) => {
 // GET handlers
 router.get("/:id", (req, res) => {
   Application
-    .findById(req.params.id, {
+    .find({
+      "where": {
+        "id": req.params.id,
+        "userId": req.session.userId,
+      },
       "include": {
         "model": FormValue,
         "attributes": [ "value" ],
@@ -106,10 +109,14 @@ router.get("/:id", (req, res) => {
       },
     })
     .then((application) => {
+      if (!application) {
+        return res.status(404).send("Application not found");
+      }
       res.render("form", {
         "applicationData": application,
       });
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.error(err);
       res.status(500).json("Internal server error. Please retry in some time.");
     });

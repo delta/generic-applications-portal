@@ -24,9 +24,9 @@
           </tr>
         <%}%>
       </table>
-      <div class="btn btn-primary">
-        <a class="newApplication" href="/apply">NEW APPLICATION</a>
-      </div>
+      <form action="/applications/create?formId=1" method="POST">
+        <button style="cursor: pointer; color: white !important" class="btn btn-primary newApplication">NEW APPLICATION</button>
+      </form>
     </div>
   </div>
 
