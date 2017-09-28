@@ -30,42 +30,67 @@
                 var $button = $('#'+correspondingButtonId);
 
                 function showErrors(errors) {
-                    console.log(errors);
-                    for(var k in errors) {
-                        $("#error-" + k).html(errors[k]).show();
+                    for(var i = 0; i < errors.length; i++) {
+                        var name = errors[i].field;
+                        if (/__table__/.test(name) || /__box__/.test(name)) {
+                            // server sends such names with a dot before the numeric-index.
+                            // trim the last dot. Also, the numeric-index it sends is 0 based.
+                            // we need to convert it to 1-based.
+                            name = name.split(".");
+                            var idx = +(name.pop());
+                            name = name.join(".") + (idx+1);
+                            console.log(name);
+                        }
+                        $("#error-" + name).html(errors[i].message).show();
                     }
+                }
+
+                function disableSaveButton() {
+                    $button.html("<i class='fa fa-circle-o-notch fa-spin'></i> Saving")
+                    $button.attr('disabled', true);
+                }
+
+                function enableSaveButton() {
+                    $button.html("Save");
+                    $button.attr("disabled", false);
                 }
 
                 $('#'+formId).submit((e)=>{
                     e && e.preventDefault();
                     e && e.stopPropagation();
 
+                    disableSaveButton();
+                    $(this).find("span.error").hide();
+
                     var formValues = {};
                     var myRules = {};
                     for (var i = 0; i < this.elements.length; i++) {
                         var name = this.elements[i].name;
+                        if (!rules[name]) continue;
                         formValues[name] = $f[name];
                         myRules[name] = rules[name];
                     }
 
-                    console.log(formValues, myRules);
-
+                    console.log(formValues, myRules)
                     indicative.validateAll(formValues, myRules)
+                    //Promise.resolve()
                         .then(() => {
                             $('#'+formId).ajaxSubmit(function(data, ts, jqxhr, form){
-                                $button.html("Save");
-                                $button.attr("disabled", false);
+                                enableSaveButton();
+                                console.log(data);
                                 if(data.success){
-                                    //pop success message
-                                }else{
-                                    //pop incoming message
+                                    $button.addClass("btn-success").html("<i class='fa fa-check'></i> Saved");
+                                    setTimeout(function() {
+                                        $button.removeClass("btn-success").html("Save");
+                                    }, 2000);
+                                } else if (data.validationErrors) {
+                                    showErrors(data.validationErrors);
+                                } else {
+                                    // show dialog
                                 }
                             })
                         })
-                        .catch(showErrors);
-                    
-                    $button.html("<i class='fa fa-circle-o-notch fa-spin'></i> Saving")
-                    $button.attr('disabled', true);
+                        .catch((err) => { showErrors(err); enableSaveButton(); })
 
                     return false;
                 })
