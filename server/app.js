@@ -51,6 +51,7 @@ app.use("/", loginAndSignup);
 app.use("/applications", application);
 app.use("/users", users);
 app.use(authenticate);
+app.use("/uploads/", express.static(path.join(__dirname, "uploads")));
 app.use("/users", usersProtected);
 app.get("/dashboard", (req, res) => {
   console.log("To dashboard");
