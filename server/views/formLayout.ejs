@@ -11,23 +11,50 @@
 
     <%- include('partials/footer.partial.ejs') %>
 
-    <script type="text/javascript">
-        var applicationData = <%- JSON.stringify(applicationData) %>;
-        var applicationId = applicationData.id;
-
-        $("form").each(function(id, el) {
-            var id = $(el).attr("id");
-            id = id.replace(/^frm_/, "");
-            $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
-        });
-
-        for (var i = 0; i < applicationData.FormValues.length; i++) {
-            var key = applicationData.FormValues[i].FormElement.name;
-            var val = applicationData.FormValues[i].value;
-            $("[name=" + key + "]").val(val);
-        }
-    </script>
-
     {{script}}
+
+    <script type="text/javascript">
+        (function() {
+            var applicationData = <%- JSON.stringify(applicationData) %>;
+            var applicationId = applicationData.id;
+
+            $("form").each(function(id, el) {
+                var id = $(el).attr("id");
+                id = id.replace(/^frm_/, "");
+                $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+            });
+
+            for (var i = 0; i < applicationData.FormValues.length; i++) {
+                var key = applicationData.FormValues[i].FormElement.name;
+                var val = applicationData.FormValues[i].value;
+
+                if (/__count__$/.test(key)) {
+                    val = JSON.parse(val);
+                    var containerName = key.split("__")[0]; // key format: <tableOrBoxName>__[table|box]__<name>__count__
+                    // existing rows of a table/box can be obtained via a global variable nRows_<containerName>_real
+                    var existingRows = window["nRows_" + containerName + "_real"] || 0;
+
+                    // check how many rows for this container already exist due to other fields.
+                    // make more if required.
+                    for (var j = existingRows; j < val.length; j++) {
+                        window["addRow_" + containerName]();
+                    }
+
+                    var keyWithoutCount = key.replace(/__count__$/, "");
+                    for (var j = 0; j < val.length; j++) {
+                        $("[name=" + keyWithoutCount + (j+1) + "]").val(val[j]);
+                    }
+                } else if ($("[name=" + key + "]").attr("type") === "file") {
+                    $("#filePreview_" + key)
+                        .html('<img src="' + val + '" style="width:100%"><br>' +
+                                '<small><i>This photo has been uploaded earlier. To replace it, press "Browse". ' +
+                                'Otherwise you don\'t have to take any action</i></small>').show();
+                    console.log($("#filePreview_" + key));
+                } else {
+                    $("[name=" + key + "]").val(val);
+                }
+            }
+        })();
+        </script>
 </body>
 </html>
