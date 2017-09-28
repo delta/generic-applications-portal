@@ -19,24 +19,60 @@
             var applicationId = applicationData.id;
 
             $("form").each(function(id, el) {
-            var id = $(el).attr("id");
-            id = id.replace(/^frm_/, "");
-            $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
-
-            $("form").each(function(id, el) {
                 var id = $(el).attr("id");
                 id = id.replace(/^frm_/, "");
                 $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+
+                var $form = $(el);
+                var formId = $form.attr("id");
+                var formName = formId.replace(/^frm_/, "");
+                var correspondingButtonId = 'submit_'+formName;
+                var $button = $('#'+correspondingButtonId);
+
+                function showErrors(errors) {
+                    console.log(errors);
+                    for(var k in errors) {
+                        $("#error-" + k).html(errors[k]).show();
+                    }
+                }
+
+                $('#'+formId).submit((e)=>{
+                    e && e.preventDefault();
+                    e && e.stopPropagation();
+
+                    var formValues = {};
+                    var myRules = {};
+                    for (var i = 0; i < this.elements.length; i++) {
+                        var name = this.elements[i].name;
+                        formValues[name] = $f[name];
+                        myRules[name] = rules[name];
+                    }
+
+                    console.log(formValues, myRules);
+
+                    indicative.validateAll(formValues, myRules)
+                        .then(() => {
+                            $('#'+formId).ajaxSubmit(function(data, ts, jqxhr, form){
+                                $button.html("Save");
+                                $button.attr("disabled", false);
+                                if(data.success){
+                                    //pop success message
+                                }else{
+                                    //pop incoming message
+                                }
+                            })
+                        })
+                        .catch(showErrors);
+                    
+                    $button.html("<i class='fa fa-circle-o-notch fa-spin'></i> Saving")
+                    $button.attr('disabled', true);
+
+                    return false;
+                })
             });
 
-            var $forms = $('form');
-            for(var i=0; i< $forms.length; i++){
-                $forms[i].ajaxForm(function(){
-                    //form saved
-                })
-            }
 
-
+            // Prefilling
             for (var i = 0; i < applicationData.FormValues.length; i++) {
                 var key = applicationData.FormValues[i].FormElement.name;
                 var val = applicationData.FormValues[i].value;
@@ -56,6 +92,7 @@
                     var keyWithoutCount = key.replace(/__count__$/, "");
                     for (var j = 0; j < val.length; j++) {
                         $("[name=" + keyWithoutCount + (j+1) + "]").val(val[j]);
+                        $f[keyWithoutCount + (j+1)] = val[j];
                     }
                 } else if ($("[name=" + key + "]").attr("type") === "file") {
                     $("#filePreview_" + key)
@@ -63,8 +100,10 @@
                                 '<small><i>This photo has been uploaded earlier. To replace it, press "Browse". ' +
                                 'Otherwise you don\'t have to take any action</i></small>').show();
                     console.log($("#filePreview_" + key));
+                    $f[key] = val;
                 } else {
                     $("[name=" + key + "]").val(val);
+                    $f[key] = val;
                 }
             }
         })();
