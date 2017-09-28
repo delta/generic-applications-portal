@@ -180,7 +180,7 @@ router.post("/save/:applicationId/:section", (req, res) => {
     })
     .then((formElements) => {
       // Both of these are to be passed to indicative
-      const validationRules = [];
+      const validationRules = {};
       const dataForIndicative = {};
 
       for (let i = 0; i < formElements.length; i++) {
