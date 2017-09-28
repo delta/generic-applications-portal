@@ -115,10 +115,10 @@ const validate = (name) => {
   // same handler will handle both validation success and validation failure
   indicative.validate(myData, myRules, {
     "required": "This field is required to complete registeration process",
-    "date":"Please make sure you match the format dd/mm/yyy",
-    "email":"Please enter a valid email",
-    "phone":"Please enter a valid phone number",
-    "above":"Value must be greater than {{argument.0}}"
+    "date": "Please make sure you match the format dd/mm/yyy",
+    "email": "Please enter a valid email",
+    "phone": "Please enter a valid phone number",
+    "above": "Value must be greater than {{argument.0}}",
   })
     .then(onValidates[name])
     .catch(onValidates[name]);
@@ -148,31 +148,45 @@ class Manager {
     });
   }
   registerNode(nodeName, nodeTransformer) {
-    this.nodeList[nodeName] = nodeTransformer;
+    this.nodeList[nodeName] = this.nodeList[nodeName] || [];
+    this.nodeList[nodeName].push(nodeTransformer);
   }
   transformNode(node) {
+    if (node.type !== "tag") {
+      return $.html(node); // we don't transform non-tag nodes
+    }
+
     if (node.name === "section") {
       this.currentSection = node.attribs.name.replace(/[^a-zA-Z0-9_]/g, "");
     }
 
-    let Transformer = this.nodeList[node.name];
+    // Check if there are registered transformers
+    const transformers = this.nodeList[node.name] || [];
 
-    if (!Transformer) {
-      if (node.type === "tag") {
-        Transformer = new NodeTransformer(node);
-        let innerHtml = Transformer.transformChildren();
-
-        $(node).html(innerHtml);
+    for (let i = 0; i < transformers.length; i++) {
+      if (transformers[i].isOfMyType(node)) {
+        return (new transformers[i](node)).transform();
       }
-      return $.html(node); // now return the outer html
     }
-    return (new Transformer(node)).transform();
+
+    // Nothing matched?
+    const Transformer = new NodeTransformer(node);
+    const innerHtml = Transformer.transformChildren();
+
+    $(node).html(innerHtml);
+    return $.html(node); // now return the outer html
   }
 }
 
 let manager = new Manager();
 
 class NodeTransformer {
+  // Returns boolean - whether a given node can be transformed by this node transformer
+  // or not. This is used when multiple transformers are there for the same tag name.
+  // Basically a conflict resolution mechanism.
+  static isOfMyType(node) {
+    return true; // default implementation: if the tagname matches, it's mine.
+  }
   constructor(node) {
     this.originalName = node.attribs.name || "";
     this.name = safeName(this.originalName);
@@ -267,7 +281,7 @@ class InstructionsNodeTransformer extends NodeTransformer {
 class SectionNodeTransformer extends NodeTransformer {
   transform() {
     return `
-        <form method='POST' id='frm_${this.name}'>
+        <form method='POST' id='frm_${this.name}' enctype='multipart/form-data'>
           <div class='section'>
             <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">${this.originalName}</h2>
             ${this.transformChildren()}
@@ -313,10 +327,13 @@ class FieldsetNodeTransformer extends NodeTransformer {
 }
 
 class InputNodeTransformer extends NodeTransformer {
+  static isOfMyType(node) {
+    return node.attribs.type !== "file";
+  }
   constructor(node) {
     super(node);
     $f[this.name] = "";
-    this.validationRules = this.consumeAttr("validationrule");
+    this.validationRules = this.consumeAttr("validationrule") || "sometimes";
   }
   registerFormElement() {
     manager.registerFormElement({
@@ -418,13 +435,7 @@ class InputNodeTransformer extends NodeTransformer {
   }
 
   transform() {
-    const attrs = this.node.attribs;
     const name = this.name;
-
-    if (attrs.type === "file") {
-      return (new FileInputNodeTransformer(this.node)).transform();
-    }
-
     const showIf = this.consumeAttr("showif");
     const computedValue = this.consumeAttr("computedvalue");
 
@@ -507,6 +518,9 @@ class SelectNodeTransformer extends InputNodeTransformer {
 }
 
 class FileInputNodeTransformer extends InputNodeTransformer {
+  static isOfMyType(node) {
+    return node.attribs.type === "file";
+  }
   createInputElement() {
     let cols = this.consumeAttr("cols");
     let inputCols = cols || "";
@@ -517,9 +531,9 @@ class FileInputNodeTransformer extends InputNodeTransformer {
     }
 
     let displayPreview = ""; // Stores the commands required for displaying the preview
-        
+
     // Check whether a preview of the input should be displayed
-    // If yes, update the displayPreview variable and 
+    // If yes, update the displayPreview variable and
     // add it to the toggleRemoveButtonAndPreview function 
     if (this.node.attribs.preview !== undefined) {
       displayPreview = `
@@ -588,6 +602,12 @@ class FileInputNodeTransformer extends InputNodeTransformer {
   transform() {
     const name = this.node.attribs.name;
 
+    if (this.validationRules.length === 0) {
+      this.validationRules = "file";
+    } else {
+      this.validationRules += "|file";
+    }
+
     this.registerFormElement();
     this.processJsValidationRules();
 
@@ -619,11 +639,13 @@ class TableInputNodeTransformer extends NodeTransformer {
       if (child.type !== "tag") continue;
       let width = child.attribs.width || "auto";
       let label = child.attribs.label || child.attribs.name; // if label is empty, default to name.
+
       child.attribs.label = "";
-      
       html += `<th style="width:${width}">${label}</th>`;
 
-      child.attribs.name += "__count__";
+      // Prefix table name to repeated child. Required for the client to be able
+      // to prefill saved data.
+      child.attribs.name = `${this.name}__table__${child.attribs.name}__count__`;
       compiledElements.push({
         "name": child.attribs.name.replace(/[^a-zA-Z0-9_]/g, ""),
         "validationrule": child.attribs.validationrule,
@@ -640,8 +662,8 @@ class TableInputNodeTransformer extends NodeTransformer {
     // Will be run in the context of the browser. Won't have access
     // to server side variables.
     scripts.push(`
-        let nRows_${this.name} = 0;
-        let nRows_${this.name}_real = 0;
+        var nRows_${this.name} = 0;
+        var nRows_${this.name}_real = 0;
         function delRow_${this.name}(event, rowNumber) {
             let rowId = "${this.name}-" + rowNumber;
             $("#" + rowId).remove();
@@ -661,6 +683,7 @@ class TableInputNodeTransformer extends NodeTransformer {
             // add each element to the $f object
 
             let nRows = ++nRows_${this.name};
+            nRows_${this.name}_real++;
             let rowId = "${this.name}-" + nRows;
             let elements = ${JSON.stringify(compiledElements)};
             if (nRows > ${minCount}) {
@@ -732,7 +755,7 @@ class BoxNodeTransformer extends NodeTransformer {
         
         if (child.type !== "tag") continue;
 
-        child.attribs.name += "__count__";
+        child.attribs.name = `${this.name}__box__${child.attribs.name}__count__`;
         compiledElements.push({
           "name": child.attribs.name,
           "validationrule": child.attribs.validationrule,
@@ -745,8 +768,8 @@ class BoxNodeTransformer extends NodeTransformer {
     // Will be run in the context of the browser. Won't have access
     // to server side variables.
     scripts.push(`
-    let nRows_${this.name} = 0;
-    let nRows_${this.name}_real = 0;
+    var nRows_${this.name} = 0;
+    var nRows_${this.name}_real = 0;
     function delRow_${this.name}(event, rowNumber) {
         let rowId = "${this.name}-" + rowNumber;
         $("#" + rowId).remove();
@@ -765,6 +788,7 @@ class BoxNodeTransformer extends NodeTransformer {
         // add function to onValidates for each element
         // add each element to the $f object
         let nRows = ++nRows_${this.name};
+        nRows_${this.name}_real++;
         let rowId = "${this.name}-" + nRows;
         let elements = ${JSON.stringify(compiledElements)};
         let html = ${JSON.stringify(compiledHtml)};
@@ -823,6 +847,7 @@ manager.registerNode("section", SectionNodeTransformer);
 manager.registerNode("subsection", SubsectionNodeTransformer);
 manager.registerNode("fieldset", FieldsetNodeTransformer);
 manager.registerNode("input", InputNodeTransformer);
+manager.registerNode("input", FileInputNodeTransformer);
 manager.registerNode("textarea", InputNodeTransformer);
 manager.registerNode("select", SelectNodeTransformer);
 manager.registerNode("tableinput", TableInputNodeTransformer);
@@ -870,6 +895,15 @@ let validate = ${stringifyObject(validate)};
 
 ${indicativeCustomCommon}
 
+indicative.extend('file', (data, field, message, args, get) => {
+  // reasonable enough test
+  data = get(data, field);
+  if (data.size && data.type) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid file");
+});
+
 indicative.extend('requiredFile', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
@@ -879,7 +913,7 @@ indicative.extend('requiredFile', (data, field, message, args, get) => {
     });
 });
 
-indicative.extend('fileMimeType', (data, field, message, args, get) => {
+indicative.extend('fileType', (data, field, message, args, get) => {
     return new Promise(function(resolve, reject) {
         const file = get(data, field);
         if(!file)
