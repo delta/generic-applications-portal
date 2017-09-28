@@ -211,7 +211,7 @@ router.post("/save/:applicationId/:section", (req, res) => {
           // To indicative, we'll basically pass the rule as
           // { "exampleField.*": "required|alpha" } or whatever
           // Here "required|alpha" is the rule stored in db for exampleField__count__
-          validationRules[actualName + "*"] = formElements[i].validationRules;
+          validationRules[actualName + ".*"] = formElements[i].validationRules;
 
           // And the data field that we pass is an array of the values
           // that the user has sent. Basically this:
@@ -232,7 +232,10 @@ router.post("/save/:applicationId/:section", (req, res) => {
         }
       }
 
-      return validator.validateAll(dataForIndicative, validationRules);
+      return validator.validateAll(dataForIndicative, validationRules).catch((err) => {
+        err.__validationError__ = true;
+        throw err;
+      });
     })
     .then((validationResults) => {
       const promises = [];
@@ -244,11 +247,21 @@ router.post("/save/:applicationId/:section", (req, res) => {
       return Promise.all(promises);
     })
     .then((data) => {
-      res.redirect("/applications/" + applicationId);
+      res.status(200).json({ "success": true });
     })
     .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+      if (err.__validationError__) {
+        delete err.__validationError__;
+        res.status(200).json({
+          "success": false,
+          "validationErrors": err,
+        });
+      } else {
+        res.status(500).json({
+          "success": false,
+          "error": "Internal server error. Please retry after some time.",
+        });
+      }
     });
 });
 
