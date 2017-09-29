@@ -29,8 +29,6 @@ sed -i 's/"password": .*/"password": "'$DB_PASSWORD'",/g' server/config/config.j
 sed -i 's/"database": .*/"database": "'$DB_NAME'",/g' server/config/config.js
 sed -i 's/"host": .*/"host": "'$DB_HOST'",/g' server/config/config.js
 
-exit;
-
 cd server
 
 # Create mysql table
