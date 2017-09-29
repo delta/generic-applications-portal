@@ -67,11 +67,34 @@ router.post("/create", (req, res) => {
     });
   }
 
-  Application.create({
+  let applicationId;
+  const applicationPromise = Application.create({
     "formId": req.query.formId,
     "userId": req.session.userId,
-  }).then((application) => {
-    res.redirect("/applications/" + application.id);
+  });
+  const emailFormElementPromise = FormElement.findOne({
+    "where": {
+      // FIXME: This code is very brittle. In case the markup calls the field anything other than 'Email',
+      // this will break.
+      "name": "Email",
+    },
+  });
+
+  Promise.all([
+    applicationPromise,
+    emailFormElementPromise,
+  ]).then((results) => {
+    const application = results[0];
+    const emailElem = results[1];
+
+    applicationId = application.id;
+    return FormValue.create({
+      "formElementId": emailElem.id,
+      "applicationId": applicationId,
+      "value": req.session.userEmail,
+    });
+  }).then(() => {
+    res.redirect("/applications/" + applicationId);
   }).catch((err) => {
     console.error(err);
     res.status(500).json("Internal server error. Please retry in some time.");
