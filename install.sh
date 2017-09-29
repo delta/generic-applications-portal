@@ -24,10 +24,12 @@ cp server/config/config.js.sample server/config/config.js
 cp server/config/gmail.js.sample server/config/gmail.js
 
 # Update database config to actual values
-sed -i 's/"username": [^,]+/"username": "'$DB_USER'",/g' config.js
-sed -i 's/"password": [^,]+/"password": "'$DB_PASSWORD'",/g' config.js
-sed -i 's/"database": [^,]+/"database": "'$DB_NAME'",/g' config.js
-sed -i 's/"host": [^,]+/"host": "'$DB_HOST'",/g' config.js
+sed -i 's/"username": .*/username": "'$DB_USER'",/g' server/config/config.js
+sed -i 's/"password": .*/"password": "'$DB_PASSWORD'",/g' server/config/config.js
+sed -i 's/"database": .*/"database": "'$DB_NAME'",/g' server/config/config.js
+sed -i 's/"host": .*/"host": "'$DB_HOST'",/g' server/config/config.js
+
+exit;
 
 cd server
 
