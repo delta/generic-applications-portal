@@ -24,7 +24,7 @@ cp server/config/config.js.sample server/config/config.js
 cp server/config/gmail.js.sample server/config/gmail.js
 
 # Update database config to actual values
-sed -i 's/"username": .*/username": "'$DB_USER'",/g' server/config/config.js
+sed -i 's/"username": .*/"username": "'$DB_USER'",/g' server/config/config.js
 sed -i 's/"password": .*/"password": "'$DB_PASSWORD'",/g' server/config/config.js
 sed -i 's/"database": .*/"database": "'$DB_NAME'",/g' server/config/config.js
 sed -i 's/"host": .*/"host": "'$DB_HOST'",/g' server/config/config.js
@@ -44,7 +44,8 @@ fi
 ../node_modules/.bin/sequelize seed:generate --name formElements
 
 # Compile the markup and generate seeder
-node ../form_generator/index.js -l views/formLayout.ejs -s migrations/*-formElements.js ../form_generator/sample.html > views/form.ejs
+rm seeders/*
+node ../form_generator/index.js -l views/formLayout.ejs -s seeders/*formElements.js ../form_generator/sample.html > views/form.ejs
 
 # Seed the database
 ../node_modules/.bin/sequelize db:seed:all
