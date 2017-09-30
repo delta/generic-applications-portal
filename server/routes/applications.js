@@ -215,9 +215,6 @@ router.post("/save/:applicationId/:section", (req, res) => {
 
           let value = req.body[name];
 
-          if (value === undefined) {
-            console.log(name, req.body);
-          }
           // it's a file. Store the path.
           if (value && value.filename) {
             value = `/uploads/appid_${applicationId}/${value.filename}`;
@@ -280,6 +277,7 @@ router.post("/save/:applicationId/:section", (req, res) => {
           "validationErrors": err,
         });
       } else {
+        console.error(err, err.stack);
         res.status(500).json({
           "success": false,
           "error": "Internal server error. Please retry after some time.",

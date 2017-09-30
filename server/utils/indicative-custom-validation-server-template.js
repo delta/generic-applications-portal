@@ -2,8 +2,6 @@
 
 const indicative = require("indicative");
 
-let $f = {};
-
 {{script-tag-functions}}
 
 {{indicative-custom-common}}
@@ -33,7 +31,7 @@ indicative.extend("fileType", (data, field, message, args, get) => {
   }
 
   for (let i in args) {
-    if (file.name.endsWith("." + args[i])) {
+    if (file.filename.endsWith("." + args[i])) {
       return Promise.resolve("");
     }
   }
@@ -65,8 +63,5 @@ indicative.extend("imageMaxWidth", (data, field, message, args, get) => {
 });
 
 module.exports = {
-  "set$f": (newVal) => {
-    $f = newVal;
-  },
   "validateAll": (data, rules, messages) => indicative.validateAll(data, rules, messages),
 };

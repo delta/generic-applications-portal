@@ -24,20 +24,23 @@
 */
 
 indicative.extend("phone", (data, field, message, args, get) => {
-  if (indicative.is.phone(data)) {
+  if (indicative.is.phone(get(data, field))) {
     return Promise.resolve("");
   }
   return Promise.reject("Please enter a valid phone number");
 });
 
 indicative.extend("email", (data, field, message, args, get) => {
-  if (indicative.is.email(data)) {
+  if (indicative.is.email(get(data, field))) {
     return Promise.resolve("");
   }
   return Promise.reject("Please enter a valid email id");
 });
 
-indicative.extend("js", (data, field, message, args) => {
+indicative.extend("js", ($f, field, message, args) => {
+  // naming the first argument $f here is a hacky way to give the 'code' access to the
+  // variables in the rest of the form.
+
   let code = args.join(","); // in case there was a ',' in code, and indicative thought it
   // was indicative of separating an argument instead of part
   // of js code itself
@@ -56,15 +59,43 @@ indicative.extend("js", (data, field, message, args) => {
   return Promise.reject("Invalid data");
 });
 
+indicative.extend("requiredIfJs", ($f, field, message, args, get) => {
+  // naming the first argument $f here is a hacky way to give the 'code' access to the
+  // variables in the rest of the form.
+
+  let code = args.join(","); // in case there was a ',' in code, and indicative thought it
+  // was indicative of separating an argument instead of part
+  // of js code itself
+
+  let pass = true;
+
+  try {
+    pass = eval(code); // decide result based on expression
+  } catch (err) {
+    pass = false; // fail if expression throws error
+    console.log(err);
+  }
+
+  console.log(code, pass, $f, get($f, field))  
+  
+  if (!pass) {
+    return Promise.resolve("");
+  }
+  if (pass && get($f, field) !== "") {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid data");
+});
+
 indicative.extend("pincode", (data, field, message, args, get) => {
-  if (/^[0-9]{6}$/.test(data)) {
+  if (/^[0-9]{6}$/.test(get(data, field))) {
     return Promise.resolve("");
   }
   return Promise.reject("Invalid Pincode");
 });
 
 indicative.extend("year", (data, field, message, args, get) => {
-  if (/^[0-9]{4}$/.test(data) && parseInt(data) >= 1950) {
+  if (/^[0-9]{4}$/.test(get(data, field)) && parseInt(get(data, field)) >= 1950) {
     return Promise.resolve("");
   }
   return Promise.reject("Please enter a valid year greater than 1950");

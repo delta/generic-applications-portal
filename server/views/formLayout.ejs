@@ -67,11 +67,12 @@
                     for (var i = 0; i < this.elements.length; i++) {
                         var name = this.elements[i].name;
                         if (!rules[name]) continue;
-                        formValues[name] = $f[name];
+                        // $f doesn't get filled if the browser has prefilled data
+                        // provide fallback
+                        formValues[name] = $f[name] || $(this.elements[i]).val();
                         myRules[name] = rules[name];
                     }
 
-                    console.log(formValues, myRules)
                     indicative.validateAll(formValues, myRules)
                     //Promise.resolve()
                         .then(() => {

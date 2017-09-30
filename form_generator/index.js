@@ -102,10 +102,8 @@ const addTrigger = (el, func, is$f) => {
 };
 
 const validate = (name) => {
-  let myData = {};
   let myRules = {};
 
-  myData[name] = $f[name];
   myRules[name] = rules[name];
 
   if (!myRules[name]) {
@@ -113,7 +111,7 @@ const validate = (name) => {
   }
 
   // same handler will handle both validation success and validation failure
-  indicative.validate(myData, myRules, {
+  indicative.validate($f, myRules, {
     "required": "This field is required to complete registeration process",
     "date": "Please make sure you match the format dd/mm/yyy",
     "email": "Please enter a valid email",
@@ -301,6 +299,25 @@ class SubsectionNodeTransformer extends NodeTransformer {
 }
 
 class FieldsetNodeTransformer extends NodeTransformer {
+  // This is called recursively, so passing 'node' as an argument.
+  // Also, this does it only for children. Should be done for the node itself
+  // separately
+  replaceRequiredWithRequiredIfJs(showIf, node) {
+    for (let i = 0; i < node.children.length; i++) {
+      let child = node.children[i];
+
+      if (child.type !== "tag") continue;
+      if (!child.attribs.validationrule) continue;
+      let vRules = child.attribs.validationrule.split("|");
+      let idx = vRules.indexOf("required");
+
+      if (idx === -1) continue;
+      vRules[idx] = `requiredIfJs: (${showIf})`;
+      child.attribs.validationrule = vRules.join("|");
+
+      this.replaceRequiredWithRequiredIfJs(showIf, child);
+    }
+  }
   transform() {
     let label = this.originalName;
     let showIf = this.consumeAttr("showif");
@@ -314,6 +331,7 @@ class FieldsetNodeTransformer extends NodeTransformer {
           } else {
             $("#${id}").hide();
           }}`);
+      this.replaceRequiredWithRequiredIfJs(showIf, this.node);
     }
 
     if (label) {
@@ -451,6 +469,18 @@ class InputNodeTransformer extends NodeTransformer {
             $("#label-${name}").hide();
             $("#asterisk-${name}").hide();
           }}`);
+      
+      // Add showIf to each child (and thus, recursively)
+      // Reason to do this is to replace every occurrence of 'required' rules
+      // With requiredIfJs rules, so that a required field with a showIf is
+      // required only when shown. 
+      let vRules = this.validationRules.split("|");
+      let idx = vRules.indexOf("required");
+
+      if (idx !== -1) {
+        vRules[idx] = `requiredIfJs: (${showIf})`;
+        this.validationRules = vRules.join("|");
+      }
     }
 
     if (computedValue) {
@@ -458,7 +488,18 @@ class InputNodeTransformer extends NodeTransformer {
         `function() {
             let val = eval("${computedValue}");
             $("#${name}").val(val);
+            $f.${name} = val;
         }`);
+      
+      // add a validation rule that ensures that the computed value is the value that gets set.
+      // This is useless on the client, but on the server it ensures that the correct value
+      // gets submitted by the client. This way the server doesn't have to evaluate the expression.
+      // It's a lazy thing to do.
+      const rule = `js: (${computedValue}) === $f.${name}`;
+      const oldRules = this.validationRules.split("|");
+
+      oldRules.push(rule);
+      this.validationRules = oldRules.join("|");
     }
 
     this.registerFormElement();
