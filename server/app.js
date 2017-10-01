@@ -61,6 +61,10 @@ app.get("/dashboard", (req, res) => {
   };
   res.render('dashboard',{user:user});
 });
+app.get('/logout', (req, res)=>{
+  req.session.isLoggedIn = false;
+  res.redirect('/login');
+})
 
 // / catch 404 and forwarding to error handler
 app.use((req, res, next) => {
