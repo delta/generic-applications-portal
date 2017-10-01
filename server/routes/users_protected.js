@@ -11,18 +11,21 @@ const internalError = (res, err) => {
     return res.json({ "status": "500", "success": false, "message": "Internal Server Error, retry!" });
   }
 };
-
+router.get('/changePassword', (req, res)=>{
+  res.render('changePassword');
+})
 router.post("/changePassword", (req, res) => {
   // Check for required parameters before doing anything
   const newPassword = req.body.newPassword;
-  const emailId = req.body.emailId;
+  const emailId = req.session.userEmail;
   const oldPassword = req.body.oldPassword;
 
   if (!newPassword || !emailId || !oldPassword) {
+    console.log(newPassword, emailId, oldPassword)
     return res.json({ "status": 200, "success": false, "message": "Send proper params!" });
   }
 
-  connection.query("SELECT * FROM user WHERE emailId = ?", [ emailId ], (error, users) => {
+  connection.query("SELECT * FROM Users WHERE emailId = ?", [ emailId ], (error, users) => {
     if (error) {
       return internalError(res, error);
     }
@@ -41,7 +44,7 @@ router.post("/changePassword", (req, res) => {
           return internalError(res, err);
         }
 
-        connection.query("UPDATE user SET passwordHash=? WHERE emailId = ?", [ hash2, emailId ], (error2) => {
+        connection.query("UPDATE Users SET passwordHash=? WHERE emailId = ?", [ hash2, emailId ], (error2) => {
           if (error2) {
             return internalError(error2);
           }
