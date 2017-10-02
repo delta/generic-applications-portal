@@ -130,7 +130,7 @@ router.get("/register/activate/:key", (req, res, next) => {
       }
       // generate token here and log him in directly
       // for now redirecting to login
-      res.json({ "success": true, "message": "Registration Successful!", "redirect": "/login" });
+      res.render('message',{message:"Registration Successful!"});
     });
   });
 });
@@ -205,7 +205,7 @@ router.post("/forgotPassword/reset/:key", (req, res, next) => {
       const date = new Date();
 
       if (date > passwordResetTokenExpiryTime) {
-        return res.json({ "status": 200, "success": false, "message": "Token expired, generate new!", "redirect": "/login" });
+        return res.json({ "status": 200, "success": false, "message": "Token expired, generate new!"});
       }
       const sql = "UPDATE Users SET passwordHash = ?, passwordResetToken = null, passwordResetTokenExpiryTime = null WHERE emailId = ?";
 
@@ -215,7 +215,7 @@ router.post("/forgotPassword/reset/:key", (req, res, next) => {
           res.json({ "status": 200, "message": "Password couldn't be reset try again!" });
         } else {
           // direct to users/dashboard but for now redirect to login
-          res.json({ "status": 200, "message": "Password successfully changed!", "redirect": "/login" });
+          res.json({ "status": 200, "message": "Password successfully changed!" });
         }
       });
     });
@@ -224,7 +224,7 @@ router.post("/forgotPassword/reset/:key", (req, res, next) => {
 
 router.post("/register/resendToken", (req, res, next) => {
   if (req.session.isLoggedIn) {
-    return res.json({ "status": 200, "success": false, "redirect": "/users/dashboard" });
+    return res.json({ "status": 200, "success": false });
   }
 
   const emailId = req.body.emailId;
@@ -271,7 +271,7 @@ router.post("/register/resendToken", (req, res, next) => {
 // login
 router.post("/login", (req, res) => {
   if (req.session.isLoggedIn) {
-    return res.json({ "status": 200, "success": false, "redirect": "/users/dashboard" });
+    return res.json({ "status": 200, "success": false});
   }
 
   const emailId = req.body.emailId;
