@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Recruitment | Login</title>
+    <%- include('partials/commonHeaderIncludes.partial.ejs') %>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body>
+    <%- include('partials/topNavbar.partial.ejs') %>
+
+    <br>
+    <div class="login_board">
+        <h2 class="header">LOGIN</h2>
+        <hr>
+        <p class="global_alert alert"></p>
+        <div class="email_id_box">
+            <span><label class="col-2">Email-id </label> <input type="text" class="col-4 emailId" name="emailId" placeholder="Enter email-id here"></span>
+            <p class="alert alert_email col-4" style="margin-left: 42%;"></p>
+        </div>
+        <div class="password_box">
+            <span><label class="col-2">Password </label><input type="password" class="col-4  password" name="password" placeholder="Enter password here"></span>
+            <p class="alert alert_password col-4" style="margin-left: 42%;"></p>
+        </div>
+        <button class="submit btn btn-primary">LOGIN</button>
+        <br><br>
+        <a href="/signup">Not registered? Signup here</a>
+    </div>
+    <%- include('partials/footer.partial.ejs') %>
+</body>
+<script>
+    $(document).ready(()=>{
+        let $globalAlert = $('.global_alert');
+        let $emailId = $('.emailId');
+        let $password = $('.password');
+        let $password_box = $('.submit');
+        let $alertEmail = $('.alert_email');
+        let $alertPassword = $('.alert_password');
+        $('.submit').click(()=>{
+            let $emailIdValue = $emailId.val();
+            let $passwordValue = $password.val();
+            if($emailIdValue && $passwordValue){
+                let r = $.ajax({
+                    method:'POST',
+                    url:'/users/login',
+                    data:{
+                        emailId:$emailIdValue,
+                        password:$passwordValue
+                    }
+                }).done((data)=>{
+                    //console.log(data);
+                    if(data.success){
+                        $globalAlert.html(data.message);
+                        $globalAlert.addClass('alert-success');
+                        setTimeout(()=>{
+                            $globalAlert.html('');
+                            $globalAlert.removeClass('alert-success');
+                        }, 10000)
+                        setTimeout(()=>{
+                            location.href = '/dashboard';
+                        }, 5000)
+                        
+                    }else{
+                        $globalAlert.html(data.message);
+                        $globalAlert.addClass('alert-danger');
+                        setTimeout(()=>{
+                            $globalAlert.html('');
+                            $globalAlert.removeClass('alert-danger');
+                        }, 10000)
+                    }
+                    //r.status
+                });
+                
+            }
+            if(!$emailIdValue){
+                $alertEmail.html("Email-id can't be empty!");
+                $alertEmail.addClass('alert-danger');
+                setTimeout(()=>{
+                    $alertEmail.removeClass('alert-danger');
+                    $alertEmail.html('');
+                },10000);
+            }
+            if(!$passwordValue){
+                $alertPassword.addClass('alert-danger');
+                $alertPassword.html("Password can't be empty!");
+                setTimeout(()=>{
+                    $alertPassword.removeClass('alert-danger');
+                    $alertPassword.html('');
+                },10000);
+            }
+        })
+    })
+</script>
+</html>
