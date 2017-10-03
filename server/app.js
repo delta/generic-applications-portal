@@ -62,7 +62,7 @@ app.get("/dashboard", (req, res) => {
   res.render('dashboard',{user:user});
 });
 app.get('/logout', (req, res)=>{
-  req.session.isLoggedIn = false;
+  req.session.destroy();
   res.redirect('/login');
 })
 
