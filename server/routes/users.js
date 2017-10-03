@@ -110,7 +110,7 @@ router.get("/register/activate/:key", (req, res, next) => {
       return internalError(res, error);
     }
     if (!results.length) {
-      return res.json({ "status": 200, "success": false, "message": "Invalid Token" });
+      res.render('message',{message:"Invalid token <a href='/login'>login</a>"});
     }
 
     // process activation
@@ -130,7 +130,7 @@ router.get("/register/activate/:key", (req, res, next) => {
       }
       // generate token here and log him in directly
       // for now redirecting to login
-      res.render('message',{message:"Registration Successful!"});
+      res.render('message',{message:"Registration Successful! <a href='/login'>login</a>"});
     });
   });
 });
