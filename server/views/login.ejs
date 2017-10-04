@@ -49,15 +49,7 @@
                 }).done((data)=>{
                     //console.log(data);
                     if(data.success){
-                        $globalAlert.html(data.message);
-                        $globalAlert.addClass('alert-success');
-                        setTimeout(()=>{
-                            $globalAlert.html('');
-                            $globalAlert.removeClass('alert-success');
-                        }, 10000)
-                        setTimeout(()=>{
-                            location.href = '/dashboard';
-                        }, 5000)
+                        location.href = '/dashboard';
                         
                     }else{
                         $globalAlert.html(data.message);
