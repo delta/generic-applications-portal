@@ -11,19 +11,19 @@ Two folders:
 ## 0. One-off command:
     From `server` directory, run this:
 
-```node ../form_generator/index.js -l views/formLayout.ejs > views/form.ejs```
+```node ../form_generator/index.js -l views/formLayout.ejs ../form_generator/sample.html > views/form.ejs```
 
 Look at #3 to see all details.
 
 ## 1. Only compiling the markup to HTML
 To compile the markup, go to **`server`** (~`form_generator`~) folder, and then, use:
 
-```node ../form_generator/index.js sample.html```
+```node ../form_generator/index.js ../form_generator/sample.html```
 
 ## 2. Compiling the markup to HTML with custom layout file
 To compile the markup with custom layout file, go to **`server`** (~`form_generator`~) folder, and then, use:
 
-```node ../form_generator/index.js -l mylayout.html sample.html```
+```node ../form_generator/index.js -l views/formLayout.ejs ../form_generator/sample.html```
 
 ## 3. Compiling the markup to HTML with custom layout file and also generating Database seed files
 
@@ -40,7 +40,7 @@ To compile the markup with custom layout file, go to **`server`** (~`form_genera
     If you know what you're doing, feel free to do whatever.
 
 3. Now you need to compile the markup.
-    ```node ../form_generator/index.js -s seeders/*formElements.js sample.html```
+    ```node ../form_generator/index.js -s seeders/*formElements.js ../form_generator/sample.html```
     If you have multiple files ending in `formElements.js` in the seeders folder, make sure you
     specify the exact file name.
 
