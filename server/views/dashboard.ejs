@@ -14,11 +14,14 @@
     <div class="applications" style="margin-left: 10px;">
       <table class="table">
         <tr class="row">
+          <th style="padding:20px;" >Application Type</th>
           <th style="padding:20px;" >Applied Date</th>
           <th style="padding:20px;" >Status</th>
+          <th style="padding:20px;" >Action</th>
         </tr>
         <%for(var i=0;i<user.applications.length;i++ ){%>
           <tr class="row">
+            <td><%= user.applications[i].Form.name%></td>
             <td><%= user.applications[i].createdAt%></td>
             <td><%= user.applications[i].status%></td>
             <td><a href="/applications/<%= user.applications[i].id%>">View</a></td>

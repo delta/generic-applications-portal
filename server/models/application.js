@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Application.associate = (models) => {
+    Application.belongsTo(models.Form, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
     Application.belongsTo(models.User, {
       "onUpdate": "CASCADE",
       "onDelete": "RESTRICT",

@@ -12,6 +12,10 @@ module.exports = {
       "emailId": {
         "type": Sequelize.STRING,
       },
+      "isAdmin": {
+        "type": Sequelize.BOOLEAN,
+        "defaultValue": false,
+      },
       "name": {
         "type": Sequelize.STRING,
       },
