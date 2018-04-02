@@ -28,6 +28,7 @@ const internalError = (res, err) => {
 };
 
 let sendEmail = (email, message, res, activationToken, subject) => {
+  return res.json({ "status": 200, "success": true, "message": message });
   const mailOptions = {
     "to": email,
     "subject": subject,
@@ -307,6 +308,7 @@ router.post("/login", (req, res) => {
       req.session.isLoggedIn = true;
       req.session.userId = results[0].id;
       req.session.userEmail = emailId;
+      req.session.name = results[0].name;
       req.session.path = "/";
       res.json({ "status": 200, "success": true, "message": "Redirect to /users/dashboard" }); // Give redirection headers
     });

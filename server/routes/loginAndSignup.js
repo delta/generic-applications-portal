@@ -8,7 +8,7 @@ const router = express.Router();
 // GET handlers
 router.get('/', (req, res)=>{
 	if(req.session.isLoggedIn){
-		res.redirect('/dashboard');
+		res.redirect('/applications');
 	}else{
 		res.redirect('/login');
 	}

@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     "formId": DataTypes.INTEGER,
     "userId": DataTypes.INTEGER,
     "submittedAt": DataTypes.DATE,
+    "status": DataTypes.STRING,
   });
 
   Application.associate = (models) => {
