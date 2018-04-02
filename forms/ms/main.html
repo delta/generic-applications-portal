@@ -287,8 +287,8 @@
             </fieldset>
 
             <fieldset>
-                <input label="Date of Birth" name="msdob" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|js: verifyDateInddmmyyyy($f.dob)">
-                <input name="MS Age" cols="3,3" label="Age" placeholder="In Years" computedvalue="calcAge($f.dob) + ' Years'" validationRule="required"
+                <input label="Date of Birth" name="msdob" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|js: verifyDateInddmmyyyy($f.msdob)">
+                <input name="MS Age" cols="3,3" label="Age" placeholder="In Years" computedvalue="calcAge($f.msdob) + ' Years'" validationRule="required"
                     readonly>
             </fieldset>
 
@@ -365,22 +365,105 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label class='col-md-2'></label>
-                <label class='col-md-5'>Correspondence Address</label>
-                <label class='col-md-5'>Permanent Address</label>
-                <input cols="2,5" label="Address 1" name="MS Correspondence Address1" validationRule="required" placeholder="Correspondence Address">
-                <input cols="5" name="MS Permanent Address1" validationRule="required" placeholder="Permanent Address">
-                <input cols="2,5" label="Address 2" name="MS Correspondence Address2" validationRule="required" placeholder="Correspondence Address">
-                <input cols="5" name="MS Permanent Address2" validationRule="required" placeholder="Permanent Address">
-                <input cols="2,5" label="City" name="MS Correspondence City" validationRule="required" placeholder="Please enter">
-                <input cols="5" name="MS Permanent City" validationRule="required" placeholder="Please enter">
-                <input cols="2,5" label="State" name="MS Correspondence State" validationRule="required|above:1" placeholder="Please enter">
-                <input cols="5" name="MS Permanent State" validationRule="required" placeholder="Please enter">
-                <input cols="2,5" label="Pincode" name="MS Correspondence Pincode" validationRule="required|pincode" placeholder="Please enter">
-                <input cols="5" name="MS Permanent Pincode" validationRule="required|pincode" placeholder="Please enter">
+               <input name="College Name" cols="3,6" placeholder="College Name" validationRule="required">
+            </fieldset>
+            <fieldset>
+               <input name="University Name" cols="3,6" placeholder="University Name" validationRule="required">
+            </fieldset>
+            <fieldset>
+               <input name="Year of Passing" cols="3,3" validationRule="required">
+            </fieldset>
+            <fieldset>
+                <tableinput name="msDetails" cols="">
+                    <select name="MS Semester No." width="20%" label="Semester No" placeholder="Semester No." validationRule="required">
+                        <option>I</option>
+                        <option>II</option>
+                        <option>III</option>
+                        <option>IV</option>
+                        <option>V</option>
+                        <option>VI</option>
+                        <option>VII</option>
+                        <option>VIII</option>
+                        <option>IX</option>
+                        <option>X</option>
+                    </select>
+                    <input name="MS Maximum GPA / Percentage" width="40%" label="Maximum GPA / Percentage" placeholder="Maximum GPA / Percentage" validationRule="required" />
+                    <input name="MS GPA / Percentage Obtained" width="40%" label="GPA / Percentage Obtained" placeholder="GPA / Percentage Obtained" validationRule="required" />
+                </tableinput>
+        </fieldset>
+        </subsection>
+
+        <subsection name="Gate">
+            <fieldset>
+                <select name="msGateQualify" label="Did you qualify Gate?" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </fieldset>
+            <fieldset showif="$f.msGateQualify === 'Yes'">
+                <tableinput name="MS GateResult" cols="">
+                    <select name="MS Examination" width="25%" label="Examination" maxcount="1" placeholder="Choose your exam" validationRule="required">
+                        <option>I</option>
+                        <option>II</option>
+                        <option>III</option>
+                        <option>IV</option>
+                        <option>V</option>
+                        <option>VI</option>
+                        <option>VII</option>
+                        <option>VIII</option>
+                        <option>IX</option>
+                        <option>X</option>
+                    </select>
+                    <input name="MS Gate Enter Score" width="25%" label="Enter Score" placeholder="Enter Score" validationRule="required" />
+                    <input name="MS Gate Enter Rank" width="25%" label="Enter Rank" placeholder="Enter Rank" validationRule="required" />
+                    <input name="msgatedob" width="20%" label="Valid Till" placeholder="mm/dd/yyyy" validationRule="required"/>                
+                </tableinput>
+            </fieldset>
+        </subsection>
+        <subsection name="Professional Experience">
+            <fieldset>
+                <select name="msProfessionalExperience" label="Click here if you have some professional experience?" cols="3,6" placeholder="Please select" validationRule="required">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </fieldset>
+            <fieldset showif="$f.msProfessionalExperience === 'Yes'">
+                <box name="MS Experience" mincount="1">
+                    <fieldset>
+                        <input name="Name & Address of Employer" label="Name & Address of Employer" cols="5,6" placeholder="Please enter" validationRule="required">
+                    </fieldset>
+                    <fieldset>
+                        <input name="MS Experience Position Held" cols="5,6" label="Position" placeholder="Please enter" validationRule="required">
+                    </fieldset>
+                    <fieldset>    
+                        <input name="MS Experience From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                        <input name="MS Experience Till" label="To: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                    </fieldset>
+                </box>
             </fieldset>
         </subsection>
 
+        <subsection name="Sponsorship">
+            <fieldset>
+                <input cols="3,9" type="file" name="Sponsorship Certificate">                
+            </fieldset>
+            <fieldset>
+                <label class="col-md-12">
+                    I do hereby declare that the information furnished in this application are true and correct to the best of my knowledge.
+                    If, any of the particulars furnished above is found to be incorrect at the time of admission, the admission may be cancelled.
+                </label>
+                <select name="Agree" width="25%" cols="3,3" label="Agree" validationRule="required" placeholder="Select">
+                    <option>Agree</option>
+                    <option>Disagree</option>
+                </select>
+            </fieldset>
+        </subsection>
+
+        <subsection name="Signature">
+            <fieldset>
+                <input cols="3,3" type="file" name="Upload Signature">
+            </fieldset>
+        </subsection>
     </section>
 
     <section name="School Education">
@@ -438,7 +521,7 @@
             </select>
         </fieldset>
 
-        <tableinput name="ugDetails" cols="">
+        <!-- <tableinput name="ugDetails" cols="">
             <select name="UG Semester No." label="Semester No" placeholder="Semester No." validationRule="required">
                 <option>I</option>
                 <option>II</option>
@@ -458,7 +541,7 @@
             <input name="UG Month & Year of Passing" label="Month & Year of Passing" placeholder="Month & Year of Passing" validationRule="required"
             />
             <input name="UG % of Marks/Grade" label="% of Marks/Grades" placeholder="% of Marks/Grade" validationRule="required" />
-        </tableinput>
+        </tableinput> -->
     </section>
 
     <section name="PG Education">
