@@ -31,6 +31,10 @@ module.exports = {
         "type": Sequelize.DATE,
         "allowNull": true,
       },
+      "status": {
+        "type": Sequelize.STRING,
+        "allowNull": false,
+      },
       "createdAt": {
         "allowNull": false,
         "type": Sequelize.DATE,

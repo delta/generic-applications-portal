@@ -55,6 +55,20 @@ const upload = multer({
 });
 
 
+router.get('/', (req, res) => {
+  const applications = Application.findAll({ where: { userId: req.session.userId }});
+  applications
+    .then(docs => {
+      const ret = {
+        user: {
+          name: req.session.name,
+          applications: docs.map(x => x.toJSON())
+        }
+      };
+      res.render('dashboard', ret)
+    })
+    .catch(err => { res.json(err); });
+});
 /*
   request parameters:
     - formId
@@ -71,6 +85,7 @@ router.post("/create", (req, res) => {
   const applicationPromise = Application.create({
     "formId": req.query.formId,
     "userId": req.session.userId,
+    "status": "Pending",
   });
   const emailFormElementPromise = FormElement.findOne({
     "where": {
