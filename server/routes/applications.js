@@ -8,6 +8,7 @@ const validator = require("../utils/indicative-custom-validation-server.js");
 const multer = require("multer");
 
 const Application = require("../models").Application;
+const Form= require("../models/").Form;
 const FormElement = require("../models/").FormElement;
 const FormValue = require("../models").FormValue;
 
@@ -56,7 +57,13 @@ const upload = multer({
 
 
 router.get('/', (req, res) => {
-  const applications = Application.findAll({ where: { userId: req.session.userId }});
+  const applications = Application.findAll({
+    where: { userId: req.session.userId },
+    include: {
+      model: Form,
+      attributes: ["name"],
+    }
+  });
   applications
     .then(docs => {
       const ret = {
@@ -92,7 +99,7 @@ router.post("/create", (req, res) => {
       // FIXME: This code is very brittle. In case the markup calls the field anything other than 'Email',
       // this will break.
       "name": "Email",
-    },
+    }
   });
 
   Promise.all([
