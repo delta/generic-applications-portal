@@ -246,7 +246,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
       }
 
       let name = child.attribs.name;
-      let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
+      let dashedName = name.replace(/[^a-zA-Z0-9_]/g, "");
 
       navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
