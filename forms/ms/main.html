@@ -5,21 +5,21 @@
         const stdFormat = date.split("/").reverse().join("-");
         const today = new Date();
         const parsedDate = new Date(stdFormat);
-
+        
         let dd = '' + parsedDate.getDate();
         let mm = '' + (parsedDate.getMonth() + 1);
         let yyyy = '' + parsedDate.getFullYear();
-
+        
         dd = dd.length == 1 ? ('0' + dd) : dd;
         mm = mm.length == 1 ? ('0' + mm) : mm;
-
+        
         return date == `${dd}/${mm}/${yyyy}`;
     }
     function calcAge(dob) {
         // dob is in format 'dd/mm/yyyy'
         const stdFormat = dob.split("/").reverse().join("-");
         const today = new Date();
-
+        
         dob = new Date(stdFormat);
         return Math.floor((today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365));
     }
@@ -28,69 +28,71 @@
 <application name="ms-application">
     <section name="MS Application">
         <subsection name="Applicant Details">
-            <fieldset>
-                <select name="Department Preference 1" cols="3,6" placeholder="Please select" validationRule="required">
-                    <option>Architecture</option>
-                    <option>Civil Engineering</option>
-                    <option>Chemical Engineering</option>
-                    <option>Computer Science Engineering</option>
-                    <option>Electronics and Communication Engineering</option>
-                    <option>Electricals and Electronics Engineering</option>
-                    <option>Instrumentation and Control Engineering</option>
-                    <option>Mechanical Engineering</option>
-                    <option>Metallurgical and Materials Engineering</option>
-                    <option>Production Engineering</option>
-                    <option>Energy and Environment</option>
-                    <option>Physics</option>
-                    <option>Chemistry</option>
-                    <option>Mathematics</option>
-                    <option>Humanities (English/Economics)</option>
-                    <option>Computer Application</option>
-                    <option>Management Studies</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Department Preference 2" cols="3,6" placeholder="Please select">
-                    <option>Architecture</option>
-                    <option>Civil Engineering</option>
-                    <option>Chemical Engineering</option>
-                    <option>Computer Science Engineering</option>
-                    <option>Electronics and Communication Engineering</option>
-                    <option>Electricals and Electronics Engineering</option>
-                    <option>Instrumentation and Control Engineering</option>
-                    <option>Mechanical Engineering</option>
-                    <option>Metallurgical and Materials Engineering</option>
-                    <option>Production Engineering</option>
-                    <option>Energy and Environment</option>
-                    <option>Physics</option>
-                    <option>Chemistry</option>
-                    <option>Mathematics</option>
-                    <option>Humanities (English/Economics)</option>
-                    <option>Computer Application</option>
-                    <option>Management Studies</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Department Preference 3" cols="3,6" placeholder="Please select">
-                    <option>Architecture</option>
-                    <option>Civil Engineering</option>
-                    <option>Chemical Engineering</option>
-                    <option>Computer Science Engineering</option>
-                    <option>Electronics and Communication Engineering</option>
-                    <option>Electricals and Electronics Engineering</option>
-                    <option>Instrumentation and Control Engineering</option>
-                    <option>Mechanical Engineering</option>
-                    <option>Metallurgical and Materials Engineering</option>
-                    <option>Production Engineering</option>
-                    <option>Energy and Environment</option>
-                    <option>Physics</option>
-                    <option>Chemistry</option>
-                    <option>Mathematics</option>
-                    <option>Humanities (English/Economics)</option>
-                    <option>Computer Application</option>
-                    <option>Management Studies</option>
-                </select>
-            </fieldset>
+            <exclusiveselect>
+                <fieldset>
+                    <select name="Department Preference 1" cols="3,6" placeholder="Please select" validationRule="required">
+                        <option>Architecture</option>
+                        <option>Civil Engineering</option>
+                        <option>Chemical Engineering</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Electronics and Communication Engineering</option>
+                        <option>Electricals and Electronics Engineering</option>
+                        <option>Instrumentation and Control Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Metallurgical and Materials Engineering</option>
+                        <option>Production Engineering</option>
+                        <option>Energy and Environment</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Mathematics</option>
+                        <option>Humanities (English/Economics)</option>
+                        <option>Computer Application</option>
+                        <option>Management Studies</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <select name="Department Preference 2" cols="3,6" placeholder="Please select">
+                        <option>Architecture</option>
+                        <option>Civil Engineering</option>
+                        <option>Chemical Engineering</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Electronics and Communication Engineering</option>
+                        <option>Electricals and Electronics Engineering</option>
+                        <option>Instrumentation and Control Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Metallurgical and Materials Engineering</option>
+                        <option>Production Engineering</option>
+                        <option>Energy and Environment</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Mathematics</option>
+                        <option>Humanities (English/Economics)</option>
+                        <option>Computer Application</option>
+                        <option>Management Studies</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <select name="Department Preference 3" cols="3,6" placeholder="Please select">
+                        <option>Architecture</option>
+                        <option>Civil Engineering</option>
+                        <option>Chemical Engineering</option>
+                        <option>Computer Science Engineering</option>
+                        <option>Electronics and Communication Engineering</option>
+                        <option>Electricals and Electronics Engineering</option>
+                        <option>Instrumentation and Control Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Metallurgical and Materials Engineering</option>
+                        <option>Production Engineering</option>
+                        <option>Energy and Environment</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Mathematics</option>
+                        <option>Humanities (English/Economics)</option>
+                        <option>Computer Application</option>
+                        <option>Management Studies</option>
+                    </select>
+                </fieldset>
+            </exclusiveselect>
             <fieldset>
                 <input cols="3,3" name="Email" readonly validationRule="required">
             </fieldset>
@@ -104,7 +106,7 @@
                 </select>
                 <input name="Staff Number" cols="3,3" placeholder="Staff Number" validationRule="required" showif="$f.internalCandidate == 'Yes'">
             </fieldset>
-
+            
             <fieldset showif="$f.internalCandidate == 'No'">
                 <input name="Date of Last Promotion" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required">
             </fieldset> -->
@@ -113,17 +115,17 @@
             <fieldset>
                 <input label="Full Name" cols="3,6" name="Full Name" placeholder="Full Name" validationRule="required">
             </fieldset>
-
+            
             <fieldset>
                 <input name="Father's/Husband's Name" cols="3,6" validationRule="required">
             </fieldset>
-
+            
             <fieldset>
                 <input label="Date of Birth" name="dob" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|js: verifyDateInddmmyyyy($f.dob)">
                 <input name="Age" cols="3,3" placeholder="In Years" computedvalue="calcAge($f.dob) + ' Years'" validationRule="required"
-                    readonly>
+                readonly>
             </fieldset>
-
+            
             <fieldset>
                 <select name="Gender" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Male</option>
@@ -139,15 +141,15 @@
                     <option>Person with disabilities</option>
                 </select>
             </fieldset>
-
+            
             <fieldset>
                 <select name="Nationality" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Indian</option>
                 </select>
-
+                
                 <input name="State/UT" cols="3,3" placeholder="State/UT to which you belong" validationRule="required">
             </fieldset>
-
+            
             <fieldset>
                 <select name="Marital Status" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Single</option>
@@ -166,12 +168,12 @@
             <!-- <fieldset>
                 <input cols="3,3" name="Email" readonly validationRule="required">
             </fieldset> -->
-
+            
             <fieldset>
                 <input name="Mobile No.<br>(with country code)" cols="2,4" placeholder="Contact No" validationRule="required|phone">
                 <input name="Landline No." cols="2,4" placeholder="Landline Contact No.">
             </fieldset>
-
+            
             <fieldset>
                 <label class='col-md-2'></label>
                 <label class='col-md-5'>Correspondence Address</label>
@@ -189,7 +191,7 @@
             </fieldset>
         </subsection>
     </section>
-
+    
     <section name="APPLICATION FOR ADMISSION TO M.S.PROGRAMME (2018-2019)">
         <instructions>
             <li>Your application number is: MS/CS/1. Please keep this safely as this is very important.</li>
@@ -279,19 +281,19 @@
                 <input cols="3,3" name="MS Area of Research" label="Area of Research" validationRule="required">
             </fieldset>
         </subsection>
-
+        
         <subsection name="Personal Details">
             <fieldset>
                 <input label="Full Name" cols="3,3" name="MS Full Name" placeholder="Full Name" validationRule="required">
                 <input name="MS Father's/Husband's Name" label="Father's/Husband's Name" cols="3,3" validationRule="required">
             </fieldset>
-
+            
             <fieldset>
                 <input label="Date of Birth" name="msdob" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|js: verifyDateInddmmyyyy($f.dob)">
                 <input name="MS Age" cols="3,3" label="Age" placeholder="In Years" computedvalue="calcAge($f.dob) + ' Years'" validationRule="required"
-                    readonly>
+                readonly>
             </fieldset>
-
+            
             <fieldset>
                 <select name="MS Gender" label="Gender" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Male</option>
@@ -307,14 +309,14 @@
                     <option>Person with disabilities</option>
                 </select>
             </fieldset>
-
+            
             <fieldset>
                 <select name="MS Nationality" label="Nationality" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Indian</option>
                 </select>
                 <input name="MS State/UT" label="State/UT" cols="3,3" placeholder="State/UT to which you belong" validationRule="required">
             </fieldset>
-
+            
             <fieldset>
                 <select name="MS Marital Status" label="Marital Status" cols="3,3" placeholder="Please select" validationRule="required">
                     <option>Single</option>
@@ -329,7 +331,7 @@
                 </select>
             </fieldset>
         </subsection>
-
+        
         <subsection name="Contact Details">
             <fieldset>
                 <input name="Mobile No.(with country code)" cols="2,4" placeholder="Contact No" validationRule="required|phone">
@@ -351,7 +353,7 @@
                 <input cols="5" name="MS Permanent Pincode" validationRule="required|pincode" placeholder="Please enter">
             </fieldset>
         </subsection>
-
+        
         <subsection name="Undergraduation Details">
             <fieldset>
                 <input name="Name of Degree" cols="3,3" placeholder="Name of Degree" validationRule="required">
@@ -380,9 +382,9 @@
                 <input cols="5" name="UG MS Permanent Pincode" validationRule="required|pincode" placeholder="Please enter">
             </fieldset>
         </subsection>
-
+        
     </section>
-
+    
     <section name="School Education">
         <instructions>
             <li>All fields are mandatory</li>
@@ -408,7 +410,7 @@
             <input cols="2,4" label="Division / Class" name="PreUni Division" placeholder="Please enter" validationRule="required">
         </fieldset>
     </section>
-
+    
     <section name="UG Education">
         <instructions>
             <li>All the fields are mandatory</li>
@@ -437,7 +439,7 @@
                 <option>No</option>
             </select>
         </fieldset>
-
+        
         <tableinput name="ugDetails" cols="">
             <select name="UG Semester No." label="Semester No" placeholder="Semester No." validationRule="required">
                 <option>I</option>
@@ -460,7 +462,7 @@
             <input name="UG % of Marks/Grade" label="% of Marks/Grades" placeholder="% of Marks/Grade" validationRule="required" />
         </tableinput>
     </section>
-
+    
     <section name="PG Education">
         <instructions>
             <li>All the fields are mandatory</li>
@@ -510,1247 +512,1248 @@
             <input name="PG % of Marks/Grade" label="%/ of Marks/Grades" placeholder="% of Marks/Grade" validationRule="required" />
         </tableinput>
     </section>
-
-
+    
+    
     <section name="Present Employer">
         <instructions>
             <li>The candidates applying from PSU[s]/Govt. Institutions shall be required to submit No Objection Certificates
                 if shortlisted for presentation/interview.</li>
-            <li>Please fill Pay in Pay Band, for example: 30000/- in pay band of 15600-39100 for an AGP of 8000/-.</li>
-            <li>Incase not from AGP/GP based pay only mention Basic Pay.</li>
-        </instructions>
-        <fieldset>
-            <input name="Employer Organization" cols="3,6" placeholder="Please enter" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input name="Position Held" cols="3,3" placeholder="Please enter" validationRule="required">
-            <select name="Type of Employer" cols="3,3" placeholder="Please select an option" validationRule="required">
-                <option value="Government">Government</option>
-                <option value="Private">Private</option>
-                <option value="PSU/Autonomous Body">PSU/Autonomous Body</option>
-            </select>
-        </fieldset>
-        <fieldset>
-            <input name="Worked From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            <input name="Worked Till" label="To: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-        </fieldset>
-        <fieldset>
-            <input name="Pay in Pay Band" cols="3,3" placeholder="Please enter">
-            <input name="AGP/GP" cols="3,3" placeholder="Please enter">
-        </fieldset>
-        <fieldset>
-            <input name="Basic Pay" cols="3,6" placeholder="Please enter" validationRule="required">
-        </fieldset>
-        <fieldset>
-            <input name="Nature of Work" cols="3,6" placeholder="Please enter" validationRule="required">
-        </fieldset>
-    </section>
-
-    <section name="Research / Professional Experience">
-        <instructions>
-            <li>All fields marked with (*) are compulsory to fill.</li>
-        </instructions>
-        <box name="Experience" mincount="1">
+                <li>Please fill Pay in Pay Band, for example: 30000/- in pay band of 15600-39100 for an AGP of 8000/-.</li>
+                <li>Incase not from AGP/GP based pay only mention Basic Pay.</li>
+            </instructions>
             <fieldset>
-                <input name="Experience Organization" label="Organization" cols="2,4" placeholder="Please enter" validationRule="required">
-                <input name="Experience Position Held" cols="2,4" label="Position" placeholder="Please enter" validationRule="required">
+                <input name="Employer Organization" cols="3,6" placeholder="Please enter" validationRule="required">
             </fieldset>
             <fieldset>
-                <input name="Experience From" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Experience Till" label="To: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-            <fieldset>
-                <input name="Experience Total Grant" label="Total Grant:" cols="2,4" placeholder="Please enter" validationRule="required">
-                <input name="Experience Reason for Leaving" label="Reason for leaving" cols="2,4" placeholder="Please enter" validationRule="required">
-            </fieldset>
-        </box>
-    </section>
-
-    <!-- <section name="Professional Experience">
-        <tableinput name="teachingExperience" minCount="2">
-            <input name="Name Of Organization" placeholder="Name Of Organization" validationRule="required"/>
-            <input name="Address Of Organization" placeholder="Address Of Organization" validationRule="required"/>
-            <input name="Nature of work" placeholder="Nature of work" validationRule="required"/>
-            <input name="payscale" placeholder="payscale" validationRule="required"/>
-            <input name="From" placeholder="From" validationRule="required"/>
-            <input name="To" placeholder="To" validationRule="required"/>
-            <input name="Type of Organization" placeholder="Type of Organization" validationRule="required"/>
-            <input name="Reasons for leaving" placeholder="Reasons for leaving" validationRule="required"/>
-        </tableinput>
-    </section> -->
-
-    <section name="Sponsored Project">
-        <instructions>
-            <li>All fields marked with (*) are compulsory to fill.</li>
-        </instructions>
-        <box name="Sponsored Project Box" mincount="1">
-            <fieldset>
-                <input name="Project Title" label="Title" cols="2,4" validationRule="required" />
-                <input name="Sponsoring Agency" cols="2,4" label="Agency" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Project From" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Project To" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-            <fieldset>
-                <input name="Project Amount" label="Amount(In Lacs)" cols="2,4" validationRule="required|date">
-                <select name="Project Status" cols="2,4" label="Status" placeholder="Please select" validationRule="required">
-                    <option value="In Progress">In Progress</option>
-                    <option value="Completed">Completed</option>
+                <input name="Position Held" cols="3,3" placeholder="Please enter" validationRule="required">
+                <select name="Type of Employer" cols="3,3" placeholder="Please select an option" validationRule="required">
+                    <option value="Government">Government</option>
+                    <option value="Private">Private</option>
+                    <option value="PSU/Autonomous Body">PSU/Autonomous Body</option>
                 </select>
             </fieldset>
             <fieldset>
-                <select name="Project Role" label="Role" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option value="Investigator">Investigator</option>
-                    <option value="Co Investigator">Co Investigator</option>
-                </select>
-                <select name="Co PI" label="Total no of Co-Inventors" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-
-    <section name="Patent Details">
-        <instructions>
-            <li>All fields marked with (*) are compulsory to fill.</li>
-        </instructions>
-        <box name="Patent Details Box" mincount="1">
-            <fieldset>
-                <input name="Patent Name" label="Name" cols="3,3" validationRule="required" />
-                <input name="Patent Registration No" label="Registration No" cols="3,3" validationRule="required" />
+                <input name="Worked From" label="From: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                <input name="Worked Till" label="To: (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
             </fieldset>
             <fieldset>
-                <input name="Patent Date" label="Date of Award (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Patent Awarding Organization" label="Awarding Organization" cols="3,3" validationRule="required" />
-                <select name="Patent Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option value="Investigator">Investigator</option>
-                    <option value="Co Investigator">Co Investigator</option>
-                </select>
-                <select name="Patent Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
+                <input name="Pay in Pay Band" cols="3,3" placeholder="Please enter">
+                <input name="AGP/GP" cols="3,3" placeholder="Please enter">
             </fieldset>
             <fieldset>
-                <select name="Patent PI" label="Status" cols="3,6" placeholder="Please select" validationRule="required">
-                    <option value="Awarded">Awarded</option>
-                    <option value="Filed">Filed</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-
-    <section name="Consultancy Details">
-        <instructions>
-            <li>All fields marked with (*) are compulsory to fill.</li>
-        </instructions>
-        <box name="Consultancy Details Box" mincount="1">
-            <fieldset>
-                <input name="Consultancy Title" label="Title" cols="3,3" validationRule="required" />
-                <input name="Consultancy Agency" label="Funding Agency" cols="3,3" validationRule="required" />
+                <input name="Basic Pay" cols="3,6" placeholder="Please enter" validationRule="required">
             </fieldset>
             <fieldset>
-                <input name="Consultancy From" label="From (dd/mm/yyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required" />
-                <input name="Consultancy To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                <input name="Nature of Work" cols="3,6" placeholder="Please enter" validationRule="required">
             </fieldset>
-            <fieldset>
-                <input name="Consultancy Amount" label="Amount in Lacs" cols="3,3" validationRule="required" />
-
-                <select name="Consultancy Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option value="Investigator">Investigator</option>
-                    <option value="Co Investigator">Co Investigator</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Consultancy Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                <select name="Consultancy PI" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option value="Awarded">Awarded</option>
-                    <option value="Filed">Filed</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Thesis Supervised">
-        <box name="Thesis Details Box" mincount="1">
-            <fieldset>
-                <select name="Supervised Status" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>Awarded</option>
-                    <option>Filed</option>
-                </select>
-                <select name="Supervised Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>Supervisor</option>
-                    <option>Co-Supervisor</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Supervised Title" label="Title" cols="3,3" validationRule="required" />
-                <input name="Supervised Institute" label="Institute Name" cols="3,3" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Supervised Name of Scholar" label="Name of Scholar" cols="3,3" validationRule="required" />
-                <input name="Supervised Date" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Research Publication">
-        <instructions>
-            <li>All fields marked with (*) are compulsory to fill.</li>
-            <li>Add your research papers publication details.</li>
-            <li>The SCI/Scopus journal should be carefully selected by the candidates as valid proof of journal to be SCI/Scopus
-                shall be required.</li>
-            <li>If you are the only author of your research paper fill "0" in 'No. of Co-Authors' field.</li>
-            <li>Journal Papers in SCI/Scopus only (Paid Journal Papers not allowed).</li>
-            <li>Conference paper indexed in SCI/ Scopus/ Web of Science Conference/ internationally renewed conference only.</li>
-        </instructions>
-        <box name="Research Publication Box" mincount="1">
-            <fieldset>
-                <select name="Research Type" label="Type" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>Journal</option>
-                    <option>Conference</option>
-                </select>
-                <select name="Research Category" label="Category" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>SCI</option>
-                    <option>Scopus</option>
-                    <option>Non SCI/Scopus</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Research Title" label="Title" cols="3,3" validationRule="required" />
-                <input name="Research Journal Name" label="Journal/Conf Name" cols="3,3" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Research Place" label="Place" cols="3,3" validationRule="required" />
-                <input name="Research Year" label="Year (yyyy)" cols="3,3" placeholder="yyyy" validationRule="required">
-            </fieldset>
-            <fieldset>
-                <input name="Research Volume" label="Volume" cols="3,3" validationRule="required" />
-                <select name="Research Status" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>Published</option>
-                    <option>Accepted</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Research Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>First/Corresponding</option>
-                    <option>Main Supervisor</option>
-                    <option>Co-Author</option>
-                </select>
-                <select name="Research Number of Coauthor" label="No of Co-Author" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Administrative Assignments-I Details">
-        <instructions>
-            <li>HoD/ Dean/ Chief Warden/ Prof.I/C (T & P)/ Advisor (Estate)/ CVO/ PI (Exam)/ TEQIP (Coordinator)</li>
-        </instructions>
-        <box name="Administrative Assignments-I Box" mincount="1">
-            <fieldset>
-                <input name="Admin1 Title" label="Title" cols="2,4" validationRule="required" />
-                <input name="Admin1 Work" label="Nature of Work" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Admin1 Position" label="Position Held" cols="3,3" validationRule="required" />
-                <select name="Admin1 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Admin1 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Admin1 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Administrative Assignments-II Details">
-        <instructions>
-            <li>Warden/ Assistant Warden/ Associated Dean/ Chairman/ Convenor Institute Academic Committees/ Faculty In-charge
-                (Computer Centre/ IT Services/ Library/ Admission/ Student Activities/ Other Institutional Activities)</li>
-        </instructions>
-        <box name="Administrative Assignments-II Box" mincount="1">
-            <fieldset>
-                <input name="Admin2 Title" label="Title" cols="2,4" validationRule="required" />
-                <input name="Admin2 Work" label="Nature of Work" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Admin2 Position" label="Position Held" cols="3,3" validationRule="required" />
-                <select name="Admin2 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Admin2 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Admin2 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-        </box>
-    </section>
-
-
-
-    <section name="Administrative Assignments-III Details">
-        <instructions>
-            <li>Chairman and Convenor of different standing committee and special committee (Ex-officio status will not be considered)/
-                Faculty in-charge (each of one year duration) of different units or equivalent not covered in Administrative
-                assignments-I and Administrative assignments-II.</li>
-        </instructions>
-        <box name="Administrative Assignments-III Box" mincount="1">
-            <fieldset>
-                <input name="Admin3 Title" label="Title" cols="2,4" validationRule="required" />
-                <input name="Admin3 Work" label="Nature of Work" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Admin3 Position" label="Position Held" cols="3,3" validationRule="required" />
-                <select name="Admin3 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Admin3 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Admin3 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-        </box>
-    </section>
-
-
-    <section name="Administrative Assignments-IV Details">
-        <instructions>
-            <li>Departmental activities identified by HoD like lab in charges or departmental committee for minimum period of
-                one year and not covered in Administrative assignments-I, Administrative assignments-II & Administrative
-                assignments-III.</li>
-        </instructions>
-        <box name="Administrative Assignments-IV Box" mincount="1">
-            <fieldset>
-                <input name="Admin4 Title" label="Title" cols="2,4" validationRule="required" />
-                <input name="Admin4 Work" label="Nature of Work" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Admin4 Position" label="Position Held" cols="3,3" validationRule="required" />
-                <select name="Admin4 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Admin4 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Admin4 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Workshop Organized">
-        <box name="Workshop Box" mincount="1">
-            <fieldset>
-                <select name="Workshop Category" label="Workshop Name" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option>FDP</option>
-                    <option>STTP</option>
-                    <option>Workshop</option>
-                </select>
-                <select name="Workshop Days" label="Number of Days" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Workshop Title" label="Title" placeholder="Please select" validationRule="required" cols="2,4">
-                <select name="Workshop Role" label="Role" placeholder="Please select" validationRule="required" cols="2,4">
-                    <option>Role1</option>
-                    <option>Role2</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Workshop From" label="From (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Workshop To" label="To (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-            <fieldset>
-                <input name="Workshop At" label="Organized At" validationRule="required" cols="2,6">
-            </fieldset>
-        </box>
-    </section>
-
-
-    <section name="Conferences Organized">
-        <instructions>
-            <li>All fields marked with (*) are required</li>
-        </instructions>
-        <box name="Conference Box" mincount="1">
-            <fieldset>
-                <select name="Conference Level" label="Level" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option>National</option>
-                    <option>International</option>
-                </select>
-                <input name="Conference Title" label="Title" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Conference From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="Conference To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-            <fieldset>
-                <input name="Conference At" label="Organized At" cols="2,4" validationRule="required" />
-                <select name="Conference Role" label="Role" cols="2,4" placeholder="Please select" validationRule="require">
-                    <option>Chairman</option>
-                    <option>Secretary</option>
-                    <option>Other</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="National Program Organized">
-        <instructions>
-            <li>All fields marked with (*) are required</li>
-        </instructions>
-        <box name="National Program Box" mincount="1">
-            <fieldset>
-                <input name="National Program Type" label="Type" cols="2,4" validationRule="required" />
-                <select name="National Program Weeks" label="Weeks" cols="2,4" placeholder="Please select" validationRule="required">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="National Program Title" label="Title" validationRule="required" cols="2,6">
-            </fieldset>
-            <fieldset>
-                <input name="National Program From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-                <input name="National Program To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
-            </fieldset>
-            <fieldset>
-                <input name="National Program At" label="Organized At" cols="2,4" validationRule="required" />
-                <select name="National Program Role" label="Role" cols="2,4" placeholder="Please select" validationRule="require">
-                    <option>Convenor</option>
-                    <option>Coordinator</option>
-                    <option>Other</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-
-
-    <section name="Establishment of New Lab">
-        <instructions>
-            <li>All fields marked with (*) are required</li>
-        </instructions>
-        <box name="Lab Box" mincount="1">
-            <fieldset>
-                <input name="Lab Year" label="Year" cols="2,4" validationRule="required" placeholder="YYYY-YY Eg. 1980-81" />
-                <input name="Lab Name" label="Name of lab" validationRule="required" cols="2,4">
-            </fieldset>
-            <fieldset>
-                <input name="Lab Department" label="Department Concerned" cols="2,4" validationRule="required" />
-                <select name="Lab Experiments" label="No. of Experiments" cols="2,4" placeholder="Please select" validationRule="require">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
-                    <option>31</option>
-                    <option>32</option>
-                    <option>33</option>
-                    <option>34</option>
-                    <option>35</option>
-                    <option>36</option>
-                    <option>37</option>
-                    <option>38</option>
-                    <option>39</option>
-                    <option>40</option>
-                    <option>41</option>
-                    <option>42</option>
-                    <option>43</option>
-                    <option>44</option>
-                    <option>45</option>
-                    <option>46</option>
-                    <option>47</option>
-                    <option>48</option>
-                    <option>49</option>
-                    <option>50</option>
-                    <option>51</option>
-                    <option>52</option>
-                    <option>53</option>
-                    <option>54</option>
-                    <option>55</option>
-                    <option>56</option>
-                    <option>57</option>
-                    <option>58</option>
-                    <option>59</option>
-                    <option>60</option>
-                    <option>61</option>
-                    <option>62</option>
-                    <option>63</option>
-                    <option>64</option>
-                    <option>65</option>
-                    <option>66</option>
-                    <option>67</option>
-                    <option>68</option>
-                    <option>69</option>
-                    <option>70</option>
-                    <option>71</option>
-                    <option>72</option>
-                    <option>73</option>
-                    <option>74</option>
-                    <option>75</option>
-                    <option>76</option>
-                    <option>77</option>
-                    <option>78</option>
-                    <option>79</option>
-                    <option>80</option>
-                    <option>81</option>
-                    <option>82</option>
-                    <option>83</option>
-                    <option>84</option>
-                    <option>85</option>
-                    <option>86</option>
-                    <option>87</option>
-                    <option>88</option>
-                    <option>89</option>
-                    <option>90</option>
-                    <option>91</option>
-                    <option>92</option>
-                    <option>93</option>
-                    <option>94</option>
-                    <option>95</option>
-                    <option>96</option>
-                    <option>97</option>
-                    <option>98</option>
-                    <option>99</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Theroy Teaching">
-        <box name="Theroy Box" mincount="1">
-            <fieldset>
-                <select name="Thoery Year" label="Academic Year" placeholder="Please Select" cols="2,4" validationRule="required">
-                    <option>2017-2018</option>
-                    <option>2016-2017</option>
-                    <option>2015-2016</option>
-                    <option>2014-2015</option>
-                    <option>2013-2014</option>
-                    <option>2012-2013</option>
-                    <option>2011-2012</option>
-                    <option>2010-2011</option>
-                    <option>2009-2010</option>
-                    <option>2008-2009</option>
-                    <option>2007-2008</option>
-                    <option>2006-2007</option>
-                    <option>2005-2006</option>
-                    <option>2004-2005</option>
-                    <option>2003-2004</option>
-                    <option>2002-2003</option>
-                    <option>2001-2002</option>
-                    <option>2000-2001</option>
-                    <option>1999-2000</option>
-                    <option>1998-1999</option>
-                    <option>1997-1998</option>
-                    <option>1996-1997</option>
-                    <option>1995-1996</option>
-                    <option>1994-1995</option>
-                    <option>1993-1994</option>
-                    <option>1992-1993</option>
-                    <option>1991-1992</option>
-                    <option>1990-1991</option>
-                    <option>1989-1990</option>
-                    <option>1988-1989</option>
-                    <option>1987-1988</option>
-                    <option>1986-1987</option>
-                    <option>1985-1986</option>
-                    <option>1984-1985</option>
-                    <option>1983-1984</option>
-                    <option>1982-1983</option>
-                    <option>1981-1982</option>
-                    <option>1980-1981</option>
-                </select>
-                <select name="Theroy Type" placeholder="Please select" label="Subject Type" cols="2,4" validationRule="required">
-                    <option>Core</option>
-                    <option>Elective</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Theory Odd" placeholder="Please select" label="Teaching Load for Odd Semester" cols="3,2" validationRule="required">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                </select>
-                <select name="Theory Even" placeholder="Please select" label="Teaching Load for Even Semester" cols="3,2" validationRule="required">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="PG Dissertation">
-        <box name="Dissertation box" mincount="1">
-            <fieldset>
-                <input name="Title of Dissertation" validationRule="required" / cols="2,4">
-                <input name="Dissertation Name" validationRule="required" label="Name of student" cols="2,4" />
-            </fieldset>
-            <fieldset>
-                <select name="Dissertation Year" validationRule="required" cols="2,4" label="Year">
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                    <option>2009</option>
-                    <option>2008</option>
-                    <option>2007</option>
-                    <option>2006</option>
-                    <option>2005</option>
-                    <option>2004</option>
-                    <option>2003</option>
-                    <option>2002</option>
-                    <option>2001</option>
-                    <option>2000</option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    <option>1994</option>
-                    <option>1993</option>
-                    <option>1992</option>
-                    <option>1991</option>
-                    <option>1990</option>
-                    <option>1989</option>
-                    <option>1988</option>
-                    <option>1987</option>
-                    <option>1986</option>
-                    <option>1985</option>
-                    <option>1984</option>
-                    <option>1983</option>
-                    <option>1982</option>
-                    <option>1981</option>
-                    <option>1980</option>
-                    <option>1979</option>
-                    <option>1978</option>
-                    <option>1977</option>
-                    <option>1976</option>
-                    <option>1975</option>
-                    <option>1974</option>
-                    <option>1973</option>
-                    <option>1972</option>
-                    <option>1971</option>
-                    <option>1970</option>
-                    <option>1969</option>
-                    <option>1968</option>
-                    <option>1967</option>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                    <option>1959</option>
-                    <option>1958</option>
-                    <option>1957</option>
-                    <option>1956</option>
-                    <option>1955</option>
-                    <option>1954</option>
-                    <option>1953</option>
-                    <option>1952</option>
-                    <option>1951</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="UG Projects">
-        <box name="UG Projects Box" mincount="1">
-            <fieldset>
-                <input name="UG Project Title" label="Title of project" validationRule="required" cols="2,4">
-                <select name="UG Project Year" label="Year" validationRule="required" placeholder="Please select" cols="2,4">
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                    <option>2009</option>
-                    <option>2008</option>
-                    <option>2007</option>
-                    <option>2006</option>
-                    <option>2005</option>
-                    <option>2004</option>
-                    <option>2003</option>
-                    <option>2002</option>
-                    <option>2001</option>
-                    <option>2000</option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    <option>1994</option>
-                    <option>1993</option>
-                    <option>1992</option>
-                    <option>1991</option>
-                    <option>1990</option>
-                    <option>1989</option>
-                    <option>1988</option>
-                    <option>1987</option>
-                    <option>1986</option>
-                    <option>1985</option>
-                    <option>1984</option>
-                    <option>1983</option>
-                    <option>1982</option>
-                    <option>1981</option>
-                    <option>1980</option>
-                    <option>1979</option>
-                    <option>1978</option>
-                    <option>1977</option>
-                    <option>1976</option>
-                    <option>1975</option>
-                    <option>1974</option>
-                    <option>1973</option>
-                    <option>1972</option>
-                    <option>1971</option>
-                    <option>1970</option>
-                    <option>1969</option>
-                    <option>1968</option>
-                    <option>1967</option>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                    <option>1959</option>
-                    <option>1958</option>
-                    <option>1957</option>
-                    <option>1956</option>
-                    <option>1955</option>
-                    <option>1954</option>
-                    <option>1953</option>
-                    <option>1952</option>
-                    <option>1951</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Book/Chapter Publication">
-        <box name="Book Chapter Box">
-            <fieldset>
-                <input name="Book Title" label="Book Title" cols="2,4" validationRule="required">
-                <input name="Book Publisher" cols="2,4" label="Name of Publisher" validationRule="required">
-            </fieldset>
-            <fieldset>
-                <select name="Book Publisher Type" placeholder="Please enter" cols="2,4" validationRule="required" label="Type of Publisher">
-                    <option>National</option>
-                    <option>International</option>
-                </select>
-                <select name="Book Year" placeholder="Please enter" cols="2,4" validationRule="required" label="Year of Publish">
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                    <option>2009</option>
-                    <option>2008</option>
-                    <option>2007</option>
-                    <option>2006</option>
-                    <option>2005</option>
-                    <option>2004</option>
-                    <option>2003</option>
-                    <option>2002</option>
-                    <option>2001</option>
-                    <option>2000</option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    <option>1994</option>
-                    <option>1993</option>
-                    <option>1992</option>
-                    <option>1991</option>
-                    <option>1990</option>
-                    <option>1989</option>
-                    <option>1988</option>
-                    <option>1987</option>
-                    <option>1986</option>
-                    <option>1985</option>
-                    <option>1984</option>
-                    <option>1983</option>
-                    <option>1982</option>
-                    <option>1981</option>
-                    <option>1980</option>
-                    <option>1979</option>
-                    <option>1978</option>
-                    <option>1977</option>
-                    <option>1976</option>
-                    <option>1975</option>
-                    <option>1974</option>
-                    <option>1973</option>
-                    <option>1972</option>
-                    <option>1971</option>
-                    <option>1970</option>
-                    <option>1969</option>
-                    <option>1968</option>
-                    <option>1967</option>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                    <option>1959</option>
-                    <option>1958</option>
-                    <option>1957</option>
-                    <option>1956</option>
-                    <option>1955</option>
-                    <option>1954</option>
-                    <option>1953</option>
-                    <option>1952</option>
-                    <option>1951</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <select name="Book Lastest Edition" placeholder="Please select" validationrule="required" label="Year of Latest Edition"
-                    cols="2,4">
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                    <option>2009</option>
-                    <option>2008</option>
-                    <option>2007</option>
-                    <option>2006</option>
-                    <option>2005</option>
-                    <option>2004</option>
-                    <option>2003</option>
-                    <option>2002</option>
-                    <option>2001</option>
-                    <option>2000</option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    <option>1994</option>
-                    <option>1993</option>
-                    <option>1992</option>
-                    <option>1991</option>
-                    <option>1990</option>
-                    <option>1989</option>
-                    <option>1988</option>
-                    <option>1987</option>
-                    <option>1986</option>
-                    <option>1985</option>
-                    <option>1984</option>
-                    <option>1983</option>
-                    <option>1982</option>
-                    <option>1981</option>
-                    <option>1980</option>
-                    <option>1979</option>
-                    <option>1978</option>
-                    <option>1977</option>
-                    <option>1976</option>
-                    <option>1975</option>
-                    <option>1974</option>
-                    <option>1973</option>
-                    <option>1972</option>
-                    <option>1971</option>
-                    <option>1970</option>
-                    <option>1969</option>
-                    <option>1968</option>
-                    <option>1967</option>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                    <option>1959</option>
-                    <option>1958</option>
-                    <option>1957</option>
-                    <option>1956</option>
-                    <option>1955</option>
-                    <option>1954</option>
-                    <option>1953</option>
-                    <option>1952</option>
-                    <option>1951</option>
-                </select>
-                <select name="Book Type" cols="2,4" label="Type of Publication" validationrule="required">
-                    <option>Book Chapter</option>
-                    <option>Text Book</option>
-                    <option>Reference Book</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Outreach Activity Awards">
-        <box name="Outreach Box" mincount="1">
-            <fieldset>
-                <input name="Outreach Name" label="Name of Activity" cols="2,4" validationRule="required" />
-                <input name="Outreach Role" label="Role" cols="2,4" validationRule="required" />
-            </fieldset>
-            <fieldset>
-                <input name="Outreach Given" label="Given by" cols="2,4" validationRule="required" />
-                <select name="Outreach Year" label="Year" cols="2,4" validationRule="required" placeholder="Please select">
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                    <option>2009</option>
-                    <option>2008</option>
-                    <option>2007</option>
-                    <option>2006</option>
-                    <option>2005</option>
-                    <option>2004</option>
-                    <option>2003</option>
-                    <option>2002</option>
-                    <option>2001</option>
-                    <option>2000</option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    <option>1994</option>
-                    <option>1993</option>
-                    <option>1992</option>
-                    <option>1991</option>
-                    <option>1990</option>
-                    <option>1989</option>
-                    <option>1988</option>
-                    <option>1987</option>
-                    <option>1986</option>
-                    <option>1985</option>
-                    <option>1984</option>
-                    <option>1983</option>
-                    <option>1982</option>
-                    <option>1981</option>
-                    <option>1980</option>
-                    <option>1979</option>
-                    <option>1978</option>
-                    <option>1977</option>
-                    <option>1976</option>
-                    <option>1975</option>
-                    <option>1974</option>
-                    <option>1973</option>
-                    <option>1972</option>
-                    <option>1971</option>
-                    <option>1970</option>
-                    <option>1969</option>
-                    <option>1968</option>
-                    <option>1967</option>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                    <option>1959</option>
-                    <option>1958</option>
-                    <option>1957</option>
-                    <option>1956</option>
-                    <option>1955</option>
-                    <option>1954</option>
-                    <option>1953</option>
-                    <option>1952</option>
-                    <option>1951</option>
-                </select>
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Professional Affiliations">
-        <box name="Affiliations Box">
-            <fieldset>
-                <select name="Affiliations Organization" placeholder="Please select" label="Organization" validationRule="required" cols="2,4">
-                    <option>IEEE</option>
-                    <option>FNA</option>
-                    <option>INAE</option>
-                    <option>INAE Sc</option>
-                    <option>IAS</option>
-                </select>
-                <select name="Affiliations Position" placeholder="Please select" label="Position held" cols="2,4" validationRule="required">
-                    <option>Fellow</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <input name="Affiliations Remarks" label="Additional Remarks" cols="2,6">
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Placement Percentage">
-        <box name="PlacementP Box">
-            <fieldset>
-                <select name="PlacementP Year" validationRule="required" label="Year" placeholder="Please select" cols="2,4">
-                    <option>2017-2018</option>
-                    <option>2016-2017</option>
-                    <option>2015-2016</option>
-                    <option>2014-2015</option>
-                    <option>2013-2014</option>
-                    <option>2012-2013</option>
-                    <option>2011-2012</option>
-                    <option>2010-2011</option>
-                    <option>2009-2010</option>
-                    <option>2008-2009</option>
-                    <option>2007-2008</option>
-                    <option>2006-2007</option>
-                    <option>2005-2006</option>
-                    <option>2004-2005</option>
-                    <option>2003-2004</option>
-                    <option>2002-2003</option>
-                    <option>2001-2002</option>
-                    <option>2000-2001</option>
-                    <option>1999-2000</option>
-                    <option>1998-1999</option>
-                    <option>1997-1998</option>
-                    <option>1996-1997</option>
-                    <option>1995-1996</option>
-                    <option>1994-1995</option>
-                    <option>1993-1994</option>
-                    <option>1992-1993</option>
-                    <option>1991-1992</option>
-                    <option>1990-1991</option>
-                    <option>1989-1990</option>
-                    <option>1988-1989</option>
-                    <option>1987-1988</option>
-                    <option>1986-1987</option>
-                    <option>1985-1986</option>
-                    <option>1984-1985</option>
-                    <option>1983-1984</option>
-                    <option>1982-1983</option>
-                    <option>1981-1982</option>
-                    <option>1980-1981</option>
-                </select>
-                <input name="PlacementP Students" validationRule="required" label="No. of Student Passing Out" cols="3,3">
-            </fieldset>
-            <fieldset>
-                <input name="PlacementP Jobs" validationRule="required" label="No. of jobs offered" cols="2,6">
-            </fieldset>
-        </box>
-    </section>
-
-    <section name="Additional Information">
-        <fieldset>
-            <textarea placeholder="If you have any additional information/achievements, please enter here." rows="10" cols="12,12" label="If you have any additional information/achievements, please provide it here (500 words max)"
-                name="Additional Info"></textarea>
-        </fieldset>
-    </section>
-
-    <section name="References">
-        <box name="References Box" mincount="2">
-            <fieldset>
-                <input cols="2,4" label="Name" name="Ref Name" placeholder="Name" cols="3,4" validationRule="required" />
-                <input cols="2,4" label="Position" name="Ref Position" placeholder="Position" cols="3,4" validationRule="required" />
-                <input cols="2,4" label="Address" name="Ref Address" placeholder="Address" cols="3,4" validationRule="required" />
-                <input cols="2,4" label="Email" name="Ref Email" placeholder="Email" cols="3,4" validationRule="required|email" />
-                <input cols="2,4" label="Phone Number" name="Ref Phone Number:" placeholder="Phone Number:" cols="3,4" validationRule="required"
-                />
-                <input cols="2,4" label="Mobile" name="Ref Mobile" placeholder="Mobile" cols="3,4" validationRule="required" />
-            </fieldset>
-        </box>
-    </section>
-
-</application>
+        </section>
+        
+        <section name="Research / Professional Experience">
+            <instructions>
+                <li>All fields marked with (*) are compulsory to fill.</li>
+            </instructions>
+            <box name="Experience" mincount="1">
+                <fieldset>
+                    <input name="Experience Organization" label="Organization" cols="2,4" placeholder="Please enter" validationRule="required">
+                    <input name="Experience Position Held" cols="2,4" label="Position" placeholder="Please enter" validationRule="required">
+                </fieldset>
+                <fieldset>
+                    <input name="Experience From" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                    <input name="Experience Till" label="To: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                </fieldset>
+                <fieldset>
+                    <input name="Experience Total Grant" label="Total Grant:" cols="2,4" placeholder="Please enter" validationRule="required">
+                    <input name="Experience Reason for Leaving" label="Reason for leaving" cols="2,4" placeholder="Please enter" validationRule="required">
+                </fieldset>
+            </box>
+        </section>
+        
+        <!-- <section name="Professional Experience">
+            <tableinput name="teachingExperience" minCount="2">
+                <input name="Name Of Organization" placeholder="Name Of Organization" validationRule="required"/>
+                <input name="Address Of Organization" placeholder="Address Of Organization" validationRule="required"/>
+                <input name="Nature of work" placeholder="Nature of work" validationRule="required"/>
+                <input name="payscale" placeholder="payscale" validationRule="required"/>
+                <input name="From" placeholder="From" validationRule="required"/>
+                <input name="To" placeholder="To" validationRule="required"/>
+                <input name="Type of Organization" placeholder="Type of Organization" validationRule="required"/>
+                <input name="Reasons for leaving" placeholder="Reasons for leaving" validationRule="required"/>
+            </tableinput>
+        </section> -->
+        
+        <section name="Sponsored Project">
+            <instructions>
+                <li>All fields marked with (*) are compulsory to fill.</li>
+            </instructions>
+            <box name="Sponsored Project Box" mincount="1">
+                <fieldset>
+                    <input name="Project Title" label="Title" cols="2,4" validationRule="required" />
+                    <input name="Sponsoring Agency" cols="2,4" label="Agency" validationRule="required" />
+                </fieldset>
+                <fieldset>
+                    <input name="Project From" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                    <input name="Project To" label="From: (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                </fieldset>
+                <fieldset>
+                    <input name="Project Amount" label="Amount(In Lacs)" cols="2,4" validationRule="required|date">
+                    <select name="Project Status" cols="2,4" label="Status" placeholder="Please select" validationRule="required">
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <select name="Project Role" label="Role" cols="2,4" placeholder="Please select" validationRule="required">
+                        <option value="Investigator">Investigator</option>
+                        <option value="Co Investigator">Co Investigator</option>
+                    </select>
+                    <select name="Co PI" label="Total no of Co-Inventors" cols="2,4" placeholder="Please select" validationRule="required">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </fieldset>
+            </box>
+        </section>
+        
+        
+        <section name="Patent Details">
+            <instructions>
+                <li>All fields marked with (*) are compulsory to fill.</li>
+            </instructions>
+            <box name="Patent Details Box" mincount="1">
+                <fieldset>
+                    <input name="Patent Name" label="Name" cols="3,3" validationRule="required" />
+                    <input name="Patent Registration No" label="Registration No" cols="3,3" validationRule="required" />
+                </fieldset>
+                <fieldset>
+                    <input name="Patent Date" label="Date of Award (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                    <input name="Patent Awarding Organization" label="Awarding Organization" cols="3,3" validationRule="required" />
+                    <select name="Patent Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
+                        <option value="Investigator">Investigator</option>
+                        <option value="Co Investigator">Co Investigator</option>
+                    </select>
+                    <select name="Patent Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <select name="Patent PI" label="Status" cols="3,6" placeholder="Please select" validationRule="required">
+                        <option value="Awarded">Awarded</option>
+                        <option value="Filed">Filed</option>
+                    </select>
+                </fieldset>
+            </box>
+        </section>
+        
+        
+        <section name="Consultancy Details">
+            <instructions>
+                <li>All fields marked with (*) are compulsory to fill.</li>
+            </instructions>
+            <box name="Consultancy Details Box" mincount="1">
+                <fieldset>
+                    <input name="Consultancy Title" label="Title" cols="3,3" validationRule="required" />
+                    <input name="Consultancy Agency" label="Funding Agency" cols="3,3" validationRule="required" />
+                </fieldset>
+                <fieldset>
+                    <input name="Consultancy From" label="From (dd/mm/yyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required" />
+                    <input name="Consultancy To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                </fieldset>
+                <fieldset>
+                    <input name="Consultancy Amount" label="Amount in Lacs" cols="3,3" validationRule="required" />
+                    
+                    <select name="Consultancy Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
+                        <option value="Investigator">Investigator</option>
+                        <option value="Co Investigator">Co Investigator</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <select name="Consultancy Co PI" cols="3,3" label="Total Co-Inventors" placeholder="Please select" validationRule="required">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <select name="Consultancy PI" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
+                        <option value="Awarded">Awarded</option>
+                        <option value="Filed">Filed</option>
+                    </select>
+                </fieldset>
+            </box>
+        </section>
+        
+        <section name="Thesis Supervised">
+            <box name="Thesis Details Box" mincount="1">
+                <fieldset>
+                    <select name="Supervised Status" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
+                        <option>Awarded</option>
+                        <option>Filed</option>
+                    </select>
+                    <select name="Supervised Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
+                        <option>Supervisor</option>
+                        <option>Co-Supervisor</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <input name="Supervised Title" label="Title" cols="3,3" validationRule="required" />
+                    <input name="Supervised Institute" label="Institute Name" cols="3,3" validationRule="required" />
+                </fieldset>
+                <fieldset>
+                    <input name="Supervised Name of Scholar" label="Name of Scholar" cols="3,3" validationRule="required" />
+                    <input name="Supervised Date" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                </fieldset>
+            </box>
+        </section>
+        
+        <section name="Research Publication">
+            <instructions>
+                <li>All fields marked with (*) are compulsory to fill.</li>
+                <li>Add your research papers publication details.</li>
+                <li>The SCI/Scopus journal should be carefully selected by the candidates as valid proof of journal to be SCI/Scopus
+                    shall be required.</li>
+                    <li>If you are the only author of your research paper fill "0" in 'No. of Co-Authors' field.</li>
+                    <li>Journal Papers in SCI/Scopus only (Paid Journal Papers not allowed).</li>
+                    <li>Conference paper indexed in SCI/ Scopus/ Web of Science Conference/ internationally renewed conference only.</li>
+                </instructions>
+                <box name="Research Publication Box" mincount="1">
+                    <fieldset>
+                        <select name="Research Type" label="Type" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>Journal</option>
+                            <option>Conference</option>
+                        </select>
+                        <select name="Research Category" label="Category" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>SCI</option>
+                            <option>Scopus</option>
+                            <option>Non SCI/Scopus</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <input name="Research Title" label="Title" cols="3,3" validationRule="required" />
+                        <input name="Research Journal Name" label="Journal/Conf Name" cols="3,3" validationRule="required" />
+                    </fieldset>
+                    <fieldset>
+                        <input name="Research Place" label="Place" cols="3,3" validationRule="required" />
+                        <input name="Research Year" label="Year (yyyy)" cols="3,3" placeholder="yyyy" validationRule="required">
+                    </fieldset>
+                    <fieldset>
+                        <input name="Research Volume" label="Volume" cols="3,3" validationRule="required" />
+                        <select name="Research Status" label="Status" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>Published</option>
+                            <option>Accepted</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <select name="Research Role" label="Role" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>First/Corresponding</option>
+                            <option>Main Supervisor</option>
+                            <option>Co-Author</option>
+                        </select>
+                        <select name="Research Number of Coauthor" label="No of Co-Author" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </fieldset>
+                </box>
+            </section>
+            
+            <section name="Administrative Assignments-I Details">
+                <instructions>
+                    <li>HoD/ Dean/ Chief Warden/ Prof.I/C (T & P)/ Advisor (Estate)/ CVO/ PI (Exam)/ TEQIP (Coordinator)</li>
+                </instructions>
+                <box name="Administrative Assignments-I Box" mincount="1">
+                    <fieldset>
+                        <input name="Admin1 Title" label="Title" cols="2,4" validationRule="required" />
+                        <input name="Admin1 Work" label="Nature of Work" cols="2,4" validationRule="required" />
+                    </fieldset>
+                    <fieldset>
+                        <input name="Admin1 Position" label="Position Held" cols="3,3" validationRule="required" />
+                        <select name="Admin1 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <input name="Admin1 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                        <input name="Admin1 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                    </fieldset>
+                </box>
+            </section>
+            
+            <section name="Administrative Assignments-II Details">
+                <instructions>
+                    <li>Warden/ Assistant Warden/ Associated Dean/ Chairman/ Convenor Institute Academic Committees/ Faculty In-charge
+                        (Computer Centre/ IT Services/ Library/ Admission/ Student Activities/ Other Institutional Activities)</li>
+                    </instructions>
+                    <box name="Administrative Assignments-II Box" mincount="1">
+                        <fieldset>
+                            <input name="Admin2 Title" label="Title" cols="2,4" validationRule="required" />
+                            <input name="Admin2 Work" label="Nature of Work" cols="2,4" validationRule="required" />
+                        </fieldset>
+                        <fieldset>
+                            <input name="Admin2 Position" label="Position Held" cols="3,3" validationRule="required" />
+                            <select name="Admin2 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <input name="Admin2 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                            <input name="Admin2 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                        </fieldset>
+                    </box>
+                </section>
+                
+                
+                
+                <section name="Administrative Assignments-III Details">
+                    <instructions>
+                        <li>Chairman and Convenor of different standing committee and special committee (Ex-officio status will not be considered)/
+                            Faculty in-charge (each of one year duration) of different units or equivalent not covered in Administrative
+                            assignments-I and Administrative assignments-II.</li>
+                        </instructions>
+                        <box name="Administrative Assignments-III Box" mincount="1">
+                            <fieldset>
+                                <input name="Admin3 Title" label="Title" cols="2,4" validationRule="required" />
+                                <input name="Admin3 Work" label="Nature of Work" cols="2,4" validationRule="required" />
+                            </fieldset>
+                            <fieldset>
+                                <input name="Admin3 Position" label="Position Held" cols="3,3" validationRule="required" />
+                                <select name="Admin3 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <input name="Admin3 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                <input name="Admin3 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                    
+                    <section name="Administrative Assignments-IV Details">
+                        <instructions>
+                            <li>Departmental activities identified by HoD like lab in charges or departmental committee for minimum period of
+                                one year and not covered in Administrative assignments-I, Administrative assignments-II & Administrative
+                                assignments-III.</li>
+                            </instructions>
+                            <box name="Administrative Assignments-IV Box" mincount="1">
+                                <fieldset>
+                                    <input name="Admin4 Title" label="Title" cols="2,4" validationRule="required" />
+                                    <input name="Admin4 Work" label="Nature of Work" cols="2,4" validationRule="required" />
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Admin4 Position" label="Position Held" cols="3,3" validationRule="required" />
+                                    <select name="Admin4 Duration" label="Number of Semesters" cols="3,3" placeholder="Please select" validationRule="required">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Admin4 From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                    <input name="Admin4 To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="Workshop Organized">
+                            <box name="Workshop Box" mincount="1">
+                                <fieldset>
+                                    <select name="Workshop Category" label="Workshop Name" cols="2,4" placeholder="Please select" validationRule="required">
+                                        <option>FDP</option>
+                                        <option>STTP</option>
+                                        <option>Workshop</option>
+                                    </select>
+                                    <select name="Workshop Days" label="Number of Days" cols="2,4" placeholder="Please select" validationRule="required">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Workshop Title" label="Title" placeholder="Please select" validationRule="required" cols="2,4">
+                                    <select name="Workshop Role" label="Role" placeholder="Please select" validationRule="required" cols="2,4">
+                                        <option>Role1</option>
+                                        <option>Role2</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Workshop From" label="From (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                    <input name="Workshop To" label="To (dd/mm/yyyy)" cols="2,4" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Workshop At" label="Organized At" validationRule="required" cols="2,6">
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        
+                        <section name="Conferences Organized">
+                            <instructions>
+                                <li>All fields marked with (*) are required</li>
+                            </instructions>
+                            <box name="Conference Box" mincount="1">
+                                <fieldset>
+                                    <select name="Conference Level" label="Level" cols="2,4" placeholder="Please select" validationRule="required">
+                                        <option>National</option>
+                                        <option>International</option>
+                                    </select>
+                                    <input name="Conference Title" label="Title" cols="2,4" validationRule="required" />
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Conference From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                    <input name="Conference To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Conference At" label="Organized At" cols="2,4" validationRule="required" />
+                                    <select name="Conference Role" label="Role" cols="2,4" placeholder="Please select" validationRule="require">
+                                        <option>Chairman</option>
+                                        <option>Secretary</option>
+                                        <option>Other</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="National Program Organized">
+                            <instructions>
+                                <li>All fields marked with (*) are required</li>
+                            </instructions>
+                            <box name="National Program Box" mincount="1">
+                                <fieldset>
+                                    <input name="National Program Type" label="Type" cols="2,4" validationRule="required" />
+                                    <select name="National Program Weeks" label="Weeks" cols="2,4" placeholder="Please select" validationRule="required">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <input name="National Program Title" label="Title" validationRule="required" cols="2,6">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="National Program From" label="From (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                    <input name="National Program To" label="To (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="National Program At" label="Organized At" cols="2,4" validationRule="required" />
+                                    <select name="National Program Role" label="Role" cols="2,4" placeholder="Please select" validationRule="require">
+                                        <option>Convenor</option>
+                                        <option>Coordinator</option>
+                                        <option>Other</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        
+                        
+                        <section name="Establishment of New Lab">
+                            <instructions>
+                                <li>All fields marked with (*) are required</li>
+                            </instructions>
+                            <box name="Lab Box" mincount="1">
+                                <fieldset>
+                                    <input name="Lab Year" label="Year" cols="2,4" validationRule="required" placeholder="YYYY-YY Eg. 1980-81" />
+                                    <input name="Lab Name" label="Name of lab" validationRule="required" cols="2,4">
+                                </fieldset>
+                                <fieldset>
+                                    <input name="Lab Department" label="Department Concerned" cols="2,4" validationRule="required" />
+                                    <select name="Lab Experiments" label="No. of Experiments" cols="2,4" placeholder="Please select" validationRule="require">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                        <option>60</option>
+                                        <option>61</option>
+                                        <option>62</option>
+                                        <option>63</option>
+                                        <option>64</option>
+                                        <option>65</option>
+                                        <option>66</option>
+                                        <option>67</option>
+                                        <option>68</option>
+                                        <option>69</option>
+                                        <option>70</option>
+                                        <option>71</option>
+                                        <option>72</option>
+                                        <option>73</option>
+                                        <option>74</option>
+                                        <option>75</option>
+                                        <option>76</option>
+                                        <option>77</option>
+                                        <option>78</option>
+                                        <option>79</option>
+                                        <option>80</option>
+                                        <option>81</option>
+                                        <option>82</option>
+                                        <option>83</option>
+                                        <option>84</option>
+                                        <option>85</option>
+                                        <option>86</option>
+                                        <option>87</option>
+                                        <option>88</option>
+                                        <option>89</option>
+                                        <option>90</option>
+                                        <option>91</option>
+                                        <option>92</option>
+                                        <option>93</option>
+                                        <option>94</option>
+                                        <option>95</option>
+                                        <option>96</option>
+                                        <option>97</option>
+                                        <option>98</option>
+                                        <option>99</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="Theroy Teaching">
+                            <box name="Theroy Box" mincount="1">
+                                <fieldset>
+                                    <select name="Thoery Year" label="Academic Year" placeholder="Please Select" cols="2,4" validationRule="required">
+                                        <option>2017-2018</option>
+                                        <option>2016-2017</option>
+                                        <option>2015-2016</option>
+                                        <option>2014-2015</option>
+                                        <option>2013-2014</option>
+                                        <option>2012-2013</option>
+                                        <option>2011-2012</option>
+                                        <option>2010-2011</option>
+                                        <option>2009-2010</option>
+                                        <option>2008-2009</option>
+                                        <option>2007-2008</option>
+                                        <option>2006-2007</option>
+                                        <option>2005-2006</option>
+                                        <option>2004-2005</option>
+                                        <option>2003-2004</option>
+                                        <option>2002-2003</option>
+                                        <option>2001-2002</option>
+                                        <option>2000-2001</option>
+                                        <option>1999-2000</option>
+                                        <option>1998-1999</option>
+                                        <option>1997-1998</option>
+                                        <option>1996-1997</option>
+                                        <option>1995-1996</option>
+                                        <option>1994-1995</option>
+                                        <option>1993-1994</option>
+                                        <option>1992-1993</option>
+                                        <option>1991-1992</option>
+                                        <option>1990-1991</option>
+                                        <option>1989-1990</option>
+                                        <option>1988-1989</option>
+                                        <option>1987-1988</option>
+                                        <option>1986-1987</option>
+                                        <option>1985-1986</option>
+                                        <option>1984-1985</option>
+                                        <option>1983-1984</option>
+                                        <option>1982-1983</option>
+                                        <option>1981-1982</option>
+                                        <option>1980-1981</option>
+                                    </select>
+                                    <select name="Theroy Type" placeholder="Please select" label="Subject Type" cols="2,4" validationRule="required">
+                                        <option>Core</option>
+                                        <option>Elective</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <select name="Theory Odd" placeholder="Please select" label="Teaching Load for Odd Semester" cols="3,2" validationRule="required">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                    </select>
+                                    <select name="Theory Even" placeholder="Please select" label="Teaching Load for Even Semester" cols="3,2" validationRule="required">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="PG Dissertation">
+                            <box name="Dissertation box" mincount="1">
+                                <fieldset>
+                                    <input name="Title of Dissertation" validationRule="required" / cols="2,4">
+                                    <input name="Dissertation Name" validationRule="required" label="Name of student" cols="2,4" />
+                                </fieldset>
+                                <fieldset>
+                                    <select name="Dissertation Year" validationRule="required" cols="2,4" label="Year">
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                        <option>2012</option>
+                                        <option>2011</option>
+                                        <option>2010</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                        <option>2007</option>
+                                        <option>2006</option>
+                                        <option>2005</option>
+                                        <option>2004</option>
+                                        <option>2003</option>
+                                        <option>2002</option>
+                                        <option>2001</option>
+                                        <option>2000</option>
+                                        <option>1999</option>
+                                        <option>1998</option>
+                                        <option>1997</option>
+                                        <option>1996</option>
+                                        <option>1995</option>
+                                        <option>1994</option>
+                                        <option>1993</option>
+                                        <option>1992</option>
+                                        <option>1991</option>
+                                        <option>1990</option>
+                                        <option>1989</option>
+                                        <option>1988</option>
+                                        <option>1987</option>
+                                        <option>1986</option>
+                                        <option>1985</option>
+                                        <option>1984</option>
+                                        <option>1983</option>
+                                        <option>1982</option>
+                                        <option>1981</option>
+                                        <option>1980</option>
+                                        <option>1979</option>
+                                        <option>1978</option>
+                                        <option>1977</option>
+                                        <option>1976</option>
+                                        <option>1975</option>
+                                        <option>1974</option>
+                                        <option>1973</option>
+                                        <option>1972</option>
+                                        <option>1971</option>
+                                        <option>1970</option>
+                                        <option>1969</option>
+                                        <option>1968</option>
+                                        <option>1967</option>
+                                        <option>1966</option>
+                                        <option>1965</option>
+                                        <option>1964</option>
+                                        <option>1963</option>
+                                        <option>1962</option>
+                                        <option>1961</option>
+                                        <option>1960</option>
+                                        <option>1959</option>
+                                        <option>1958</option>
+                                        <option>1957</option>
+                                        <option>1956</option>
+                                        <option>1955</option>
+                                        <option>1954</option>
+                                        <option>1953</option>
+                                        <option>1952</option>
+                                        <option>1951</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="UG Projects">
+                            <box name="UG Projects Box" mincount="1">
+                                <fieldset>
+                                    <input name="UG Project Title" label="Title of project" validationRule="required" cols="2,4">
+                                    <select name="UG Project Year" label="Year" validationRule="required" placeholder="Please select" cols="2,4">
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                        <option>2012</option>
+                                        <option>2011</option>
+                                        <option>2010</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                        <option>2007</option>
+                                        <option>2006</option>
+                                        <option>2005</option>
+                                        <option>2004</option>
+                                        <option>2003</option>
+                                        <option>2002</option>
+                                        <option>2001</option>
+                                        <option>2000</option>
+                                        <option>1999</option>
+                                        <option>1998</option>
+                                        <option>1997</option>
+                                        <option>1996</option>
+                                        <option>1995</option>
+                                        <option>1994</option>
+                                        <option>1993</option>
+                                        <option>1992</option>
+                                        <option>1991</option>
+                                        <option>1990</option>
+                                        <option>1989</option>
+                                        <option>1988</option>
+                                        <option>1987</option>
+                                        <option>1986</option>
+                                        <option>1985</option>
+                                        <option>1984</option>
+                                        <option>1983</option>
+                                        <option>1982</option>
+                                        <option>1981</option>
+                                        <option>1980</option>
+                                        <option>1979</option>
+                                        <option>1978</option>
+                                        <option>1977</option>
+                                        <option>1976</option>
+                                        <option>1975</option>
+                                        <option>1974</option>
+                                        <option>1973</option>
+                                        <option>1972</option>
+                                        <option>1971</option>
+                                        <option>1970</option>
+                                        <option>1969</option>
+                                        <option>1968</option>
+                                        <option>1967</option>
+                                        <option>1966</option>
+                                        <option>1965</option>
+                                        <option>1964</option>
+                                        <option>1963</option>
+                                        <option>1962</option>
+                                        <option>1961</option>
+                                        <option>1960</option>
+                                        <option>1959</option>
+                                        <option>1958</option>
+                                        <option>1957</option>
+                                        <option>1956</option>
+                                        <option>1955</option>
+                                        <option>1954</option>
+                                        <option>1953</option>
+                                        <option>1952</option>
+                                        <option>1951</option>
+                                    </select>
+                                </fieldset>
+                            </box>
+                        </section>
+                        
+                        <section name="Book/Chapter Publication">
+                            <box name="Book Chapter Box">
+                                <fieldset>
+                                    <input name="Book Title" label="Book Title" cols="2,4" validationRule="required">
+                                    <input name="Book Publisher" cols="2,4" label="Name of Publisher" validationRule="required">
+                                </fieldset>
+                                <fieldset>
+                                    <select name="Book Publisher Type" placeholder="Please enter" cols="2,4" validationRule="required" label="Type of Publisher">
+                                        <option>National</option>
+                                        <option>International</option>
+                                    </select>
+                                    <select name="Book Year" placeholder="Please enter" cols="2,4" validationRule="required" label="Year of Publish">
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                        <option>2012</option>
+                                        <option>2011</option>
+                                        <option>2010</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                        <option>2007</option>
+                                        <option>2006</option>
+                                        <option>2005</option>
+                                        <option>2004</option>
+                                        <option>2003</option>
+                                        <option>2002</option>
+                                        <option>2001</option>
+                                        <option>2000</option>
+                                        <option>1999</option>
+                                        <option>1998</option>
+                                        <option>1997</option>
+                                        <option>1996</option>
+                                        <option>1995</option>
+                                        <option>1994</option>
+                                        <option>1993</option>
+                                        <option>1992</option>
+                                        <option>1991</option>
+                                        <option>1990</option>
+                                        <option>1989</option>
+                                        <option>1988</option>
+                                        <option>1987</option>
+                                        <option>1986</option>
+                                        <option>1985</option>
+                                        <option>1984</option>
+                                        <option>1983</option>
+                                        <option>1982</option>
+                                        <option>1981</option>
+                                        <option>1980</option>
+                                        <option>1979</option>
+                                        <option>1978</option>
+                                        <option>1977</option>
+                                        <option>1976</option>
+                                        <option>1975</option>
+                                        <option>1974</option>
+                                        <option>1973</option>
+                                        <option>1972</option>
+                                        <option>1971</option>
+                                        <option>1970</option>
+                                        <option>1969</option>
+                                        <option>1968</option>
+                                        <option>1967</option>
+                                        <option>1966</option>
+                                        <option>1965</option>
+                                        <option>1964</option>
+                                        <option>1963</option>
+                                        <option>1962</option>
+                                        <option>1961</option>
+                                        <option>1960</option>
+                                        <option>1959</option>
+                                        <option>1958</option>
+                                        <option>1957</option>
+                                        <option>1956</option>
+                                        <option>1955</option>
+                                        <option>1954</option>
+                                        <option>1953</option>
+                                        <option>1952</option>
+                                        <option>1951</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <select name="Book Lastest Edition" placeholder="Please select" validationrule="required" label="Year of Latest Edition"
+                                    cols="2,4">
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                    <option>2012</option>
+                                    <option>2011</option>
+                                    <option>2010</option>
+                                    <option>2009</option>
+                                    <option>2008</option>
+                                    <option>2007</option>
+                                    <option>2006</option>
+                                    <option>2005</option>
+                                    <option>2004</option>
+                                    <option>2003</option>
+                                    <option>2002</option>
+                                    <option>2001</option>
+                                    <option>2000</option>
+                                    <option>1999</option>
+                                    <option>1998</option>
+                                    <option>1997</option>
+                                    <option>1996</option>
+                                    <option>1995</option>
+                                    <option>1994</option>
+                                    <option>1993</option>
+                                    <option>1992</option>
+                                    <option>1991</option>
+                                    <option>1990</option>
+                                    <option>1989</option>
+                                    <option>1988</option>
+                                    <option>1987</option>
+                                    <option>1986</option>
+                                    <option>1985</option>
+                                    <option>1984</option>
+                                    <option>1983</option>
+                                    <option>1982</option>
+                                    <option>1981</option>
+                                    <option>1980</option>
+                                    <option>1979</option>
+                                    <option>1978</option>
+                                    <option>1977</option>
+                                    <option>1976</option>
+                                    <option>1975</option>
+                                    <option>1974</option>
+                                    <option>1973</option>
+                                    <option>1972</option>
+                                    <option>1971</option>
+                                    <option>1970</option>
+                                    <option>1969</option>
+                                    <option>1968</option>
+                                    <option>1967</option>
+                                    <option>1966</option>
+                                    <option>1965</option>
+                                    <option>1964</option>
+                                    <option>1963</option>
+                                    <option>1962</option>
+                                    <option>1961</option>
+                                    <option>1960</option>
+                                    <option>1959</option>
+                                    <option>1958</option>
+                                    <option>1957</option>
+                                    <option>1956</option>
+                                    <option>1955</option>
+                                    <option>1954</option>
+                                    <option>1953</option>
+                                    <option>1952</option>
+                                    <option>1951</option>
+                                </select>
+                                <select name="Book Type" cols="2,4" label="Type of Publication" validationrule="required">
+                                    <option>Book Chapter</option>
+                                    <option>Text Book</option>
+                                    <option>Reference Book</option>
+                                </select>
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                    <section name="Outreach Activity Awards">
+                        <box name="Outreach Box" mincount="1">
+                            <fieldset>
+                                <input name="Outreach Name" label="Name of Activity" cols="2,4" validationRule="required" />
+                                <input name="Outreach Role" label="Role" cols="2,4" validationRule="required" />
+                            </fieldset>
+                            <fieldset>
+                                <input name="Outreach Given" label="Given by" cols="2,4" validationRule="required" />
+                                <select name="Outreach Year" label="Year" cols="2,4" validationRule="required" placeholder="Please select">
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                    <option>2012</option>
+                                    <option>2011</option>
+                                    <option>2010</option>
+                                    <option>2009</option>
+                                    <option>2008</option>
+                                    <option>2007</option>
+                                    <option>2006</option>
+                                    <option>2005</option>
+                                    <option>2004</option>
+                                    <option>2003</option>
+                                    <option>2002</option>
+                                    <option>2001</option>
+                                    <option>2000</option>
+                                    <option>1999</option>
+                                    <option>1998</option>
+                                    <option>1997</option>
+                                    <option>1996</option>
+                                    <option>1995</option>
+                                    <option>1994</option>
+                                    <option>1993</option>
+                                    <option>1992</option>
+                                    <option>1991</option>
+                                    <option>1990</option>
+                                    <option>1989</option>
+                                    <option>1988</option>
+                                    <option>1987</option>
+                                    <option>1986</option>
+                                    <option>1985</option>
+                                    <option>1984</option>
+                                    <option>1983</option>
+                                    <option>1982</option>
+                                    <option>1981</option>
+                                    <option>1980</option>
+                                    <option>1979</option>
+                                    <option>1978</option>
+                                    <option>1977</option>
+                                    <option>1976</option>
+                                    <option>1975</option>
+                                    <option>1974</option>
+                                    <option>1973</option>
+                                    <option>1972</option>
+                                    <option>1971</option>
+                                    <option>1970</option>
+                                    <option>1969</option>
+                                    <option>1968</option>
+                                    <option>1967</option>
+                                    <option>1966</option>
+                                    <option>1965</option>
+                                    <option>1964</option>
+                                    <option>1963</option>
+                                    <option>1962</option>
+                                    <option>1961</option>
+                                    <option>1960</option>
+                                    <option>1959</option>
+                                    <option>1958</option>
+                                    <option>1957</option>
+                                    <option>1956</option>
+                                    <option>1955</option>
+                                    <option>1954</option>
+                                    <option>1953</option>
+                                    <option>1952</option>
+                                    <option>1951</option>
+                                </select>
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                    <section name="Professional Affiliations">
+                        <box name="Affiliations Box">
+                            <fieldset>
+                                <select name="Affiliations Organization" placeholder="Please select" label="Organization" validationRule="required" cols="2,4">
+                                    <option>IEEE</option>
+                                    <option>FNA</option>
+                                    <option>INAE</option>
+                                    <option>INAE Sc</option>
+                                    <option>IAS</option>
+                                </select>
+                                <select name="Affiliations Position" placeholder="Please select" label="Position held" cols="2,4" validationRule="required">
+                                    <option>Fellow</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <input name="Affiliations Remarks" label="Additional Remarks" cols="2,6">
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                    <section name="Placement Percentage">
+                        <box name="PlacementP Box">
+                            <fieldset>
+                                <select name="PlacementP Year" validationRule="required" label="Year" placeholder="Please select" cols="2,4">
+                                    <option>2017-2018</option>
+                                    <option>2016-2017</option>
+                                    <option>2015-2016</option>
+                                    <option>2014-2015</option>
+                                    <option>2013-2014</option>
+                                    <option>2012-2013</option>
+                                    <option>2011-2012</option>
+                                    <option>2010-2011</option>
+                                    <option>2009-2010</option>
+                                    <option>2008-2009</option>
+                                    <option>2007-2008</option>
+                                    <option>2006-2007</option>
+                                    <option>2005-2006</option>
+                                    <option>2004-2005</option>
+                                    <option>2003-2004</option>
+                                    <option>2002-2003</option>
+                                    <option>2001-2002</option>
+                                    <option>2000-2001</option>
+                                    <option>1999-2000</option>
+                                    <option>1998-1999</option>
+                                    <option>1997-1998</option>
+                                    <option>1996-1997</option>
+                                    <option>1995-1996</option>
+                                    <option>1994-1995</option>
+                                    <option>1993-1994</option>
+                                    <option>1992-1993</option>
+                                    <option>1991-1992</option>
+                                    <option>1990-1991</option>
+                                    <option>1989-1990</option>
+                                    <option>1988-1989</option>
+                                    <option>1987-1988</option>
+                                    <option>1986-1987</option>
+                                    <option>1985-1986</option>
+                                    <option>1984-1985</option>
+                                    <option>1983-1984</option>
+                                    <option>1982-1983</option>
+                                    <option>1981-1982</option>
+                                    <option>1980-1981</option>
+                                </select>
+                                <input name="PlacementP Students" validationRule="required" label="No. of Student Passing Out" cols="3,3">
+                            </fieldset>
+                            <fieldset>
+                                <input name="PlacementP Jobs" validationRule="required" label="No. of jobs offered" cols="2,6">
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                    <section name="Additional Information">
+                        <fieldset>
+                            <textarea placeholder="If you have any additional information/achievements, please enter here." rows="10" cols="12,12" label="If you have any additional information/achievements, please provide it here (500 words max)"
+                            name="Additional Info"></textarea>
+                        </fieldset>
+                    </section>
+                    
+                    <section name="References">
+                        <box name="References Box" mincount="2">
+                            <fieldset>
+                                <input cols="2,4" label="Name" name="Ref Name" placeholder="Name" cols="3,4" validationRule="required" />
+                                <input cols="2,4" label="Position" name="Ref Position" placeholder="Position" cols="3,4" validationRule="required" />
+                                <input cols="2,4" label="Address" name="Ref Address" placeholder="Address" cols="3,4" validationRule="required" />
+                                <input cols="2,4" label="Email" name="Ref Email" placeholder="Email" cols="3,4" validationRule="required|email" />
+                                <input cols="2,4" label="Phone Number" name="Ref Phone Number:" placeholder="Phone Number:" cols="3,4" validationRule="required"
+                                />
+                                <input cols="2,4" label="Mobile" name="Ref Mobile" placeholder="Mobile" cols="3,4" validationRule="required" />
+                            </fieldset>
+                        </box>
+                    </section>
+                    
+                </application>
+                

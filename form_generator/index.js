@@ -246,7 +246,7 @@ class ApplicationNodeTransformer extends NodeTransformer {
       }
 
       let name = child.attribs.name;
-      let dashedName = name.replace(/[^a-zA-Z0-9_]/g, "");
+      let dashedName = name.replace(/[^a-zA-Z0-9-_]/g, "-");
 
       navHtml += `<a class="nav-link ${isFirst ? "active" : ""}" id="v-pills-${dashedName}-tab" data-toggle="pill" href="#v-pills-${dashedName}" role="tab" aria-controls="v-pills-${dashedName}" aria-expanded="true">${i + 1}. ${name}</a>`;
       bodyHtml += `<div class="tab-pane fade ${isFirst ? "show active" : ""}" id="v-pills-${dashedName}" role="tabpanel" aria-labelledby="v-pills-${dashedName}-tab">${manager.transformNode(child)}</div>`;
@@ -420,6 +420,7 @@ class InputNodeTransformer extends NodeTransformer {
       inputCols = cols.split(",")[1];
     }
 
+
     if (cols) {
       return `<div class="col-md-${inputCols}">${$.html(this.$node) + this.getErrorElement()}</div>`;
     }
@@ -557,6 +558,41 @@ class SelectNodeTransformer extends InputNodeTransformer {
     return this.createLabelAndInput();
   }
 }
+
+class ExclusiveselectNodeTransformer extends NodeTransformer {
+  transform() {
+    // add triggers for selects. Not yet transforming them.
+    let selects = this.$node.find("select");
+
+    let selectNames = [];
+
+    for (let i=0; i<selects.length; i++) {
+      const child = selects[i];
+      const childName = safeName(child.attribs.name);
+      selectNames.push(childName);
+    }
+
+    const selectNamesStr = selectNames.join(",");
+    let exclusiveFn = `function exclselectbinding(event){
+      console.log(event);
+      let x = event.target.value;
+      let selects = "${selectNamesStr}".split(",");
+      for(let i=0;i<selects.length;i++){
+        const current_option_string = "#"+selects[i] + " option:contains(\'" + x + "\')";
+        $(current_option_string).prop("disabled",true);        
+      }
+    }`; 
+
+    for (let i = 0; i < selectNames.length; i++) {
+      addTrigger(selectNames[i], exclusiveFn, true);
+    }
+
+    return `<div class='microsubsection' id="${this.name}">
+            ${this.transformChildren()}
+        </div>`;
+  }
+}
+
 
 class FileInputNodeTransformer extends InputNodeTransformer {
   static isOfMyType(node) {
@@ -886,6 +922,7 @@ class BoxNodeTransformer extends NodeTransformer {
 manager.registerNode("application", ApplicationNodeTransformer);
 manager.registerNode("section", SectionNodeTransformer);
 manager.registerNode("subsection", SubsectionNodeTransformer);
+manager.registerNode("exclusiveselect", ExclusiveselectNodeTransformer);
 manager.registerNode("fieldset", FieldsetNodeTransformer);
 manager.registerNode("input", InputNodeTransformer);
 manager.registerNode("input", FileInputNodeTransformer);
