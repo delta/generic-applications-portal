@@ -10,7 +10,11 @@ const application = require("./routes/applications");
 const users = require("./routes/users");
 const usersProtected = require("./routes/users_protected");
 const session = require("express-session");
+const MySQLStore = require('express-mysql-session')(session);
+const dbConfig = require("./config/config.js")[process.env.NODE_ENV || "development"];
 const app = express();
+
+const sessionStore = new MySQLStore(dbConfig);
 
 app.use(express.static("public"));
 app.use(session({
@@ -19,6 +23,7 @@ app.use(session({
     "maxAge": 186000000,
   },
   "path": "/",
+  "store": sessionStore
 }));
 
 const models = require("./models/");
@@ -48,19 +53,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", loginAndSignup);
-app.use("/applications", application);
 app.use("/users", users);
 app.use(authenticate);
+app.use("/applications", application);
 app.use("/uploads/", express.static(path.join(__dirname, "uploads")));
 app.use("/users", usersProtected);
-app.get("/dashboard", (req, res) => {
-  console.log("To dashboard");
-  var user = {
-    applications:[{id:1, status:"pending", appliedDate:"12/2/2102"}, {id:2, status:"converted", appliedDate:"12/2/2103"}],
-    name: "Anshul Sekhar",
-  };
-  res.render('dashboard',{user:user});
-});
 app.get('/logout', (req, res)=>{
   req.session.destroy();
   res.redirect('/login');

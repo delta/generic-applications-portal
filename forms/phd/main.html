@@ -1,0 +1,341 @@
+<!-- Scripts to be used for things like computedValue functions -->
+<script type="text/javascript">
+    function verifyDateInddmmyyyy(date) {
+        // date is in format 'dd/mm/yyyy'
+        const stdFormat = date.split("/").reverse().join("-");
+        const today = new Date();
+        const parsedDate = new Date(stdFormat);
+
+        let dd = '' + parsedDate.getDate();
+        let mm = '' + (parsedDate.getMonth() + 1);
+        let yyyy = '' + parsedDate.getFullYear();
+
+        dd = dd.length == 1 ? ('0' + dd) : dd;
+        mm = mm.length == 1 ? ('0' + mm) : mm;
+
+        return date == `${dd}/${mm}/${yyyy}`;
+    }
+    function calcAge(dob){
+        // dob is in format 'dd/mm/yyyy'
+        const stdFormat = dob.split("/").reverse().join("-");
+        const today = new Date();
+
+        dob = new Date(stdFormat);
+        return Math.floor((today.getTime() - dob.getTime()) / (1000*60*60*24*365));
+    }
+</script>
+
+<application name="myApp">
+    <section name="Personal Information">
+        <instructions>
+            <li>All fields are mandatory</li>
+            <li>Photocopy proof required are: Date of Birth, Address Proof, Category Proof (if category proof is not attached, the applicant will be considered as UR category)</li>
+            <li>The image file should be JPG, JPEG, png,gif format.</li>
+            <li>Dimension 200 x 300 pixels(preferred). </li>
+            <li>Size of image file be between 20kb-200kb.</li>
+        </instructions>
+        <subsection name="Personal Details">
+            <fieldset>
+                <input label="Full Name" cols="3,6" name="Full Name" placeholder="Full Name" validationRule="required">
+            </fieldset>
+
+            <fieldset>
+                <input name="Father's/Husband's Name" cols="3,6" validationRule="required">
+            </fieldset>
+
+            <fieldset>
+                <input label="Date of Birth" name="dob" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|js: verifyDateInddmmyyyy($f.dob)">
+                <input name="Age" cols="3,3" placeholder="In Years" computedvalue="calcAge($f.dob) + ' Years'" validationRule="required"
+                    readonly>
+            </fieldset>
+
+            <fieldset>
+                <select name="Gender" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Transgender</option>
+                    <option>I don't want to disclose</option>
+                </select>
+                <select name="Category" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>General</option>
+                    <option>Other Backward Classes (OBC)</option>
+                    <option>Scheduled Cast (SC)</option>
+                    <option>Scheduled Tribe (ST)</option>
+                    <option>Person with disabilities</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <select name="Nationality" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Indian</option>
+                </select>
+
+                <input name="State/UT" cols="3,3" placeholder="State/UT to which you belong" validationRule="required">
+            </fieldset>
+
+            <fieldset>
+                <select name="Marital Status" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Widowed</option>
+                    <option>Divorced</option>
+                    <option>Separated</option>
+                </select>
+                <select name="Person with disability (PwD)" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </fieldset>
+        </subsection>
+        <subsection name="Contact Details">            
+            <fieldset>
+                <input name="Mobile No.<br>(with country code)" cols="2,4" placeholder="Contact No" validationRule="required|phone">
+                <input name="Landline No." cols="2,4" placeholder="Landline Contact No.">
+            </fieldset>
+
+            <fieldset>
+                <label class='col-md-2'></label>
+                <label class='col-md-5'>Correspondence Address</label>
+                <label class='col-md-5'>Permanent Address</label>
+                <input cols="2,5" label="Address 1" name="Correspondence Address1" validationRule="required" placeholder="Correspondence Address">
+                <input cols="5" name="Permanent Address1" validationRule="required" placeholder="Permanent Address">
+                <input cols="2,5" label="Address 2" name="Correspondence Address2" validationRule="required" placeholder="Correspondence Address">
+                <input cols="5" name="Permanent Address2" validationRule="required" placeholder="Permanent Address">
+                <input cols="2,5" label="City" name="Correspondence City" validationRule="required" placeholder="Please enter">
+                <input cols="5" name="Permanent City" validationRule="required" placeholder="Please enter">
+                <input cols="2,5" label="State" name="Correspondence State" validationRule="required|above:1" placeholder="Please enter">
+                <input cols="5" name="Permanent State" validationRule="required" placeholder="Please enter">
+                <input cols="2,5" label="Pincode" name="Correspondence Pincode" validationRule="required|pincode" placeholder="Please enter">
+                <input cols="5" name="Permanent Pincode" validationRule="required|pincode" placeholder="Please enter">
+            </fieldset>
+        </subsection>
+    </section>
+    <section name="Application Details">
+        <instructions>
+            <li> Upload all the necessary files including your image and image of the signature right before the final submission.</li>
+            <li>Upload images size less than 200x300px, signature less than 200x150 px. Both images should be smaller than 250kb.</li>
+        </instructions>
+        <subsection name="Application information">
+            <fieldset>
+                <select name="Department Preference 1" cols="3,6" placeholder="Please select" validationRule="required">
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <select name="Department Preference 2" cols="3,6" placeholder="Please select">
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <select name="Department Preference 3" cols="3,6" placeholder="Please select">
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <input cols="3,3" name="Email" readonly validationRule="required">
+            </fieldset>
+            <fieldset>
+                <input cols="3,6" name="Area of Research" validationRule="required">
+            </fieldset>
+            <!-- <fieldset>
+                <select name="internalCandidate" label="Internal Candidate of NITT?" cols="3,3" placeholder="Please select" validationRule="required">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+                <input name="Staff Number" cols="3,3" placeholder="Staff Number" validationRule="required" showif="$f.internalCandidate == 'Yes'">
+            </fieldset>
+
+            <fieldset showif="$f.internalCandidate == 'No'">
+                <input name="Date of Last Promotion" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required">
+            </fieldset> -->
+        </subsection>
+        </subsection>
+        <hr>
+        <fieldset>
+            <input label="Bank Reference Number" name="Bank Reference Number" placeholder="Enter Chalan Number" cols="2,4" validationRule="required">
+            <select label="Application Category" name="Application Category" placeholder="Choose Category" cols="2,4" validationRule="required">
+                <option>On campus</option>
+                <option>External</option>
+                <option>Stipendary</option>
+                <option>Non-Stipendary</option>
+                <option>Project</option>
+                <option>Other Fellowships</option>
+            </select>             
+        </fieldset>
+        <fieldset>
+            <input label="Upload Passport size photo(300x200):" cols="3,6" type="file" name="Passport Photo" accept="image/jpeg,image/png" validationRule="requiredFile|fileType:jpeg,jpg,png|fileSize:500|imageMaxHeight:800|imageMaxWidth:800" preview="4">
+        </fieldset>
+    </section>
+    <section name="Undergraduation Details">
+        <fieldset>
+            <input label="Name of Degree:" name="Name of Degree" placeholder="Name of Degree" cols="2,4" validationRule="required">
+            <input label="Branch Name:" name="Branch Name" placeholder="Branch/Specialization" cols="2,4" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="C.G.P.A/Percentage:" name="C.G.P.A" placeholder="C.G.P.A" cols="2,4" validationRule="required">
+            <select label="Class" name="Class" placeholder="Choose your Option" cols="2,4" validationRule="required">
+                <option>Honours</option>
+                <option>Distinction</option>
+                <option>Stipendary</option>
+                <option>Non-Stipendary</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <input label="College Name" name="College Name" placeholder="College Name" cols="3,6" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="University Name" name="University Name" placeholder="University Name" cols="3,6" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="Year of Passing" type="number" min="1900" name="Year of Passing" placeholder="Year of Passing" cols="3,6" validationRule="required">
+        </fieldset>
+    </section>
+    <section name="Postgraduation Details">
+        <fieldset>
+            <input label="Name of Degree:" name="Name of Degree PG" placeholder="Name of Degree" cols="2,4" validationRule="required">
+            <input label="Branch Name:" name="Branch Name PG" placeholder="Branch/Specialization" cols="2,4" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="C.G.P.A/Percentage:" name="C.G.P.A PG" placeholder="C.G.P.A" cols="2,4" validationRule="required">
+            <select label="Class" name="Class PG" placeholder="Choose your Option" cols="2,4" validationRule="required">
+                <option>Honours</option>
+                <option>Distinction</option>
+                <option>Stipendary</option>
+                <option>Non-Stipendary</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <select label="Have your final semester result been announced" name="Final sem" placeholder="Choose your Option" cols="4,4" validationRule="required">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <input label="College Name" name="College Name PG" placeholder="College Name" cols="3,6" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="University Name" name="University Name PG" placeholder="University Name" cols="3,6" validationRule="required">
+        </fieldset>
+        <fieldset>
+            <input label="Year of Passing" type="number" min="1900" name="Year of Passing PG" placeholder="Year of Passing" cols="3,6" validationRule="required">
+        </fieldset>
+        <subsection name="P.G Projects">
+            <input label="P.G Project Title" name="P.G Project Title" placeholder="Title of P.G Project" cols="4,6" validationRule="required">
+            <br>
+            <box name="Publications box" mincount="1" maxcount="6">
+                <fieldset>
+                    <input cols="6,4" label="Publications" name="Publications" placeholder="Enter Details Here" validationRule="required"/>                   
+                </fieldset>
+            </box>
+        </subsection>
+    </section>
+    <section name="Other Details">
+        <select label="Qualified in GATE/NET/SLET/CSIR/CAT/UGC/NBHM : " name="Exams" placeholder="Choose your Option" cols="6,4" validationRule="required">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br>
+        <fieldset showif="$f.Exams == 'Yes'">
+            <select cols="3,3" label="Examination" name="Examination" placeholder="Chose Option"/>
+                <option>GATE</option>
+                <option>NET</option>
+                <option>SLET</option>
+                <option>CSIR</option>
+                <option>CAT</option>
+                <option>UGC</option>
+                <option>NBHM</option>
+            </select>
+            <input cols="3,3" label="Enter Score" name="Score" placeholder="Enter Details Here"/>
+        </fieldset>
+        <fieldset showif="$f.Exams == 'Yes'">
+            <input cols="3,3" label="Enter Rank" name="Rank" placeholder="Enter Details Here"/>
+            <input cols="3,3" label="Valid Till" name="Valid Till" placeholder="Enter Details Here" validationRule="required|date" />
+        </fieldset>
+        <fieldset showif="$f.Exams == 'Yes'">
+            <textarea cols="3,9" label="Discipline" name="Discipline"></textarea>
+        </fieldset>
+        <br>
+        <box name="Awards box" mincount="1" maxcount="6">
+            <fieldset>
+                <input cols="4,4" label="Awards/Prizes/Sports/NCC etc" name="Awards/Prizes/Sports/NCC etc" placeholder="Enter Details Here" validationRule="required"/>                  
+            </fieldset>
+        </box>
+    </section>
+    <section name="Professional Experience">
+        <fieldset>
+            <select label="Click here if you have some Professional Experience :" name="Experience" placeholder="Choose your Option" cols="6,4" validationRule="required">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </fieldset>
+        <fieldset showif="$f.Experience == 'Yes'">
+            <box name="Professional Experience box" mincount="1" maxcount="6">
+                <fieldset>
+                    <textarea label="Name & Address of Employer" cols="3,9" placeholder="Enter Details Here"></textarea>
+                </fieldset>
+                <fieldset>
+                    <input label="Position Held" name="Position Held" cols="3,9" placeholder="Enter Details Here"/>
+                </fieldset>
+                <fieldset>
+                    <input name="From" label="From : (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date"> 
+                    <input name="To" label="To : (dd/mm/yyyy)" cols="3,3" placeholder="dd/mm/yyyy" validationRule="required|date"> 
+                </fieldset>
+            </box>
+        </fieldset>
+    </section>
+    <section name="Submission">
+        <input label="I do hereby declare that the information furnished in this application are true and correct to the best of my knowledge. If, any of the particulars furnished above is found to be incorrect at the time of admission, the admission may be cancelled." type="checkbox" name="Confirmed" cols="12,12" validationRule="required">
+        <br>
+        <fieldset>
+            <input label="Upload Signature : " cols="2,8" type="file" name="Signature" accept="image/jpeg,image/png" validationRule="requiredFile|fileType:jpeg,jpg,png|fileSize:250|imageMaxHeight:200|imageMaxWidth:150" preview="4">
+        </fieldset>
+    </section>
+</application>

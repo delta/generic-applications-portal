@@ -9,5 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     "validationRules": DataTypes.TEXT,
   });
 
+  FormElement.associate = (models) => {
+    FormElement.belongsTo(models.Form, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
+  };
+
   return FormElement;
 };

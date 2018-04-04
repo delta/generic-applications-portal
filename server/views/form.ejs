@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Recruitment | NIT Trichy</title>
+    <%- include('partials/commonHeaderIncludes.partial.ejs') %>
+</head>
+<body>
+    <%- include('partials/topNavbar.partial.ejs') %>
+
+    <div class="container-fluid" style="margin-top: 10px; padding-bottom: 75px">
+            <div class="row">
+                <div class="col-2"><div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"><a class="nav-link active" id="v-pills-Applicant-Details-1-tab" data-toggle="pill" href="#v-pills-Applicant-Details-1" role="tab" aria-controls="v-pills-Applicant-Details-1" aria-expanded="true">1. Applicant Details 1</a><a class="nav-link " id="v-pills-Personal-Details-1-tab" data-toggle="pill" href="#v-pills-Personal-Details-1" role="tab" aria-controls="v-pills-Personal-Details-1" aria-expanded="true">2. Personal Details 1</a><a class="nav-link " id="v-pills-Contact-Details-1-tab" data-toggle="pill" href="#v-pills-Contact-Details-1" role="tab" aria-controls="v-pills-Contact-Details-1" aria-expanded="true">3. Contact Details 1</a><a class="nav-link " id="v-pills-Applicant-Details-2-tab" data-toggle="pill" href="#v-pills-Applicant-Details-2" role="tab" aria-controls="v-pills-Applicant-Details-2" aria-expanded="true">4. Applicant Details 2</a><a class="nav-link " id="v-pills-Undergraduation-Details-tab" data-toggle="pill" href="#v-pills-Undergraduation-Details" role="tab" aria-controls="v-pills-Undergraduation-Details" aria-expanded="true">5. Undergraduation Details</a><a class="nav-link " id="v-pills-GATE-tab" data-toggle="pill" href="#v-pills-GATE" role="tab" aria-controls="v-pills-GATE" aria-expanded="true">6. GATE</a><a class="nav-link " id="v-pills-Professional-Experience-tab" data-toggle="pill" href="#v-pills-Professional-Experience" role="tab" aria-controls="v-pills-Professional-Experience" aria-expanded="true">7. Professional Experience</a><a class="nav-link " id="v-pills-Sponsorship-tab" data-toggle="pill" href="#v-pills-Sponsorship" role="tab" aria-controls="v-pills-Sponsorship" aria-expanded="true">8. Sponsorship</a><a class="nav-link " id="v-pills-Conditions-tab" data-toggle="pill" href="#v-pills-Conditions" role="tab" aria-controls="v-pills-Conditions" aria-expanded="true">9. Conditions</a></div></div>
+                <div class="col-10"><div class="tab-content" id="v-pills-tabContent"><div class="tab-pane fade show active" id="v-pills-Applicant-Details-1" role="tabpanel" aria-labelledby="v-pills-Applicant-Details-1-tab">
+        <form method='POST' id='frm_ApplicantDetails1' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Applicant Details 1</h2>
+            
+            <div class="form-group row" id="fieldset__07865">
+        <div class="col row">
+                <label  id="label-DepartmentPreference1" class="col-form-label col-md-3" for="DepartmentPreference1">Department Preference 1<span id="asterisk-DepartmentPreference1" style="color:red">*</span></label><div class="col-md-6"><select name="DepartmentPreference1" placeholder="Please select" onchange="triggers[&quot;DepartmentPreference1&quot;].forEach(function(f, i) { f.call(this, event) });" id="DepartmentPreference1" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select><span class="error" id="error-DepartmentPreference1" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__00377">
+        <div class="col row">
+                <label  id="label-DepartmentPreference2" class="col-form-label col-md-3" for="DepartmentPreference2">Department Preference 2</label><div class="col-md-6"><select name="DepartmentPreference2" placeholder="Please select" onchange="triggers[&quot;DepartmentPreference2&quot;].forEach(function(f, i) { f.call(this, event) });" id="DepartmentPreference2" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select><span class="error" id="error-DepartmentPreference2" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__31061">
+        <div class="col row">
+                <label  id="label-DepartmentPreference3" class="col-form-label col-md-3" for="DepartmentPreference3">Department Preference 3</label><div class="col-md-6"><select name="DepartmentPreference3" placeholder="Please select" onchange="triggers[&quot;DepartmentPreference3&quot;].forEach(function(f, i) { f.call(this, event) });" id="DepartmentPreference3" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Architecture</option>
+                    <option>Civil Engineering</option>
+                    <option>Chemical Engineering</option>
+                    <option>Computer Science Engineering</option>
+                    <option>Electronics and Communication Engineering</option>
+                    <option>Electricals and Electronics Engineering</option>
+                    <option>Instrumentation and Control Engineering</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Metallurgical and Materials Engineering</option>
+                    <option>Production Engineering</option>
+                    <option>Energy and Environment</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Mathematics</option>
+                    <option>Humanities (English/Economics)</option>
+                    <option>Computer Application</option>
+                    <option>Management Studies</option>
+                </select><span class="error" id="error-DepartmentPreference3" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__16415">
+        <div class="col row">
+                <label  id="label-Email" class="col-form-label col-md-3" for="Email">Email<span id="asterisk-Email" style="color:red">*</span></label><div class="col-md-3"><input name="Email" readonly onchange="triggers[&quot;Email&quot;].forEach(function(f, i) { f.call(this, event) });" id="Email" class="form-control form-control-sm" placeholder="Email"><span class="error" id="error-Email" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__19518">
+        <div class="col row">
+                <label  id="label-AreaofResearch" class="col-form-label col-md-3" for="AreaofResearch">Area of Research<span id="asterisk-AreaofResearch" style="color:red">*</span></label><div class="col-md-6"><input name="AreaofResearch" onchange="triggers[&quot;AreaofResearch&quot;].forEach(function(f, i) { f.call(this, event) });" id="AreaofResearch" class="form-control form-control-sm" placeholder="Area of Research"><span class="error" id="error-AreaofResearch" style="display:none">Error</span></div>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_ApplicantDetails1" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Personal-Details-1" role="tabpanel" aria-labelledby="v-pills-Personal-Details-1-tab">
+        <form method='POST' id='frm_PersonalDetails1' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Personal Details 1</h2>
+            
+            <div class="form-group row" id="fieldset__74259">
+        <div class="col row">
+                <label  id="label-FullName" class="col-form-label col-md-3" for="FullName">Full Name<span id="asterisk-FullName" style="color:red">*</span></label><div class="col-md-6"><input name="FullName" placeholder="Full Name" onchange="triggers[&quot;FullName&quot;].forEach(function(f, i) { f.call(this, event) });" id="FullName" class="form-control form-control-sm"><span class="error" id="error-FullName" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__98701">
+        <div class="col row">
+                <label  id="label-FathersHusbandsName" class="col-form-label col-md-3" for="FathersHusbandsName">Father's/Husband's Name<span id="asterisk-FathersHusbandsName" style="color:red">*</span></label><div class="col-md-6"><input name="FathersHusbandsName" onchange="triggers[&quot;FathersHusbandsName&quot;].forEach(function(f, i) { f.call(this, event) });" id="FathersHusbandsName" class="form-control form-control-sm" placeholder="Father&apos;s/Husband&apos;s Name"><span class="error" id="error-FathersHusbandsName" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__75109">
+        <div class="col row">
+                <label  id="label-dob" class="col-form-label col-md-3" for="dob">Date of Birth<span id="asterisk-dob" style="color:red">*</span></label><div class="col-md-3"><input name="dob" placeholder="dd/mm/yyyy" onchange="triggers[&quot;dob&quot;].forEach(function(f, i) { f.call(this, event) });" id="dob" class="form-control form-control-sm"><span class="error" id="error-dob" style="display:none">Error</span></div>
+                <label  id="label-Age" class="col-form-label col-md-3" for="Age">Age<span id="asterisk-Age" style="color:red">*</span></label><div class="col-md-3"><input name="Age" placeholder="In Years" readonly onchange="triggers[&quot;Age&quot;].forEach(function(f, i) { f.call(this, event) });" id="Age" class="form-control form-control-sm"><span class="error" id="error-Age" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__74702">
+        <div class="col row">
+                <label  id="label-Gender" class="col-form-label col-md-3" for="Gender">Gender<span id="asterisk-Gender" style="color:red">*</span></label><div class="col-md-3"><select name="Gender" placeholder="Please select" onchange="triggers[&quot;Gender&quot;].forEach(function(f, i) { f.call(this, event) });" id="Gender" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Transgender</option>
+                    <option>I don&apos;t want to disclose</option>
+                </select><span class="error" id="error-Gender" style="display:none">Error</span></div>
+                <label  id="label-Category" class="col-form-label col-md-3" for="Category">Category<span id="asterisk-Category" style="color:red">*</span></label><div class="col-md-3"><select name="Category" placeholder="Please select" onchange="triggers[&quot;Category&quot;].forEach(function(f, i) { f.call(this, event) });" id="Category" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>General</option>
+                    <option>Other Backward Classes (OBC)</option>
+                    <option>Scheduled Cast (SC)</option>
+                    <option>Scheduled Tribe (ST)</option>
+                    <option>Person with disabilities</option>
+                </select><span class="error" id="error-Category" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__17684">
+        <div class="col row">
+                <label  id="label-Nationality" class="col-form-label col-md-3" for="Nationality">Nationality<span id="asterisk-Nationality" style="color:red">*</span></label><div class="col-md-3"><select name="Nationality" placeholder="Please select" onchange="triggers[&quot;Nationality&quot;].forEach(function(f, i) { f.call(this, event) });" id="Nationality" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Indian</option>
+                </select><span class="error" id="error-Nationality" style="display:none">Error</span></div>
+
+                <label  id="label-StateUT" class="col-form-label col-md-3" for="StateUT">State/UT<span id="asterisk-StateUT" style="color:red">*</span></label><div class="col-md-3"><input name="StateUT" placeholder="State/UT to which you belong" onchange="triggers[&quot;StateUT&quot;].forEach(function(f, i) { f.call(this, event) });" id="StateUT" class="form-control form-control-sm"><span class="error" id="error-StateUT" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__59635">
+        <div class="col row">
+                <label  id="label-MaritalStatus" class="col-form-label col-md-3" for="MaritalStatus">Marital Status<span id="asterisk-MaritalStatus" style="color:red">*</span></label><div class="col-md-3"><select name="MaritalStatus" placeholder="Please select" onchange="triggers[&quot;MaritalStatus&quot;].forEach(function(f, i) { f.call(this, event) });" id="MaritalStatus" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Widowed</option>
+                    <option>Divorced</option>
+                    <option>Separated</option>
+                </select><span class="error" id="error-MaritalStatus" style="display:none">Error</span></div>
+                <label  id="label-PersonwithdisabilityPwD" class="col-form-label col-md-3" for="PersonwithdisabilityPwD">Person with disability (PwD)<span id="asterisk-PersonwithdisabilityPwD" style="color:red">*</span></label><div class="col-md-3"><select name="PersonwithdisabilityPwD" placeholder="Please select" onchange="triggers[&quot;PersonwithdisabilityPwD&quot;].forEach(function(f, i) { f.call(this, event) });" id="PersonwithdisabilityPwD" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select><span class="error" id="error-PersonwithdisabilityPwD" style="display:none">Error</span></div>
+            </div></div>
+
+        
+            <div class="text-center row"><button type="submit" id="submit_PersonalDetails1" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Contact-Details-1" role="tabpanel" aria-labelledby="v-pills-Contact-Details-1-tab">
+        <form method='POST' id='frm_ContactDetails1' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Contact Details 1</h2>
+            
+
+            <div class="form-group row" id="fieldset__44762">
+        <div class="col row">
+                <label  id="label-MobileNobrwithcountrycode" class="col-form-label col-md-2" for="MobileNobrwithcountrycode">Mobile No.<br>(with country code)<span id="asterisk-MobileNobrwithcountrycode" style="color:red">*</span></label><div class="col-md-4"><input name="MobileNobrwithcountrycode" placeholder="Contact No" onchange="triggers[&quot;MobileNobrwithcountrycode&quot;].forEach(function(f, i) { f.call(this, event) });" id="MobileNobrwithcountrycode" class="form-control form-control-sm"><span class="error" id="error-MobileNobrwithcountrycode" style="display:none">Error</span></div>
+                <label  id="label-LandlineNo" class="col-form-label col-md-2" for="LandlineNo">Landline No.</label><div class="col-md-4"><input name="LandlineNo" placeholder="Landline Contact No." onchange="triggers[&quot;LandlineNo&quot;].forEach(function(f, i) { f.call(this, event) });" id="LandlineNo" class="form-control form-control-sm"><span class="error" id="error-LandlineNo" style="display:none">Error</span></div>
+            </div></div>
+
+            <div class="form-group row" id="fieldset__32555">
+        <div class="col row">
+                <label class="col-md-2" name=""></label>
+                <label class="col-md-5" name="">Correspondence Address</label>
+                <label class="col-md-5" name="">Permanent Address</label>
+                <label  id="label-CorrespondenceAddress1" class="col-form-label col-md-2" for="CorrespondenceAddress1">Address 1<span id="asterisk-CorrespondenceAddress1" style="color:red">*</span></label><div class="col-md-5"><input name="CorrespondenceAddress1" placeholder="Correspondence Address" onchange="triggers[&quot;CorrespondenceAddress1&quot;].forEach(function(f, i) { f.call(this, event) });" id="CorrespondenceAddress1" class="form-control form-control-sm"><span class="error" id="error-CorrespondenceAddress1" style="display:none">Error</span></div>
+                <div class="col-md-5"><input name="PermanentAddress1" placeholder="Permanent Address" onchange="triggers[&quot;PermanentAddress1&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentAddress1" class="form-control form-control-sm"><span class="error" id="error-PermanentAddress1" style="display:none">Error</span></div>
+                <label  id="label-CorrespondenceAddress2" class="col-form-label col-md-2" for="CorrespondenceAddress2">Address 2<span id="asterisk-CorrespondenceAddress2" style="color:red">*</span></label><div class="col-md-5"><input name="CorrespondenceAddress2" placeholder="Correspondence Address" onchange="triggers[&quot;CorrespondenceAddress2&quot;].forEach(function(f, i) { f.call(this, event) });" id="CorrespondenceAddress2" class="form-control form-control-sm"><span class="error" id="error-CorrespondenceAddress2" style="display:none">Error</span></div>
+                <div class="col-md-5"><input name="PermanentAddress2" placeholder="Permanent Address" onchange="triggers[&quot;PermanentAddress2&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentAddress2" class="form-control form-control-sm"><span class="error" id="error-PermanentAddress2" style="display:none">Error</span></div>
+                <label  id="label-CorrespondenceCity" class="col-form-label col-md-2" for="CorrespondenceCity">City<span id="asterisk-CorrespondenceCity" style="color:red">*</span></label><div class="col-md-5"><input name="CorrespondenceCity" placeholder="Please enter" onchange="triggers[&quot;CorrespondenceCity&quot;].forEach(function(f, i) { f.call(this, event) });" id="CorrespondenceCity" class="form-control form-control-sm"><span class="error" id="error-CorrespondenceCity" style="display:none">Error</span></div>
+                <div class="col-md-5"><input name="PermanentCity" placeholder="Please enter" onchange="triggers[&quot;PermanentCity&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentCity" class="form-control form-control-sm"><span class="error" id="error-PermanentCity" style="display:none">Error</span></div>
+                <label  id="label-CorrespondenceState" class="col-form-label col-md-2" for="CorrespondenceState">State<span id="asterisk-CorrespondenceState" style="color:red">*</span></label><div class="col-md-5"><input name="CorrespondenceState" placeholder="Please enter" onchange="triggers[&quot;CorrespondenceState&quot;].forEach(function(f, i) { f.call(this, event) });" id="CorrespondenceState" class="form-control form-control-sm"><span class="error" id="error-CorrespondenceState" style="display:none">Error</span></div>
+                <div class="col-md-5"><input name="PermanentState" placeholder="Please enter" onchange="triggers[&quot;PermanentState&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentState" class="form-control form-control-sm"><span class="error" id="error-PermanentState" style="display:none">Error</span></div>
+                <label  id="label-CorrespondencePincode" class="col-form-label col-md-2" for="CorrespondencePincode">Pincode<span id="asterisk-CorrespondencePincode" style="color:red">*</span></label><div class="col-md-5"><input name="CorrespondencePincode" placeholder="Please enter" onchange="triggers[&quot;CorrespondencePincode&quot;].forEach(function(f, i) { f.call(this, event) });" id="CorrespondencePincode" class="form-control form-control-sm"><span class="error" id="error-CorrespondencePincode" style="display:none">Error</span></div>
+                <div class="col-md-5"><input name="PermanentPincode" placeholder="Please enter" onchange="triggers[&quot;PermanentPincode&quot;].forEach(function(f, i) { f.call(this, event) });" id="PermanentPincode" class="form-control form-control-sm"><span class="error" id="error-PermanentPincode" style="display:none">Error</span></div>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_ContactDetails1" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Applicant-Details-2" role="tabpanel" aria-labelledby="v-pills-Applicant-Details-2-tab">
+        <form method='POST' id='frm_ApplicantDetails2' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Applicant Details 2</h2>
+            
+            
+            <div class="form-group row" id="fieldset__35169">
+        <div class="col row">
+                <label  id="label-BankReferenceNumber" class="col-form-label col-md-3" for="BankReferenceNumber">Bank Reference Number<span id="asterisk-BankReferenceNumber" style="color:red">*</span></label><div class="col-md-3"><input name="BankReferenceNumber" placeholder="Enter Chalan Number" onchange="triggers[&quot;BankReferenceNumber&quot;].forEach(function(f, i) { f.call(this, event) });" id="BankReferenceNumber" class="form-control form-control-sm"><span class="error" id="error-BankReferenceNumber" style="display:none">Error</span></div>
+                <label  id="label-ApplicationCategory" class="col-form-label col-md-3" for="ApplicationCategory">Application Category<span id="asterisk-ApplicationCategory" style="color:red">*</span></label><div class="col-md-3"><select name="ApplicationCategory" placeholder="Choose Category" onchange="triggers[&quot;ApplicationCategory&quot;].forEach(function(f, i) { f.call(this, event) });" id="ApplicationCategory" class="custom-select form-control form-control-sm"><option>Choose Category</option>
+                    <option>Part Time</option>
+                    <option>Full Time</option>
+                </select><span class="error" id="error-ApplicationCategory" style="display:none">Error</span></div>
+            </div></div>
+
+        
+            <div class="text-center row"><button type="submit" id="submit_ApplicantDetails2" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Undergraduation-Details" role="tabpanel" aria-labelledby="v-pills-Undergraduation-Details-tab">
+        <form method='POST' id='frm_UndergraduationDetails' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Undergraduation Details</h2>
+            
+            <div class="form-group row" id="fieldset__47482">
+        <div class="col row">
+                <label  id="label-NameofDegree" class="col-form-label col-md-3" for="NameofDegree">Name of Degree<span id="asterisk-NameofDegree" style="color:red">*</span></label><div class="col-md-3"><input name="NameofDegree" placeholder="Name of Degree" onchange="triggers[&quot;NameofDegree&quot;].forEach(function(f, i) { f.call(this, event) });" id="NameofDegree" class="form-control form-control-sm"><span class="error" id="error-NameofDegree" style="display:none">Error</span></div>
+                <label  id="label-BranchName" class="col-form-label col-md-3" for="BranchName">Branch Name<span id="asterisk-BranchName" style="color:red">*</span></label><div class="col-md-3"><input name="BranchName" placeholder="Branch / Specialization" onchange="triggers[&quot;BranchName&quot;].forEach(function(f, i) { f.call(this, event) });" id="BranchName" class="form-control form-control-sm"><span class="error" id="error-BranchName" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__29115">
+        <div class="col row">
+                <label  id="label-CGPAPercentage" class="col-form-label col-md-3" for="CGPAPercentage">C.G.P.A / Percentage<span id="asterisk-CGPAPercentage" style="color:red">*</span></label><div class="col-md-3"><input name="CGPAPercentage" placeholder="C.G.P.A" onchange="triggers[&quot;CGPAPercentage&quot;].forEach(function(f, i) { f.call(this, event) });" id="CGPAPercentage" class="form-control form-control-sm"><span class="error" id="error-CGPAPercentage" style="display:none">Error</span></div>
+                <label  id="label-Class" class="col-form-label col-md-3" for="Class">Class<span id="asterisk-Class" style="color:red">*</span></label><div class="col-md-3"><select name="Class" placeholder="Choose your option" onchange="triggers[&quot;Class&quot;].forEach(function(f, i) { f.call(this, event) });" id="Class" class="custom-select form-control form-control-sm"><option>Choose your option</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select><span class="error" id="error-Class" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__52611">
+        <div class="col row">
+               <label  id="label-CollegeName" class="col-form-label col-md-3" for="CollegeName">College Name<span id="asterisk-CollegeName" style="color:red">*</span></label><div class="col-md-6"><input name="CollegeName" placeholder="College Name" onchange="triggers[&quot;CollegeName&quot;].forEach(function(f, i) { f.call(this, event) });" id="CollegeName" class="form-control form-control-sm"><span class="error" id="error-CollegeName" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__55113">
+        <div class="col row">
+               <label  id="label-UniversityName" class="col-form-label col-md-3" for="UniversityName">University Name<span id="asterisk-UniversityName" style="color:red">*</span></label><div class="col-md-6"><input name="UniversityName" placeholder="University Name" onchange="triggers[&quot;UniversityName&quot;].forEach(function(f, i) { f.call(this, event) });" id="UniversityName" class="form-control form-control-sm"><span class="error" id="error-UniversityName" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__03161">
+        <div class="col row">
+               <label  id="label-YearofPassing" class="col-form-label col-md-3" for="YearofPassing">Year of Passing<span id="asterisk-YearofPassing" style="color:red">*</span></label><div class="col-md-3"><input name="YearofPassing" onchange="triggers[&quot;YearofPassing&quot;].forEach(function(f, i) { f.call(this, event) });" id="YearofPassing" class="form-control form-control-sm" placeholder="Year of Passing"><span class="error" id="error-YearofPassing" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__99347">
+        <div class="col row">
+                <table id="msDetails"><thead><tr><th style="width:20%">Semester No</th><th style="width:40%">Maximum GPA / Percentage</th><th style="width:40%">GPA / Percentage Obtained</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_msDetails" onclick="addRow_msDetails(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_UndergraduationDetails" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-GATE" role="tabpanel" aria-labelledby="v-pills-GATE-tab">
+        <form method='POST' id='frm_GATE' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">GATE</h2>
+            
+            <div class="form-group row" id="fieldset__24131">
+        <div class="col row">
+                <label  id="label-msGateQualify" class="col-form-label col-md-3" for="msGateQualify">Did you qualify GATE?<span id="asterisk-msGateQualify" style="color:red">*</span></label><div class="col-md-3"><select name="msGateQualify" placeholder="Please select" onchange="triggers[&quot;msGateQualify&quot;].forEach(function(f, i) { f.call(this, event) });" id="msGateQualify" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select><span class="error" id="error-msGateQualify" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__16102">
+        <div class="col row">
+                <table id="MSGateResult"><thead><tr><th style="width:25%">Examination</th><th style="width:25%">Enter Score</th><th style="width:25%">Enter Rank</th><th style="width:20%">Valid Till</th><th>
+            <a role="button" href="#" class="btn btn-outline-success btn-sm" title='Add row' id="rowAdder_MSGateResult" onclick="addRow_MSGateResult(event)">
+                <span class="fa fa-plus-square"></span>
+            </a>
+            </th></tr></thead></table>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_GATE" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Professional-Experience" role="tabpanel" aria-labelledby="v-pills-Professional-Experience-tab">
+        <form method='POST' id='frm_ProfessionalExperience' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Professional Experience</h2>
+            
+            <div class="form-group row" id="fieldset__01192">
+        <div class="col row">
+                <label  id="label-msProfessionalExperience" class="col-form-label col-md-3" for="msProfessionalExperience">Click here if you have some professional experience?<span id="asterisk-msProfessionalExperience" style="color:red">*</span></label><div class="col-md-6"><select name="msProfessionalExperience" placeholder="Please select" onchange="triggers[&quot;msProfessionalExperience&quot;].forEach(function(f, i) { f.call(this, event) });" id="msProfessionalExperience" class="custom-select form-control form-control-sm"><option>Please select</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select><span class="error" id="error-msProfessionalExperience" style="display:none">Error</span></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__24795">
+        <div class="col row">
+                
+    <div id="MSExperience_wrapper">
+      <div id="MSExperience"></div>
+      <hr>
+      <a role="button" href="#" class="btn btn-success btn-sm" title='Add row' id="rowAdder_MSExperience" onclick="addRow_MSExperience(event)">
+        <span class="fa fa-plus-square"></span> Add row
+      </a>
+    </div>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_ProfessionalExperience" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Sponsorship" role="tabpanel" aria-labelledby="v-pills-Sponsorship-tab">
+        <form method='POST' id='frm_Sponsorship' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Sponsorship</h2>
+            
+            <div class="form-group row" id="fieldset__91268">
+        <div class="col row">
+                <label  id="label-SponsorshipCertificate" class="col-form-label col-md-3" for="SponsorshipCertificate">Sponsorship Certificate</label><div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6"><input type="file" name="SponsorshipCertificate" onchange="$f[&quot;SponsorshipCertificate&quot;] = (this.files)?this.files[0]:null; toggleRemoveButtonAndPreview_SponsorshipCertificate(); validate(&apos;SponsorshipCertificate&apos;);" id="SponsorshipCertificate" class="form-control-file" placeholder="Sponsorship Certificate"></div>
+                <div class="col-md-0" id="filePreview_SponsorshipCertificate"></div>
+                <div class="col-md-1">
+                    <a role='button' href='#' id="removeUploadButton_SponsorshipCertificate" title='Remove upload' class='btn btn-outline-danger btn-sm' onclick='removeUpload_SponsorshipCertificate(event)'><span class='fa fa-minus-circle'></span></a>
+                </div>
+            </div>
+            <div> <span class="error" id="error-SponsorshipCertificate" style="display:none">Error</span> </div></div>                
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_Sponsorship" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div><div class="tab-pane fade " id="v-pills-Conditions" role="tabpanel" aria-labelledby="v-pills-Conditions-tab">
+        <form method='POST' id='frm_Conditions' enctype='multipart/form-data'>
+          <div class='section'>
+            <h2 style="padding-bottom: 10px; border-bottom: 2px solid black">Conditions</h2>
+            
+            <div class="form-group row" id="fieldset__11530">
+        <div class="col row">
+                <label  id="label-UploadSignature" class="col-form-label col-md-3" for="UploadSignature">Upload Signature<span id="asterisk-UploadSignature" style="color:red">*</span></label><div class="col-md-3">
+            <div class="row">
+                <div class="col-md-6"><input type="file" name="UploadSignature" onchange="$f[&quot;UploadSignature&quot;] = (this.files)?this.files[0]:null; toggleRemoveButtonAndPreview_UploadSignature(); validate(&apos;UploadSignature&apos;);" id="UploadSignature" class="form-control-file" placeholder="Upload Signature"></div>
+                <div class="col-md-0" id="filePreview_UploadSignature"></div>
+                <div class="col-md-1">
+                    <a role='button' href='#' id="removeUploadButton_UploadSignature" title='Remove upload' class='btn btn-outline-danger btn-sm' onclick='removeUpload_UploadSignature(event)'><span class='fa fa-minus-circle'></span></a>
+                </div>
+            </div>
+            <div> <span class="error" id="error-UploadSignature" style="display:none">Error</span> </div></div>
+            </div></div>
+            <div class="form-group row" id="fieldset__45059">
+        <div class="col row">
+                <label class="col-md-12" name="">
+                    I do hereby declare that the information furnished in this application are true and correct to the best of my knowledge.
+                    If, any of the particulars furnished above is found to be incorrect at the time of admission, the admission may be cancelled.
+                </label>
+                <label  id="label-Agree" class="col-form-label col-md-3" for="Agree">Agree<span id="asterisk-Agree" style="color:red">*</span></label><div class="col-md-3"><select name="Agree" width="25%" placeholder="Select" onchange="triggers[&quot;Agree&quot;].forEach(function(f, i) { f.call(this, event) });" id="Agree" class="custom-select form-control form-control-sm"><option>Select</option>
+                    <option>Agree</option>
+                    <option>Disagree</option>
+                </select><span class="error" id="error-Agree" style="display:none">Error</span></div>
+            </div></div>
+        
+            <div class="text-center row"><button type="submit" id="submit_Conditions" class="btn btn-primary submit" style="margin: 15px auto">Save</button></div>
+          </div>
+        </form></div></div></div>
+            </div>
+        </div>
+
+    <%- include('partials/footer.partial.ejs') %>
+
+    
+<script type='text/javascript' src='/js/indicative_bundle.js'></script>
+<script type='text/javascript'>
+let $f = {"DepartmentPreference1":"","DepartmentPreference2":"","DepartmentPreference3":"","Email":"","AreaofResearch":"","FullName":"","FathersHusbandsName":"","dob":"","Age":"","Gender":"","Category":"","Nationality":"","StateUT":"","MaritalStatus":"","PersonwithdisabilityPwD":"","MobileNobrwithcountrycode":"","LandlineNo":"","CorrespondenceAddress1":"","PermanentAddress1":"","CorrespondenceAddress2":"","PermanentAddress2":"","CorrespondenceCity":"","PermanentCity":"","CorrespondenceState":"","PermanentState":"","CorrespondencePincode":"","PermanentPincode":"","BankReferenceNumber":"","ApplicationCategory":"","NameofDegree":"","BranchName":"","CGPAPercentage":"","Class":"","CollegeName":"","UniversityName":"","YearofPassing":"","msDetails__table__MSSemesterNo__count__":"","msDetails__table__MSMaximumGPAPercentage__count__":"","msDetails__table__MSGPAPercentageObtained__count__":"","msGateQualify":"","MSGateResult__table__MSExamination__count__":"","MSGateResult__table__MSGateEnterScore__count__":"","MSGateResult__table__MSGateEnterRank__count__":"","MSGateResult__table__msgatedob__count__":"","msProfessionalExperience":"","MSExperience__box__NameAddressofEmployer__count__":"","MSExperience__box__MSExperiencePositionHeld__count__":"","MSExperience__box__MSExperienceFrom__count__":"","MSExperience__box__MSExperienceTill__count__":"","SponsorshipCertificate":"","UploadSignature":"","Agree":""};
+let rules = {"DepartmentPreference1":"required|in:Architecture,Civil Engineering,Chemical Engineering,Computer Science Engineering,Electronics and Communication Engineering,Electricals and Electronics Engineering,Instrumentation and Control Engineering,Mechanical Engineering,Metallurgical and Materials Engineering,Production Engineering,Energy and Environment,Physics,Chemistry,Mathematics,Humanities (English/Economics),Computer Application,Management Studies","DepartmentPreference2":"sometimes|in:Architecture,Civil Engineering,Chemical Engineering,Computer Science Engineering,Electronics and Communication Engineering,Electricals and Electronics Engineering,Instrumentation and Control Engineering,Mechanical Engineering,Metallurgical and Materials Engineering,Production Engineering,Energy and Environment,Physics,Chemistry,Mathematics,Humanities (English/Economics),Computer Application,Management Studies","DepartmentPreference3":"sometimes|in:Architecture,Civil Engineering,Chemical Engineering,Computer Science Engineering,Electronics and Communication Engineering,Electricals and Electronics Engineering,Instrumentation and Control Engineering,Mechanical Engineering,Metallurgical and Materials Engineering,Production Engineering,Energy and Environment,Physics,Chemistry,Mathematics,Humanities (English/Economics),Computer Application,Management Studies","Email":"required","AreaofResearch":"required","FullName":"required","FathersHusbandsName":"required","dob":"required|js: verifyDateInddmmyyyy($f.dob)","Age":"required|js: (calcAge($f.dob) + ' Years') === $f.Age","Gender":"required|in:Male,Female,Transgender,I don&apos;t want to disclose","Category":"required|in:General,Other Backward Classes (OBC),Scheduled Cast (SC),Scheduled Tribe (ST),Person with disabilities","Nationality":"required|in:Indian","StateUT":"required","MaritalStatus":"required|in:Single,Married,Widowed,Divorced,Separated","PersonwithdisabilityPwD":"required|in:Yes,No","MobileNobrwithcountrycode":"required|phone","LandlineNo":"sometimes","CorrespondenceAddress1":"required","PermanentAddress1":"required","CorrespondenceAddress2":"required","PermanentAddress2":"required","CorrespondenceCity":"required","PermanentCity":"required","CorrespondenceState":"required|above:1","PermanentState":"required","CorrespondencePincode":"required|pincode","PermanentPincode":"required|pincode","BankReferenceNumber":"required","ApplicationCategory":"required|in:Part Time,Full Time","NameofDegree":"required","BranchName":"required","CGPAPercentage":"required","Class":"required|in:Yes,No","CollegeName":"required","UniversityName":"required","YearofPassing":"required","msDetails__table__MSSemesterNo__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","msDetails__table__MSMaximumGPAPercentage__count__":"required","msDetails__table__MSGPAPercentageObtained__count__":"required","msGateQualify":"required|in:Yes,No","MSGateResult__table__MSExamination__count__":"required|in:I,II,III,IV,V,VI,VII,VIII,IX,X","MSGateResult__table__MSGateEnterScore__count__":"required","MSGateResult__table__MSGateEnterRank__count__":"required","MSGateResult__table__msgatedob__count__":"required","msProfessionalExperience":"required|in:Yes,No","MSExperience__box__NameAddressofEmployer__count__":"required","MSExperience__box__MSExperiencePositionHeld__count__":"required","MSExperience__box__MSExperienceFrom__count__":"required|date","MSExperience__box__MSExperienceTill__count__":"required|date","SponsorshipCertificate":"sometimes|file","UploadSignature":"required|file","Agree":"required|in:Agree,Disagree"};
+let triggers = { DepartmentPreference1: [function(event) { $f["DepartmentPreference1"] = $("#DepartmentPreference1").val(); validate('DepartmentPreference1'); }],DepartmentPreference2: [function(event) { $f["DepartmentPreference2"] = $("#DepartmentPreference2").val(); validate('DepartmentPreference2'); }],DepartmentPreference3: [function(event) { $f["DepartmentPreference3"] = $("#DepartmentPreference3").val(); validate('DepartmentPreference3'); }],Email: [function(event) { $f["Email"] = $("#Email").val(); validate('Email'); }],AreaofResearch: [function(event) { $f["AreaofResearch"] = $("#AreaofResearch").val(); validate('AreaofResearch'); }],FullName: [function(event) { $f["FullName"] = $("#FullName").val(); validate('FullName'); }],FathersHusbandsName: [function(event) { $f["FathersHusbandsName"] = $("#FathersHusbandsName").val(); validate('FathersHusbandsName'); }],dob: [function(event) { $f["dob"] = $("#dob").val(); validate('dob'); },() => {
+            validate("dob");
+          },function() {
+            let val = eval("calcAge($f.dob) + ' Years'");
+            $("#Age").val(val);
+            $f.Age = val;
+        },() => {
+            validate("Age");
+          }],Age: [function(event) { $f["Age"] = $("#Age").val(); validate('Age'); },() => {
+            validate("Age");
+          }],Gender: [function(event) { $f["Gender"] = $("#Gender").val(); validate('Gender'); }],Category: [function(event) { $f["Category"] = $("#Category").val(); validate('Category'); }],Nationality: [function(event) { $f["Nationality"] = $("#Nationality").val(); validate('Nationality'); }],StateUT: [function(event) { $f["StateUT"] = $("#StateUT").val(); validate('StateUT'); }],MaritalStatus: [function(event) { $f["MaritalStatus"] = $("#MaritalStatus").val(); validate('MaritalStatus'); }],PersonwithdisabilityPwD: [function(event) { $f["PersonwithdisabilityPwD"] = $("#PersonwithdisabilityPwD").val(); validate('PersonwithdisabilityPwD'); }],MobileNobrwithcountrycode: [function(event) { $f["MobileNobrwithcountrycode"] = $("#MobileNobrwithcountrycode").val(); validate('MobileNobrwithcountrycode'); }],LandlineNo: [function(event) { $f["LandlineNo"] = $("#LandlineNo").val(); validate('LandlineNo'); }],CorrespondenceAddress1: [function(event) { $f["CorrespondenceAddress1"] = $("#CorrespondenceAddress1").val(); validate('CorrespondenceAddress1'); }],PermanentAddress1: [function(event) { $f["PermanentAddress1"] = $("#PermanentAddress1").val(); validate('PermanentAddress1'); }],CorrespondenceAddress2: [function(event) { $f["CorrespondenceAddress2"] = $("#CorrespondenceAddress2").val(); validate('CorrespondenceAddress2'); }],PermanentAddress2: [function(event) { $f["PermanentAddress2"] = $("#PermanentAddress2").val(); validate('PermanentAddress2'); }],CorrespondenceCity: [function(event) { $f["CorrespondenceCity"] = $("#CorrespondenceCity").val(); validate('CorrespondenceCity'); }],PermanentCity: [function(event) { $f["PermanentCity"] = $("#PermanentCity").val(); validate('PermanentCity'); }],CorrespondenceState: [function(event) { $f["CorrespondenceState"] = $("#CorrespondenceState").val(); validate('CorrespondenceState'); }],PermanentState: [function(event) { $f["PermanentState"] = $("#PermanentState").val(); validate('PermanentState'); }],CorrespondencePincode: [function(event) { $f["CorrespondencePincode"] = $("#CorrespondencePincode").val(); validate('CorrespondencePincode'); }],PermanentPincode: [function(event) { $f["PermanentPincode"] = $("#PermanentPincode").val(); validate('PermanentPincode'); }],BankReferenceNumber: [function(event) { $f["BankReferenceNumber"] = $("#BankReferenceNumber").val(); validate('BankReferenceNumber'); }],ApplicationCategory: [function(event) { $f["ApplicationCategory"] = $("#ApplicationCategory").val(); validate('ApplicationCategory'); }],NameofDegree: [function(event) { $f["NameofDegree"] = $("#NameofDegree").val(); validate('NameofDegree'); }],BranchName: [function(event) { $f["BranchName"] = $("#BranchName").val(); validate('BranchName'); }],CGPAPercentage: [function(event) { $f["CGPAPercentage"] = $("#CGPAPercentage").val(); validate('CGPAPercentage'); }],Class: [function(event) { $f["Class"] = $("#Class").val(); validate('Class'); }],CollegeName: [function(event) { $f["CollegeName"] = $("#CollegeName").val(); validate('CollegeName'); }],UniversityName: [function(event) { $f["UniversityName"] = $("#UniversityName").val(); validate('UniversityName'); }],YearofPassing: [function(event) { $f["YearofPassing"] = $("#YearofPassing").val(); validate('YearofPassing'); }],msDetails__table__MSSemesterNo__count__: [function(event) { $f["msDetails__table__MSSemesterNo__count__"] = $("#msDetails__table__MSSemesterNo__count__").val(); validate('msDetails__table__MSSemesterNo__count__'); }],msDetails__table__MSMaximumGPAPercentage__count__: [function(event) { $f["msDetails__table__MSMaximumGPAPercentage__count__"] = $("#msDetails__table__MSMaximumGPAPercentage__count__").val(); validate('msDetails__table__MSMaximumGPAPercentage__count__'); }],msDetails__table__MSGPAPercentageObtained__count__: [function(event) { $f["msDetails__table__MSGPAPercentageObtained__count__"] = $("#msDetails__table__MSGPAPercentageObtained__count__").val(); validate('msDetails__table__MSGPAPercentageObtained__count__'); }],msGateQualify: [function(event) { $f["msGateQualify"] = $("#msGateQualify").val(); validate('msGateQualify'); },function(){ 
+          if($f.msGateQualify === 'Yes') {
+            $("#fieldset__16102").show();
+          } else {
+            $("#fieldset__16102").hide();
+          }}],MSGateResult__table__MSExamination__count__: [function(event) { $f["MSGateResult__table__MSExamination__count__"] = $("#MSGateResult__table__MSExamination__count__").val(); validate('MSGateResult__table__MSExamination__count__'); }],MSGateResult__table__MSGateEnterScore__count__: [function(event) { $f["MSGateResult__table__MSGateEnterScore__count__"] = $("#MSGateResult__table__MSGateEnterScore__count__").val(); validate('MSGateResult__table__MSGateEnterScore__count__'); }],MSGateResult__table__MSGateEnterRank__count__: [function(event) { $f["MSGateResult__table__MSGateEnterRank__count__"] = $("#MSGateResult__table__MSGateEnterRank__count__").val(); validate('MSGateResult__table__MSGateEnterRank__count__'); }],MSGateResult__table__msgatedob__count__: [function(event) { $f["MSGateResult__table__msgatedob__count__"] = $("#MSGateResult__table__msgatedob__count__").val(); validate('MSGateResult__table__msgatedob__count__'); }],msProfessionalExperience: [function(event) { $f["msProfessionalExperience"] = $("#msProfessionalExperience").val(); validate('msProfessionalExperience'); },function(){ 
+          if($f.msProfessionalExperience === 'Yes') {
+            $("#fieldset__24795").show();
+          } else {
+            $("#fieldset__24795").hide();
+          }}],MSExperience__box__NameAddressofEmployer__count__: [function(event) { $f["MSExperience__box__NameAddressofEmployer__count__"] = $("#MSExperience__box__NameAddressofEmployer__count__").val(); validate('MSExperience__box__NameAddressofEmployer__count__'); }],MSExperience__box__MSExperiencePositionHeld__count__: [function(event) { $f["MSExperience__box__MSExperiencePositionHeld__count__"] = $("#MSExperience__box__MSExperiencePositionHeld__count__").val(); validate('MSExperience__box__MSExperiencePositionHeld__count__'); }],MSExperience__box__MSExperienceFrom__count__: [function(event) { $f["MSExperience__box__MSExperienceFrom__count__"] = $("#MSExperience__box__MSExperienceFrom__count__").val(); validate('MSExperience__box__MSExperienceFrom__count__'); }],MSExperience__box__MSExperienceTill__count__: [function(event) { $f["MSExperience__box__MSExperienceTill__count__"] = $("#MSExperience__box__MSExperienceTill__count__").val(); validate('MSExperience__box__MSExperienceTill__count__'); }],Agree: [function(event) { $f["Agree"] = $("#Agree").val(); validate('Agree'); }] };
+let onValidates = {"DepartmentPreference1": (err) => {
+        if (err.constructor !== Array) $("#error-DepartmentPreference1").hide();
+        else                           $("#error-DepartmentPreference1").show().html(err[0].message);
+    },"DepartmentPreference2": (err) => {
+        if (err.constructor !== Array) $("#error-DepartmentPreference2").hide();
+        else                           $("#error-DepartmentPreference2").show().html(err[0].message);
+    },"DepartmentPreference3": (err) => {
+        if (err.constructor !== Array) $("#error-DepartmentPreference3").hide();
+        else                           $("#error-DepartmentPreference3").show().html(err[0].message);
+    },"Email": (err) => {
+        if (err.constructor !== Array) $("#error-Email").hide();
+        else                           $("#error-Email").show().html(err[0].message);
+    },"AreaofResearch": (err) => {
+        if (err.constructor !== Array) $("#error-AreaofResearch").hide();
+        else                           $("#error-AreaofResearch").show().html(err[0].message);
+    },"FullName": (err) => {
+        if (err.constructor !== Array) $("#error-FullName").hide();
+        else                           $("#error-FullName").show().html(err[0].message);
+    },"FathersHusbandsName": (err) => {
+        if (err.constructor !== Array) $("#error-FathersHusbandsName").hide();
+        else                           $("#error-FathersHusbandsName").show().html(err[0].message);
+    },"dob": (err) => {
+        if (err.constructor !== Array) $("#error-dob").hide();
+        else                           $("#error-dob").show().html(err[0].message);
+    },"Age": (err) => {
+        if (err.constructor !== Array) $("#error-Age").hide();
+        else                           $("#error-Age").show().html(err[0].message);
+    },"Gender": (err) => {
+        if (err.constructor !== Array) $("#error-Gender").hide();
+        else                           $("#error-Gender").show().html(err[0].message);
+    },"Category": (err) => {
+        if (err.constructor !== Array) $("#error-Category").hide();
+        else                           $("#error-Category").show().html(err[0].message);
+    },"Nationality": (err) => {
+        if (err.constructor !== Array) $("#error-Nationality").hide();
+        else                           $("#error-Nationality").show().html(err[0].message);
+    },"StateUT": (err) => {
+        if (err.constructor !== Array) $("#error-StateUT").hide();
+        else                           $("#error-StateUT").show().html(err[0].message);
+    },"MaritalStatus": (err) => {
+        if (err.constructor !== Array) $("#error-MaritalStatus").hide();
+        else                           $("#error-MaritalStatus").show().html(err[0].message);
+    },"PersonwithdisabilityPwD": (err) => {
+        if (err.constructor !== Array) $("#error-PersonwithdisabilityPwD").hide();
+        else                           $("#error-PersonwithdisabilityPwD").show().html(err[0].message);
+    },"MobileNobrwithcountrycode": (err) => {
+        if (err.constructor !== Array) $("#error-MobileNobrwithcountrycode").hide();
+        else                           $("#error-MobileNobrwithcountrycode").show().html(err[0].message);
+    },"LandlineNo": (err) => {
+        if (err.constructor !== Array) $("#error-LandlineNo").hide();
+        else                           $("#error-LandlineNo").show().html(err[0].message);
+    },"CorrespondenceAddress1": (err) => {
+        if (err.constructor !== Array) $("#error-CorrespondenceAddress1").hide();
+        else                           $("#error-CorrespondenceAddress1").show().html(err[0].message);
+    },"PermanentAddress1": (err) => {
+        if (err.constructor !== Array) $("#error-PermanentAddress1").hide();
+        else                           $("#error-PermanentAddress1").show().html(err[0].message);
+    },"CorrespondenceAddress2": (err) => {
+        if (err.constructor !== Array) $("#error-CorrespondenceAddress2").hide();
+        else                           $("#error-CorrespondenceAddress2").show().html(err[0].message);
+    },"PermanentAddress2": (err) => {
+        if (err.constructor !== Array) $("#error-PermanentAddress2").hide();
+        else                           $("#error-PermanentAddress2").show().html(err[0].message);
+    },"CorrespondenceCity": (err) => {
+        if (err.constructor !== Array) $("#error-CorrespondenceCity").hide();
+        else                           $("#error-CorrespondenceCity").show().html(err[0].message);
+    },"PermanentCity": (err) => {
+        if (err.constructor !== Array) $("#error-PermanentCity").hide();
+        else                           $("#error-PermanentCity").show().html(err[0].message);
+    },"CorrespondenceState": (err) => {
+        if (err.constructor !== Array) $("#error-CorrespondenceState").hide();
+        else                           $("#error-CorrespondenceState").show().html(err[0].message);
+    },"PermanentState": (err) => {
+        if (err.constructor !== Array) $("#error-PermanentState").hide();
+        else                           $("#error-PermanentState").show().html(err[0].message);
+    },"CorrespondencePincode": (err) => {
+        if (err.constructor !== Array) $("#error-CorrespondencePincode").hide();
+        else                           $("#error-CorrespondencePincode").show().html(err[0].message);
+    },"PermanentPincode": (err) => {
+        if (err.constructor !== Array) $("#error-PermanentPincode").hide();
+        else                           $("#error-PermanentPincode").show().html(err[0].message);
+    },"BankReferenceNumber": (err) => {
+        if (err.constructor !== Array) $("#error-BankReferenceNumber").hide();
+        else                           $("#error-BankReferenceNumber").show().html(err[0].message);
+    },"ApplicationCategory": (err) => {
+        if (err.constructor !== Array) $("#error-ApplicationCategory").hide();
+        else                           $("#error-ApplicationCategory").show().html(err[0].message);
+    },"NameofDegree": (err) => {
+        if (err.constructor !== Array) $("#error-NameofDegree").hide();
+        else                           $("#error-NameofDegree").show().html(err[0].message);
+    },"BranchName": (err) => {
+        if (err.constructor !== Array) $("#error-BranchName").hide();
+        else                           $("#error-BranchName").show().html(err[0].message);
+    },"CGPAPercentage": (err) => {
+        if (err.constructor !== Array) $("#error-CGPAPercentage").hide();
+        else                           $("#error-CGPAPercentage").show().html(err[0].message);
+    },"Class": (err) => {
+        if (err.constructor !== Array) $("#error-Class").hide();
+        else                           $("#error-Class").show().html(err[0].message);
+    },"CollegeName": (err) => {
+        if (err.constructor !== Array) $("#error-CollegeName").hide();
+        else                           $("#error-CollegeName").show().html(err[0].message);
+    },"UniversityName": (err) => {
+        if (err.constructor !== Array) $("#error-UniversityName").hide();
+        else                           $("#error-UniversityName").show().html(err[0].message);
+    },"YearofPassing": (err) => {
+        if (err.constructor !== Array) $("#error-YearofPassing").hide();
+        else                           $("#error-YearofPassing").show().html(err[0].message);
+    },"msDetails__table__MSSemesterNo__count__": (err) => {
+        if (err.constructor !== Array) $("#error-msDetails__table__MSSemesterNo__count__").hide();
+        else                           $("#error-msDetails__table__MSSemesterNo__count__").show().html(err[0].message);
+    },"msDetails__table__MSMaximumGPAPercentage__count__": (err) => {
+        if (err.constructor !== Array) $("#error-msDetails__table__MSMaximumGPAPercentage__count__").hide();
+        else                           $("#error-msDetails__table__MSMaximumGPAPercentage__count__").show().html(err[0].message);
+    },"msDetails__table__MSGPAPercentageObtained__count__": (err) => {
+        if (err.constructor !== Array) $("#error-msDetails__table__MSGPAPercentageObtained__count__").hide();
+        else                           $("#error-msDetails__table__MSGPAPercentageObtained__count__").show().html(err[0].message);
+    },"msGateQualify": (err) => {
+        if (err.constructor !== Array) $("#error-msGateQualify").hide();
+        else                           $("#error-msGateQualify").show().html(err[0].message);
+    },"MSGateResult__table__MSExamination__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSGateResult__table__MSExamination__count__").hide();
+        else                           $("#error-MSGateResult__table__MSExamination__count__").show().html(err[0].message);
+    },"MSGateResult__table__MSGateEnterScore__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSGateResult__table__MSGateEnterScore__count__").hide();
+        else                           $("#error-MSGateResult__table__MSGateEnterScore__count__").show().html(err[0].message);
+    },"MSGateResult__table__MSGateEnterRank__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSGateResult__table__MSGateEnterRank__count__").hide();
+        else                           $("#error-MSGateResult__table__MSGateEnterRank__count__").show().html(err[0].message);
+    },"MSGateResult__table__msgatedob__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSGateResult__table__msgatedob__count__").hide();
+        else                           $("#error-MSGateResult__table__msgatedob__count__").show().html(err[0].message);
+    },"msProfessionalExperience": (err) => {
+        if (err.constructor !== Array) $("#error-msProfessionalExperience").hide();
+        else                           $("#error-msProfessionalExperience").show().html(err[0].message);
+    },"MSExperience__box__NameAddressofEmployer__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSExperience__box__NameAddressofEmployer__count__").hide();
+        else                           $("#error-MSExperience__box__NameAddressofEmployer__count__").show().html(err[0].message);
+    },"MSExperience__box__MSExperiencePositionHeld__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSExperience__box__MSExperiencePositionHeld__count__").hide();
+        else                           $("#error-MSExperience__box__MSExperiencePositionHeld__count__").show().html(err[0].message);
+    },"MSExperience__box__MSExperienceFrom__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSExperience__box__MSExperienceFrom__count__").hide();
+        else                           $("#error-MSExperience__box__MSExperienceFrom__count__").show().html(err[0].message);
+    },"MSExperience__box__MSExperienceTill__count__": (err) => {
+        if (err.constructor !== Array) $("#error-MSExperience__box__MSExperienceTill__count__").hide();
+        else                           $("#error-MSExperience__box__MSExperienceTill__count__").show().html(err[0].message);
+    },"SponsorshipCertificate": (err) => {
+        if (err.constructor !== Array) $("#error-SponsorshipCertificate").hide();
+        else                           $("#error-SponsorshipCertificate").show().html(err[0].message);
+    },"UploadSignature": (err) => {
+        if (err.constructor !== Array) $("#error-UploadSignature").hide();
+        else                           $("#error-UploadSignature").show().html(err[0].message);
+    },"Agree": (err) => {
+        if (err.constructor !== Array) $("#error-Agree").hide();
+        else                           $("#error-Agree").show().html(err[0].message);
+    },};
+let validate = (name) => {
+  let myRules = {};
+
+  myRules[name] = rules[name];
+
+  if (!myRules[name]) {
+    return onValidates[name]({});
+  }
+
+  // same handler will handle both validation success and validation failure
+  indicative.validate($f, myRules, {
+    "required": "This field is required to complete registeration process",
+    "date": "Please make sure you match the format dd/mm/yyy",
+    "email": "Please enter a valid email",
+    "phone": "Please enter a valid phone number",
+    "above": "Value must be greater than {{argument.0}}",
+  })
+    .then(onValidates[name])
+    .catch(onValidates[name]);
+};
+
+/*
+  The below code will have access to indicative.
+
+  This code is common to both client and server. When the form generator
+  is invoked, it takes this code, and places it in apt places in both
+  client and server.
+
+  Special case: 'js' rule uses eval to evaluate rules, and the rules
+  access form values using $f.<someFormElemName> format. They also access
+  functions that are defined in <script> tag in the markup. Both of these
+  are handled as follows:
+    1. Client:
+      - $f: it is already available as a global variable.
+      - functions: functions defined in <script> tags are global
+    2. Node:
+      $f, and the functions defined in <script> tags will be taken
+      and kept along with the following definitions in a module.
+      The module will provide a method called set$f( $f ) which
+      can be used to update $f before validation.
+
+  The following doesn't define indicative rules for files, since
+  files are handled differently both on client and server. For that
+  both client and server write their own implementations.
+*/
+
+indicative.extend("phone", (data, field, message, args, get) => {
+  if (indicative.is.phone(get(data, field))) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Please enter a valid phone number");
+});
+
+indicative.extend("email", (data, field, message, args, get) => {
+  if (indicative.is.email(get(data, field))) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Please enter a valid email id");
+});
+
+indicative.extend("js", ($f, field, message, args) => {
+  // naming the first argument $f here is a hacky way to give the 'code' access to the
+  // variables in the rest of the form.
+
+  let code = args.join(","); // in case there was a ',' in code, and indicative thought it
+  // was indicative of separating an argument instead of part
+  // of js code itself
+
+  let pass = true;
+
+  try {
+    pass = eval(code); // decide result based on expression
+  } catch (err) {
+    pass = false; // fail if expression throws error
+  }
+
+  if (pass) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid data");
+});
+
+indicative.extend("requiredIfJs", ($f, field, message, args, get) => {
+  // naming the first argument $f here is a hacky way to give the 'code' access to the
+  // variables in the rest of the form.
+
+  let code = args.join(","); // in case there was a ',' in code, and indicative thought it
+  // was indicative of separating an argument instead of part
+  // of js code itself
+
+  let pass = true;
+
+  try {
+    pass = eval(code); // decide result based on expression
+  } catch (err) {
+    pass = false; // fail if expression throws error
+    console.log(err);
+  }
+
+  console.log(code, pass, $f, get($f, field))  
+  
+  if (!pass) {
+    return Promise.resolve("");
+  }
+  if (pass && get($f, field) !== "") {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid data");
+});
+
+indicative.extend("pincode", (data, field, message, args, get) => {
+  if (/^[0-9]{6}$/.test(get(data, field))) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid Pincode");
+});
+
+indicative.extend("year", (data, field, message, args, get) => {
+  if (/^[0-9]{4}$/.test(get(data, field)) && parseInt(get(data, field)) >= 1950) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Please enter a valid year greater than 1950");
+});
+
+indicative.extend("sometimes", () => Promise.resolve(""));
+
+indicative.extend('file', (data, field, message, args, get) => {
+  // reasonable enough test
+  data = get(data, field);
+  if (data.size && data.type) {
+    return Promise.resolve("");
+  }
+  return Promise.reject("Invalid file");
+});
+
+indicative.extend('requiredFile', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+        return resolve('');
+    });
+});
+
+indicative.extend('fileType', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+
+        for(let i in args) {
+            if(file.name.endsWith("." + args[i]))
+                return resolve("");
+        }
+        return reject('Not a valid file. Please upload files of type ' + args);
+    });
+});
+
+indicative.extend('fileSize', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+
+        if(file.size/1024 > args[0])
+            return reject('File size limit exceeded. Upload a file lesser than ' + args[0] + 'KB');
+        return resolve("");
+    });
+});
+
+indicative.extend('imageMaxHeight', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.height > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with height lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+indicative.extend('imageMaxWidth', (data, field, message, args, get) => {
+    return new Promise(function(resolve, reject) {
+        const file = get(data, field);
+        if(!file)
+            return reject('Field is required for completing the registration');
+
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let img = $('<img>', {src: e.target.result})[0];
+            if(img.width > args[0])
+                return reject('File Dimension limit exceeded. Upload a file with width lesser than ' + args[0] + 'px');
+            return resolve("");
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+
+        var nRows_msDetails = 0;
+        var nRows_msDetails_real = 0;
+        function delRow_msDetails(event, rowNumber) {
+            let rowId = "msDetails-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_msDetails_real--;
+            if (nRows_msDetails_real < 100) {
+                $("#rowAdder_msDetails").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_msDetails(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_msDetails;
+            nRows_msDetails_real++;
+            let rowId = "msDetails-" + nRows;
+            let elements = [{"name":"msDetails__table__MSSemesterNo__count__","validationrule":"required","html":"<select name=\"msDetails__table__MSSemesterNo__count__\" width=\"20%\" placeholder=\"Semester No.\" onchange=\"triggers[&quot;msDetails__table__MSSemesterNo__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"msDetails__table__MSSemesterNo__count__\" class=\"custom-select form-control form-control-sm\"><option>Semester No.</option>\n                        <option>I</option>\n                        <option>II</option>\n                        <option>III</option>\n                        <option>IV</option>\n                        <option>V</option>\n                        <option>VI</option>\n                        <option>VII</option>\n                        <option>VIII</option>\n                        <option>IX</option>\n                        <option>X</option>\n                    </select><span class=\"error\" id=\"error-msDetails__table__MSSemesterNo__count__\" style=\"display:none\">Error</span>"},{"name":"msDetails__table__MSMaximumGPAPercentage__count__","validationrule":"required","html":"<input name=\"msDetails__table__MSMaximumGPAPercentage__count__\" width=\"40%\" placeholder=\"Maximum GPA / Percentage\" onchange=\"triggers[&quot;msDetails__table__MSMaximumGPAPercentage__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"msDetails__table__MSMaximumGPAPercentage__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-msDetails__table__MSMaximumGPAPercentage__count__\" style=\"display:none\">Error</span>"},{"name":"msDetails__table__MSGPAPercentageObtained__count__","validationrule":"required","html":"<input name=\"msDetails__table__MSGPAPercentageObtained__count__\" width=\"40%\" placeholder=\"GPA / Percentage Obtained\" onchange=\"triggers[&quot;msDetails__table__MSGPAPercentageObtained__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"msDetails__table__MSGPAPercentageObtained__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-msDetails__table__MSGPAPercentageObtained__count__\" style=\"display:none\">Error</span>"}];
+            if (nRows > 1) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_msDetails(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_msDetails_real + 1 >= 100) {
+                $("#rowAdder_msDetails").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/__count__/g, nRows_msDetails);
+
+                let elemHtml = elements[i].html.replace(/__count__/g, nRows_msDetails);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                  if (err.constructor !== Array) $("#error-" + elemName).hide();
+                  else                           $("#error-" + elemName).show().html(err[0].message);
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#msDetails").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 1; i++)
+            addRow_msDetails();
+        
+
+
+        var nRows_MSGateResult = 0;
+        var nRows_MSGateResult_real = 0;
+        function delRow_MSGateResult(event, rowNumber) {
+            let rowId = "MSGateResult-" + rowNumber;
+            $("#" + rowId).remove();
+            nRows_MSGateResult_real--;
+            if (nRows_MSGateResult_real < 100) {
+                $("#rowAdder_MSGateResult").attr('disabled', false);
+            }
+            event && event.preventDefault();
+            event && event.stopPropagation();
+            return false;
+        }
+        function addRow_MSGateResult(event) {
+            // create every element in the row
+            // add each element to the rules array
+            // NOT-SUPPORTED: call addTrigger on each element
+            // add function to onValidates for each element
+            // add each element to the $f object
+
+            let nRows = ++nRows_MSGateResult;
+            nRows_MSGateResult_real++;
+            let rowId = "MSGateResult-" + nRows;
+            let elements = [{"name":"MSGateResult__table__MSExamination__count__","validationrule":"required","html":"<select name=\"MSGateResult__table__MSExamination__count__\" width=\"25%\" maxcount=\"1\" placeholder=\"Choose your exam\" onchange=\"triggers[&quot;MSGateResult__table__MSExamination__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSGateResult__table__MSExamination__count__\" class=\"custom-select form-control form-control-sm\"><option>Choose your exam</option>\n                        <option>I</option>\n                        <option>II</option>\n                        <option>III</option>\n                        <option>IV</option>\n                        <option>V</option>\n                        <option>VI</option>\n                        <option>VII</option>\n                        <option>VIII</option>\n                        <option>IX</option>\n                        <option>X</option>\n                    </select><span class=\"error\" id=\"error-MSGateResult__table__MSExamination__count__\" style=\"display:none\">Error</span>"},{"name":"MSGateResult__table__MSGateEnterScore__count__","validationrule":"required","html":"<input name=\"MSGateResult__table__MSGateEnterScore__count__\" width=\"25%\" placeholder=\"Enter Score\" onchange=\"triggers[&quot;MSGateResult__table__MSGateEnterScore__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSGateResult__table__MSGateEnterScore__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSGateResult__table__MSGateEnterScore__count__\" style=\"display:none\">Error</span>"},{"name":"MSGateResult__table__MSGateEnterRank__count__","validationrule":"required","html":"<input name=\"MSGateResult__table__MSGateEnterRank__count__\" width=\"25%\" placeholder=\"Enter Rank\" onchange=\"triggers[&quot;MSGateResult__table__MSGateEnterRank__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSGateResult__table__MSGateEnterRank__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSGateResult__table__MSGateEnterRank__count__\" style=\"display:none\">Error</span>"},{"name":"MSGateResult__table__msgatedob__count__","validationrule":"required","html":"<input name=\"MSGateResult__table__msgatedob__count__\" width=\"20%\" placeholder=\"mm/dd/yyyy\" onchange=\"triggers[&quot;MSGateResult__table__msgatedob__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSGateResult__table__msgatedob__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSGateResult__table__msgatedob__count__\" style=\"display:none\">Error</span>"}];
+            if (nRows > 1) {
+                // while removing we only remove the element in the DOM, 
+                // and don't clean up onValidates, $f, rules variables for simplicity.
+                elements.push({
+                    name: 'delRow',
+                    validationrule: '',
+                    html: "<a role='button' href='#' title='Delete row' class='btn btn-outline-danger btn-sm' onclick='delRow_MSGateResult(event, " + nRows + ")'><span class='fa fa-minus-circle'></span></a>"
+                });
+            }
+            if (nRows_MSGateResult_real + 1 >= 100) {
+                $("#rowAdder_MSGateResult").attr('disabled', 'true');
+            }
+            let rowHtml = "<tr id='" + rowId + "'>";
+            for (let i = 0; i < elements.length; i++) {
+                let elemName = elements[i].name.replace(/__count__/g, nRows_MSGateResult);
+
+                let elemHtml = elements[i].html.replace(/__count__/g, nRows_MSGateResult);
+                rowHtml += "<td>" + elemHtml + "</td>";
+
+                rules[elemName] = elements[i].validationrule;
+                onValidates[elemName] = (err) => {
+                  if (err.constructor !== Array) $("#error-" + elemName).hide();
+                  else                           $("#error-" + elemName).show().html(err[0].message);
+                };
+
+                $f[elemName] = "";
+            }
+            rowHtml += "</tr>";
+
+            // finally append the row to the table
+            $("#MSGateResult").append(rowHtml);
+
+            event && event.preventDefault();
+            event && event.stopPropagation();
+
+            return false;
+        }
+        
+        for (let i = 0; i < 1; i++)
+            addRow_MSGateResult();
+        
+
+
+    var nRows_MSExperience = 0;
+    var nRows_MSExperience_real = 0;
+    function delRow_MSExperience(event, rowNumber) {
+        let rowId = "MSExperience-" + rowNumber;
+        $("#" + rowId).remove();
+        nRows_MSExperience_real--;
+        if (nRows_MSExperience_real < 100) {
+            $("#rowAdder_MSExperience").attr('disabled', false);
+        }
+        event && event.preventDefault();
+        event && event.stopPropagation();
+        return false;
+    }
+    function addRow_MSExperience(event) {
+        // create every element in the row
+        // add each element to the rules array
+        // NOT-SUPPORTED: call addTrigger on each element
+        // add function to onValidates for each element
+        // add each element to the $f object
+        let nRows = ++nRows_MSExperience;
+        nRows_MSExperience_real++;
+        let rowId = "MSExperience-" + nRows;
+        let elements = [{"name":"MSExperience__box__Name & Address of Employer__count__","validationrule":"required"},{"name":"MSExperience__box__MS Experience Position Held__count__","validationrule":"required"},{"name":"MSExperience__box__MS Experience From__count__","validationrule":"required|date"},{"name":"MSExperience__box__MS Experience Till__count__","validationrule":"required|date"}];
+        let html = "\n                    <div class=\"form-group row\" id=\"fieldset__19574\">\n        <div class=\"col row\">\n                        <label  id=\"label-MSExperience__box__NameAddressofEmployer__count__\" class=\"col-form-label col-md-5\" for=\"MSExperience__box__NameAddressofEmployer__count__\">Name & Address of Employer<span id=\"asterisk-MSExperience__box__NameAddressofEmployer__count__\" style=\"color:red\">*</span></label><div class=\"col-md-6\"><input name=\"MSExperience__box__NameAddressofEmployer__count__\" placeholder=\"Please enter\" onchange=\"triggers[&quot;MSExperience__box__NameAddressofEmployer__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSExperience__box__NameAddressofEmployer__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSExperience__box__NameAddressofEmployer__count__\" style=\"display:none\">Error</span></div>\n                    </div></div>\n                    <div class=\"form-group row\" id=\"fieldset__37053\">\n        <div class=\"col row\">\n                        <label  id=\"label-MSExperience__box__MSExperiencePositionHeld__count__\" class=\"col-form-label col-md-5\" for=\"MSExperience__box__MSExperiencePositionHeld__count__\">Position<span id=\"asterisk-MSExperience__box__MSExperiencePositionHeld__count__\" style=\"color:red\">*</span></label><div class=\"col-md-6\"><input name=\"MSExperience__box__MSExperiencePositionHeld__count__\" placeholder=\"Please enter\" onchange=\"triggers[&quot;MSExperience__box__MSExperiencePositionHeld__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSExperience__box__MSExperiencePositionHeld__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSExperience__box__MSExperiencePositionHeld__count__\" style=\"display:none\">Error</span></div>\n                    </div></div>\n                    <div class=\"form-group row\" id=\"fieldset__75024\">\n        <div class=\"col row\">    \n                        <label  id=\"label-MSExperience__box__MSExperienceFrom__count__\" class=\"col-form-label col-md-3\" for=\"MSExperience__box__MSExperienceFrom__count__\">From: (dd/mm/yyyy)<span id=\"asterisk-MSExperience__box__MSExperienceFrom__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><input name=\"MSExperience__box__MSExperienceFrom__count__\" placeholder=\"dd/mm/yyyy\" onchange=\"triggers[&quot;MSExperience__box__MSExperienceFrom__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSExperience__box__MSExperienceFrom__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSExperience__box__MSExperienceFrom__count__\" style=\"display:none\">Error</span></div>\n                        <label  id=\"label-MSExperience__box__MSExperienceTill__count__\" class=\"col-form-label col-md-3\" for=\"MSExperience__box__MSExperienceTill__count__\">To: (dd/mm/yyyy)<span id=\"asterisk-MSExperience__box__MSExperienceTill__count__\" style=\"color:red\">*</span></label><div class=\"col-md-3\"><input name=\"MSExperience__box__MSExperienceTill__count__\" placeholder=\"dd/mm/yyyy\" onchange=\"triggers[&quot;MSExperience__box__MSExperienceTill__count__&quot;].forEach(function(f, i) { f.call(this, event) });\" id=\"MSExperience__box__MSExperienceTill__count__\" class=\"form-control form-control-sm\"><span class=\"error\" id=\"error-MSExperience__box__MSExperienceTill__count__\" style=\"display:none\">Error</span></div>\n                    </div></div>\n                ";
+
+        let delRowButtonHtml = "";
+        if (nRows > 1) {
+            // while removing we only remove the element in the DOM, 
+            // and don't clean up onValidates, $f, rules variables for simplicity.
+            delRowButtonHtml = "<a role='button' href='#' title='Delete row' class='btn btn-danger btn-sm' style='float:right' onclick='delRow_MSExperience(event, " + nRows + ")'><span class='fa fa-minus-circle'></span> Delete row</a><br style='clear:both'>"
+        }
+        if (nRows_MSExperience_real + 1 >= 100) {
+            $("#rowAdder_MSExperience").attr('disabled', 'true');
+        }
+        let rowHtml = "<div class='box-row' id='" + rowId + "'>" + html.replace(/__count__/g, nRows_MSExperience) + delRowButtonHtml + "</div>";
+        for (let i = 0; i < elements.length; i++) {
+            let elemName = elements[i].name.replace(/__count__/g, nRows_MSExperience);
+
+            rules[elemName] = elements[i].validationrule;
+            onValidates[elemName] = (err) => {
+              if (err.constructor !== Array) $("#error-" + elemName).hide();
+              else                           $("#error-" + elemName).show().html(err[0].message);
+            };
+
+            $f[elemName] = "";
+        }
+        //rowHtml += "</div>";
+
+        // finally append the row to the table
+        $("#MSExperience").append(rowHtml);
+
+        event && event.preventDefault();
+        event && event.stopPropagation();
+
+        return false;
+    }
+    
+    for (let i = 0; i < 1; i++)
+        addRow_MSExperience();
+    
+
+
+            function toggleRemoveButtonAndPreview_SponsorshipCertificate(event) {
+              // Display the preview and remove button if a file has been selected
+              // Else hide them
+              let files = $("#SponsorshipCertificate")[0].files;
+              if( files === undefined || !files.length) {
+                  $("#removeUploadButton_SponsorshipCertificate").hide();
+                  $("#filePreview_SponsorshipCertificate").hide();
+              } else {
+                  
+                  $("#removeUploadButton_SponsorshipCertificate").show();
+                  $("#filePreview_SponsorshipCertificate").show();
+              }
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            function removeUpload_SponsorshipCertificate(event) {
+              // Reset the file input's value and call the toggleRemoveButtonAndPreview
+              // to remove the preview and remove button
+              $("#SponsorshipCertificate")[0].value = "";
+              toggleRemoveButtonAndPreview_SponsorshipCertificate();
+              $f["SponsorshipCertificate"] = null;
+
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            // Call the function to hide both the remove button and preview
+            // initially. Will be helpful to automatically display them when
+            // we get the uploaded values from server also.
+            toggleRemoveButtonAndPreview_SponsorshipCertificate();
+        
+
+
+            function toggleRemoveButtonAndPreview_UploadSignature(event) {
+              // Display the preview and remove button if a file has been selected
+              // Else hide them
+              let files = $("#UploadSignature")[0].files;
+              if( files === undefined || !files.length) {
+                  $("#removeUploadButton_UploadSignature").hide();
+                  $("#filePreview_UploadSignature").hide();
+              } else {
+                  
+                  $("#removeUploadButton_UploadSignature").show();
+                  $("#filePreview_UploadSignature").show();
+              }
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            function removeUpload_UploadSignature(event) {
+              // Reset the file input's value and call the toggleRemoveButtonAndPreview
+              // to remove the preview and remove button
+              $("#UploadSignature")[0].value = "";
+              toggleRemoveButtonAndPreview_UploadSignature();
+              $f["UploadSignature"] = null;
+
+              event && event.stopPropagation();
+              event && event.preventDefault();
+              return false;
+            }
+            // Call the function to hide both the remove button and preview
+            // initially. Will be helpful to automatically display them when
+            // we get the uploaded values from server also.
+            toggleRemoveButtonAndPreview_UploadSignature();
+        ;
+
+
+    function verifyDateInddmmyyyy(date) {
+        // date is in format 'dd/mm/yyyy'
+        const stdFormat = date.split("/").reverse().join("-");
+        const today = new Date();
+        const parsedDate = new Date(stdFormat);
+
+        let dd = '' + parsedDate.getDate();
+        let mm = '' + (parsedDate.getMonth() + 1);
+        let yyyy = '' + parsedDate.getFullYear();
+
+        dd = dd.length == 1 ? ('0' + dd) : dd;
+        mm = mm.length == 1 ? ('0' + mm) : mm;
+
+        return date == `${dd}/${mm}/${yyyy}`;
+    }
+    function calcAge(dob) {
+        // dob is in format 'dd/mm/yyyy'
+        const stdFormat = dob.split("/").reverse().join("-");
+        const today = new Date();
+
+        dob = new Date(stdFormat);
+        return Math.floor((today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365));
+    }
+
+</script>
+
+    <script type="text/javascript">
+        (function() {
+            var applicationData = <%- JSON.stringify(applicationData) %>;
+            var applicationId = applicationData.id;
+
+            $("form").each(function(id, el) {
+                var id = $(el).attr("id");
+                id = id.replace(/^frm_/, "");
+                $(el).attr("action", "/applications/save/" + applicationId + "/" + id);
+
+                var $form = $(el);
+                var formId = $form.attr("id");
+                var formName = formId.replace(/^frm_/, "");
+                var correspondingButtonId = 'submit_'+formName;
+                var $button = $('#'+correspondingButtonId);
+
+                function showErrors(errors) {
+                    for(var i = 0; i < errors.length; i++) {
+                        var name = errors[i].field;
+                        if (/__table__/.test(name) || /__box__/.test(name)) {
+                            // server sends such names with a dot before the numeric-index.
+                            // trim the last dot. Also, the numeric-index it sends is 0 based.
+                            // we need to convert it to 1-based.
+                            name = name.split(".");
+                            var idx = +(name.pop());
+                            name = name.join(".") + (idx+1);
+                            console.log(name);
+                        }
+                        $("#error-" + name).html(errors[i].message).show();
+                    }
+                }
+
+                function disableSaveButton() {
+                    $button.html("<i class='fa fa-circle-o-notch fa-spin'></i> Saving")
+                    $button.attr('disabled', true);
+                }
+
+                function enableSaveButton() {
+                    $button.html("Save");
+                    $button.attr("disabled", false);
+                }
+
+                $('#'+formId).submit((e)=>{
+                    e && e.preventDefault();
+                    e && e.stopPropagation();
+
+                    disableSaveButton();
+                    $(this).find("span.error").hide();
+
+                    var formValues = {};
+                    var myRules = {};
+                    for (var i = 0; i < this.elements.length; i++) {
+                        var name = this.elements[i].name;
+                        if (!rules[name]) continue;
+                        // $f doesn't get filled if the browser has prefilled data
+                        // provide fallback
+                        formValues[name] = $f[name] || $(this.elements[i]).val();
+                        myRules[name] = rules[name];
+                    }
+
+                    indicative.validateAll(formValues, myRules)
+                    //Promise.resolve()
+                        .then(() => {
+                            $('#'+formId).ajaxSubmit(function(data, ts, jqxhr, form){
+                                enableSaveButton();
+                                console.log(data);
+                                if(data.success){
+                                    $button.addClass("btn-success").html("<i class='fa fa-check'></i> Saved");
+                                    setTimeout(function() {
+                                        $button.removeClass("btn-success").html("Save");
+                                    }, 2000);
+                                } else if (data.validationErrors) {
+                                    showErrors(data.validationErrors);
+                                } else {
+                                    // show dialog
+                                }
+                            })
+                        })
+                        .catch((err) => { showErrors(err); enableSaveButton(); })
+
+                    return false;
+                })
+            });
+
+
+            // Prefilling
+            for (var i = 0; i < applicationData.FormValues.length; i++) {
+                var key = applicationData.FormValues[i].FormElement.name;
+                var val = applicationData.FormValues[i].value;
+
+                if (/__count__$/.test(key)) {
+                    val = JSON.parse(val);
+                    var containerName = key.split("__")[0]; // key format: <tableOrBoxName>__[table|box]__<name>__count__
+                    // existing rows of a table/box can be obtained via a global variable nRows_<containerName>_real
+                    var existingRows = window["nRows_" + containerName + "_real"] || 0;
+
+                    // check how many rows for this container already exist due to other fields.
+                    // make more if required.
+                    for (var j = existingRows; j < val.length; j++) {
+                        window["addRow_" + containerName]();
+                    }
+
+                    var keyWithoutCount = key.replace(/__count__$/, "");
+                    for (var j = 0; j < val.length; j++) {
+                        $("[name=" + keyWithoutCount + (j+1) + "]").val(val[j]);
+                        $f[keyWithoutCount + (j+1)] = val[j];
+                    }
+                } else if ($("[name=" + key + "]").attr("type") === "file") {
+                    $("#filePreview_" + key)
+                        .html('<img src="' + val + '" style="width:100%"><br>' +
+                                '<small><i>This photo has been uploaded earlier. To replace it, press "Browse". ' +
+                                'Otherwise you don\'t have to take any action</i></small>').show();
+                    console.log($("#filePreview_" + key));
+                    $f[key] = val;
+                } else {
+                    $("[name=" + key + "]").val(val);
+                    $f[key] = val;
+                }
+            }
+        })();
+        </script>
+</body>
+</html>
