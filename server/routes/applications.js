@@ -11,6 +11,7 @@ const Application = require("../models").Application;
 const Form= require("../models/").Form;
 const FormElement = require("../models/").FormElement;
 const FormValue = require("../models").FormValue;
+const SectionStatus = require("../models").SectionStatus;
 
 const uploadsDirectory = path.join(__dirname, "../uploads/");
 const ensureExists = (myPath, mask) => {
@@ -80,7 +81,11 @@ router.get('/', (req, res) => {
   request parameters:
     - formId
 */
+let sectionsCache = { }; // stores [formId] => Array<sectionName>
 router.post("/create", (req, res) => {
+  const formId = req.query.formId;
+  const userId = req.session.userId;
+
   if (!req.query.formId) {
     return res.status(400).json({
       "success": false,
@@ -89,27 +94,55 @@ router.post("/create", (req, res) => {
   }
 
   let applicationId;
+
   const applicationPromise = Application.create({
-    "formId": req.query.formId,
-    "userId": req.session.userId,
+    "formId": formId,
+    "userId": userId,
     "status": "Pending",
   });
+  
   const emailFormElementPromise = FormElement.findOne({
     "where": {
       // FIXME: This code is very brittle. In case the markup calls the field anything other than 'Email',
       // this will break.
       "name": "Email",
+      "formId": formId,
     }
   });
+  
+  const sectionsPromise = new Promise((res, rej) => {
+    if (sectionsCache[formId]) return res(sectionsCache[formId]);
+
+    FormElement
+      .findAll({ where: { formId: formId }, group: "section", attributes: ["section"] })
+      .then(sec => res(sectionsCache[formId] = sec.map(x => x.section)))
+      .catch(err => rej(err));
+  });
+
+  // once application has been created, set the statuses for each section to false
+  const sectionsStatusPromise = 
+    Promise
+      .all([applicationPromise, sectionsPromise])
+      .then(results => {
+        const application = results[0];
+        const sections = results[1];
+        applicationId = application.id;
+
+        const statuses = sections.map(sec => { return {
+            applicationId: applicationId,
+            section: sec,
+            isValid: false
+          };
+        });
+        return SectionStatus.bulkCreate(statuses);
+      });
 
   Promise.all([
-    applicationPromise,
+    sectionsStatusPromise,
     emailFormElementPromise,
   ]).then((results) => {
-    const application = results[0];
     const emailElem = results[1];
 
-    applicationId = application.id;
     return FormValue.create({
       "formElementId": emailElem.id,
       "applicationId": applicationId,
@@ -288,10 +321,24 @@ router.post("/save/:applicationId/:section", (req, res) => {
 
       return Promise.all(promises);
     })
-    .then((data) => {
+    .then(() => SectionStatus.update({ isValid: true }, { where: { applicationId, section } }))
+    .then(() => SectionStatus.findOne({
+        where: { applicationId, isValid: false },
+        rejectOnEmpty: true
+      })
+    )
+    .then(x => {
+      if (x)
+        Application.update({ status: "Pending" }, { where: { id: applicationId } })
+      else
+        Application.update({ status: "Completed" }, { where: { id: applicationId } })
+    })
+    .then(() => {
       res.status(200).json({ "success": true });
     })
     .catch((err) => {
+      SectionStatus.update({ isValid: false }, { where: { applicationId, section } });
+      Application.update({ status: "Pending" }, { where: { id: applicationId } });
       if (err.__validationError__) {
         delete err.__validationError__;
         res.status(200).json({
@@ -308,10 +355,6 @@ router.post("/save/:applicationId/:section", (req, res) => {
     });
 });
 
-router.get("/submit/:id", (req, res) => {
-
-});
-
 // GET handlers
 router.get("/:applicationId", (req, res) => {
   Application
@@ -320,14 +363,17 @@ router.get("/:applicationId", (req, res) => {
         "id": req.params.applicationId,
         "userId": req.session.userId,
       },
-      "include": {
+      "include": [{
+        "model": SectionStatus,
+        "attributes": [ "section", "isValid" ],
+      }, {
         "model": FormValue,
         "attributes": [ "value" ],
         "include": {
           "model": FormElement,
           "attributes": [ "name" ],
         },
-      },
+      }],
     })
     .then((application) => {
       if (!application) {

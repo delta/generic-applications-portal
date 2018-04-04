@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       "onUpdate": "CASCADE",
       "onDelete": "RESTRICT",
     });
+    Application.hasMany(models.SectionStatus, {
+      "onUpdate": "CASCADE",
+      "onDelete": "RESTRICT",
+    });
   };
 
   return Application;
