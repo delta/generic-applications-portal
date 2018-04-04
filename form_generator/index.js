@@ -145,7 +145,7 @@ class Manager {
       "validationRules": details.validationRules,
     });
   }
-  registerNode(nodeName, nodeTransformer) {
+ registerNode(nodeName, nodeTransformer) {
     this.nodeList[nodeName] = this.nodeList[nodeName] || [];
     this.nodeList[nodeName].push(nodeTransformer);
   }
@@ -574,12 +574,23 @@ class ExclusiveselectNodeTransformer extends NodeTransformer {
 
     const selectNamesStr = selectNames.join(",");
     let exclusiveFn = `function exclselectbinding(event){
-      console.log(event);
       let x = event.target.value;
+	  let y = [];
       let selects = "${selectNamesStr}".split(",");
+	  for(let i=0;i<selects.length;i++){
+	  	let utemp = $("#"+selects[i])[0].value;
+	  	if(utemp != "Please select"){
+	  		y.push(utemp);
+	  	}
+	  }
       for(let i=0;i<selects.length;i++){
-        const current_option_string = "#"+selects[i] + " option:contains(\'" + x + "\')";
-        $(current_option_string).prop("disabled",true);        
+      	$("#"+selects[i]).children('option').each(function(){
+      		$(this).prop("disabled", false);
+      	});
+        for(let j=0;j<y.length;j++){
+        	const current_option_string = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
+        	$(current_option_string).prop("disabled",true);
+		}        
       }
     }`; 
 

@@ -8,23 +8,23 @@ const indicative = require("indicative");
         const stdFormat = date.split("/").reverse().join("-");
         const today = new Date();
         const parsedDate = new Date(stdFormat);
-
+        
         let dd = '' + parsedDate.getDate();
         let mm = '' + (parsedDate.getMonth() + 1);
         let yyyy = '' + parsedDate.getFullYear();
-
+        
         dd = dd.length == 1 ? ('0' + dd) : dd;
         mm = mm.length == 1 ? ('0' + mm) : mm;
-
+        
         return date == `${dd}/${mm}/${yyyy}`;
     }
-    function calcAge(dob){
+    function calcAge(dob) {
         // dob is in format 'dd/mm/yyyy'
         const stdFormat = dob.split("/").reverse().join("-");
         const today = new Date();
-
+        
         dob = new Date(stdFormat);
-        return Math.floor((today.getTime() - dob.getTime()) / (1000*60*60*24*365));
+        return Math.floor((today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365));
     }
 
 
