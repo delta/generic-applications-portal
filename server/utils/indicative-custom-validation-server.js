@@ -18,13 +18,13 @@ const indicative = require("indicative");
 
         return date == `${dd}/${mm}/${yyyy}`;
     }
-    function calcAge(dob){
+    function calcAge(dob) {
         // dob is in format 'dd/mm/yyyy'
         const stdFormat = dob.split("/").reverse().join("-");
         const today = new Date();
 
         dob = new Date(stdFormat);
-        return Math.floor((today.getTime() - dob.getTime()) / (1000*60*60*24*365));
+        return Math.floor((today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365));
     }
 
 
