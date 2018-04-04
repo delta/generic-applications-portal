@@ -573,22 +573,21 @@ class ExclusiveSelectNodeTransformer extends NodeTransformer {
 
     const selectNamesStr = selectNames.join(",");
     let exclusiveFn = `function exclselectbinding(event){
-      let x = event.target.value;
       let y = [];
       let selects = "${selectNamesStr}".split(",");
-      for(let i=0;i<selects.length;i++){
+      for(let i = 0; i < selects.length; i++){
         let utemp = $("#"+selects[i])[0].value;
-	  	  if(utemp != $("#"+selects[i]).attr('placeholder')){
+        if(utemp != $("#"+selects[i]).attr('placeholder')){
           y.push(utemp);
         }
       }
-      for(let i=0;i<selects.length;i++){
+      for(let i = 0; i < selects.length; i++){
         $("#"+selects[i]).children('option').each(function(){
           $(this).prop("disabled", false);
-      	});
-        for(let j=0;j<y.length;j++){
-          const current_option_string = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
-          $(current_option_string).prop("disabled",true);
+        });
+        for(let j = 0;j < y.length; j++){
+          const currentOptionString = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
+          $(currentOptionString).prop("disabled",true);
         }        
       }
     }`; 
@@ -597,7 +596,7 @@ class ExclusiveSelectNodeTransformer extends NodeTransformer {
       addTrigger(selectNames[i], exclusiveFn, true);
     }
 
-    return `<div class='microsubsection' id="${this.name}">
+    return `<div id="${this.name}">
               ${this.transformChildren()}
             </div>`;
   }
