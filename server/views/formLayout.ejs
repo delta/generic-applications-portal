@@ -3,6 +3,10 @@
 <head>
     <title>Faculty Recruitment | NIT Trichy</title>
     <%- include('partials/commonHeaderIncludes.partial.ejs') %>
+    <style>
+      .isValid { color: green !important; }
+      .isInvalid { color: red !important; }
+    </style>
 </head>
 <body>
     <%- include('partials/topNavbar.partial.ejs') %>
@@ -16,6 +20,16 @@
     <script type="text/javascript">
         (function() {
             var applicationData = <%- JSON.stringify(applicationData) %>;
+            console.log(applicationData);
+            for (var stat of applicationData.SectionStatuses) {
+              let dashedName = stat.section.replace(/[^a-zA-Z0-9-_]/g, "-");
+              console.log(dashedName, $("#v-pills-" + dashedName + "-tab"));
+              if (stat.isValid) {
+                $("#v-pills-" + dashedName + "-tab").addClass("isValid");
+              } else {
+                $("#v-pills-" + dashedName + "-tab").addClass("isInvalid");
+              }
+            }
             var applicationId = applicationData.id;
 
             $("form").each(function(id, el) {

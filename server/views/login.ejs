@@ -49,8 +49,7 @@
                 }).done((data)=>{
                     //console.log(data);
                     if(data.success){
-                        location.href = '/dashboard';
-                        
+                        location.href = '/applications';
                     }else{
                         $globalAlert.html(data.message);
                         $globalAlert.addClass('alert-danger');

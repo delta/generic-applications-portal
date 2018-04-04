@@ -145,7 +145,7 @@ class Manager {
       "validationRules": details.validationRules,
     });
   }
-  registerNode(nodeName, nodeTransformer) {
+ registerNode(nodeName, nodeTransformer) {
     this.nodeList[nodeName] = this.nodeList[nodeName] || [];
     this.nodeList[nodeName].push(nodeTransformer);
   }
@@ -420,6 +420,7 @@ class InputNodeTransformer extends NodeTransformer {
       inputCols = cols.split(",")[1];
     }
 
+
     if (cols) {
       return `<div class="col-md-${inputCols}">${$.html(this.$node) + this.getErrorElement()}</div>`;
     }
@@ -557,6 +558,50 @@ class SelectNodeTransformer extends InputNodeTransformer {
     return this.createLabelAndInput();
   }
 }
+
+class ExclusiveSelectNodeTransformer extends NodeTransformer {
+  transform() {
+    // add triggers for selects. Not yet transforming them.
+    let selects = this.$node.find("select");
+    let selectNames = [];
+
+    for (let i=0; i<selects.length; i++) {
+      const child = selects[i];
+      const childName = safeName(child.attribs.name);
+      selectNames.push(childName);
+    }
+
+    const selectNamesStr = selectNames.join(",");
+    let exclusiveFn = `function exclselectbinding(event){
+      let y = [];
+      let selects = "${selectNamesStr}".split(",");
+      for(let i = 0; i < selects.length; i++){
+        let utemp = $("#"+selects[i])[0].value;
+        if(utemp != $("#"+selects[i]).attr('placeholder')){
+          y.push(utemp);
+        }
+      }
+      for(let i = 0; i < selects.length; i++){
+        $("#"+selects[i]).children('option').each(function(){
+          $(this).prop("disabled", false);
+        });
+        for(let j = 0;j < y.length; j++){
+          const currentOptionString = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
+          $(currentOptionString).prop("disabled",true);
+        }        
+      }
+    }`; 
+
+    for (let i = 0; i < selectNames.length; i++) {
+      addTrigger(selectNames[i], exclusiveFn, true);
+    }
+
+    return `<div id="${this.name}">
+              ${this.transformChildren()}
+            </div>`;
+  }
+}
+
 
 class FileInputNodeTransformer extends InputNodeTransformer {
   static isOfMyType(node) {
@@ -886,6 +931,7 @@ class BoxNodeTransformer extends NodeTransformer {
 manager.registerNode("application", ApplicationNodeTransformer);
 manager.registerNode("section", SectionNodeTransformer);
 manager.registerNode("subsection", SubsectionNodeTransformer);
+manager.registerNode("exclusiveselect", ExclusiveSelectNodeTransformer);
 manager.registerNode("fieldset", FieldsetNodeTransformer);
 manager.registerNode("input", InputNodeTransformer);
 manager.registerNode("input", FileInputNodeTransformer);

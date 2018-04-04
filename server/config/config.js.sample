@@ -1,5 +1,6 @@
 module.exports = {
   "development": {
+    "user": "root",
     "username": "root",
     "password": null,
     "database": "generic_applications_portal",
@@ -7,6 +8,7 @@ module.exports = {
     "dialect": "mysql",
   },
   "test": {
+    "user": "root",
     "username": "root",
     "password": null,
     "database": "generic_applications_portal",
@@ -14,6 +16,7 @@ module.exports = {
     "dialect": "mysql",
   },
   "production": {
+    "user": "root",
     "username": "root",
     "password": null,
     "database": "generic_applications_portal",
