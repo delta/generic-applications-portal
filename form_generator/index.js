@@ -559,11 +559,10 @@ class SelectNodeTransformer extends InputNodeTransformer {
   }
 }
 
-class ExclusiveselectNodeTransformer extends NodeTransformer {
+class ExclusiveSelectNodeTransformer extends NodeTransformer {
   transform() {
     // add triggers for selects. Not yet transforming them.
     let selects = this.$node.find("select");
-
     let selectNames = [];
 
     for (let i=0; i<selects.length; i++) {
@@ -575,22 +574,22 @@ class ExclusiveselectNodeTransformer extends NodeTransformer {
     const selectNamesStr = selectNames.join(",");
     let exclusiveFn = `function exclselectbinding(event){
       let x = event.target.value;
-	  let y = [];
+      let y = [];
       let selects = "${selectNamesStr}".split(",");
-	  for(let i=0;i<selects.length;i++){
-	  	let utemp = $("#"+selects[i])[0].value;
-	  	if(utemp != "Please select"){
-	  		y.push(utemp);
-	  	}
-	  }
       for(let i=0;i<selects.length;i++){
-      	$("#"+selects[i]).children('option').each(function(){
-      		$(this).prop("disabled", false);
+        let utemp = $("#"+selects[i])[0].value;
+	  	  if(utemp != $("#"+selects[i]).attr('placeholder')){
+          y.push(utemp);
+        }
+      }
+      for(let i=0;i<selects.length;i++){
+        $("#"+selects[i]).children('option').each(function(){
+          $(this).prop("disabled", false);
       	});
         for(let j=0;j<y.length;j++){
-        	const current_option_string = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
-        	$(current_option_string).prop("disabled",true);
-		}        
+          const current_option_string = "#"+selects[i] + " option:contains(\'" + y[j] + "\')";
+          $(current_option_string).prop("disabled",true);
+        }        
       }
     }`; 
 
@@ -599,8 +598,8 @@ class ExclusiveselectNodeTransformer extends NodeTransformer {
     }
 
     return `<div class='microsubsection' id="${this.name}">
-            ${this.transformChildren()}
-        </div>`;
+              ${this.transformChildren()}
+            </div>`;
   }
 }
 
@@ -933,7 +932,7 @@ class BoxNodeTransformer extends NodeTransformer {
 manager.registerNode("application", ApplicationNodeTransformer);
 manager.registerNode("section", SectionNodeTransformer);
 manager.registerNode("subsection", SubsectionNodeTransformer);
-manager.registerNode("exclusiveselect", ExclusiveselectNodeTransformer);
+manager.registerNode("exclusiveselect", ExclusiveSelectNodeTransformer);
 manager.registerNode("fieldset", FieldsetNodeTransformer);
 manager.registerNode("input", InputNodeTransformer);
 manager.registerNode("input", FileInputNodeTransformer);
